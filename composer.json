@@ -19,7 +19,8 @@
         "classmap": [
             "database",
             "vendor/kendoui/lib",
-            "vendor/utils"
+            "vendor/utils",
+            "Bl"
         ],
         "psr-4": {
             "aplicacion\\": "app/"
