@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 
 use aplicacion\Http\Requests;
 use aplicacion\Http\Controllers\Controller;
-use DataSourceResult;
-use Kendo\Data\DataSource;
 
 use Utils;
+use TestBl;
 
 
 class mainController extends Controller
@@ -19,7 +18,13 @@ class mainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
+    {
+        return view('login');
+    }
+
+    public function getViewModal()
     {
         return view('main.testmodal');
     }
@@ -78,25 +83,21 @@ class mainController extends Controller
     public function postPrubaproce(Request $rq)
     {
 
-     $prueba = \DB::select('CALL getDatosPrueba');
-    
-     $request = file_get_contents('php://input');
+        $Bl = new TestBl();
 
-    $input = json_decode($request);
+        $datos = $Bl->getDatosGrid();
 
-    $util = new Utils();
+        $request = file_get_contents('php://input');
 
-    $data = $util->getDataRequest($prueba,$input);
+        $input = json_decode($request);
 
-    //dd($data);
+        $util = new Utils();
 
-     return $util->getDataRequest($prueba,$input);
-
-       // return $prueba;
-     
+        return $util->getDataRequest($datos,$input);
+        
     }
 
 
- 
+
 
 }

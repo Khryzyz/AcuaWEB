@@ -13,23 +13,27 @@ class Utils{
 
 
 		if (isset($request->filter)) {
-            $field = $request->filter->filters[0]->field;
-            $value = $request->filter->filters[0]->value;
-            $newdata=json_encode($data);
+			$field = $request->filter->filters[0]->field;
+			$value = $request->filter->filters[0]->value;
+			$newdata=json_encode($data);
 			$array = json_decode($newdata, true);
-            foreach ($array as $key => $aux) {
-            	$pos = strpos($aux[$field], $value);
-            	if($pos !==false){
-            		$tempArray[$key] = $aux[$field];
-            	}
-            }
-            $finalArray = array();
+			if($value!=''){
+				foreach ($array as $key => $aux) {
+					$pos = strpos($aux[$field], $value);
+					if($pos !==false){
+						$tempArray[$key] = $aux[$field];
+					}
+				}
+				if(isset($tempArray)){
+					$finalArray = array();
 
-			foreach($tempArray AS $key => $value) {
-				$finalArray[] = $array[$key];
+					foreach($tempArray AS $key => $value) {
+						$finalArray[] = $array[$key];
+					}
+					$data = $finalArray;
+				}
 			}
-			$data = $finalArray;
-        }
+		}
 
 		$sort = $this->mergeSortDescriptors($request);
 

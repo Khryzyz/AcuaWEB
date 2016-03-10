@@ -1,4 +1,4 @@
-@extends('layouts.principal')
+@extends('layouts.admin.principal')
 
 @section('content')
 
@@ -103,10 +103,4 @@
 
 @section('scripts')
 
-<script type="text/javascript">
-
-
-
-
-</script>
 @endsection

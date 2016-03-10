@@ -14,7 +14,10 @@
 /*
  *METODOS GET 
  */
-Route::get('main/modal', 'mainController@index');
+
+Route::get('/', 'mainController@index');
+
+Route::get('main/modal', 'mainController@viewmodal');
 
 Route::get('main/modaltest', 'mainController@modaltest');
 Route::get('main/modalformulario', 'mainController@getModalFormulario');
