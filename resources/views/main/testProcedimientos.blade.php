@@ -80,11 +80,13 @@
 		$shipName->field('telefono')
 		->title('telefono');
 
+		$gridFilterable = new \Kendo\UI\GridFilterable();
+	    $gridFilterable->mode("row");
 
 		$grid->addColumn($orderID, $freight, $orderDate, $shipName)
 		->dataSource($dataSource)
 		->sortable(true)
-		->filterable(true)
+		->filterable($gridFilterable)
 		->pageable(true);
 
 		echo $grid->render();

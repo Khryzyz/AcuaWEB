@@ -1,16 +1,26 @@
 
-     $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+
+/*permite procedimientos ajax para laravel*/
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
 });
+
+
+
+
 
 
 var modalBs = $('#modalBs');
 var modalBsContent = $('#modalBs').find(".modal-content");
 $(function(){
-   
-handleAjaxModal();
+
+    /*elimina boton de seleccion de filtros de la grid*/
+
+    $('.k-dropdown-wrap.k-state-default').css('display','none');
+
+    handleAjaxModal();
 })
 
 
@@ -18,7 +28,7 @@ handleAjaxModal();
 
 function handleAjaxModal() {
 
-    
+
     // Limpia los eventos asociados para elementos ya existentes, asi evita duplicación
     $("a[data-modal]").unbind("click");
     // Evita cachear las transaccione Ajax previas
@@ -31,21 +41,21 @@ function handleAjaxModal() {
         modalBsContent.load(this.href, function (response, status, xhr) {
             switch (status) {
                 case "success":
-                    modalBs.modal({ backdrop: 'static', keyboard: false }, 'show');
+                modalBs.modal({ backdrop: 'static', keyboard: false }, 'show');
 
-                    if (dataModalValue == "modal-lg") {
-                        modalBs.find(".modal-dialog").addClass("modal-lg");
-                    } else {
-                        modalBs.find(".modal-dialog").removeClass("modal-lg");
-                    }
+                if (dataModalValue == "modal-lg") {
+                    modalBs.find(".modal-dialog").addClass("modal-lg");
+                } else {
+                    modalBs.find(".modal-dialog").removeClass("modal-lg");
+                }
 
-                    break;
+                break;
 
                 case "error":
-                    var message = "Error de ejecución: " + xhr.status + " " + xhr.statusText;
-                    if (xhr.status == 403) $.msgbox(response, { type: 'error' });
-                    else $.msgbox(message, { type: 'error' });
-                    break;
+                var message = "Error de ejecución: " + xhr.status + " " + xhr.statusText;
+                if (xhr.status == 403) $.msgbox(response, { type: 'error' });
+                else $.msgbox(message, { type: 'error' });
+                break;
             }
 
         });
