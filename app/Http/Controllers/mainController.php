@@ -86,6 +86,10 @@ class mainController extends Controller
 
     $util = new Utils();
 
+    $data = $util->getDataRequest($prueba,$input);
+
+    //dd($data);
+
      return $util->getDataRequest($prueba,$input);
 
        // return $prueba;

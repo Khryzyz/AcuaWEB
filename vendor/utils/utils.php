@@ -10,6 +10,27 @@ class Utils{
 		$control = 0;
 		$total =0;
 		$take=0;
+
+
+		if (isset($request->filter)) {
+            $field = $request->filter->filters[0]->field;
+            $value = $request->filter->filters[0]->value;
+            $newdata=json_encode($data);
+			$array = json_decode($newdata, true);
+            foreach ($array as $key => $aux) {
+            	$pos = strpos($aux[$field], $value);
+            	if($pos !==false){
+            		$tempArray[$key] = $aux[$field];
+            	}
+            }
+            $finalArray = array();
+
+			foreach($tempArray AS $key => $value) {
+				$finalArray[] = $array[$key];
+			}
+			$data = $finalArray;
+        }
+
 		$sort = $this->mergeSortDescriptors($request);
 
 		if (count($sort) > 0) 
@@ -48,7 +69,7 @@ class Utils{
 		}
 		$total = count($data);
 
-		return ['data'=>$dataF, 'total'=>$total,'skip'=>$request->skip,'take'=>$request->take];
+		return ['data'=>$dataF, 'total'=>$total];
 	}
 
 
