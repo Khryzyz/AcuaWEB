@@ -18,7 +18,13 @@ class mainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
+    {
+        return view('login');
+    }
+
+    public function getViewModal()
     {
         return view('main.testmodal');
     }

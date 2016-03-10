@@ -23,9 +23,11 @@
     {!!Html::style('css/sb-admin-2.css')!!}
     <!-- Custom Fonts -->
     {!!Html::style('css/font-awesome.min.css')!!}
-    <!-- Kendo-->
+    <!-- Kendo css-->
     {!!Html::style('css/kendo/kendo.common.min.css')!!}
     {!!Html::style('css/kendo/kendo.bootstrap.min.css')!!}
+    <!-- msgbox css-->
+    {!!Html::style('css/msgbox/jquery.msgbox.css')!!}
     <!-- jQuery -->
     {!!Html::script('js/jquery.min.js')!!}
     <!-- Bootstrap Core JavaScript -->
@@ -36,8 +38,9 @@
     {!!Html::script('js/raphael-min.js')!!}
     <!-- Custom Theme JavaScript -->
     {!!Html::script('js/sb-admin-2.js')!!}
-     
-     
+    <!-- msgbox js-->
+    {!!Html::script('js/msgbox/jquery.msgbox.js')!!}
+
     <!--kendojs -->
     {!!Html::script('js/kendo/kendo.all.min.js')!!}
     {!!Html::script('js/kendo/cultures/kendo.culture.es-ES.min.js')!!}
@@ -45,7 +48,7 @@
     
 
     <script type="text/javascript">
-     kendo.culture("es-ES");
+    kendo.culture("es-ES");
     </script>
 
     
@@ -55,71 +58,71 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <![endif]-->
 
-</head>
+    </head>
 
-<body>
-
-
+    <body>
 
 
-    <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Nombre Aplicacion</a>
-            </div>
-            <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
-                
-                @include('layouts.menutop')
-                
-            </ul>
-            <!-- /.navbar-top-links -->
+        <div id="wrapper">
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        @include('layouts.menuside')
-                    </ul>
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Nombre Aplicacion</a>
                 </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+                <!-- /.navbar-header -->
 
-        <div id="page-wrapper">
-          <br/>
-           <div class="col-md-12">
-                   @yield('content') 
-           </div>
-            
-        </div>
-        <!-- /#page-wrapper -->
+                <ul class="nav navbar-top-links navbar-right">
 
-    </div>
-    <!-- /#wrapper -->
+                    @include('layouts.admin.menutop')
 
-   <!-- Modal Bootstrap-->
-    <div id='modalBs' class='modal fade bs-example-modal-lg'>
+                </ul>
+                <!-- /.navbar-top-links -->
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            @include('layouts.admin.menuside')
+                        </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+
+            <div id="page-wrapper">
+              <br/>
+              <div class="col-md-12">
+                 @yield('content') 
+             </div>
+
+         </div>
+         <!-- /#page-wrapper -->
+
+     </div>
+     <!-- /#wrapper -->
+
+     <!-- Modal Bootstrap-->
+     <div id='modalBs' class='modal fade bs-example-modal-lg'>
         <div class="modal-dialog">
             <div class="modal-content">
             </div>
         </div>
     </div>
 
-   
-   {!!Html::script('js/inicio.js')!!}  
-  
+
+    {!!Html::script('js/inicio.js')!!}  
+
 
     @yield('scripts')
 
