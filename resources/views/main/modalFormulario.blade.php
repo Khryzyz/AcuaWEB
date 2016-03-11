@@ -63,5 +63,10 @@
   function onSuccess(result) {
     result = JSON.parse(result)
     console.log(result);
+    if(result.estado=true){
+      $.msgbox(result.mensaje, { type: 'alert' }, function(){
+         modalBs.modal('hide');
+      });
+    }
   }
 </script>
