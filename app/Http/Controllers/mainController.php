@@ -9,6 +9,8 @@ use aplicacion\Http\Controllers\Controller;
 
 use Utils;
 use TestBl;
+use Socialite; 
+
 
 
 class mainController extends Controller
@@ -98,6 +100,18 @@ class mainController extends Controller
     }
 
 
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+        //return views('facebook.index');
+    }
 
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+        var_dump($user);
+        //return view('main.facebook',compact('user'));
+        
+    }
 
 }
