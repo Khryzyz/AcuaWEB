@@ -17,7 +17,7 @@
 
 Route::get('/', 'mainController@index');
 
-Route::get('main/modal', 'mainController@viewmodal');
+Route::get('main/modal', 'mainController@getViewModal');
 
 Route::get('main/modaltest', 'mainController@modaltest');
 Route::get('main/modalformulario', 'mainController@getModalFormulario');
