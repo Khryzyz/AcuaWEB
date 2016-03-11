@@ -38,6 +38,6 @@ return [
   'facebook' => [
         'client_id' => '196524404046457',
         'client_secret' => '885ff803652b81f5bf368e747a3ccf86',
-        //'redirect' => 'http://localhost/blog/public/facebook/callback',
+        'redirect' => 'http://localhost/appretaurante/public/facebook/callback',
     ]
 ];

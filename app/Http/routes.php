@@ -26,7 +26,9 @@ Route::get('main/tesProcedimiento', 'mainController@getViewProcedimientos');
 
 Route::get('main/testPrueba', 'mainController@postPrubaproce');
 
-
+//rutas de login por facebook
+Route::get('facebook','mainController@redirectToProvider');
+Route::get('facebook/callback','mainController@handleProviderCallback');
 
 /*
  *METODOS POST 
