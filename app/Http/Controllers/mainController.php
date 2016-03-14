@@ -1,11 +1,11 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace aplicacion\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use app\Http\Requests;
-use app\Http\Controllers\Controller;
+use aplicacion\Http\Requests;
+use aplicacion\Http\Controllers\Controller;
 
 use Utils;
 use TestBl;
