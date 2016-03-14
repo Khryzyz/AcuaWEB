@@ -49,6 +49,11 @@
   font-size:11px;
 }
 
+.jquery-msgbox-success
+{
+  background: url(images/alert.png) no-repeat 20px 20px;
+}
+
 .jquery-msgbox-alert
 {
   background: url(images/alert.png) no-repeat 20px 20px;

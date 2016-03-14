@@ -1,11 +1,11 @@
 <?php
 
-namespace aplicacion\Http\Controllers;
+namespace app\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use aplicacion\Http\Requests;
-use aplicacion\Http\Controllers\Controller;
+use app\Http\Requests;
+use app\Http\Controllers\Controller;
 
 use Utils;
 use TestBl;
@@ -73,11 +73,11 @@ class mainController extends Controller
      * @return $restult -> json que contiene el estatus de la operacion, mensaje opcional, y los datos de que se deseen regresar
      */
 
-    public function postMamodalFormulario(Request $rq)
+    public function postMamodalFormulario(Request $request)
     {
-        $result['status'] = true;
-        $result['mensaje'] = 'llego bien';
-        return json_encode($result);
+         $Bl = new TestBl();
+         $result = $Bl->insTesData($request);
+         return $result;
     }
 
     
