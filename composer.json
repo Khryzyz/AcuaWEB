@@ -24,7 +24,7 @@
             "Bl"
         ],
         "psr-4": {
-            "aplicacion\\": "app/"
+            "app\\": "app/"
         }
     },
     "autoload-dev": {
