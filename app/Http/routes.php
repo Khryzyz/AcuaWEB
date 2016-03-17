@@ -17,7 +17,7 @@ Route::get('/', 'mainController@index');
 
 /* METODOS PERTENECIENTES A LA GESTION DE LA APP ################################ */
 
-Route::get('home', 'gestionController@index');
+Route::get('gestion', 'gestionController@index');
 
 /* METODOS DE LOGIN ############################################################# */
 
