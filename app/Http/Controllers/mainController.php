@@ -100,6 +100,12 @@ class mainController extends Controller
     }
 
 
+    public function postprueba(Request $rq)
+    {
+        return $rq['id'];
+    }
+
+
     public function redirectToProvider()
     {
         return Socialite::driver('facebook')->redirect();

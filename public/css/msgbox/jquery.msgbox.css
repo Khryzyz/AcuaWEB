@@ -7,7 +7,7 @@
 
 .jquery-msgbox-wrapper
 {
-  padding:20px 20px 20px 100px;
+  padding:20px 20px 80px 100px;
 }
 
 .jquery-msgbox-buttons
@@ -51,7 +51,7 @@
 
 .jquery-msgbox-success
 {
-  background: url(images/alert.png) no-repeat 20px 20px;
+  background: url(images/success.png) no-repeat 20px 20px;
 }
 
 .jquery-msgbox-alert
