@@ -27,7 +27,7 @@ trait AuthenticatesUsers
     /**
      * Handle a login request to the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function postLogin(Request $request)
@@ -66,10 +66,10 @@ trait AuthenticatesUsers
     }
 
     /**
-     * Send the response after the user was authenticated.
+     * Envia la respuesta despues que el usuario fue autenticado
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  bool  $throttles
+     * @param  \Illuminate\Http\Request $request
+     * @param  bool $throttles
      * @return \Illuminate\Http\Response
      */
     protected function handleUserWasAuthenticated(Request $request, $throttles)
@@ -86,9 +86,9 @@ trait AuthenticatesUsers
     }
 
     /**
-     * Get the needed authorization credentials from the request.
+     * Obtiene las credenciales necesarias para la autenticacion
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     protected function getCredentials(Request $request)
@@ -104,13 +104,13 @@ trait AuthenticatesUsers
     protected function getFailedLoginMessage()
     {
         return Lang::has('auth.failed')
-                ? Lang::get('auth.failed')
-                : 'These credentials do not match our records.';
+            ? Lang::get('auth.failed')
+            : 'These credentials do not match our records.';
     }
 
     /**
-     * Log the user out of the application.
-     *
+     * Desloguea al usuario de la aplicacion
+     * Se puede introducir cualquier direccion de salida
      * @return \Illuminate\Http\Response
      */
     public function getLogout()
@@ -121,23 +121,23 @@ trait AuthenticatesUsers
     }
 
     /**
-     * Get the path to the login route.
+     * Obtiene la direccion a la ruta de loggeo
      *
      * @return string
      */
     public function loginPath()
     {
-        return property_exists($this, 'loginPath') ? $this->loginPath : '/auth/login';
+        return property_exists($this, 'loginPath') ? $this->loginPath : 'gestion';
     }
 
     /**
-     * Get the login username to be used by the controller.
+     * Obtiene el campo usado de usuario por el controlador
      *
      * @return string
      */
     public function loginUsername()
     {
-        return property_exists($this, 'username') ? $this->username : 'email';
+        return property_exists($this, 'username') ? $this->username : 'username';
     }
 
     /**
