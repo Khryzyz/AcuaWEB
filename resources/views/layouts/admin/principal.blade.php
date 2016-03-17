@@ -103,17 +103,17 @@
             <div id="page-wrapper">
               <br/>
               <div class="col-md-12">
-                 @yield('content') 
-             </div>
+                @yield('content') 
+            </div>
 
-         </div>
-         <!-- /#page-wrapper -->
+        </div>
+        <!-- /#page-wrapper -->
 
-     </div>
-     <!-- /#wrapper -->
+    </div>
+    <!-- /#wrapper -->
 
-     <!-- Modal Bootstrap-->
-     <div id='modalBs' class='modal fade bs-example-modal-lg'>
+    <!-- Modal Bootstrap-->
+    <div id='modalBs' class='modal fade bs-example-modal-lg'>
         <div class="modal-dialog">
             <div class="modal-content">
             </div>

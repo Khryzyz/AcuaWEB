@@ -36,4 +36,4 @@ Route::get('facebook/callback','mainController@handleProviderCallback');
 Route::post('main/modalformulario', 'mainController@postMamodalFormulario');
 Route::post('main/tesProcedimientogrid', 'mainController@postPrubaproce');
 
-//Route::get('main/tesProcedimientogrid', 'mainController@postPrubaproce');
+Route::post('main/usuarioid', 'mainController@postprueba');

@@ -1,7 +1,10 @@
 @extends('layouts.admin.principal')
 
 @section('content')
-    
+
+
+
+
 <div class="panel panel-primary">
 <div class="panel-heading">
  	 	Titulo del panel

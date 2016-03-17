@@ -2,15 +2,16 @@
 
 @section('content')
 
+<?php
+$Utils = new Utils();
+?>
+
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		Titulo del panel
 	</div>
 	<div class="panel-body">
 		<p>Cuepor del panel</p>
-
-		
-		
 		<?php
 		$transport = new \Kendo\Data\DataSourceTransport();
 
@@ -81,7 +82,7 @@
 		->title('telefono');
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
-	    $gridFilterable->mode("row");
+		$gridFilterable->mode("row");
 
 		$grid->addColumn($orderID, $freight, $orderDate, $shipName)
 		->dataSource($dataSource)
@@ -102,5 +103,5 @@
 @endsection
 
 @section('scripts')
-
+<script type="text/javascript" src='{{ url($Utils->getRutaJs())}}'> </script>
 @endsection

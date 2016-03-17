@@ -6,7 +6,9 @@ class TestBl{
 	public function TestBl(){}
 
 	public function getDatosGrid(){
-		$prueba = \DB::select('CALL getDatosPrueba');
+		/*$prueba = \DB::select('CALL getDatosPrueba');*/
+
+		$prueba =  DB::table('tesprocedimiento')->get();
 		return $prueba;
 	}
 

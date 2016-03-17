@@ -84,6 +84,21 @@ class Utils{
 		return array_merge($sort, $groups);
 	}
 
+	public function getRutaJs()
+	{	
+		$ruta = $_SERVER['REQUEST_URI'];
+		if(strpos($ruta,'?'))
+		{
+			$arrRutas = explode("?", $ruta);
+			$url = "js".$arrRutas[0].".js";
+		}
+		else
+		{
+			$url="js".$_SERVER['REQUEST_URI'].".js";
+		}
+		return $url;
+	}
+
 
 
 }
