@@ -1,10 +1,16 @@
-<meta charset="utf-8"> 
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<meta name='csrf-param' content='authenticity_token'>
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name='csrf-param' content='authenticity_token'>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <title>Nombre Aplicacion</title>
 <!-- Bootstrap Core CSS -->
@@ -59,9 +65,9 @@ kendo.culture("es-ES");
     <body>
 
 
-       <div class="col-md-12">
+
            @yield('content') 
-       </div>
+
 
        <!-- Modal Bootstrap-->
        <div id='modalBs' class='modal fade bs-example-modal-lg'>
@@ -72,7 +78,7 @@ kendo.culture("es-ES");
     </div>
 
 
-    {!!Html::script('js/inicio.js')!!}  
+    {!!Html::script('js/inicio.js')!!}
 
 
     @yield('scripts')
