@@ -18,7 +18,7 @@ $(function(){
 
     /*elimina boton de seleccion de filtros de la grid*/
 
-    $('.k-dropdown-wrap.k-state-default').css('display','none');
+    $('.k-grid.k-widget .k-dropdown-wrap.k-state-default').remove();
 
     handleAjaxModal();
 })

@@ -67,6 +67,7 @@ $Utils = new Utils();
 		$orderID = new \Kendo\UI\GridColumn();
 		$orderID->field('idtesprocedimiento')
 		->filterable(false)
+		->Hidden('true')
 		->title('id');
 
 		$freight = new \Kendo\UI\GridColumn();
@@ -81,13 +82,20 @@ $Utils = new Utils();
 		$shipName->field('telefono')
 		->title('telefono');
 
+		$Column = new \Kendo\UI\GridColumn();
+		$Column->field('ColumnName')
+		->title('Accion')
+		//->attributes(' bgcolor = '.getColorForValue(#: Column #) )
+		->templateId('ColumnTemplate');
+
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 		$gridFilterable->mode("row");
 
-		$grid->addColumn($orderID, $freight, $orderDate, $shipName)
+		$grid->addColumn($orderID, $freight, $orderDate, $shipName, $Column)
 		->dataSource($dataSource)
 		->sortable(true)
 		->filterable($gridFilterable)
+		->dataBound('handleAjaxModal')
 		->pageable(true);
 
 		echo $grid->render();
@@ -103,5 +111,10 @@ $Utils = new Utils();
 @endsection
 
 @section('scripts')
+
+<script id="ColumnTemplate" type="text/x-kendo-tmpl">
+    <a href="../main/modalformulario/#=idtesprocedimiento #" class="btn btn-primary" data-modal="">Editar</a>
+</script>
+
 <script type="text/javascript" src='{{ url($Utils->getRutaJs())}}'> </script>
 @endsection

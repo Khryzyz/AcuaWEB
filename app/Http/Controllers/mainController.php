@@ -57,7 +57,9 @@ class mainController extends Controller {
      * 
      * @return retorna la vista que sera cargada en el modal
      */
-    public function getModalFormulario() {
+    public function getModalFormulario(Request $rq, $id=null)
+        if(isset($id)){
+        }
         return view('main.modalformulario');
     }
 
