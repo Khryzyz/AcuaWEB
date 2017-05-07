@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="container">
-        <div class="col-md-10 col-md-offset-1">
+        <div class='col-md-12'> 
+            <br/>
+        <div>
+        <div class="col-md-8 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Formulario de Registro</h3>
@@ -16,7 +19,16 @@
                                 {!!Form::label('username', 'Usuario: (*)')!!}
                             </div>
                             <div col-md-3>
-                                {!!Form::text('username',null,['class'=>'form-control', 'required',  'placeholder'=>'Usuario'])!!}
+                                {!!Form::text('name',null,['class'=>'form-control', 'required',  'placeholder'=>'Usuario'])!!}
+                            </div>
+                        </div>
+
+                         <div class="form-group">
+                            <div col-md-4>
+                                {!!Form::label('email', 'Correo Electronico: (*)')!!}
+                            </div>
+                            <div col-md-3>
+                                {!!Form::email('email',null,['class'=>'form-control', 'required', 'data-email-msg'=>'Formato de correo no valido', 'placeholder'=>'Correo Electronico'])!!}
                             </div>
                         </div>
 
@@ -40,77 +52,10 @@
 
                         <div class="form-group">
                             <div col-md-4>
-                                {!!Form::label('primer_nombre', 'Primer Nombre: (*)')!!}
+                                {!!Form::label('Rol', 'Rol: (*)')!!}
                             </div>
                             <div col-md-3>
-                                {!!Form::text('primer_nombre',null,['class'=>'form-control', 'required',  'placeholder'=>'Primer Nombre'])!!}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div col-md-4>
-                                {!!Form::label('segundo_nombre', 'Segundo Nombre: ')!!}
-                            </div>
-                            <div col-md-3>
-                                {!!Form::text('segundo_nombre',null,['class'=>'form-control',  'placeholder'=>'Segundo Nombre'])!!}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div col-md-4>
-                                {!!Form::label('primer_apellido', 'Primer Apellido: (*)')!!}
-                            </div>
-                            <div col-md-3>
-                                {!!Form::text('primer_apellido',null,['class'=>'form-control', 'required',  'placeholder'=>'Primer Apellido'])!!}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div col-md-4>
-                                {!!Form::label('segundo_apellido', 'Segundo Apellido: ')!!}
-                            </div>
-                            <div col-md-3>
-                                {!!Form::text('segundo_apellido',null,['class'=>'form-control',  'placeholder'=>'Segundo Apellido'])!!}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div col-md-4>
-                                {!!Form::label('email', 'Correo Electronico: (*)')!!}
-                            </div>
-                            <div col-md-3>
-                                {!!Form::email('email',null,['class'=>'form-control', 'required', 'data-email-msg'=>'Formato de correo no valido', 'placeholder'=>'Correo Electronico'])!!}
-                            </div>
-                        </div>
-
-                        <?php
-                        $numeroTelefonico = new \Kendo\UI\MaskedTextBox('numeroTelefonico');
-                        $numeroTelefonico->value("");
-                        $numeroTelefonico->mask("(0) 000 00 00");
-                        ?>
-
-                        <div class="form-group">
-                            <div col-md-4>
-                                {!!Form::label('numeroTelefonico', 'Telefono:')!!}
-                            </div>
-                            <div col-md-3>
-                                {!!$numeroTelefonico->render()!!}
-                            </div>
-                        </div>
-
-                        <?php
-                        $numeroCelular = new \Kendo\UI\MaskedTextBox('numeroCelular');
-                        $numeroCelular->value("");
-                        $numeroCelular->mask("000 000 00 00");
-                        $numeroCelular->attr('data-validmask-msg', 'Número celular incompleto');
-                        ?>
-
-                        <div class="form-group">
-                            <div col-md-4>
-                                {!!Form::label('numeroCelular', 'Numero Celular: (*)')!!}
-                            </div>
-                            <div col-md-3>
-                                {!!$numeroCelular->render()!!}
+                                {!!Form::text('rol',null,['class'=>'form-control', 'required',  'placeholder'=>'Rol'])!!}
                             </div>
                         </div>
 

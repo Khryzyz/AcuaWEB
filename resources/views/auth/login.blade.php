@@ -1,4 +1,3 @@
-
 @extends('layouts.general.principal')
 
 @section('content')
@@ -11,12 +10,12 @@
                     <h3 class="panel-title">Formulario de ingreso</h3>
                 </div>
                 {!!Form::open()!!}
+
                 <div class="panel-body">
                     <form role="form">
-
                         <fieldset>
                             <div class="form-group">
-                                {!!Form::text('username',null,['class'=>'form-control', 'required', 'placeholder'=>'Usuario'])!!}
+                                <input type="text" class="form-control" name="username" value="{{ old('username') }}">
                             </div>
                             <div class="form-group">
                                 {!!Form::password('password',['class'=>'form-control', 'required', 'placeholder'=>'Contraseña'])!!}
@@ -27,9 +26,7 @@
                                 </label>
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
-                            <input type="submit" class="btn btn-lg btn-success btn-block" value="Login"/>                            
-                            <a href="facebook" class="btn btn-primary btn-lg  btn-block">Iniciar sesion con Facebook</a>
-
+                            <input type="submit" class="btn btn-lg btn-success btn-block" value="Login"/>
                         </fieldset>
                     </form>
                 </div>
@@ -38,5 +35,9 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('scripts')
 
 @endsection

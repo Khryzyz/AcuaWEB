@@ -33,19 +33,19 @@ class UserChecker implements UserCheckerInterface
         }
 
         if (!$user->isAccountNonLocked()) {
-            $ex = new LockedException('User account is locked.');
+            $ex = new LockedException('Usuario account is locked.');
             $ex->setUser($user);
             throw $ex;
         }
 
         if (!$user->isEnabled()) {
-            $ex = new DisabledException('User account is disabled.');
+            $ex = new DisabledException('Usuario account is disabled.');
             $ex->setUser($user);
             throw $ex;
         }
 
         if (!$user->isAccountNonExpired()) {
-            $ex = new AccountExpiredException('User account has expired.');
+            $ex = new AccountExpiredException('Usuario account has expired.');
             $ex->setUser($user);
             throw $ex;
         }
@@ -61,7 +61,7 @@ class UserChecker implements UserCheckerInterface
         }
 
         if (!$user->isCredentialsNonExpired()) {
-            $ex = new CredentialsExpiredException('User credentials have expired.');
+            $ex = new CredentialsExpiredException('Usuario credentials have expired.');
             $ex->setUser($user);
             throw $ex;
         }

@@ -42,7 +42,7 @@ class UserPasswordValidator extends ConstraintValidator
         $user = $this->securityContext->getToken()->getUser();
 
         if (!$user instanceof UserInterface) {
-            throw new ConstraintDefinitionException('The User object must implement the UserInterface interface.');
+            throw new ConstraintDefinitionException('The Usuario object must implement the UserInterface interface.');
         }
 
         $encoder = $this->encoderFactory->getEncoder($user);

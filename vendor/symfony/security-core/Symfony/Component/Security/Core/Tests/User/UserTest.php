@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\User\User;
 class UserTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers Symfony\Component\Security\Core\User\User::__construct
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::__construct
      * @expectedException \InvalidArgumentException
      */
     public function testConstructorException()
@@ -25,8 +25,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Symfony\Component\Security\Core\User\User::__construct
-     * @covers Symfony\Component\Security\Core\User\User::getRoles
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::__construct
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::getRoles
      */
     public function testGetRoles()
     {
@@ -38,8 +38,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Symfony\Component\Security\Core\User\User::__construct
-     * @covers Symfony\Component\Security\Core\User\User::getPassword
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::__construct
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::getPassword
      */
     public function testGetPassword()
     {
@@ -48,8 +48,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Symfony\Component\Security\Core\User\User::__construct
-     * @covers Symfony\Component\Security\Core\User\User::getUsername
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::__construct
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::getUsername
      */
     public function testGetUsername()
     {
@@ -58,7 +58,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Symfony\Component\Security\Core\User\User::getSalt
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::getSalt
      */
     public function testGetSalt()
     {
@@ -67,7 +67,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Symfony\Component\Security\Core\User\User::isAccountNonExpired
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::isAccountNonExpired
      */
     public function testIsAccountNonExpired()
     {
@@ -79,7 +79,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Symfony\Component\Security\Core\User\User::isCredentialsNonExpired
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::isCredentialsNonExpired
      */
     public function testIsCredentialsNonExpired()
     {
@@ -91,7 +91,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Symfony\Component\Security\Core\User\User::isAccountNonLocked
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::isAccountNonLocked
      */
     public function testIsAccountNonLocked()
     {
@@ -103,7 +103,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Symfony\Component\Security\Core\User\User::isEnabled
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::isEnabled
      */
     public function testIsEnabled()
     {
@@ -115,7 +115,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Symfony\Component\Security\Core\User\User::eraseCredentials
+     * @covers Symfony\Component\Security\Core\Usuario\Usuario::eraseCredentials
      */
     public function testEraseCredentials()
     {

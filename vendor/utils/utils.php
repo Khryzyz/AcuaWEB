@@ -11,7 +11,6 @@ class Utils{
 		$total =0;
 		$take=0;
 
-
 		if (isset($request->filter)) {
 			$field = $request->filter->filters[0]->field;
 			$value = $request->filter->filters[0]->value;
@@ -58,7 +57,9 @@ class Utils{
 			foreach($tempArray AS $key => $value) {
 				$finalArray[] = $array[$key];
 			}
-			$data = $finalArray;  
+			$data = $finalArray;
+
+
 		}
 		if (isset($request->skip) && isset($request->take)) 
 		{

@@ -12,24 +12,104 @@
 /*
  *METODOS GET 
  */
-Route::get('/', 'mainController@index');
-Route::get('main/modal', 'mainController@getViewModal');
-Route::get('main/modaltest', 'mainController@modaltest');
-Route::get('main/modalformulario', 'mainController@getModalFormulario');
-Route::get('main/tesProcedimiento', 'mainController@getViewProcedimientos');
-Route::get('main/testPrueba', 'mainController@postPrubaproce');
-//rutas de login por facebook
-Route::get('facebook','mainController@redirectToProvider');
-Route::get('facebook/callback','mainController@handleProviderCallback');
-/*
- *METODOS POST 
+
+Route::get('/', function () {
+    return redirect()->intended('auth/login');
+});
+
+
+Route::group(['middleware' => 'auth'], function () {
+
+    /**
+     *******************************************************************************************
+     * AREA HOME *******************************************************************************
+     *******************************************************************************************
+     */
+
+    // Rutas pertenecientes al HOME de la aplicacion
+
+    Route::get('/', 'homeController@index');
+
+    Route::get('home', 'homeController@index');
+
+    /**
+     *******************************************************************************************
+     * FIN AREA HOME ***************************************************************************
+     *******************************************************************************************
+     */
+
+    /**
+     *******************************************************************************************
+     * AREA PROCESOS ***************************************************************************
+     *******************************************************************************************
+     */
+
+    // Rutas pertenecientes a los PROCESOS de la aplicacion
+
+    Route::get('procesos', 'procesosController@index');
+
+    // Rutas de los metodos de PROCESOS de la aplicacion
+
+    Route::get('procesos/getProcesosByIdUsuario', 'procesosController@getProcesosByIdUsuario');
+
+    /**
+     *******************************************************************************************
+     * FIN AREA PROCESOS ***********************************************************************
+     *******************************************************************************************
+     */
+
+    /**
+     *******************************************************************************************
+     * AREA CONFIGURACION **********************************************************************
+     *******************************************************************************************
+     */
+
+    // Rutas pertenecientes al CONFIGURACION de la aplicacion
+
+    Route::get('configuracion/procesos', 'configuracionController@configuracionProcesos');
+
+    Route::get('configuracion/plantas', 'configuracionController@configuracionPlantas');
+
+    Route::get('configuracion/peces', 'configuracionController@configuracionPeces');
+
+    /**
+     *******************************************************************************************
+     * FIN AREA CONFIGURACION ******************************************************************
+     *******************************************************************************************
+     */
+
+});
+
+/**
+ *******************************************************************************************
+ * AREA AUTENTICACION **********************************************************************
+ *******************************************************************************************
  */
-Route::post('main/modalformulario', 'mainController@postMamodalFormulario');
-Route::post('main/tesProcedimientogrid', 'mainController@postPrubaproce');
-Route::get('main/tesProcedimientogrid', 'mainController@postPrubaproce');
 
-Route::get('main/modalformulario/{id}', 'mainController@getModalFormulario');
+Route::get('auth/login', 'Auth\AuthController@getLogin');
 
-Route::post('main/modalformulario', 'mainController@postMamodalFormulario');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
 
-Route::post('main/usuarioid', 'mainController@postprueba');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+/**
+ *******************************************************************************************
+ * FIN AREA AUTENTICACION ******************************************************************
+ *******************************************************************************************
+ */
+
+/**
+ *******************************************************************************************
+ * AREA REGISTRO ***************************************************************************
+ *******************************************************************************************
+ */
+
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+/**
+ *******************************************************************************************
+ * FIN AREA REGISTRO ***********************************************************************
+ *******************************************************************************************
+ */
