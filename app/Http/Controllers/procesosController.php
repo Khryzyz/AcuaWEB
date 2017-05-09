@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use aplicacion\Http\Requests;
 use aplicacion\Http\Controllers\Controller;
-use Datatables;
+//use Datatables;
 use aplicacion\Usuario;
 use ProcesosBL;
 
@@ -25,19 +25,17 @@ class procesosController extends Controller
     public function getProcesosByIdUsuario()
     {
 
-        //$Bl = new ProcesosBL();
+        $Bl = new ProcesosBL();
 
-        //$dataProcesos = Datatables::of(\DB::select('CALL getProcesosByIdUsuario(?)', array(3)));
+        $dataProcesos = $Bl->getProcesosByIdUsuario(3);
 
-        return Datatables::of(Usuario::query())->make(true);
-/*
-        return Datatables::of(
-            \DB::select(
-                'CALL getProcesosByIdUsuario(?)', array(3)
-            )
-        )
-            ->make();
-*/
+        return json_encode(["data" => $dataProcesos]);
+
+
+        //$query = Usuario::all();
+
+        //return json_encode(["data" => $query]);
+
     }
 
 

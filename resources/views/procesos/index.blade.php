@@ -23,7 +23,11 @@
                         <th>Area Cultivo</th>
                         <th>Volumen Cultivo</th>
                         <th>Estado</th>
-                        <th>Acción</th>
+
+                        <!--<th>username</th>
+                        <th>password</th>
+                        <th>email</th>
+                        <th>role</th>-->
                     </tr>
                     </thead>
                 </table>
@@ -44,16 +48,21 @@
 @section('scripts')
 
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             $('#ProcesosUsuario').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{!! url('procesos/getProcesosByIdUsuario') !!}',
+               /* processing: true,
+                serverSide: true,*/
+                ajax: {
+                    url: '{!!route("DataGridProcesosUsuario") !!}',
+                    "type": "POST"
+                },
                 columns: [
-                    {data: 'username', name: 'username'},
-                    {data: 'password', name: 'password'},
-                    {data: 'email', name: 'email'},
-                    {data: 'role', name: 'role'}
+                    {data: 'idproceso'},
+                    {data: 'codigo'},
+                    {data: 'fechaimplementacion'},
+                    {data: 'areacultivo'},
+                    {data: 'volumencultivo'},
+                    {data: 'estado'}
                 ]
             });
         });
@@ -65,6 +74,6 @@
 	@if(Auth::user()->rol =='admin')
         <a href="../muestras/excel" class="btn btn-primary"><i class="fa fa-file-excel-o"></i>Exportar excel</a>
     @endif
-    </script>
-    -->
+            </script>
+-->
 @endsection

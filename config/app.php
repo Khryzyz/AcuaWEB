@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
-
+    'debug' => env('APP_DEBUG', true),
+//Diby cambio una vuelt aqui revisar despues
     /*
     |--------------------------------------------------------------------------
     | Application URL

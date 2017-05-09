@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Rutas de los metodos de PROCESOS de la aplicacion
 
-    Route::get('procesos/getProcesosByIdUsuario', 'procesosController@getProcesosByIdUsuario');
+    Route::post('procesos/getProcesosByIdUsuario', 'procesosController@getProcesosByIdUsuario')->name("DataGridProcesosUsuario");
 
     /**
      *******************************************************************************************
