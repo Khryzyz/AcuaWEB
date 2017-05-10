@@ -1884,6 +1884,7 @@ class ComposerStaticInitd666ebe044ef748cf9ceb8457fd68480
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'SessionHandlerInterface' => __DIR__ . '/..' . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
+        'TestBL' => __DIR__ . '/../..' . '/Bl/TestBL.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'Thumbnail' => __DIR__ . '/..' . '/kendoui/lib/ImageBrowser.php',

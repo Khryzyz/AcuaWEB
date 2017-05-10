@@ -10,7 +10,7 @@
                     <h3 class="panel-title">Formulario de ingreso</h3>
                 </div>
                 {!!Form::open()!!}
-
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="panel-body">
                     <form role="form">
                         <fieldset>

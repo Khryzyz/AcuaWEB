@@ -22,6 +22,44 @@ Route::group(['middleware' => 'auth'], function () {
 
     /**
      *******************************************************************************************
+     * AREA TEST *******************************************************************************
+     * SOLO ES USADA PARA REALIZAR PRUEBAS SOBRE LA TECNOLOGIA *********************************
+     *******************************************************************************************
+     */
+
+    //Test Grid Datatables
+
+    Route::get('test/vistaGridDatatables', 'testController@vistaGridDatatables');
+
+    Route::post('test/getGridDataTables', 'testController@getGridDataTables')->name('getGridDataTables');
+
+    //Test Grid Kendo
+
+    Route::get('test/vistaGridKendo', 'testController@vistaGridKendo');
+
+    Route::post('test/getGridKendo', 'testController@getGridKendo')->name('getGridKendo');
+
+    //Test Dropdown Kendo
+
+    Route::get('test/vistaDropdownKendo', 'testController@vistaDropdownKendo');
+
+    Route::post('test/getDropDownKendo', 'testController@getDropDownKendo')->name("getDropDownKendo");
+
+    Route::post('test/getDropDownArgKendo/{estado}', 'testController@getDropDownArgKendo')->name('getDropDownArgKendo');
+
+    //Test Info Auth
+
+    Route::get('test/vistaInfoAuth', 'testController@vistaInfoAuth');
+
+
+    /**
+     *******************************************************************************************
+     * FIN AREA TEST ***************************************************************************
+     *******************************************************************************************
+     */
+
+    /**
+     *******************************************************************************************
      * AREA HOME *******************************************************************************
      *******************************************************************************************
      */
