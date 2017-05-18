@@ -3,7 +3,7 @@
 @section('content')
 
     <?php
-    $Utils = new Utils();
+        $Utils = new Utils();
     ?>
 
     <h1>Grid Kendo</h1>

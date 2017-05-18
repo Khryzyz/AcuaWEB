@@ -84,12 +84,31 @@ class testController extends Controller
 
     }
 
-
     //Test Info Auth
 
     public function vistaInfoAuth()
     {
         return view('test.vistaInfoAuth');
+    }
+
+    //Test Vista Modal
+
+    public function vistaModal()
+    {
+        return view('test.vistaModal');
+    }
+
+    public function getModalTest() {
+        return view('test.modalTest');
+    }
+
+    public function getModalFormTest(Request $rq, $id)
+    {
+
+        if(isset($id)){
+            return view('test.modalFormTest');
+        }
+        return view('test.modalFormTest');
     }
 
 }

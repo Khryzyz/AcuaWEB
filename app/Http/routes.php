@@ -51,6 +51,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('test/vistaInfoAuth', 'testController@vistaInfoAuth');
 
+    //Test Modal
+
+    Route::get('test/vistaModal', 'testController@vistaModal');
+
+    Route::get('test/getModalTest', 'testController@getModalTest');
+
+    Route::get('test/getModalFormTest/{id}', 'testController@getModalFormTest');
+
 
     /**
      *******************************************************************************************
@@ -88,7 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Rutas de los metodos de PROCESOS de la aplicacion
 
-    Route::post('procesos/getProcesosByIdUsuario', 'procesosController@getProcesosByIdUsuario')->name("DataGridProcesosUsuario");
+    Route::post('procesos/getProcesosByIdUsuario', 'procesosController@getProcesosByIdUsuario')->name("getProcesosByIdUsuario");
 
     /**
      *******************************************************************************************

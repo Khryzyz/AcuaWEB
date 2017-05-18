@@ -33,4 +33,4 @@ $Utils = new Utils();
 
 
 
-<script type="text/javascript" src='{{ url($Utils->getRutaJs())}}'> </script>
+<script type="text/javascript" src='{{ url($Utils->getRouteJs())}}'> </script>

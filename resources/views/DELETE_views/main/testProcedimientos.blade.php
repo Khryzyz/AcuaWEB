@@ -116,5 +116,5 @@ $Utils = new Utils();
     <a href="../main/modalformulario/#=idtesprocedimiento #" class="btn btn-primary" data-modal="">Editar</a>
 </script>
 
-<script type="text/javascript" src='{{ url($Utils->getRutaJs())}}'> </script>
+<script type="text/javascript" src='{{ url($Utils->getRouteJs())}}'> </script>
 @endsection

@@ -3,11 +3,7 @@
 namespace aplicacion\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use aplicacion\Http\Requests;
-use aplicacion\Http\Controllers\Controller;
-//use Datatables;
-use aplicacion\Usuario;
+use Utils;
 use ProcesosBL;
 
 class procesosController extends Controller
@@ -22,19 +18,20 @@ class procesosController extends Controller
         return view('procesos.index');
     }
 
-    public function getProcesosByIdUsuario()
+    public function getProcesosByIdUsuario(Request $rq)
     {
 
         $Bl = new ProcesosBL();
 
-        $dataProcesos = $Bl->getProcesosByIdUsuario(3);
+        $dataGrid = $Bl->getProcesosByIdUsuario(3);
 
-        return json_encode(["data" => $dataProcesos]);
+        $request = file_get_contents('php://input');
 
+        $input = json_decode($request);
 
-        //$query = Usuario::all();
+        $util = new Utils();
 
-        //return json_encode(["data" => $query]);
+        return $util->getDataRequest($dataGrid, $input);
 
     }
 
