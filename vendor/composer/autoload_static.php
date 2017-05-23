@@ -347,6 +347,7 @@ class ComposerStaticInitd666ebe044ef748cf9ceb8457fd68480
     );
 
     public static $classMap = array (
+        'AquaWebBL' => __DIR__ . '/../..' . '/Bl/AquaWebBL.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'DataSourceResult' => __DIR__ . '/..' . '/kendoui/lib/DataSourceResult.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
@@ -1845,7 +1846,6 @@ class ComposerStaticInitd666ebe044ef748cf9ceb8457fd68480
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
-        'ProcesosBL' => __DIR__ . '/../..' . '/Bl/ProcesosBL.php',
         'SchedulerDataSourceResult' => __DIR__ . '/..' . '/kendoui/lib/SchedulerDataSourceResult.php',
         'SebastianBergmann\\Comparator\\ArrayComparator' => __DIR__ . '/..' . '/sebastian/comparator/src/ArrayComparator.php',
         'SebastianBergmann\\Comparator\\Comparator' => __DIR__ . '/..' . '/sebastian/comparator/src/Comparator.php',

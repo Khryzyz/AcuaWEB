@@ -6,14 +6,60 @@
     $Utils = new Utils();
     ?>
 
-    <h1>Procesos</h1>
-
+    <h3>Procesos</h3>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Registro de procesos del usuario</h3>
+            <h4 class="panel-title">Información del usuario</h4>
         </div>
         <div class="panel-body">
-            <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <i class="fa fa-book"></i>
+                    Nombre:
+                </div>
+                <div class="col-md-10">
+                    {{$dataUsuario[0]->nombreusuario}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <i class="fa fa-user"></i>
+                    Usuario:
+                </div>
+                <div class="col-md-10">
+                    {{$dataUsuario[0]->usuario}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <i class="fa fa-certificate"></i>
+                    Tipo de Usuario:
+                </div>
+                <div class="col-md-10">
+                    {{$dataUsuario[0]->tipousuario}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <i class="fa fa-envelope-o"></i>
+                    Correo:
+                </div>
+                <div class="col-md-10">
+                    {{$dataUsuario[0]->correousuario}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">Registro de procesos del usuario</h4>
+        </div>
+        <div class="panel-body">
+            <div class="panel-group">
+                <a href="../test/getModalTest" class="btn btn-primary" data-modal="modal-lg"><i class="fa fa-plus"></i>
+                    Agregar proceso</a>
+            </div>
+            <div class="panel-group">
                 <?php
 
                 //Inicializamos el Data Source de Transporte de lectura
@@ -21,7 +67,7 @@
 
                 //Agregamos atributos al datasource de transporte de lectura
                 $read
-                    ->url('procesos/getProcesosByIdUsuario')
+                    ->url('procesos/getProcesosByIdUsuario/' . Auth::user()->id)
                     ->contentType('application/json')
                     ->type('POST');
 
@@ -62,31 +108,27 @@
                 $idproceso = new \Kendo\UI\GridColumn();
                 $idproceso->field('idproceso')->title('Id Proceso')->width(100);
 
-                $codigo = new \Kendo\UI\GridColumn();
-                $codigo->field('codigo')->title('Codigo');
+                $nombre = new \Kendo\UI\GridColumn();
+                $nombre->field('nombre')->title('Nombre')->width(200);
 
                 $fechaimplementacion = new \Kendo\UI\GridColumn();
-                $fechaimplementacion->field('fechaimplementacion')->title('Fecha Implementacion ');
-
-                $areacultivo = new \Kendo\UI\GridColumn();
-                $areacultivo->field('areacultivo')->title('Area Cultivo');
-
-                $volumencultivo = new \Kendo\UI\GridColumn();
-                $volumencultivo->field('volumencultivo')->title('Volumen Cultivo');
+                $fechaimplementacion->field('fechaimplementacion')->title('Fecha Implementacion')->width(200);
 
                 $estado = new \Kendo\UI\GridColumn();
-                $estado->field('estado')->title('Estado');
+                $estado->field('estado')->title('Estado')->width(100);
 
+                $verproceso = new \Kendo\UI\GridColumn();
+                $verproceso->field('verproceso')->title('Ver')->templateId('verproceso')->width(100);
 
-                $gridFilterable = new \Kendo\UI\GridFilterable();
-                $gridFilterable->mode("row");
+                /*$gridFilterable = new \Kendo\UI\GridFilterable();
+                $gridFilterable->mode("row");*/
 
                 //Se agregan columnas y atributos al grid
                 $grid
-                    ->addColumn($idproceso, $codigo, $fechaimplementacion, $areacultivo, $volumencultivo, $estado)
+                    ->addColumn($idproceso, $nombre, $fechaimplementacion, $estado, $verproceso)
                     ->dataSource($dataSource)
                     ->sortable(true)
-                    ->filterable($gridFilterable)
+                    //->filterable($gridFilterable)
                     ->dataBound('handleAjaxModal')
                     ->pageable(true);
 
@@ -94,9 +136,6 @@
                 echo $grid->render();
                 ?>
             </div>
-        </div>
-        <div class="panel-footer">
-            Datos recogidos en tiempo real desde los procesos de acuaponia.
         </div>
     </div>
     <p>
@@ -107,6 +146,6 @@
 
 @endsection
 
-@section('scripts')
-
-@endsection
+<script id="verproceso" type="text/x-kendo-tmpl">
+    <a href="../test/getModalTest/#=idproceso#" class="btn btn-primary" data-modal="">Ver Proceso</a>
+</script>

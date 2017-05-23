@@ -96,7 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Rutas de los metodos de PROCESOS de la aplicacion
 
-    Route::post('procesos/getProcesosByIdUsuario', 'procesosController@getProcesosByIdUsuario')->name("getProcesosByIdUsuario");
+    Route::post('procesos/getProcesosByIdUsuario/{idUsuario}', 'procesosController@getProcesosByIdUsuario')->name("getProcesosByIdUsuario");
 
     /**
      *******************************************************************************************

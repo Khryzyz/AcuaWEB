@@ -7,7 +7,8 @@
             <span class="hidden-sm-down">Procesos</span>
         </a>
 
-        <a href="#menuConfiguracion" class="list-group-item collapsed" data-toggle="collapse" data-parent="#sidebar"
+        <a href="#menuConfiguracion" class="list-group-item collapsed" data-toggle="collapse"
+           data-parent="#sideAcuaponia"
            aria-expanded="false">
             <i class="fa fa-gears"></i>
             <span class="hidden-sm-down">Configuración</span>
@@ -26,6 +27,10 @@
                 <span class="hidden-sm-down">Peces</span>
             </a>
         </div>
+        <a href="#menuReportes" class="list-group-item collapsed" data-parent="#sideAcuaponia">
+            <i class="fa fa-area-chart"></i>
+            <span class="hidden-sm-down">Reportes</span>
+        </a>
     </div>
 </div>
 <!--
