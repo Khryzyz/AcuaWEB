@@ -90,13 +90,31 @@ Route::group(['middleware' => 'auth'], function () {
      *******************************************************************************************
      */
 
-    // Rutas pertenecientes a los PROCESOS de la aplicacion
+    /**
+     * AREA PROCESOS  / VISTAS *****************************************************************
+     */
 
     Route::get('procesos', 'procesosController@index');
 
-    // Rutas de los metodos de PROCESOS de la aplicacion
+    Route::get('procesos/getViewInfoProcesoById/{idProceso}', 'procesosController@getViewInfoProcesoById');
 
-    Route::post('procesos/getProcesosByIdUsuario/{idUsuario}', 'procesosController@getProcesosByIdUsuario')->name("getProcesosByIdUsuario");
+    /**
+     * AREA PROCESOS  / MODALES ****************************************************************
+     */
+
+    Route::get('procesos/getModalInfoPlantaById/{idPlanta}', 'procesosController@getModalInfoPlantaById');
+
+    Route::get('procesos/getModalInfoPezById/{idPez}', 'procesosController@getModalInfoPezById');
+
+    /**
+     * AREA PROCESOS  / GRIDS ******************************************************************
+     */
+
+    Route::post('procesos/getProcesosByIdUsuario/{idUsuario}', 'procesosController@getProcesosByIdUsuario');
+
+    Route::post('procesos/getInfoPlantaByProcesoId/{idProceso}', 'procesosController@getInfoPlantaByProcesoId');
+
+    Route::post('procesos/getInfoPezByProcesoId/{idProceso}', 'procesosController@getInfoPezByProcesoId');
 
     /**
      *******************************************************************************************

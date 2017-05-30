@@ -5,47 +5,45 @@
     <?php
     $Utils = new Utils();
     ?>
-
-    <h3>Procesos</h3>
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h4 class="panel-title">Información del usuario</h4>
         </div>
         <div class="panel-body">
-            <div class="row">
+            <div class="panel-group">
                 <div class="col-md-2">
                     <i class="fa fa-book"></i>
                     Nombre:
                 </div>
                 <div class="col-md-10">
-                    {{$dataUsuario[0]->nombreusuario}}
+                    {{$data->nombreusuario}}
                 </div>
             </div>
-            <div class="row">
+            <div class="panel-group">
                 <div class="col-md-2">
                     <i class="fa fa-user"></i>
                     Usuario:
                 </div>
                 <div class="col-md-10">
-                    {{$dataUsuario[0]->usuario}}
+                    {{$data->usuario}}
                 </div>
             </div>
-            <div class="row">
+            <div class="panel-group">
                 <div class="col-md-2">
                     <i class="fa fa-certificate"></i>
                     Tipo de Usuario:
                 </div>
                 <div class="col-md-10">
-                    {{$dataUsuario[0]->tipousuario}}
+                    {{$data->tipousuario}}
                 </div>
             </div>
-            <div class="row">
+            <div class="panel-group">
                 <div class="col-md-2">
                     <i class="fa fa-envelope-o"></i>
                     Correo:
                 </div>
                 <div class="col-md-10">
-                    {{$dataUsuario[0]->correousuario}}
+                    {{$data->correousuario}}
                 </div>
             </div>
         </div>
@@ -106,7 +104,7 @@
 
                 //Inicializamos las columnas de la grid
                 $idproceso = new \Kendo\UI\GridColumn();
-                $idproceso->field('idproceso')->title('Id Proceso')->width(100);
+                $idproceso->field('idproceso')->title('Id Proceso')->hidden(true);
 
                 $nombre = new \Kendo\UI\GridColumn();
                 $nombre->field('nombre')->title('Nombre')->width(200);
@@ -120,15 +118,15 @@
                 $verproceso = new \Kendo\UI\GridColumn();
                 $verproceso->field('verproceso')->title('Ver')->templateId('verproceso')->width(100);
 
-                /*$gridFilterable = new \Kendo\UI\GridFilterable();
-                $gridFilterable->mode("row");*/
+                $gridFilterable = new \Kendo\UI\GridFilterable();
+                $gridFilterable->mode("row");
 
                 //Se agregan columnas y atributos al grid
                 $grid
                     ->addColumn($idproceso, $nombre, $fechaimplementacion, $estado, $verproceso)
                     ->dataSource($dataSource)
                     ->sortable(true)
-                    //->filterable($gridFilterable)
+                    ->filterable($gridFilterable)
                     ->dataBound('handleAjaxModal')
                     ->pageable(true);
 
@@ -138,14 +136,8 @@
             </div>
         </div>
     </div>
-    <p>
-        <?php
-        //var_dump(Auth::user());
-        ?>
-    </p>
-
 @endsection
 
 <script id="verproceso" type="text/x-kendo-tmpl">
-    <a href="../test/getModalTest/#=idproceso#" class="btn btn-primary" data-modal="">Ver Proceso</a>
+    <a href="procesos/getViewInfoProcesoById/#=idproceso#" class="btn btn-primary">Ver Proceso</a>
 </script>
