@@ -1,6 +1,7 @@
-@extends('layouts.general.principal')
+@extends('layouts.Dashboard.Main')
 
 @section('content')
+
     <div class="container">
         <div class='col-md-12'> 
             <br/>

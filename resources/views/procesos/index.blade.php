@@ -1,4 +1,4 @@
-@extends('layouts.admin.principal')
+@extends('layouts.Dashboard.Main')
 
 @section('content')
 
@@ -139,5 +139,5 @@
 @endsection
 
 <script id="verproceso" type="text/x-kendo-tmpl">
-    <a href="procesos/getViewInfoProcesoById/#=idproceso#" class="btn btn-primary">Ver Proceso</a>
+    <a href="procesos/getViewInfoCaracteristicasProcesoById/#=idproceso#" class="btn btn-primary">Ver Proceso</a>
 </script>

@@ -96,7 +96,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('procesos', 'procesosController@index');
 
-    Route::get('procesos/getViewInfoProcesoById/{idProceso}', 'procesosController@getViewInfoProcesoById');
+    Route::get('procesos/getViewInfoCaracteristicasProcesoById/{idProceso}', 'procesosController@getViewInfoCaracteristicasProcesoById');
+
+    Route::get('procesos/getViewInfoValoresProcesoById/{idProceso}', 'procesosController@getViewInfoValoresProcesoById');
 
     /**
      * AREA PROCESOS  / MODALES ****************************************************************
@@ -115,6 +117,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('procesos/getInfoPlantaByProcesoId/{idProceso}', 'procesosController@getInfoPlantaByProcesoId');
 
     Route::post('procesos/getInfoPezByProcesoId/{idProceso}', 'procesosController@getInfoPezByProcesoId');
+
+
+    /**
+     * AREA PROCESOS  / CHARTS *****************************************************************
+     */
+
+    Route::post('procesos/getValuesProcesoById/{idTipoSensor}/{idProceso}', 'procesosController@getValuesProcesoById');
 
     /**
      *******************************************************************************************

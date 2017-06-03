@@ -1,4 +1,4 @@
-@extends('layouts.admin.principal')
+@extends('layouts.Dashboard.Main')
 
 @section('content')
 

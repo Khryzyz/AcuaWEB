@@ -61,7 +61,7 @@ class procesosController extends Controller
      * @param $idProceso
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getViewInfoProcesoById($idProceso)
+    public function getViewInfoCaracteristicasProcesoById($idProceso)
     {
 
         $Bl = new AquaWebBL();
@@ -70,7 +70,29 @@ class procesosController extends Controller
 
         $data = $dataBL[0];
 
-        return view('procesos.infoProceso', compact('data'));
+        return view('procesos.infoCaracteristicasProceso', compact('data'));
+
+    }
+
+    /**
+     * Metodo del controlador que:
+     *  - consulta la informacion del proceso por su id
+     *  - Retorna la vista junto con la informacion del proceso
+     * Usado en Vista
+     *
+     * @param $idProceso
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getViewInfoValoresProcesoById($idProceso)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoProcesoById($idProceso);
+
+        $data = $dataBL[0];
+
+        return view('procesos.infoValoresProceso', compact('data'));
 
     }
 
@@ -101,6 +123,7 @@ class procesosController extends Controller
         return view('procesos.modalInfoPlanta', compact('data'));
 
     }
+
     /**
      * Metodo del controlador que:
      *  - consulta la informacion de la planta por su id
@@ -204,4 +227,27 @@ class procesosController extends Controller
 
     }
 
+    /**
+     *******************************************************************************************
+     * AREA METODOS USADOS POR CHARTS ************************************************************
+     *******************************************************************************************
+     */
+    /**
+     * Metodo que consulta los valores del proceso por su id
+     * Usado en Chart
+     *
+     * @param $idProceso
+     * @param $idTipoSensor
+     * @return array
+     */
+    public function getValuesProcesoById($idProceso,$idTipoSensor)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $dataChart = $Bl->getValuesProcesoById($idProceso,$idTipoSensor);
+
+        return $dataChart;
+
+    }
 }

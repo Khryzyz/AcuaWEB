@@ -1,94 +1,19 @@
-@extends('layouts.admin.principal')
+@extends('layouts.Dashboard.Main')
 
 @section('content')
 
     <?php
     $Utils = new Utils();
     ?>
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h4 class="panel-title">Información del usuario</h4>
-        </div>
-        <div class="panel-body">
-            <div class="panel-group">
-                <div class="col-md-3">
-                    <i class="fa fa-code"></i>
-                    Codigo:
-                </div>
-                <div class="col-md-9">
-                    {{strtoupper($data->codigo)}}
-                </div>
-            </div>
-            </br>
-            <div class="panel-group">
-                <div class="col-md-3">
-                    <i class="fa fa-terminal"></i>
-                    Nombre:
-                </div>
-                <div class="col-md-9">
-                    {{strtoupper($data->nombre)}}
-                </div>
-            </div>
-            </br>
-            <div class="panel-group">
-                <div class="col-md-3">
-                    <i class="fa fa-comments"></i>
-                    Descripción:
-                </div>
-                <div class="col-md-9">
-                    {{$data->descripcion}}
-                </div>
-            </div>
-            </br>
-            <div class="panel-group">
-                <div class="col-md-3">
-                    <i class="fa fa-calendar"></i>
-                    Fecha Implementación:
-                </div>
-                <div class="col-md-9">
-                    {{$data->fechaimplementacion}}
-                </div>
-            </div>
-            </br>
-            <div class="panel-group">
-                <div class="col-md-3">
-                    <i class="fa fa-th"></i>
-                    Area Cultivo:
-                </div>
-                <div class="col-md-9">
-                    {{$data->areacultivo}} m²
-                </div>
-            </div>
-            </br>
-            <div class="panel-group">
-                <div class="col-md-3">
-                    <i class="fa fa-align-justify"></i>
-                    Volumen Cultivo:
-                </div>
-                <div class="col-md-9">
-                    {{$data->volumencultivo}} m³
-                </div>
-            </div>
-            </br>
-            <div class="panel-group">
-                <div class="col-md-3">
-                    <i class="fa fa-power-off"></i>
-                    Estado:
-                </div>
-                <div class="col-md-9">
-                    {{$data->estado}}
-                    <i class="
-                    <?php
-                    if ($data->estado == "Activo")
-                        echo "fa fa-toggle-on";
-                    else
-                        echo "fa fa-toggle-off";
-                    ?>"></i>
-                </div>
-            </div>
+    <div class="panel-primary">
+        <div class="panel-body text-right">
+            <a href="../../procesos/getViewInfoValoresProcesoById/{{$data->id}}"
+               class="btn btn-primary">
+                <i class="fa fa-line-chart"></i> Valores del proceso</a>
         </div>
     </div>
+
+    @include('layouts.Panels.Procesos.infoProceso')
 
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -246,11 +171,19 @@
         </div>
     </div>
 @endsection
+@section('scripts')
 
-<script id="vercaracteristicaplanta" type="text/x-kendo-tmpl">
-    <a href="../../procesos/getModalInfoPlantaById/#=idplanta#" class="btn btn-primary" data-modal="modal-lg">Caracteristicas de la planta</a>
-</script>
+    <script id="vercaracteristicaplanta" type="text/x-kendo-tmpl">
+        <a href="../../procesos/getModalInfoPlantaById/#=idplanta#"
+         class="btn btn-primary"
+         data-modal="modal-lg">
+         <i class="fa fa-leaf"></i> Caracteristicas de la planta</a>
+    </script>
 
-<script id="vercaracteristicapez" type="text/x-kendo-tmpl">
-    <a href="../../procesos/getModalInfoPezById/#=idpez#" class="btn btn-primary" data-modal="modal-lg">Caracteristicas del pez</a>
-</script>
+    <script id="vercaracteristicapez" type="text/x-kendo-tmpl">
+    <a href="../../procesos/getModalInfoPezById/#=idpez#"
+    class="btn btn-primary"
+    data-modal="modal-lg">
+    <i class="fa fa-tint"></i> Caracteristicas del pez</a>
+    </script>
+@endsection

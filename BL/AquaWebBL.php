@@ -99,4 +99,18 @@ class AquaWebBL
         return $data;
     }
 
+    /**
+     * Metodo que consulta los valores del proceso por su id
+     *
+     * @param $idProceso
+     * @param $idTipoSensor
+     * @return mixed
+     */
+    public function getValuesProcesoById($idProceso,$idTipoSensor)
+    {
+        $data = \DB::select('CALL getValuesProcesoById(?,?)', array($idProceso,$idTipoSensor));
+
+        return $data;
+    }
+
 }

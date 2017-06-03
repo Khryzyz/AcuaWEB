@@ -40,10 +40,9 @@
     -- FIN AREA DE CARGA CSS -------------------------------------------------------------------------------------------
     ------------------------------------------------------------------------------------------------------------------->
 
-
     <!------------------------------------------------------------------------------------------------------------------
-       -- AREA DE CARGA JAVASCRIPT ----------------------------------------------------------------------------------------
-       ------------------------------------------------------------------------------------------------------------------->
+    -- AREA DE CARGA JAVASCRIPT ----------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------->
 
     <!-- jQuery -->
     {!!Html::script('js/jquery.min.js')!!}
@@ -76,54 +75,23 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script type="text/javascript">
+        kendo.culture("es-ES");
+    </script>
+
 </head>
 
 <body>
 
-<div id="wrapper">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">
-                <p>
-                    <img src="{{url('/img/AcuaponiaLOGO.png')}}" alt="Image" height="30em" width="30em"/>
-                    Sistema AquaWEB
-                </p>
-            </a>
-        </div>
-        <!-- /.navbar-header -->
-
-        <ul class="nav navbar-top-links navbar-right">
-
-            @include('layouts.admin.menutop')
-
-        </ul>
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse container-fluid">
-                @include('layouts.admin.menuside')
-
-            </div>
-        </div>
-    </nav>
-
-    <div id="page-wrapper">
-        <br/>
-        <div class="col-md-12">
-            @yield('content')
-        </div>
-
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contenido">
+    <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
     </div>
-    <!-- /#page-wrapper -->
-
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        @yield('content')
+    </div>
+    <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+    </div>
 </div>
-<!-- /#wrapper -->
 
 <!-- Modal Bootstrap-->
 <div id='modalBs' class='modal fade bs-example-modal-lg'>
@@ -134,7 +102,6 @@
 </div>
 
 {!!Html::script('js/inicio.js')!!}
-
 
 @yield('scripts')
 

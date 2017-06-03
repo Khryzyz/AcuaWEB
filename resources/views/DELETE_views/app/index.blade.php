@@ -1,4 +1,4 @@
-@extends('layouts.general.principal')
+@extends('layouts.Dashboard.Main')
 
 @section('content')
     <a href="login" class="btn btn-primary">Login</a>
