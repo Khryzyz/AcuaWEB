@@ -14,9 +14,9 @@
             <span class="hidden-sm-down">Configuración</span>
         </a>
         <div class="collapse" id="menuConfiguracion">
-            <a href="/configuracion/procesos" class="list-group-item" data-parent="#menuConfiguracion">
-                <i class="fa fa-gear"></i>
-                <span class="hidden-sm-down">Procesos</span>
+            <a href="/configuracion/usuarios" class="list-group-item" data-parent="#menuConfiguracion">
+                <i class="fa fa-users"></i>
+                <span class="hidden-sm-down">Usuarios</span>
             </a>
             <a href="/configuracion/plantas" class="list-group-item" data-parent="#menuConfiguracion">
                 <i class="fa fa-leaf"></i>
@@ -25,6 +25,19 @@
             <a href="/configuracion/peces" class="list-group-item" data-parent="#menuConfiguracion">
                 <i class="fa fa-anchor"></i>
                 <span class="hidden-sm-down">Peces</span>
+            </a>
+            <a href="/configuracion/personal" class="list-group-item" data-parent="#menuConfiguracion">
+                <i class="fa fa-user"></i>
+                <span class="hidden-sm-down">Mi configuración</span>
+            </a>
+
+            <a href="/configuracion/plantas" class="list-group-item" data-parent="#menuConfiguracion">
+                <i class="fa fa-leaf"></i>
+                <span class="hidden-sm-down">Mis Plantas</span>
+            </a>
+            <a href="/configuracion/peces" class="list-group-item" data-parent="#menuConfiguracion">
+                <i class="fa fa-anchor"></i>
+                <span class="hidden-sm-down">Mis Peces</span>
             </a>
         </div>
         <a href="#menuReportes" class="list-group-item collapsed" data-parent="#sideAcuaponia">

@@ -10,7 +10,7 @@
 
         //Agregamos atributos al datasource de transporte de lectura
         $chartValueProcesosRead
-            ->url('../../procesos/getValuesProcesoById/' . $idTipoSensor . '/' . $data->id)
+            ->url('../../procesos/getValuesProcesoByIdForChart/' . $idTipoSensor . '/' . $data->id)
             ->contentType('application/json')
             ->type('POST');
 
@@ -63,7 +63,7 @@
         $chartValueProcesosTitle
             ->text('Graficas de muestra de los valores de ' . $nombreSensor);
 
-        $chartValueProcesos = new \Kendo\Dataviz\UI\Chart('chart' . $idTipoSensor);
+        $chartValueProcesos = new \Kendo\Dataviz\UI\Chart('Chart' . $idTipoSensor);
 
         $chartValueProcesos
             ->title($chartValueProcesosTitle)
@@ -81,6 +81,10 @@
 
         ?>
     </div>
+    @include('layouts.Panels.Procesos.gridValuesProceso',
+           ['idTipoSensor' => $idTipoSensor,
+           'idProceso'=>$data->id,
+           'unidadSensor'=>$unidadSensor])
 </div>
 @section('scripts')
     <!--

@@ -9,78 +9,84 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Plantas registrados en el sistema</h3>
+            <h3 class="panel-title">Usuarios registrados en el sistema</h3>
         </div>
         <div class="panel-body">
             <div class="panel-group">
                 <a href="../procesos/modalAgregarProcesos" class="btn btn-primary" data-modal="modal-lg">
                     <i class="fa fa-plus"></i>
-                    Agregar Planta</a>
+                    Agregar Usuario</a>
             </div>
             <div class="panel-group">
                 <?php
 
                 //Inicializamos el Data Source de Transporte de lectura
-                $readPlantas = new \Kendo\Data\DataSourceTransportRead();
+                $readUsuarios = new \Kendo\Data\DataSourceTransportRead();
 
                 //Agregamos atributos al datasource de transporte de lectura
-                $readPlantas
-                    ->url('../../configuracion/getPlantas')
+                $readUsuarios
+                    ->url('../../configuracion/getUsuarios')
                     ->contentType('application/json')
                     ->type('POST');
 
                 //Inicializamos el Data Source de Transporte
-                $transportPlantas = new \Kendo\Data\DataSourceTransport();
+                $transportUsuarios = new \Kendo\Data\DataSourceTransport();
 
                 //Agregamos atributos al datasource de transporte
-                $transportPlantas
-                    ->read($readPlantas)
+                $transportUsuarios
+                    ->read($readUsuarios)
                     ->parameterMap('function(data) {
 			return kendo.stringify(data);
 		}');
 
                 //Inicializamos el esquema de la grid
-                $schemaPlantas = new \Kendo\Data\DataSourceSchema();
+                $schemaUsuarios = new \Kendo\Data\DataSourceSchema();
 
                 //Agregamos los aributos del esquema de l grid
-                $schemaPlantas
+                $schemaUsuarios
                     ->data('data')
                     ->total('total');
 
-                $gridGroupItemPlantas = new Kendo\Data\DataSourceGroupItem();
-                $gridGroupItemPlantas->field('usuario');
+                $gridGroupItemUsuarios = new Kendo\Data\DataSourceGroupItem();
+                $gridGroupItemUsuarios->field('rol');
 
                 //Inicializamos el Data Source
-                $dataSourcePlantas = new \Kendo\Data\DataSource();
+                $dataSourceUsuarios = new \Kendo\Data\DataSource();
 
                 //Agregamos atributos al datasource
-                $dataSourcePlantas
-                    ->addGroupItem($gridGroupItemPlantas)
-                    ->transport($transportPlantas)
-                    ->pageSize(20)
-                    ->schema($schemaPlantas)
+                $dataSourceUsuarios
+                    ->addGroupItem($gridGroupItemUsuarios)
+                    ->transport($transportUsuarios)
+                    ->pageSize(10)
+                    ->schema($schemaUsuarios)
                     ->serverFiltering(true)
                     ->serverSorting(true)
                     ->serverPaging(true);
 
                 //Inicializamos la grid
-                $gridPlantas = new \Kendo\UI\Grid('Grid');
+                $gridUsuarios = new \Kendo\UI\Grid('Grid');
 
                 //Inicializamos las columnas de la grid
-                $idplanta = new \Kendo\UI\GridColumn();
-                $idplanta->field('idplanta')->title('Id')->hidden(true);
+                $idusuario = new \Kendo\UI\GridColumn();
+                $idusuario->field('idusuario')->title('Id')->hidden(true);
 
                 $usuario = new \Kendo\UI\GridColumn();
-                $usuario->field('usuario')->title('Usuario')->hidden(true);
+                $usuario->field('usuario')->title('Usuario')->width(80);
 
-                $nombre = new \Kendo\UI\GridColumn();
-                $nombre->field('nombre')->title('Nombre')->width(100);
+                $email = new \Kendo\UI\GridColumn();
+                $email->field('email')->title('Email')->width(90);
 
-                $registro = new \Kendo\UI\GridColumn();
-                $registro->field('registro')->title('Fecha Registro')->width(80);
+                $primernombre = new \Kendo\UI\GridColumn();
+                $primernombre->field('primernombre')->title('Primer Nombre')->width(50);
 
-                $actualizacion = new \Kendo\UI\GridColumn();
-                $actualizacion->field('actualizacion')->title('Fecha Actualización')->width(80);
+                $segundonombre = new \Kendo\UI\GridColumn();
+                $segundonombre->field('segundonombre')->title('Segundo Nombre')->width(50);
+
+                $primerapellido = new \Kendo\UI\GridColumn();
+                $primerapellido->field('primerapellido')->title('Primer Apellido')->width(50);
+
+                $segundoapellido = new \Kendo\UI\GridColumn();
+                $segundoapellido->field('segundoapellido')->title('Segundo Apellido')->width(50);
 
                 $estado = new \Kendo\UI\GridColumn();
                 $estado->field('estado')->title('Estado')->width(50);
@@ -91,27 +97,25 @@
                 $editarusuario = new \Kendo\UI\GridColumn();
                 $editarusuario->field('editarusuario')->title('Editar')->templateId('editarusuario')->width(70);
 
-                $gridFilterable = new \Kendo\UI\GridFilterable();
-                $gridFilterable->mode("row");
-
                 //Se agregan columnas y atributos al grid
-                $gridPlantas
-                    ->addColumn($idplanta,
+                $gridUsuarios
+                    ->addColumn($idusuario,
                         $usuario,
-                        $nombre,
-                        $registro,
-                        $actualizacion,
+                        $email,
+                        $primernombre,
+                        $segundonombre,
+                        $primerapellido,
+                        $segundoapellido,
                         $estado,
                         $verusuario,
                         $editarusuario)
-                    ->dataSource($dataSourcePlantas)
-                    ->filterable($gridFilterable)
+                    ->dataSource($dataSourceUsuarios)
                     ->sortable(true)
                     ->dataBound('handleAjaxModal')
                     ->pageable(true);
 
                 //renderizamos la grid
-                echo $gridPlantas->render();
+                echo $gridUsuarios->render();
                 ?>
             </div>
         </div>
@@ -121,13 +125,13 @@
 
 @section('scripts')
     <script id='verusuario' type='text/x-kendo-tmpl'>
-        <a href="../../procesos/getModalInfoPlantaById/#=idplanta#"
-         class="btn btn-primary"
-         data-modal="modal-lg">
+        <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idusuario#' class='btn btn-primary text-center'>
         <i class="fa fa-eye"></i> Ver</a>
+
     </script>
     <script id='editarusuario' type='text/x-kendo-tmpl'>
-        <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idplanta#' class='btn btn-primary text-center'>
+        <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idusuario#' class='btn btn-primary text-center'>
         <i class="fa fa-wrench"></i> Editar</a>
+
     </script>
 @endsection

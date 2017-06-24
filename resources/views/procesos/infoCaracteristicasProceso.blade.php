@@ -172,7 +172,6 @@
     </div>
 @endsection
 @section('scripts')
-
     <script id="vercaracteristicaplanta" type="text/x-kendo-tmpl">
         <a href="../../procesos/getModalInfoPlantaById/#=idplanta#"
          class="btn btn-primary"
@@ -181,9 +180,9 @@
     </script>
 
     <script id="vercaracteristicapez" type="text/x-kendo-tmpl">
-    <a href="../../procesos/getModalInfoPezById/#=idpez#"
-    class="btn btn-primary"
-    data-modal="modal-lg">
-    <i class="fa fa-tint"></i> Caracteristicas del pez</a>
+        <a href="../../procesos/getModalInfoPezById/#=idpez#"
+        class="btn btn-primary"
+        data-modal="modal-lg">
+        <i class="fa fa-tint"></i> Caracteristicas del pez</a>
     </script>
 @endsection

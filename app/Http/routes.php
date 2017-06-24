@@ -100,6 +100,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('procesos/getViewInfoValoresProcesoById/{idProceso}', 'procesosController@getViewInfoValoresProcesoById');
 
+    Route::get('procesos/modalAgregarProcesos', 'procesosController@getModalAgregarProcesos');
+
+    Route::post('procesos/modalAgregarProcesos', 'procesosController@postModalAgregarProcesos');
+
     /**
      * AREA PROCESOS  / MODALES ****************************************************************
      */
@@ -118,12 +122,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('procesos/getInfoPezByProcesoId/{idProceso}', 'procesosController@getInfoPezByProcesoId');
 
+    Route::post('procesos/getValuesProcesoByIdForGrid/{idTipoSensor}/{idProceso}', 'procesosController@getValuesProcesoByIdForGrid');
 
     /**
      * AREA PROCESOS  / CHARTS *****************************************************************
      */
 
-    Route::post('procesos/getValuesProcesoById/{idTipoSensor}/{idProceso}', 'procesosController@getValuesProcesoById');
+    Route::post('procesos/getValuesProcesoByIdForChart/{idTipoSensor}/{idProceso}', 'procesosController@getValuesProcesoByIdForChart');
 
     /**
      *******************************************************************************************
@@ -137,14 +142,26 @@ Route::group(['middleware' => 'auth'], function () {
      *******************************************************************************************
      */
 
-    // Rutas pertenecientes al CONFIGURACION de la aplicacion
+    /**
+     * AREA CONFIGURACION  / VISTAS *****************************************************************
+     */
+    Route::get('configuracion/usuarios', 'configuracionController@configuracionUsuarios');
 
-    Route::get('configuracion/procesos', 'configuracionController@configuracionProcesos');
+    Route::get('configuracion/personal', 'configuracionController@configuracionPersonal');
 
     Route::get('configuracion/plantas', 'configuracionController@configuracionPlantas');
 
     Route::get('configuracion/peces', 'configuracionController@configuracionPeces');
 
+    /**
+     * AREA PROCESOS  / GRIDS ******************************************************************
+     */
+
+    Route::post('configuracion/getUsuarios', 'configuracionController@getUsuarios');
+
+    Route::post('configuracion/getPlantas', 'configuracionController@getPlantas');
+
+    Route::post('configuracion/getPeces', 'configuracionController@getPeces');
     /**
      *******************************************************************************************
      * FIN AREA CONFIGURACION ******************************************************************

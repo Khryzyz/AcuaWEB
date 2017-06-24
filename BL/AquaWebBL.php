@@ -7,6 +7,17 @@ class AquaWebBL
     {
     }
 
+    /**
+     * Metodo que consulta los usuarios registrados en el sistema
+     *
+     * @return mixed.
+     */
+    public function getUsuarios()
+    {
+        $data = \DB::select('CALL getUsuarios()', array());
+
+        return $data;
+    }
 
     /**
      * Metodo que consulta la informacion del usuario por su id
@@ -48,6 +59,18 @@ class AquaWebBL
     }
 
     /**
+     * Metodo que consulta las variedades de plantas registradas en el sistema
+     *
+     * @return mixed.
+     */
+    public function getPlantas()
+    {
+        $data = \DB::select('CALL getPlantas()', array());
+
+        return $data;
+    }
+
+    /**
      * Metodo que consulta las plantas por el id del proceso relacionado
      *
      * @param $idProceso
@@ -59,6 +82,19 @@ class AquaWebBL
 
         return $data;
     }
+
+    /**
+     * Metodo que consulta las variedades de peces registrados en el sistema
+     *
+     * @return mixed.
+     */
+    public function getPeces()
+    {
+        $data = \DB::select('CALL getPeces()', array());
+
+        return $data;
+    }
+
 
     /**
      * Metodo que consulta los peces por el id del proceso relacionado
@@ -106,9 +142,9 @@ class AquaWebBL
      * @param $idTipoSensor
      * @return mixed
      */
-    public function getValuesProcesoById($idProceso,$idTipoSensor)
+    public function getValuesProcesoById($idProceso, $idTipoSensor)
     {
-        $data = \DB::select('CALL getValuesProcesoById(?,?)', array($idProceso,$idTipoSensor));
+        $data = \DB::select('CALL getValuesProcesoById(?,?)', array($idProceso, $idTipoSensor));
 
         return $data;
     }

@@ -147,6 +147,33 @@ class procesosController extends Controller
     }
 
     /**
+     * Metodo del controlador que retorna el modal para agregar un proceso
+     * Usado en Modal
+     */
+    public function getModalAgregarProcesos()
+    {
+
+        return view('procesos.modalAgregarProceso');
+
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar un proceso
+     * Usado en Modal
+     */
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function postModalAgregarProcesos(Request $request)
+    {
+
+        var_dump($request);
+        return view('procesos.modalAgregarProceso');
+
+    }
+
+    /**
      *******************************************************************************************
      * AREA METODOS USADOS POR GRID ************************************************************
      *******************************************************************************************
@@ -228,10 +255,37 @@ class procesosController extends Controller
     }
 
     /**
+     * Metodo que consulta los valores del proceso por su id
+     * Usado en Grid
+     *
+     * @param Request $rq
+     * @param $idProceso
+     * @param $idTipoSensor
+     * @return array
+     */
+    public function getValuesProcesoByIdForGrid(Request $rq, $idProceso, $idTipoSensor)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $dataGrid = $Bl->getValuesProcesoById($idProceso, $idTipoSensor);
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($dataGrid, $input);
+
+    }
+
+    /**
      *******************************************************************************************
      * AREA METODOS USADOS POR CHARTS ************************************************************
      *******************************************************************************************
      */
+
     /**
      * Metodo que consulta los valores del proceso por su id
      * Usado en Chart
@@ -240,12 +294,12 @@ class procesosController extends Controller
      * @param $idTipoSensor
      * @return array
      */
-    public function getValuesProcesoById($idProceso,$idTipoSensor)
+    public function getValuesProcesoByIdForChart($idProceso, $idTipoSensor)
     {
 
         $Bl = new AquaWebBL();
 
-        $dataChart = $Bl->getValuesProcesoById($idProceso,$idTipoSensor);
+        $dataChart = $Bl->getValuesProcesoById($idProceso, $idTipoSensor);
 
         return $dataChart;
 

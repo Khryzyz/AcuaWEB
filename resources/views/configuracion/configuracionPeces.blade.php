@@ -2,235 +2,135 @@
 
 @section('content')
 
-<?php
-$Utils = new Utils();
-?>
+    <?php
+    $Utils = new Utils();
+    ?>
 
 
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3 class="panel-title">Graficas</h3>
-	</div>
-	<div class="panel-body">
-		<?php
-		$caudalf = new \Kendo\Dataviz\UI\ChartSeriesItem();
-		$caudalf->field('caudal')
-		->color('blue')
-		->name('Caudal');
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Peces registrados en el sistema</h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel-group">
+                <a href="../procesos/modalAgregarProcesos" class="btn btn-primary" data-modal="modal-lg">
+                    <i class="fa fa-plus"></i>
+                    Agregar Pez</a>
+            </div>
+            <div class="panel-group">
+                <?php
 
-		$temperaturaf = new \Kendo\Dataviz\UI\ChartSeriesItem();
-		$temperaturaf->field('temperatura')
-		->color('red')
-		->name('Temperatura');
+                //Inicializamos el Data Source de Transporte de lectura
+                $readPeces = new \Kendo\Data\DataSourceTransportRead();
 
-		$amoniof = new \Kendo\Dataviz\UI\ChartSeriesItem();
-		$amoniof->field('amonio')
-		->color('#FF9500')
-		->name('Amonio');
+                //Agregamos atributos al datasource de transporte de lectura
+                $readPeces
+                    ->url('../../configuracion/getPeces')
+                    ->contentType('application/json')
+                    ->type('POST');
 
-		$phf = new \Kendo\Dataviz\UI\ChartSeriesItem();
-		$phf->field('ph')
-		->color('#836B49')
-		->name('Ph');
+                //Inicializamos el Data Source de Transporte
+                $transportPeces = new \Kendo\Data\DataSourceTransport();
 
-		$valueAxis = new \Kendo\Dataviz\UI\ChartValueAxisItem();
-
-		$valueAxis->labels(array('format' => 'N0'));
-		//->majorUnit(50);
-
-		$categoryAxis = new \Kendo\Dataviz\UI\ChartCategoryAxisItem();
-
-		$categoryAxis->field('fecha')
-		->labels(array('rotation' => -90))
-		->crosshair(array('visible' => true));
-
-		$tooltip = new \Kendo\Dataviz\UI\ChartTooltip();
-		$tooltip->visible(true)
-		->format('N0')
-		->shared(true);
-
-		$transport = new \Kendo\Data\DataSourceTransport();
-		$transport->read(array('url' => 'muestras/GetDataGrafi', 'type' => 'POST', 'dataType' => 'json'));
-
-		$dataSource = new \Kendo\Data\DataSource();
-
-		$dataSource->transport($transport)
-		->addSortItem(array('field' => 'fecha', 'dir' => 'asc'));
-
-		$chart = new \Kendo\Dataviz\UI\Chart('chart');
-		$chart->title(array('text' => 'Graficas de muestreo de los sensores'))
-		->dataSource($dataSource)
-		->legend(array('position' => 'top'))
-		->addSeriesItem($temperaturaf, $caudalf, $amoniof, $phf)
-		->addValueAxisItem($valueAxis)
-		->addCategoryAxisItem($categoryAxis)
-		->seriesDefaults(array('type' => 'line', 'style' => 'smooth'))
-		->tooltip($tooltip)
-		->transitions(false)
-		->renderAs('svg');
-
-		echo $chart->render();
-
-		?>
-	</div>
-</div>
-
-
-
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3 class="panel-title">Registros de los diferentes sensores</h3>
-	</div>
-	<div class="panel-body">
-		<?php
-		$transport = new \Kendo\Data\DataSourceTransport();
-
-		$read = new \Kendo\Data\DataSourceTransportRead();
-
-		$read->url('muestras/GetDatosMuestraGrid')
-		->contentType('application/json')
-		->type('POST');
-
-		$transport->read($read)
-		->parameterMap('function(data) {
+                //Agregamos atributos al datasource de transporte
+                $transportPeces
+                    ->read($readPeces)
+                    ->parameterMap('function(data) {
 			return kendo.stringify(data);
 		}');
 
-		$model = new \Kendo\Data\DataSourceSchemaModel();
+                //Inicializamos el esquema de la grid
+                $schemaPeces = new \Kendo\Data\DataSourceSchema();
 
-		$idmsensoresField = new \Kendo\Data\DataSourceSchemaModelField('idmsensores');
-		$idmsensoresField->type('number');
+                //Agregamos los aributos del esquema de l grid
+                $schemaPeces
+                    ->data('data')
+                    ->total('total');
 
-		$caudalField = new \Kendo\Data\DataSourceSchemaModelField('caudal');
-		$caudalField->type('number');
+                $gridGroupItemPeces = new Kendo\Data\DataSourceGroupItem();
+                $gridGroupItemPeces->field('usuario');
 
+                //Inicializamos el Data Source
+                $dataSourcePeces = new \Kendo\Data\DataSource();
 
-		$temperaturaField = new \Kendo\Data\DataSourceSchemaModelField('temperatura');
-		$temperaturaField->type('number');
+                //Agregamos atributos al datasource
+                $dataSourcePeces
+                    ->addGroupItem($gridGroupItemPeces)
+                    ->transport($transportPeces)
+                    ->pageSize(20)
+                    ->schema($schemaPeces)
+                    ->serverFiltering(true)
+                    ->serverSorting(true)
+                    ->serverPaging(true);
 
-
-		$amonioField = new \Kendo\Data\DataSourceSchemaModelField('amonio');
-		$amonioField->type('number');
-
-		$phField = new \Kendo\Data\DataSourceSchemaModelField('ph');
-		$phField->type('number');
-
-
-		$fechaField = new \Kendo\Data\DataSourceSchemaModelField('fecha');
-		$fechaField->type('string');
-
-
-
-		$model->addField($idmsensoresField)
-		->addField($caudalField)
-		->addField($temperaturaField)
-		->addField($amonioField)
-		->addField($phField)
-		->addField($fechaField);
+                //Inicializamos la grid
+                $gridPeces = new \Kendo\UI\Grid('Grid');
 
 
-		$schema = new \Kendo\Data\DataSourceSchema();
-		$schema->data('data')
-		->model($model)
-		->total('total');
+                //Inicializamos las columnas de la grid
+                $idpez = new \Kendo\UI\GridColumn();
+                $idpez->field('idpez')->title('Id')->hidden(true);
 
-		$dataSource = new \Kendo\Data\DataSource();
+                $usuario = new \Kendo\UI\GridColumn();
+                $usuario->field('usuario')->title('Usuario')->hidden(true);
 
-		$dataSource->transport($transport)
-		->pageSize(10)
-		->schema($schema)
-		->serverFiltering(true)
-		->serverSorting(true)
-		->serverPaging(true);
+                $nombre = new \Kendo\UI\GridColumn();
+                $nombre->field('nombre')->title('Nombre')->width(100);
 
-		$grid = new \Kendo\UI\Grid('grid');
+                $registro = new \Kendo\UI\GridColumn();
+                $registro->field('registro')->title('Fecha Registro')->width(80);
 
-		$idmsensoresID = new \Kendo\UI\GridColumn();
-		$idmsensoresID->field('idmsensores')
-		->filterable(false)
-		->Hidden('true')
-		->title('Id');
+                $actualizacion = new \Kendo\UI\GridColumn();
+                $actualizacion->field('actualizacion')->title('Fecha Actualización')->width(80);
 
-		$caudal = new \Kendo\UI\GridColumn();
-		$caudal->field('caudal')
-		->format('{0:n2}')
-		->title('Caudal');
+                $estado = new \Kendo\UI\GridColumn();
+                $estado->field('estado')->title('Estado')->width(50);
 
-		$temperatura = new \Kendo\UI\GridColumn();
-		$temperatura->field('temperatura')
-		->format('{0:n2}')
-		->title('Temperatura');
+                $verpez = new \Kendo\UI\GridColumn();
+                $verpez->field('verpez')->title('Ver')->templateId('verpez')->width(70);
 
-		$amonio = new \Kendo\UI\GridColumn();
-		$amonio->field('amonio')
-		->format('{0:n2}')
-		->title('Amonio');
+                $editarpez = new \Kendo\UI\GridColumn();
+                $editarpez->field('editarpez')->title('Editar')->templateId('editarpez')->width(70);
 
-		$ph = new \Kendo\UI\GridColumn();
-		$ph->field('ph')
-		->format('{0:n2}')
-		->title('Ph');
+                $gridFilterable = new \Kendo\UI\GridFilterable();
+                $gridFilterable->mode("row");
 
-		$fecha = new \Kendo\UI\GridColumn();
-		$fecha->field('fecha')
-		->format('{0:MM/dd/yyyy HH:mm:ss}')
-		->title('Fecha');
+                //Se agregan columnas y atributos al grid
+                $gridPeces
+                    ->addColumn($idpez,
+                        $usuario,
+                        $nombre,
+                        $registro,
+                        $actualizacion,
+                        $estado,
+                        $verpez,
+                        $editarpez)
+                    ->dataSource($dataSourcePeces)
+                    ->sortable(true)
+                    ->filterable($gridFilterable)
+                    ->dataBound('handleAjaxModal')
+                    ->pageable(true);
 
-
-		$gridFilterable = new \Kendo\UI\GridFilterable();
-		$gridFilterable->mode("row");
-
-		$grid->addColumn($idmsensoresID, $caudal, $temperatura, $amonio, $ph, $fecha)
-		->dataSource($dataSource)
-		->sortable(true)
-			//->filterable($gridFilterable)
-		->dataBound('handleAjaxModal')
-		->pageable(true)
-		->toolbarTemplateId('toolbar');
-
-		echo $grid->render();
-		?>
-		<div id="grid2"></div>
-
-	</div>
-	<div class="panel-footer">
-	</div>
-</div>
+                //renderizamos la grid
+                echo $gridPeces->render();
+                ?>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
 @section('scripts')
+    <script id='verpez' type='text/x-kendo-tmpl'>
+       <a href="../../procesos/getModalInfoPezById/#=idpez#"
+        class="btn btn-primary"
+        data-modal="modal-lg">
+        <i class="fa fa-eye"></i> Ver</a>
 
-<script id="toolbar" type="text/x-kendo-tmpl">
-	@if(Auth::user()->rol =='admin')
-   		<a href="../muestras/excel" class="btn btn-primary"><i class="fa fa-file-excel-o"></i> Exportar excel</a>
-   	@endif
-</script>
+    </script>
+    <script id='editarpez' type='text/x-kendo-tmpl'>
+        <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idpez#' class='btn btn-primary text-center'>
+        <i class="fa fa-wrench"></i> Editar</a>
 
-<script type="text/javascript"> 
-
-var timestamp = null;
-var data;
-function cargar_push() 
-{ 
-	datosgrid = $("#chart").data("kendoChart").dataSource.data();
-	cuantos = datosgrid.length;
-	prejson = JSON.stringify(datosgrid[0]);
-	$.post('muestras/GetBideoData',prejson,function(data){
-		data = JSON.parse(data);
-		if(data.estado){
-			$("#chart").data("kendoChart").dataSource.data(data.result);
-			$("#chart").data("kendoChart").refresh();
-			$("#grid").data("kendoGrid").dataSource.read();
-		}
-		setTimeout('cargar_push()',1000);
-	})
-}
-
-$(document).ready(function()
-{
-	setTimeout('cargar_push()',3000);
-});	
-
-</script>
+    </script>
 @endsection
