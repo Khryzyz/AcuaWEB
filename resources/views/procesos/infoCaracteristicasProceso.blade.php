@@ -7,7 +7,7 @@
     ?>
     <div class="panel-primary">
         <div class="panel-body text-right">
-            <a href="../../procesos/getViewInfoValoresProcesoById/{{$data->id}}"
+            <a href="{{route('getViewInfoValoresProcesoById', ['idProceso' => $data->id])}}"
                class="btn btn-primary">
                 <i class="fa fa-line-chart"></i> Valores del proceso</a>
         </div>
@@ -17,7 +17,7 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h4 class="panel-title">Caracteristicas del proceso - Plantas</h4>
+            <h4 class="panel-title">Características del proceso - Plantas</h4>
         </div>
         <div class="panel-body">
             <div class="panel-group">
@@ -28,7 +28,7 @@
 
                 //Agregamos atributos al datasource de transporte de lectura
                 $readPlanta
-                    ->url('../../procesos/getInfoPlantaByProcesoId/' . $data->id)
+                    ->url(route('getInfoPlantaByProcesoId', ['idProceso' => $data->id]))
                     ->contentType('application/json')
                     ->type('POST');
 
@@ -95,7 +95,7 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h4 class="panel-title">Caracteristicas del proceso - Peces</h4>
+            <h4 class="panel-title">Características del proceso - Peces</h4>
         </div>
         <div class="panel-body">
             <div class="panel-group">
@@ -106,7 +106,7 @@
 
                 //Agregamos atributos al datasource de transporte de lectura
                 $readPez
-                    ->url('../../procesos/getInfoPezByProcesoId/' . $data->id)
+                    ->url(route('getInfoPezByProcesoId', ['idProceso' => $data->id]))
                     ->contentType('application/json')
                     ->type('POST');
 
@@ -173,16 +173,16 @@
 @endsection
 @section('scripts')
     <script id="vercaracteristicaplanta" type="text/x-kendo-tmpl">
-        <a href="../../procesos/getModalInfoPlantaById/#=idplanta#"
+        <a href="/general/getModalInfoPlantaById/#=idplanta#"
          class="btn btn-primary"
          data-modal="modal-lg">
-         <i class="fa fa-leaf"></i> Caracteristicas de la planta</a>
+         <i class="fa fa-leaf"></i> Características de la planta</a>
     </script>
 
     <script id="vercaracteristicapez" type="text/x-kendo-tmpl">
-        <a href="../../procesos/getModalInfoPezById/#=idpez#"
+        <a href="/general/getModalInfoPezById/#=idpez#"
         class="btn btn-primary"
         data-modal="modal-lg">
-        <i class="fa fa-tint"></i> Caracteristicas del pez</a>
+        <i class="fa fa-tint"></i> Características del pez</a>
     </script>
 @endsection

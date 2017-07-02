@@ -1,19 +1,13 @@
 @extends('layouts.Dashboard.Main')
 
 @section('content')
-
-    <?php
-    $Utils = new Utils();
-    ?>
-
-
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Usuarios registrados en el sistema</h3>
+            <h3 class="panel-title"><i class="fa fa-users"></i> Usuarios registrados en el sistema</h3>
         </div>
         <div class="panel-body">
             <div class="panel-group">
-                <a href="../procesos/modalAgregarProcesos" class="btn btn-primary" data-modal="modal-lg">
+                <a href="{{route('modalAgregarUsuario')}}" class="btn btn-primary" data-modal="modal-lg">
                     <i class="fa fa-plus"></i>
                     Agregar Usuario</a>
             </div>
@@ -25,7 +19,7 @@
 
                 //Agregamos atributos al datasource de transporte de lectura
                 $readUsuarios
-                    ->url('../../configuracion/getUsuarios')
+                    ->url(route('getUsuarios'))
                     ->contentType('application/json')
                     ->type('POST');
 
@@ -76,39 +70,27 @@
                 $email = new \Kendo\UI\GridColumn();
                 $email->field('email')->title('Email')->width(90);
 
-                $primernombre = new \Kendo\UI\GridColumn();
-                $primernombre->field('primernombre')->title('Primer Nombre')->width(50);
-
-                $segundonombre = new \Kendo\UI\GridColumn();
-                $segundonombre->field('segundonombre')->title('Segundo Nombre')->width(50);
-
-                $primerapellido = new \Kendo\UI\GridColumn();
-                $primerapellido->field('primerapellido')->title('Primer Apellido')->width(50);
-
-                $segundoapellido = new \Kendo\UI\GridColumn();
-                $segundoapellido->field('segundoapellido')->title('Segundo Apellido')->width(50);
+                $nombre = new \Kendo\UI\GridColumn();
+                $nombre->field('nombre')->title('Nombre')->width(150);
 
                 $estado = new \Kendo\UI\GridColumn();
                 $estado->field('estado')->title('Estado')->width(50);
 
-                $verusuario = new \Kendo\UI\GridColumn();
-                $verusuario->field('verusuario')->title('Ver')->templateId('verusuario')->width(70);
-
                 $editarusuario = new \Kendo\UI\GridColumn();
                 $editarusuario->field('editarusuario')->title('Editar')->templateId('editarusuario')->width(70);
+
+                $verusuario = new \Kendo\UI\GridColumn();
+                $verusuario->field('verusuario')->title('Ver')->templateId('verusuario')->width(70);
 
                 //Se agregan columnas y atributos al grid
                 $gridUsuarios
                     ->addColumn($idusuario,
                         $usuario,
                         $email,
-                        $primernombre,
-                        $segundonombre,
-                        $primerapellido,
-                        $segundoapellido,
+                        $nombre,
                         $estado,
-                        $verusuario,
-                        $editarusuario)
+                        $editarusuario,
+                        $verusuario)
                     ->dataSource($dataSourceUsuarios)
                     ->sortable(true)
                     ->dataBound('handleAjaxModal')
@@ -124,14 +106,12 @@
 @endsection
 
 @section('scripts')
-    <script id='verusuario' type='text/x-kendo-tmpl'>
-        <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idusuario#' class='btn btn-primary text-center'>
-        <i class="fa fa-eye"></i> Ver</a>
-
-    </script>
     <script id='editarusuario' type='text/x-kendo-tmpl'>
         <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idusuario#' class='btn btn-primary text-center'>
-        <i class="fa fa-wrench"></i> Editar</a>
-
+        <i class="fa fa-wrench"></i> Editar Usuario</a>
+    </script>
+    <script id='verusuario' type='text/x-kendo-tmpl'>
+        <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idusuario#' class='btn btn-primary text-center'>
+        <i class="fa fa-eye"></i> Ver Usuario</a>
     </script>
 @endsection

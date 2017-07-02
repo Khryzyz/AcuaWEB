@@ -9,11 +9,11 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Peces registrados en el sistema</h3>
+            <h3 class="panel-title"><i class="fa fa-tint"></i> Peces registrados en el sistema</h3>
         </div>
         <div class="panel-body">
             <div class="panel-group">
-                <a href="../procesos/modalAgregarProcesos" class="btn btn-primary" data-modal="modal-lg">
+                <a href="{{route('modalAgregarPez')}}" class="btn btn-primary" data-modal="modal-lg">
                     <i class="fa fa-plus"></i>
                     Agregar Pez</a>
             </div>
@@ -25,7 +25,7 @@
 
                 //Agregamos atributos al datasource de transporte de lectura
                 $readPeces
-                    ->url('../../configuracion/getPeces')
+                    ->url(route('getPeces'))
                     ->contentType('application/json')
                     ->type('POST');
 
@@ -86,11 +86,11 @@
                 $estado = new \Kendo\UI\GridColumn();
                 $estado->field('estado')->title('Estado')->width(50);
 
-                $verpez = new \Kendo\UI\GridColumn();
-                $verpez->field('verpez')->title('Ver')->templateId('verpez')->width(70);
-
                 $editarpez = new \Kendo\UI\GridColumn();
                 $editarpez->field('editarpez')->title('Editar')->templateId('editarpez')->width(70);
+
+                $verpez = new \Kendo\UI\GridColumn();
+                $verpez->field('verpez')->title('Ver')->templateId('verpez')->width(70);
 
                 $gridFilterable = new \Kendo\UI\GridFilterable();
                 $gridFilterable->mode("row");
@@ -103,8 +103,8 @@
                         $registro,
                         $actualizacion,
                         $estado,
-                        $verpez,
-                        $editarpez)
+                        $editarpez,
+                        $verpez)
                     ->dataSource($dataSourcePeces)
                     ->sortable(true)
                     ->filterable($gridFilterable)
@@ -121,16 +121,14 @@
 @endsection
 
 @section('scripts')
+    <script id='editarpez' type='text/x-kendo-tmpl'>
+        <a href='/procesos/getViewInfoCaracteristicasProcesoById/#=idpez#' class='btn btn-primary text-center'>
+        <i class="fa fa-wrench"></i> Editar Pez</a>
+    </script>
     <script id='verpez' type='text/x-kendo-tmpl'>
-       <a href="../../procesos/getModalInfoPezById/#=idpez#"
+       <a href="/general/getModalInfoPezById/#=idpez#"
         class="btn btn-primary"
         data-modal="modal-lg">
-        <i class="fa fa-eye"></i> Ver</a>
-
-    </script>
-    <script id='editarpez' type='text/x-kendo-tmpl'>
-        <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idpez#' class='btn btn-primary text-center'>
-        <i class="fa fa-wrench"></i> Editar</a>
-
+        <i class="fa fa-eye"></i> Ver Pez</a>
     </script>
 @endsection

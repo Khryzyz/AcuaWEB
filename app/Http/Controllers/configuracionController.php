@@ -83,6 +83,96 @@ class configuracionController extends Controller
      */
 
     /**
+     * Metodo del controlador que retorna el modal para agregar un usuario
+     * Usado en Modal
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalAgregarUsuario()
+    {
+
+        return view('configuracion.modalAgregarUsuario');
+
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar un usuario
+     * Usado en Modal
+     *
+     * @param Request $rq
+     * @return string
+     */
+    public function postModalAgregarUsuario(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postModalAgregarUsuario($rq, $this->auth->user()->id);
+
+        return $result;
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar una variedad de planta
+     * Usado en Modal
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalAgregarPlanta()
+    {
+
+        return view('configuracion.modalAgregarPlanta');
+
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar una variedad de planta
+     * Usado en Modal
+     *
+     * @param Request $rq
+     * @return string
+     */
+    public function postModalAgregarPlanta(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postModalAgregarPlanta($rq, $this->auth->user()->id);
+
+        return $result;
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar una variedad de pez
+     * Usado en Modal
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalAgregarPez()
+    {
+
+        return view('configuracion.modalAgregarPez');
+
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar una variedad de pez
+     * Usado en Modal
+     *
+     * @param Request $rq
+     * @return string
+     */
+    public function postModalAgregarPez(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postModalAgregarPez($rq, $this->auth->user()->id);
+
+        return $result;
+    }
+
+    /**
      *******************************************************************************************
      * AREA METODOS USADOS POR GRID ************************************************************
      *******************************************************************************************
@@ -92,15 +182,14 @@ class configuracionController extends Controller
      * Metodo que consulta los usuarios registrados en el sistema
      * Usado en Grid
      *
-     * @param Request $rq
      * @return array
      */
-    public function getUsuarios(Request $rq)
+    public function getUsuarios()
     {
 
         $Bl = new AquaWebBL();
 
-        $dataGrid = $Bl->getUsuarios();
+        $data = $Bl->getUsuarios();
 
         $request = file_get_contents('php://input');
 
@@ -108,7 +197,7 @@ class configuracionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($dataGrid, $input);
+        return $util->getDataRequest($data, $input);
 
     }
 
@@ -116,15 +205,14 @@ class configuracionController extends Controller
      * Metodo que consulta las variedades de plantas registradas en el sistema
      * Usado en Grid
      *
-     * @param Request $rq
      * @return array
      */
-    public function getPlantas(Request $rq)
+    public function getPlantas()
     {
 
         $Bl = new AquaWebBL();
 
-        $dataGrid = $Bl->getPlantas();
+        $data = $Bl->getPlantas();
 
         $request = file_get_contents('php://input');
 
@@ -132,7 +220,7 @@ class configuracionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($dataGrid, $input);
+        return $util->getDataRequest($data, $input);
 
     }
 
@@ -140,15 +228,14 @@ class configuracionController extends Controller
      * Metodo que consulta las variedades de peces registrados en el sistema
      * Usado en Grid
      *
-     * @param Request $rq
      * @return array
      */
-    public function getPeces(Request $rq)
+    public function getPeces()
     {
 
         $Bl = new AquaWebBL();
 
-        $dataGrid = $Bl->getPeces();
+        $data = $Bl->getPeces();
 
         $request = file_get_contents('php://input');
 
@@ -156,8 +243,52 @@ class configuracionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($dataGrid, $input);
+        return $util->getDataRequest($data, $input);
 
+    }
+
+    /**
+     *******************************************************************************************
+     * AREA METODOS USADOS POR DROPDOWN ********************************************************
+     *******************************************************************************************
+     */
+
+    /**
+     * Metodo que consulta los tipos de usuario registrados en el sistema
+     * Usado en DropDown
+     *
+     * @return mixed
+     */
+    public function getTiposUsuario()
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getTiposUsuario();
+
+        //Agregado de opcion por defecto
+        array_unshift($data, "Seleccione...");
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta los tipos de exposicion solar registrados en el sistema
+     * Usado en DropDown
+     *
+     * @return mixed
+     */
+    public function getTiposExpoSolar()
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getTiposExpoSolar();
+
+        //Agregado de opcion por defecto
+        array_unshift($data, "Seleccione...");
+
+        return $data;
     }
 
 }

@@ -120,7 +120,7 @@ class procesosController extends Controller
 
         $data = $dataBL[0];
 
-        return view('procesos.modalInfoPlanta', compact('data'));
+        return view('layouts.Modals.modalInfoPlanta', compact('data'));
 
     }
 
@@ -142,35 +142,36 @@ class procesosController extends Controller
 
         $data = $dataBL[0];
 
-        return view('procesos.modalInfoPez', compact('data'));
+        return view('layouts.Modals.modalInfoPez', compact('data'));
 
     }
 
     /**
      * Metodo del controlador que retorna el modal para agregar un proceso
      * Usado en Modal
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getModalAgregarProcesos()
     {
-
         return view('procesos.modalAgregarProceso');
-
     }
 
     /**
      * Metodo del controlador que retorna el modal para agregar un proceso
      * Usado en Modal
-     */
-    /**
-     * @param Request $request
+     *
+     * @param Request $rq
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function postModalAgregarProcesos(Request $request)
+    public function postModalAgregarProcesos(Request $rq)
     {
 
-        var_dump($request);
-        return view('procesos.modalAgregarProceso');
+        $Bl = new AquaWebBL();
 
+        $result = $Bl->postModalAgregarProcesos($rq, $this->auth->user()->id);
+
+        return $result;
     }
 
     /**
@@ -183,11 +184,10 @@ class procesosController extends Controller
      * Metodo que consulta los procesos por el id del usuario relacionado
      * Usado en Grid
      *
-     * @param Request $rq
      * @param $idUsuario
      * @return array
      */
-    public function getProcesosByIdUsuario(Request $rq, $idUsuario)
+    public function getProcesosByIdUsuario($idUsuario)
     {
 
         $Bl = new AquaWebBL();
@@ -208,11 +208,10 @@ class procesosController extends Controller
      * Metodo que consulta las plantas por el id del proceso relacionado
      * Usado en Grid
      *
-     * @param Request $rq
      * @param $idProceso
      * @return array
      */
-    public function getInfoPlantaByProcesoId(Request $rq, $idProceso)
+    public function getInfoPlantaByProcesoId($idProceso)
     {
 
         $Bl = new AquaWebBL();
@@ -233,11 +232,10 @@ class procesosController extends Controller
      * Metodo que consulta los peces por el id del proceso relacionado
      * Usado en Grid
      *
-     * @param Request $rq
      * @param $idProceso
      * @return array
      */
-    public function getInfoPezByProcesoId(Request $rq, $idProceso)
+    public function getInfoPezByProcesoId($idProceso)
     {
 
         $Bl = new AquaWebBL();
@@ -258,7 +256,6 @@ class procesosController extends Controller
      * Metodo que consulta los valores del proceso por su id
      * Usado en Grid
      *
-     * @param Request $rq
      * @param $idProceso
      * @param $idTipoSensor
      * @return array

@@ -5,14 +5,14 @@
     </a>
     <ul class="dropdown-menu dropdown-user">
         <li>
-            <a href="../main/modalformulario" data-modal=""><i class="fa fa-user fa-fw"></i>Perfil de Usuario</a>
+            <a href="#" data-modal=""><i class="fa fa-user fa-fw"></i>Perfil de Usuario</a>
         </li>
         <li>
             <a href="#"><i class="fa fa-wrench fa-fw"></i>Configuración</a>
         </li>
         <li class="divider"></li>
         <li>
-            <a href="auth/logout"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
+            <a href="{{route('logout')}}"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
         </li>
     </ul>
 </li>

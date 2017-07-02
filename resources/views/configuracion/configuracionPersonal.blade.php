@@ -9,7 +9,7 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Usuarios registrados en el sistema</h3>
+            <h3 class="panel-title"><i class="fa fa-user"></i> Mi información registrada en el sistema</h3>
         </div>
         <div class="panel-body">
 

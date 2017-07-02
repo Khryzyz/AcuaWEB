@@ -9,11 +9,11 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Plantas registrados en el sistema</h3>
+            <h3 class="panel-title"><i class="fa fa-leaf"></i> Plantas registradas en el sistema</h3>
         </div>
         <div class="panel-body">
             <div class="panel-group">
-                <a href="../procesos/modalAgregarProcesos" class="btn btn-primary" data-modal="modal-lg">
+                <a href="{{route('modalAgregarPlanta')}}" class="btn btn-primary" data-modal="modal-lg">
                     <i class="fa fa-plus"></i>
                     Agregar Planta</a>
             </div>
@@ -25,7 +25,7 @@
 
                 //Agregamos atributos al datasource de transporte de lectura
                 $readPlantas
-                    ->url('../../configuracion/getPlantas')
+                    ->url(route('getPlantas'))
                     ->contentType('application/json')
                     ->type('POST');
 
@@ -85,11 +85,11 @@
                 $estado = new \Kendo\UI\GridColumn();
                 $estado->field('estado')->title('Estado')->width(50);
 
-                $verusuario = new \Kendo\UI\GridColumn();
-                $verusuario->field('verusuario')->title('Ver')->templateId('verusuario')->width(70);
+                $editarplanta = new \Kendo\UI\GridColumn();
+                $editarplanta->field('editarplanta')->title('Editar')->templateId('editarplanta')->width(70);
 
-                $editarusuario = new \Kendo\UI\GridColumn();
-                $editarusuario->field('editarusuario')->title('Editar')->templateId('editarusuario')->width(70);
+                $verplanta = new \Kendo\UI\GridColumn();
+                $verplanta->field('verplanta')->title('Ver')->templateId('verplanta')->width(70);
 
                 $gridFilterable = new \Kendo\UI\GridFilterable();
                 $gridFilterable->mode("row");
@@ -102,8 +102,8 @@
                         $registro,
                         $actualizacion,
                         $estado,
-                        $verusuario,
-                        $editarusuario)
+                        $editarplanta,
+                        $verplanta                        )
                     ->dataSource($dataSourcePlantas)
                     ->filterable($gridFilterable)
                     ->sortable(true)
@@ -120,14 +120,14 @@
 @endsection
 
 @section('scripts')
-    <script id='verusuario' type='text/x-kendo-tmpl'>
-        <a href="../../procesos/getModalInfoPlantaById/#=idplanta#"
+    <script id='editarplanta' type='text/x-kendo-tmpl'>
+        <a href='/configuracion/modalAgregarPlantas/#=idplanta#' class='btn btn-primary text-center'>
+        <i class="fa fa-wrench"></i> Editar Planta</a>
+    </script>
+    <script id='verplanta' type='text/x-kendo-tmpl'>
+        <a href="/general/getModalInfoPlantaById/#=idplanta#"
          class="btn btn-primary"
          data-modal="modal-lg">
-        <i class="fa fa-eye"></i> Ver</a>
-    </script>
-    <script id='editarusuario' type='text/x-kendo-tmpl'>
-        <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idplanta#' class='btn btn-primary text-center'>
-        <i class="fa fa-wrench"></i> Editar</a>
+        <i class="fa fa-eye"></i> Ver Planta</a>
     </script>
 @endsection

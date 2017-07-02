@@ -64,7 +64,7 @@ function handleAjaxModal() {
 }
 
 
-function EventoFormularioModal(modal, onSuccess) {
+function eventResultForm(modal, onSuccess) {
     modal.find('form').submit(function () {
         $.ajax({
             url: this.action,

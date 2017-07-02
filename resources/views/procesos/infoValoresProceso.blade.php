@@ -7,9 +7,9 @@
     ?>
     <div class="panel-primary">
         <div class="panel-body text-right">
-            <a href="../../procesos/getViewInfoCaracteristicasProcesoById/{{$data->id}}"
+            <a href="{{route('getViewInfoCaracteristicasProcesoById', ['idProceso' => $data->id])}}"
                class="btn btn-primary">
-                <i class="fa fa-wrench"></i> Caracteristicas del proceso</a>
+                <i class="fa fa-wrench"></i> Características del proceso</a>
         </div>
     </div>
 

@@ -6,7 +6,9 @@
 
     //Agregamos atributos al datasource de transporte de lectura
     $readValueProcesos
-        ->url('../../procesos/getValuesProcesoByIdForGrid/' . $idTipoSensor . '/' . $idProceso)
+        ->url(route('getValuesProcesoByIdForGrid',
+            ['idTipoSensor' => $idTipoSensor, 'idProceso' => $data->id]
+        ))
         ->contentType('application/json')
         ->type('POST');
 

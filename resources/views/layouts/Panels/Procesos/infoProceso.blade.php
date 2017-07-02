@@ -3,7 +3,8 @@
         <h4 class="panel-title">Información del proceso</h4>
     </div>
     <div class="panel-body">
-        <div class="panel-group">
+
+        <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-code"></i>
                 Codigo:
@@ -12,8 +13,8 @@
                 {{strtoupper($data->codigo)}}
             </div>
         </div>
-        </br>
-        <div class="panel-group">
+
+        <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-terminal"></i>
                 Nombre:
@@ -22,8 +23,8 @@
                 {{strtoupper($data->nombre)}}
             </div>
         </div>
-        </br>
-        <div class="panel-group">
+
+        <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-comments"></i>
                 Descripción:
@@ -32,8 +33,8 @@
                 {{$data->descripcion}}
             </div>
         </div>
-        </br>
-        <div class="panel-group">
+
+        <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-calendar"></i>
                 Fecha Implementación:
@@ -42,8 +43,8 @@
                 {{$data->fechaimplementacion}}
             </div>
         </div>
-        </br>
-        <div class="panel-group">
+
+        <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-th"></i>
                 Area Cultivo:
@@ -52,8 +53,8 @@
                 {{$data->areacultivo}} m²
             </div>
         </div>
-        </br>
-        <div class="panel-group">
+
+        <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-align-justify"></i>
                 Volumen Cultivo:
@@ -62,13 +63,13 @@
                 {{$data->volumencultivo}} m³
             </div>
         </div>
-        </br>
-        <div class="panel-group">
+
+        <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-power-off"></i>
                 Estado:
             </div>
-            <div class="col-md-9 <?php
+            <div class="col-md-9 margin-bottom-10 <?php
             if ($data->estado == "Activo")
                 echo "text-success";
             else
@@ -78,5 +79,6 @@
 
             </div>
         </div>
+
     </div>
 </div>

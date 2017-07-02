@@ -10,7 +10,9 @@
 
         //Agregamos atributos al datasource de transporte de lectura
         $chartValueProcesosRead
-            ->url('../../procesos/getValuesProcesoByIdForChart/' . $idTipoSensor . '/' . $data->id)
+            ->url(route('getValuesProcesoByIdForChart',
+                ['idTipoSensor' => $idTipoSensor, 'idProceso' => $data->id]
+            ))
             ->contentType('application/json')
             ->type('POST');
 

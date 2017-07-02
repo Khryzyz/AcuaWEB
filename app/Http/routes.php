@@ -76,13 +76,33 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', 'homeController@index');
 
-    Route::get('home', 'homeController@index');
+    Route::get('home', 'homeController@index')->name('home');
 
     /**
      *******************************************************************************************
      * FIN AREA HOME ***************************************************************************
      *******************************************************************************************
      */
+
+    /**
+     *******************************************************************************************
+     * AREA GENERAL ****************************************************************************
+     *******************************************************************************************
+     */
+
+    /**
+     *******************************************************************************************
+     * FIN AREA GENERAL ************************************************************************
+     *******************************************************************************************
+     */
+
+    /**
+     * AREA GENERAL  / MODALES ****************************************************************
+     */
+
+    Route::get('general/getModalInfoPlantaById/{idPlanta}', 'generalController@getModalInfoPlantaById');
+
+    Route::get('general/getModalInfoPezById/{idPez}', 'generalController@getModalInfoPezById');
 
     /**
      *******************************************************************************************
@@ -94,41 +114,37 @@ Route::group(['middleware' => 'auth'], function () {
      * AREA PROCESOS  / VISTAS *****************************************************************
      */
 
-    Route::get('procesos', 'procesosController@index');
+    Route::get('procesos', 'procesosController@index')->name('procesos');
 
-    Route::get('procesos/getViewInfoCaracteristicasProcesoById/{idProceso}', 'procesosController@getViewInfoCaracteristicasProcesoById');
+    Route::get('procesos/getViewInfoCaracteristicasProcesoById/{idProceso}', 'procesosController@getViewInfoCaracteristicasProcesoById')->name('getViewInfoCaracteristicasProcesoById');
 
-    Route::get('procesos/getViewInfoValoresProcesoById/{idProceso}', 'procesosController@getViewInfoValoresProcesoById');
-
-    Route::get('procesos/modalAgregarProcesos', 'procesosController@getModalAgregarProcesos');
-
-    Route::post('procesos/modalAgregarProcesos', 'procesosController@postModalAgregarProcesos');
+    Route::get('procesos/getViewInfoValoresProcesoById/{idProceso}', 'procesosController@getViewInfoValoresProcesoById')->name('getViewInfoValoresProcesoById');
 
     /**
      * AREA PROCESOS  / MODALES ****************************************************************
      */
 
-    Route::get('procesos/getModalInfoPlantaById/{idPlanta}', 'procesosController@getModalInfoPlantaById');
+    Route::get('procesos/modalAgregarProcesos', 'procesosController@getModalAgregarProcesos')->name('modalAgregarProcesos');
 
-    Route::get('procesos/getModalInfoPezById/{idPez}', 'procesosController@getModalInfoPezById');
+    Route::post('procesos/modalAgregarProcesos', 'procesosController@postModalAgregarProcesos')->name('modalAgregarProcesos');
 
     /**
      * AREA PROCESOS  / GRIDS ******************************************************************
      */
 
-    Route::post('procesos/getProcesosByIdUsuario/{idUsuario}', 'procesosController@getProcesosByIdUsuario');
+    Route::post('procesos/getProcesosByIdUsuario/{idUsuario}', 'procesosController@getProcesosByIdUsuario')->name('getProcesosByIdUsuario');
 
-    Route::post('procesos/getInfoPlantaByProcesoId/{idProceso}', 'procesosController@getInfoPlantaByProcesoId');
+    Route::post('procesos/getInfoPlantaByProcesoId/{idProceso}', 'procesosController@getInfoPlantaByProcesoId')->name('getInfoPlantaByProcesoId');
 
-    Route::post('procesos/getInfoPezByProcesoId/{idProceso}', 'procesosController@getInfoPezByProcesoId');
+    Route::post('procesos/getInfoPezByProcesoId/{idProceso}', 'procesosController@getInfoPezByProcesoId')->name('getInfoPezByProcesoId');
 
-    Route::post('procesos/getValuesProcesoByIdForGrid/{idTipoSensor}/{idProceso}', 'procesosController@getValuesProcesoByIdForGrid');
+    Route::post('procesos/getValuesProcesoByIdForGrid/{idTipoSensor}/{idProceso}', 'procesosController@getValuesProcesoByIdForGrid')->name('getValuesProcesoByIdForGrid');
 
     /**
      * AREA PROCESOS  / CHARTS *****************************************************************
      */
 
-    Route::post('procesos/getValuesProcesoByIdForChart/{idTipoSensor}/{idProceso}', 'procesosController@getValuesProcesoByIdForChart');
+    Route::post('procesos/getValuesProcesoByIdForChart/{idTipoSensor}/{idProceso}', 'procesosController@getValuesProcesoByIdForChart')->name('getValuesProcesoByIdForChart');
 
     /**
      *******************************************************************************************
@@ -145,23 +161,50 @@ Route::group(['middleware' => 'auth'], function () {
     /**
      * AREA CONFIGURACION  / VISTAS *****************************************************************
      */
-    Route::get('configuracion/usuarios', 'configuracionController@configuracionUsuarios');
 
-    Route::get('configuracion/personal', 'configuracionController@configuracionPersonal');
+    Route::get('configuracion/usuarios', 'configuracionController@configuracionUsuarios')->name('configUsuarios');
 
-    Route::get('configuracion/plantas', 'configuracionController@configuracionPlantas');
+    Route::get('configuracion/personal', 'configuracionController@configuracionPersonal')->name('configPersonal');
 
-    Route::get('configuracion/peces', 'configuracionController@configuracionPeces');
+    Route::get('configuracion/plantas', 'configuracionController@configuracionPlantas')->name('configPlantas');
+
+    Route::get('configuracion/peces', 'configuracionController@configuracionPeces')->name('configPeces');
+
 
     /**
-     * AREA PROCESOS  / GRIDS ******************************************************************
+     * AREA CONFIGURACION  / MODALES ****************************************************************
      */
 
-    Route::post('configuracion/getUsuarios', 'configuracionController@getUsuarios');
+    Route::get('configuracion/modalAgregarUsuario', 'configuracionController@getModalAgregarUsuario')->name('modalAgregarUsuario');
 
-    Route::post('configuracion/getPlantas', 'configuracionController@getPlantas');
+    Route::post('configuracion/modalAgregarUsuario', 'configuracionController@postModalAgregarUsuario')->name('modalAgregarUsuario');
 
-    Route::post('configuracion/getPeces', 'configuracionController@getPeces');
+    Route::get('configuracion/modalAgregarPlanta', 'configuracionController@getModalAgregarPlanta')->name('modalAgregarPlanta');
+
+    Route::post('configuracion/modalAgregarPlanta', 'configuracionController@postModalAgregarPlanta')->name('modalAgregarPlanta');
+
+    Route::get('configuracion/modalAgregarPez', 'configuracionController@getModalAgregarPez')->name('modalAgregarPez');
+
+    Route::post('configuracion/modalAgregarPez', 'configuracionController@getModalAgregarPez')->name('modalAgregarPez');
+
+    /**
+     * AREA CONFIGURACION  / GRIDS ******************************************************************
+     */
+
+    Route::post('configuracion/getUsuarios', 'configuracionController@getUsuarios')->name('getUsuarios');
+
+    Route::post('configuracion/getPlantas', 'configuracionController@getPlantas')->name('getPlantas');
+
+    Route::post('configuracion/getPeces', 'configuracionController@getPeces')->name('getPeces');
+
+    /**
+     * AREA CONFIGURACION  / DROPDOWNS **************************************************************
+     */
+
+    Route::post('configuracion/getTiposUsuario', 'configuracionController@getTiposUsuario')->name('getTiposUsuario');
+
+    Route::post('configuracion/getTiposExpoSolar', 'configuracionController@getTiposExpoSolar')->name('getTiposExpoSolar');
+
     /**
      *******************************************************************************************
      * FIN AREA CONFIGURACION ******************************************************************
@@ -180,7 +223,7 @@ Route::get('auth/login', 'Auth\AuthController@getLogin');
 
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::get('auth/logout', 'Auth\AuthController@getLogout')->name('logout');
 
 /**
  *******************************************************************************************
