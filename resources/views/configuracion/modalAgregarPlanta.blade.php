@@ -1,4 +1,4 @@
-<div id="ModalAgregarUsuario">
+<div id="ModalAgregarPlanta">
     {!!Form::open(['url' => route('modalAgregarPlanta'), 'method' => 'POST', 'role'=>"form"])!!}
     <div class="modal-header bg-success">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -20,13 +20,13 @@
                 {!!Form::label('phmin', 'pH Min (pH):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('phmin',null,['class'=>'form-control float-positive', 'required','min'=>'1','max'=>'100', 'maxlength'=>'6', 'placeholder'=>'pH Min'])!!}
+                {!!Form::number('phmin',null,['class'=>'form-control float-positive', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
             </div>
             <div class="col-md-3">
                 {!!Form::label('phmax', 'pH Max (pH):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('phmax',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Max'])!!}
+                {!!Form::number('phmax',null,['class'=>'form-control float-positive', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Max'])!!}
             </div>
         </div>
 
@@ -145,7 +145,7 @@
 </div>
 
 <script type="text/javascript">
-    var modal = $('#ModalAgregarUsuario');
+    var modal = $('#ModalAgregarPlanta');
 
     $(function () {
         validarFormulario();// validar forularios con kendo
@@ -179,12 +179,24 @@
     }
 
     function onSuccess(result) {
+
         result = JSON.parse(result)
-        console.log(result);
-        if (result.estado = true) {
-            $.msgbox(result.mensaje, {type: 'success'}, function () {
-                modalBs.modal('hide');
-            });
+
+        switch (result.estado) {
+            case "success":
+                $.msgbox(result.mensaje, {type: 'success'}, function () {
+                    modalBs.modal('hide');
+                });
+                break;
+            case "error":
+                $.msgbox(result.mensaje, {type: 'warning'});
+                break;
+            case "fatal":
+                $.msgbox(result.mensaje, {type: 'error'});
+                break;
+            default:
+                $.msgbox("Error desconocido", {type: 'error'});
         }
+
     }
 </script>

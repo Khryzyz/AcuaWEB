@@ -31,11 +31,11 @@
                 <span class="hidden-sm-down">Mi configuración</span>
             </a>
 
-            <a href="{{route('configPlantas')}}" class="list-group-item" data-parent="#menuConfiguracion">
+            <a href="{{route('configMisPlantas')}}" class="list-group-item" data-parent="#menuConfiguracion">
                 <i class="fa fa-leaf"></i>
                 <span class="hidden-sm-down">Mis Plantas</span>
             </a>
-            <a href="{{route('configPeces')}}" class="list-group-item" data-parent="#menuConfiguracion">
+            <a href="{{route('configMisPeces')}}" class="list-group-item" data-parent="#menuConfiguracion">
                 <i class="fa fa-anchor"></i>
                 <span class="hidden-sm-down">Mis Peces</span>
             </a>

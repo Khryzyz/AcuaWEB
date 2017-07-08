@@ -170,6 +170,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('configuracion/peces', 'configuracionController@configuracionPeces')->name('configPeces');
 
+    Route::get('configuracion/misplantas', 'configuracionController@configuracionMisPlantas')->name('configMisPlantas');
+
+    Route::get('configuracion/mispeces', 'configuracionController@configuracionMisPeces')->name('configMisPeces');
+
 
     /**
      * AREA CONFIGURACION  / MODALES ****************************************************************
@@ -185,7 +189,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('configuracion/modalAgregarPez', 'configuracionController@getModalAgregarPez')->name('modalAgregarPez');
 
-    Route::post('configuracion/modalAgregarPez', 'configuracionController@getModalAgregarPez')->name('modalAgregarPez');
+    Route::post('configuracion/modalAgregarPez', 'configuracionController@postModalAgregarPez')->name('modalAgregarPez');
 
     /**
      * AREA CONFIGURACION  / GRIDS ******************************************************************
@@ -196,6 +200,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('configuracion/getPlantas', 'configuracionController@getPlantas')->name('getPlantas');
 
     Route::post('configuracion/getPeces', 'configuracionController@getPeces')->name('getPeces');
+
+    Route::post('configuracion/getPlantasByUsuarioId', 'configuracionController@getPlantasByUsuarioId')->name('getPlantasByUsuarioId');
+
+    Route::post('configuracion/getPecesByUsuarioId', 'configuracionController@getPecesByUsuarioId')->name('getPecesByUsuarioId');
 
     /**
      * AREA CONFIGURACION  / DROPDOWNS **************************************************************

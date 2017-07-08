@@ -1,5 +1,5 @@
-<div id="ModalAgregarUsuario">
-    {!!Form::open(['url' => route('modalAgregarUsuario'), 'method' => 'POST', 'role'=>"form"])!!}
+<div id="ModalAgregarPez">
+    {!!Form::open(['url' => route('modalAgregarPez'), 'method' => 'POST', 'role'=>"form"])!!}
     <div class="modal-header bg-info">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4><i class="fa fa-tint"></i> Agregar Pez</h4>
@@ -17,92 +17,96 @@
 
         <div class="row margin-bottom-10">
             <div class="col-md-3">
-                {!!Form::label('phmin', 'pH Min (pH):')!!}
+                {!!Form::label('tempvitmin', 'Temp. Vital Min (°C):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('phmin',null,['class'=>'form-control float-positive', 'required','min'=>'1','max'=>'100', 'maxlength'=>'6', 'placeholder'=>'Area cultivo'])!!}
+                {!!Form::number('tempvitmin',null,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Vital Min'])!!}
             </div>
             <div class="col-md-3">
-                {!!Form::label('phmax', 'pH Max (pH):')!!}
+                {!!Form::label('tempvitmax', 'Temp. Vital Max (°C):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('area',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
+                {!!Form::number('tempvitmax',null,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Vital Max'])!!}
             </div>
         </div>
 
         <div class="row margin-bottom-10">
             <div class="col-md-3">
-                {!!Form::label('phmax', 'Area Min (m²):')!!}
+                {!!Form::label('tempoptmin', 'Temp. Optima Min (°C):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('area',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
+                {!!Form::number('tempoptmin',null,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Optima Min'])!!}
             </div>
             <div class="col-md-3">
-                {!!Form::label('phmax', 'Area Max (m²):')!!}
+                {!!Form::label('tempoptmax', 'Temp. Optima Max (°C):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('area',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
+                {!!Form::number('tempoptmax',null,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Optima Max'])!!}
             </div>
         </div>
 
         <div class="row margin-bottom-10">
             <div class="col-md-3">
-                Germinación Min (dia):
-                {!!Form::label('phmax', 'Area Max (m²):')!!}
+                {!!Form::label('porcpromin', 'Porc. proteinico Min (%):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('area',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
+                {!!Form::number('porcpromin',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Porc. proteinico Min'])!!}
             </div>
             <div class="col-md-3">
-                Germinación (dia):
-                {!!Form::label('phmax', 'Area Max (m²):')!!}
+                {!!Form::label('porcpromax', 'Porc. proteinico Max (%):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('area',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
+                {!!Form::number('porcpromax',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Porc. proteinico Max'])!!}
             </div>
         </div>
 
         <div class="row margin-bottom-10">
             <div class="col-md-3">
-                Crecimiento Min (dia):
-                {!!Form::label('phmax', 'Area Max (m²):')!!}
+                {!!Form::label('nitnat', 'Nitrogeno:')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('area',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
-            </div>
-            <div class="col-md-3">
-                Crecimiento Max (dia):
-                {!!Form::label('phmax', 'Area Max (m²):')!!}
-            </div>
-            <div class="col-md-3">
-                {!!Form::number('area',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
+                {!!Form::number('nitnat',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Nitrogeno'])!!}
             </div>
         </div>
 
         <div class="row margin-bottom-10">
             <div class="col-md-3">
-                Temperatura Min (°C):
-                {!!Form::label('phmax', 'Area Max (m²):')!!}
+                {!!Form::label('nitri', 'Nitrito:')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('area',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
-            </div>
-            <div class="col-md-3">
-                Temperatura Max (°C):
-                {!!Form::label('phmax', 'Area Max (m²):')!!}
-            </div>
-            <div class="col-md-3">
-                {!!Form::number('area',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
+                {!!Form::number('nitri',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Nitrito'])!!}
             </div>
         </div>
 
         <div class="row margin-bottom-10">
             <div class="col-md-3">
-                {!!Form::label('phmax', 'Exposicion Solar:')!!}
+                {!!Form::label('oxi', 'Oxigeno:')!!}
             </div>
-            <div class="col-md-9">
-                Exposicion Solar:
+            <div class="col-md-3">
+                {!!Form::number('oxi',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Oxigeno'])!!}
             </div>
+        </div>
+
+        <div class="row margin-bottom-10">
+
+            <div class="col-md-3">
+                {!!Form::label('crepeso', 'Crecimiento Peso (grs):')!!}
+            </div>
+
+            <div class="col-md-3">
+                {!!Form::number('crepeso',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Peso'])!!}
+            </div>
+        </div>
+
+        <div class="row margin-bottom-10">
+            <div class="col-md-3">
+                {!!Form::label('cretiempo', 'Crecimiento Tiempo (dia):')!!}
+            </div>
+
+            <div class="col-md-3">
+                {!!Form::number('cretiempo',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Tiempo'])!!}
+            </div>
+
         </div>
 
         @include('layouts.Panels.Annotations.allFieldsRequired')
@@ -122,7 +126,7 @@
 </div>
 
 <script type="text/javascript">
-    var modal = $('#ModalAgregarUsuario');
+    var modal = $('#ModalAgregarPez');
 
     $(function () {
         validarFormulario();// validar forularios con kendo
@@ -156,12 +160,24 @@
     }
 
     function onSuccess(result) {
+
         result = JSON.parse(result)
-        console.log(result);
-        if (result.estado = true) {
-            $.msgbox(result.mensaje, {type: 'success'}, function () {
-                modalBs.modal('hide');
-            });
+
+        switch (result.estado) {
+            case "{{$GLOBALS['status_success']}}":
+                $.msgbox(result.mensaje, {type: 'success'}, function () {
+                    modalBs.modal('hide');
+                });
+                break;
+            case "error":
+                $.msgbox(result.mensaje);
+                break;
+            case "fatal":
+                $.msgbox(result.mensaje, {type: 'error'});
+                break;
+            default:
+                $.msgbox("Error desconocido", {type: 'error'});
         }
+
     }
 </script>

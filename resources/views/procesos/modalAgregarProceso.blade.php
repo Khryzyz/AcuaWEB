@@ -38,7 +38,7 @@
                 {!!Form::label('area', 'Area cultivo:')!!}
             </div>
             <div class="col-md-8">
-                {!!Form::number('area',null,['class'=>'form-control', 'min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
+                {!!Form::number('area',null,['class'=>'form-control', 'min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Area cultivo'])!!}
             </div>
         </div>
 
@@ -90,12 +90,24 @@
 
     // Respuesta del evento retorno del formulario
     function onSuccess(result) {
+
         result = JSON.parse(result)
-        console.log(result);
-        if (result.estado = true) {
-            $.msgbox(result.mensaje, {type: 'success'}, function () {
-                modalBs.modal('hide');
-            });
+
+        switch (result.estado) {
+            case "success":
+                $.msgbox(result.mensaje, {type: 'success'}, function () {
+                    modalBs.modal('hide');
+                });
+                break;
+            case "error":
+                $.msgbox(result.mensaje, {type: 'warning'});
+                break;
+            case "fatal":
+                $.msgbox(result.mensaje, {type: 'error'});
+                break;
+            default:
+                $.msgbox("Error desconocido", {type: 'error'});
         }
+
     }
 </script>

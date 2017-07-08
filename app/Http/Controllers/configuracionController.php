@@ -76,6 +76,29 @@ class configuracionController extends Controller
     {
         return view('configuracion.configuracionPeces');
     }
+
+    /**
+     *  Metodo del controlador que:
+     *  - Retorna la vista de configuracion de plantas por el usuario
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function configuracionMisPlantas()
+    {
+        return view('configuracion.configuracionMisPlantas');
+    }
+
+    /**
+     *  Metodo del controlador que:
+     *  - Retorna la vista de configuracion de peces registrados por el usuario
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function configuracionMisPeces()
+    {
+        return view('configuracion.configuracionMisPeces');
+    }
+
     /**
      *******************************************************************************************
      * AREA METODOS USADOS POR MODALES *********************************************************
@@ -236,6 +259,52 @@ class configuracionController extends Controller
         $Bl = new AquaWebBL();
 
         $data = $Bl->getPeces();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($data, $input);
+
+    }
+
+    /**
+     * Metodo que consulta las variedades de plantas registradas en el sistema por el id del usuario
+     * Usado en Grid
+     *
+     * @return array
+     */
+    public function getPlantasByUsuarioId()
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getPlantasByUsuarioId($this->auth->user()->id);
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($data, $input);
+
+    }
+
+    /**
+     * Metodo que consulta las variedades de peces registrados en el sistema por el id del usuario
+     * Usado en Grid
+     *
+     * @return array
+     */
+    public function getPecesByUsuarioId()
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getPecesByUsuarioId($this->auth->user()->id);
 
         $request = file_get_contents('php://input');
 

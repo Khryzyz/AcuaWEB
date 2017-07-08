@@ -170,12 +170,24 @@
     }
 
     function onSuccess(result) {
+
         result = JSON.parse(result)
-        console.log(result);
-        if (result.estado = true) {
-            $.msgbox(result.mensaje, {type: 'success'}, function () {
-                modalBs.modal('hide');
-            });
+
+        switch (result.estado) {
+            case "success":
+                $.msgbox(result.mensaje, {type: 'success'}, function () {
+                    modalBs.modal('hide');
+                });
+                break;
+            case "error":
+                $.msgbox(result.mensaje, {type: 'warning'});
+                break;
+            case "fatal":
+                $.msgbox(result.mensaje, {type: 'error'});
+                break;
+            default:
+                $.msgbox("Error desconocido", {type: 'error'});
         }
+
     }
 </script>

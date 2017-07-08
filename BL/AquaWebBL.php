@@ -2,7 +2,6 @@
 
 class AquaWebBL
 {
-
     public function __construct()
     {
     }
@@ -89,6 +88,18 @@ class AquaWebBL
     }
 
     /**
+     * Metodo que consulta las variedades de plantas registradas en el sistema por el id del usuario
+     *
+     * @return mixed.
+     */
+    public function getPlantasByUsuarioId($idUsuario)
+    {
+        $data = \DB::select('CALL getPlantasByUsuarioId(?)', array($idUsuario));
+
+        return $data;
+    }
+
+    /**
      * Metodo que consulta las plantas por el id del proceso relacionado
      *
      * @param $idProceso
@@ -109,6 +120,18 @@ class AquaWebBL
     public function getPeces()
     {
         $data = \DB::select('CALL getPeces()', array());
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta las variedades de peces registrados en el sistema por el id del usuario
+     *
+     * @return mixed.
+     */
+    public function getPecesByUsuarioId($idUsuario)
+    {
+        $data = \DB::select('CALL getPecesByUsuarioId(?)', array($idUsuario));
 
         return $data;
     }
@@ -202,11 +225,23 @@ class AquaWebBL
         $volumen = $rq->input('volumen');
 
         try {
-            $insTransaction = \DB::select('CALL insDatosProceso(?,?,?,?,?,?)', array($idUsuario, $nombre, $descripcion, $fecha, $area, $volumen));
-            $result['estado'] = true;
-            $result['mensaje'] = 'Registrado correctamente';
+            $insTransaction = \DB::select('CALL insDatosProceso(?,?,?,?,?,?)', array($idUsuario,
+                    $nombre,
+                    $descripcion,
+                    $fecha,
+                    $area,
+                    $volumen)
+            );
+            if ($insTransaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $insTransaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Registrado correctamente';
+            }
         } catch (Exception $e) {
-            $result['estado'] = false;
+            $result['estado'] = "error";
             $result['mensaje'] = 'No se registro correctamente';
         }
         return json_encode($result);
@@ -246,10 +281,16 @@ class AquaWebBL
                     $tiposUsuario
                 )
             );
-            $result['estado'] = true;
-            $result['mensaje'] = 'Registrado correctamente';
+            if ($insTransaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $insTransaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Registrado correctamente';
+            }
         } catch (Exception $e) {
-            $result['estado'] = false;
+            $result['estado'] = "error";
             $result['mensaje'] = 'No se registro correctamente';
         }
         return json_encode($result);
@@ -304,10 +345,16 @@ class AquaWebBL
                     $expsolar
                 )
             );
-            $result['estado'] = true;
-            $result['mensaje'] = 'Registrado correctamente';
+            if ($insTransaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $insTransaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Registrado correctamente';
+            }
         } catch (Exception $e) {
-            $result['estado'] = false;
+            $result['estado'] = "error";
             $result['mensaje'] = 'No se registro correctamente';
         }
         return json_encode($result);
@@ -324,37 +371,60 @@ class AquaWebBL
     {
         $result = [];
 
-        $usuario = strtoupper($rq->input('usuario'));
-        $pass = bcrypt($rq->input('pass'));
-        $email = $rq->input('email');
-        $primernombre = $rq->input('primernombre');
-        $segundonombre = $rq->input('segundonombre');
-        $primerapellido = $rq->input('primerapellido');
-        $segundoapellido = $rq->input('segundoapellido');
-        $tiposUsuario = $rq->input('tiposUsuario');
+        $nombre = strtoupper($rq->input('nombre'));
 
+        $tempvitmin = $rq->input('tempvitmin');
+        $tempvitmax = $rq->input('tempvitmax');
+
+        $tempoptmin = $rq->input('tempoptmin');
+        $tempoptmax = $rq->input('tempoptmax');
+
+        $porcpromin = $rq->input('porcpromin');
+        $porcpromax = $rq->input('porcpromax');
+
+        $nitnat = $rq->input('nitnat');
+
+        $nitri = $rq->input('nitri');
+
+        $oxi = $rq->input('oxi');
+
+        $crepeso = $rq->input('crepeso');
+
+        $cretiempo = $rq->input('cretiempo');
 
         try {
-            $insTransaction = \DB::select('CALL insDatosUsuario(?,?,?,?,?,?,?,?)',
+            $insTransaction = \DB::select('CALL insDatosPez(?,?,?,?,?,?,?,?,?,?,?,?,?)',
                 array(
-                    $usuario,
-                    $pass,
-                    $email,
-                    $primernombre,
-                    $segundonombre,
-                    $primerapellido,
-                    $segundoapellido,
-                    $tiposUsuario
+                    $idUsuario,
+                    $nombre,
+                    $tempvitmin,
+                    $tempvitmax,
+                    $tempoptmin,
+                    $tempoptmax,
+                    $porcpromin,
+                    $porcpromax,
+                    $nitnat,
+                    $nitri,
+                    $oxi,
+                    $crepeso,
+                    $cretiempo
                 )
             );
-            $result['estado'] = true;
-            $result['mensaje'] = 'Registrado correctamente';
+            if ($insTransaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $insTransaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Registrado correctamente';
+            }
         } catch (Exception $e) {
-            $result['estado'] = false;
-            $result['mensaje'] = 'No se registro correctamente';
+            $result['estado'] = "error";
+            $result['mensaje'] = 'No se registro correctamente' . $e;
         }
+
         return json_encode($result);
 
-    }
 
+    }
 }
