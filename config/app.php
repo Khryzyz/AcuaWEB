@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY', 'GitmiPRlj5WX7pXFrYzCZ6prHIyBMZoh'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -156,9 +156,6 @@ return [
 
         //Proveedor libreria manejo Datatables
         Yajra\Datatables\DatatablesServiceProvider::class,
-
-        //Proveedor libreria manejo de roles y permisos
-        Caffeinated\Shinobi\ShinobiServiceProvider::class
     ],
 
     /*
@@ -223,10 +220,6 @@ return [
 
         //Alias de Datatables
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
-
-        //Alias de Roles y Permisos
-        'Shinobi' => Caffeinated\Shinobi\Facades\Shinobi::class,
-
     ],
 
 ];
