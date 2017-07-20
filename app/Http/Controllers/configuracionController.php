@@ -153,7 +153,7 @@ class configuracionController extends Controller
 
         $Bl = new AquaWebBL();
 
-        $result = $Bl->postModalAgregarUsuario($rq, $this->auth->user()->id);
+        $result = $Bl->postModalAgregarUsuario($rq);
 
         return $result;
     }

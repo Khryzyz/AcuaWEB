@@ -97,6 +97,8 @@
             case "success":
                 $.msgbox(result.mensaje, {type: 'success'}, function () {
                     modalBs.modal('hide');
+                    $('#GridProceso').data('kendoGrid').dataSource.read();
+                    $('#GridProceso').data('kendoGrid').refresh();
                 });
                 break;
             case "error":

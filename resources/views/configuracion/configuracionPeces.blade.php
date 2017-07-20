@@ -58,7 +58,7 @@
                     ->serverPaging(true);
 
                 //Inicializamos la grid
-                $gridPeces = new \Kendo\UI\Grid('Grid');
+                $gridPeces = new \Kendo\UI\Grid('GridPez');
 
 
                 //Inicializamos las columnas de la grid

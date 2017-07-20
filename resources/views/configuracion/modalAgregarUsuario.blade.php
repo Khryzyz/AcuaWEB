@@ -132,7 +132,6 @@
     {!!Form::close()!!}
 
 </div>
-
 <script type="text/javascript">
     var modal = $('#ModalAgregarUsuario');
 
@@ -177,6 +176,8 @@
             case "success":
                 $.msgbox(result.mensaje, {type: 'success'}, function () {
                     modalBs.modal('hide');
+                    $('#GridUsuarios').data('kendoGrid').dataSource.read();
+                    $('#GridUsuarios').data('kendoGrid').refresh();
                 });
                 break;
             case "error":

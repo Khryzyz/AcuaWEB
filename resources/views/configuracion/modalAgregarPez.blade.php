@@ -167,6 +167,8 @@
             case "{{$GLOBALS['status_success']}}":
                 $.msgbox(result.mensaje, {type: 'success'}, function () {
                     modalBs.modal('hide');
+                    $('#GridPez').data('kendoGrid').dataSource.read();
+                    $('#GridPez').data('kendoGrid').refresh();
                 });
                 break;
             case "error":

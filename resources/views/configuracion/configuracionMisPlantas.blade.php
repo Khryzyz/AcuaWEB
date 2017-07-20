@@ -60,7 +60,7 @@
                         ->serverPaging(true);
 
                     //Inicializamos la grid
-                    $gridPlantas = new \Kendo\UI\Grid('Grid');
+                    $gridPlantas = new \Kendo\UI\Grid('GridPlanta');
 
                     //Inicializamos las columnas de la grid
                     $idplanta = new \Kendo\UI\GridColumn();

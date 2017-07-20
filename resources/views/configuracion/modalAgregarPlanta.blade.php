@@ -186,6 +186,8 @@
             case "success":
                 $.msgbox(result.mensaje, {type: 'success'}, function () {
                     modalBs.modal('hide');
+                    $('#GridPlanta').data('kendoGrid').dataSource.read();
+                    $('#GridPlanta').data('kendoGrid').refresh();
                 });
                 break;
             case "error":

@@ -267,7 +267,6 @@ class AquaWebBL
         $segundoapellido = $rq->input('segundoapellido');
         $tiposUsuario = $rq->input('tiposUsuario');
 
-
         try {
             $insTransaction = \DB::select('CALL insDatosUsuario(?,?,?,?,?,?,?,?)',
                 array(
@@ -281,6 +280,7 @@ class AquaWebBL
                     $tiposUsuario
                 )
             );
+
             if ($insTransaction) {
                 $result['estado'] = "fatal";
                 $result['mensaje'] = $insTransaction[0]->MESSAGE;

@@ -59,7 +59,7 @@
                         ->serverPaging(true);
 
                     //Inicializamos la grid
-                    $grid = new \Kendo\UI\Grid('GridKendo');
+                    $gridProcesos = new \Kendo\UI\Grid('GridProceso');
 
                     //Inicializamos las columnas de la grid
                     $idproceso = new \Kendo\UI\GridColumn();
@@ -84,7 +84,7 @@
                     $gridFilterable->mode("row");
 
                     //Se agregan columnas y atributos al grid
-                    $grid
+                    $gridProcesos
                         ->addColumn($idproceso, $nombre, $fechaimplementacion, $estado, $gestionproceso, $verproceso)
                         ->dataSource($dataSource)
                         ->sortable(true)
@@ -93,7 +93,7 @@
                         ->pageable(true);
 
                     //renderizamos la grid
-                    echo $grid->render();
+                    echo $gridProcesos->render();
                     ?>
                 </div>
             </div>

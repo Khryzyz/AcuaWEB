@@ -61,29 +61,52 @@
     </div>
 
 @endsection
-
 @section('scripts')
-    <script type="text/javascript">
-        var timestamp = null;
-        var data;
-        function cargar_push() {
-            datosgrid = $("#chart").data("kendoChart").dataSource.data();
-            cuantos = datosgrid.length;
-            prejson = JSON.stringify(datosgrid[0]);
-            $.post('muestras/GetBideoData', prejson, function (data) {
-                data = JSON.parse(data);
-                if (data.estado) {
-                    $("#chart").data("kendoChart").dataSource.data(data.result);
-                    $("#chart").data("kendoChart").refresh();
-                    $("#grid").data("kendoGrid").dataSource.read();
-                }
-                setTimeout('cargar_push()', 1000);
-            })
+    <script>
+
+        function reloadValues() {
+            $("#Chart1").data("kendoChart").dataSource.read();
+            $("#Chart1").data("kendoChart").refresh();
+            $("#Grid1").data("kendoGrid").dataSource.read();
+            $("#Grid1").data('kendoGrid').refresh();
+
+            $("#Chart2").data("kendoChart").dataSource.read();
+            $("#Chart2").data("kendoChart").refresh();
+            $("#Grid2").data("kendoGrid").dataSource.read();
+            $("#Grid2").data('kendoGrid').refresh();
+
+            $("#Chart3").data("kendoChart").dataSource.read();
+            $("#Chart3").data("kendoChart").refresh();
+            $("#Grid3").data("kendoGrid").dataSource.read();
+            $("#Grid3").data('kendoGrid').refresh();
+
+            $("#Chart4").data("kendoChart").dataSource.read();
+            $("#Chart4").data("kendoChart").refresh();
+            $("#Grid4").data("kendoGrid").dataSource.read();
+            $("#Grid4").data('kendoGrid').refresh();
+
+            $("#Chart5").data("kendoChart").dataSource.read();
+            $("#Chart5").data("kendoChart").refresh();
+            $("#Grid5").data("kendoGrid").dataSource.read();
+            $("#Grid5").data('kendoGrid').refresh();
+
+            $("#Chart6").data("kendoChart").dataSource.read();
+            $("#Chart6").data("kendoChart").refresh();
+            $("#Grid6").data("kendoGrid").dataSource.read();
+            $("#Grid6").data('kendoGrid').refresh();
+
         }
 
         $(document).ready(function () {
-            setTimeout('cargar_push()', 3000);
+            setInterval('reloadValues()', 60000);
         });
 
+    </script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
     </script>
 @endsection

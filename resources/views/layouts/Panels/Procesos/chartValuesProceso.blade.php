@@ -13,6 +13,7 @@
             ->url(route('getValuesProcesoByIdForChart',
                 ['idTipoSensor' => $idTipoSensor, 'idProceso' => $data->id]
             ))
+            ->data(['_token' => csrf_token()])
             ->contentType('application/json')
             ->type('POST');
 
@@ -88,30 +89,4 @@
            'idProceso'=>$data->id,
            'unidadSensor'=>$unidadSensor])
 </div>
-@section('scripts')
-    <!--
-    <script type="text/javascript">
-        var timestamp = null;
-        var data;
-        function cargar_push() {
-            datosgrid = $("#chart{{$idTipoSensor}}").data("kendoChart").dataSource.data();
-            cuantos = datosgrid.length;
-            prejson = JSON.stringify(datosgrid[0]);
-            $.post('../../procesos/getValuesProcesoById/{{ $idTipoSensor }}/{{ $data->id}}', prejson, function (data) {
-                data = JSON.parse(data);
-                if (data.estado) {
-                    $("#chart{{$idTipoSensor}}").data("kendoChart").dataSource.data(data.result);
-                    $("#chart{{$idTipoSensor}}").data("kendoChart").refresh();
-                    $("#grid").data("kendoGrid").dataSource.read();
-                }
-                setTimeout('cargar_push()', 1000);
-            })
-        }
 
-        $(document).ready(function () {
-            setTimeout('cargar_push()', 3000);
-        });
-
-    </script>
-    -->
-@endsection

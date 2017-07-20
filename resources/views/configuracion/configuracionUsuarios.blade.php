@@ -58,7 +58,7 @@
                     ->serverPaging(true);
 
                 //Inicializamos la grid
-                $gridUsuarios = new \Kendo\UI\Grid('Grid');
+                $gridUsuarios = new \Kendo\UI\Grid('GridUsuarios');
 
                 //Inicializamos las columnas de la grid
                 $idusuario = new \Kendo\UI\GridColumn();
@@ -108,7 +108,7 @@
 @section('scripts')
     <script id='editarusuario' type='text/x-kendo-tmpl'>
         <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idusuario#' class='btn btn-primary text-center'>
-        <i class="fa fa-wrench"></i> Editar Usuario</a>
+        <i class="fa fa-wrench"> </i>Editar Usuario</a>
     </script>
     <script id='verusuario' type='text/x-kendo-tmpl'>
         <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idusuario#' class='btn btn-primary text-center'>

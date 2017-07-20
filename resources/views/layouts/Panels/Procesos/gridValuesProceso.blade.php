@@ -10,6 +10,7 @@
             ['idTipoSensor' => $idTipoSensor, 'idProceso' => $data->id]
         ))
         ->contentType('application/json')
+        ->data(['_token' => csrf_token()])
         ->type('POST');
 
     //Inicializamos el Data Source de Transporte
@@ -65,6 +66,3 @@
     echo $gridValueProcesos->render();
     ?>
 </div>
-@section('scripts')
-
-@endsection
