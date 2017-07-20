@@ -114,7 +114,7 @@ Route::group(['middleware' => 'auth'], function () {
      * AREA PROCESOS  / VISTAS *****************************************************************
      */
 
-    Route::get('procesos', 'procesosController@index')->name('procesos');
+    Route::get('procesos', 'procesosController@procesos')->name('procesos');
 
     Route::get('procesos/getViewInfoCaracteristicasProcesoById/{idProceso}', 'procesosController@getViewInfoCaracteristicasProcesoById')->name('getViewInfoCaracteristicasProcesoById');
 

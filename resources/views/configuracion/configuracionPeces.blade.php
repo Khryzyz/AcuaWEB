@@ -1,12 +1,6 @@
 @extends('layouts.Dashboard.Main')
 
 @section('content')
-
-    <?php
-    $Utils = new Utils();
-    ?>
-
-
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-tint"></i> Peces registrados en el sistema</h3>
@@ -117,18 +111,19 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
     <script id='editarpez' type='text/x-kendo-tmpl'>
         <a href='/procesos/getViewInfoCaracteristicasProcesoById/#=idpez#' class='btn btn-primary text-center'>
         <i class="fa fa-wrench"></i> Editar Pez</a>
+
     </script>
     <script id='verpez' type='text/x-kendo-tmpl'>
        <a href="/general/getModalInfoPezById/#=idpez#"
         class="btn btn-primary"
         data-modal="modal-lg">
         <i class="fa fa-eye"></i> Ver Pez</a>
+
     </script>
 @endsection

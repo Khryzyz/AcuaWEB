@@ -24,7 +24,7 @@
                         <?php
                         }else {
                         ?>
-                        <img src="{{url('/img/sin_imagen.jpg')}}" class="img-responsive img-rounded"
+                        <img src="{{url('/img/sin_imagen.png')}}" class="img-responsive img-rounded"
                              alt="Imagen no disponible"/>
                         <?php
                         }

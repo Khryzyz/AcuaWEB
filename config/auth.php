@@ -63,5 +63,11 @@ return [
         'table' => 'password_resets',
         'expire' => 60,
     ],
-
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => aplicacion\Usuario::class,
+            'table' => 'usuario',
+        ],
+    ],
 ];

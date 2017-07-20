@@ -1,5 +1,13 @@
 <div class="p-l-0 p-r-0 collapse in" id="sideAcuaponia">
 
+    <div class="panel-body text-center">
+        <!-- Imagen -->
+        <img src="{{url('/img/sin_avatar.png')}}" class="img-responsive img-thumbnail" alt="Avatar" height="100em"
+             width="100em"/>
+
+        <!-- FIN Imagen -->
+    </div>
+
     <div class="list-group panel">
 
         <a href="{{route('procesos')}}" class="list-group-item collapsed" data-parent="#sideAcuaponia">
@@ -28,7 +36,7 @@
             </a>
             <a href="{{route('configPersonal')}}" class="list-group-item" data-parent="#menuConfiguracion">
                 <i class="fa fa-user"></i>
-                <span class="hidden-sm-down">Mi configuración</span>
+                <span class="hidden-sm-down">Información Personal</span>
             </a>
 
             <a href="{{route('configMisPlantas')}}" class="list-group-item" data-parent="#menuConfiguracion">

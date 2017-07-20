@@ -26,7 +26,7 @@ class Usuario extends Model implements AuthenticatableContract, AuthorizableCont
      *
      * @var array
      */
-    protected $fillable = ['username', 'password', 'email', 'role'];
+    protected $fillable = ['username', 'password', 'email', 'tusuario_id'];
 
     /**
      * The attributes excluded from the model's JSON form.

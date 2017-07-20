@@ -52,7 +52,16 @@ class configuracionController extends Controller
      */
     public function configuracionPersonal()
     {
-        return view('configuracion.configuracionPersonal');
+
+
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoUsuarioById($this->auth->user()->id);
+
+        $data = $dataBL[0];
+
+        return view('configuracion.configuracionPersonal', compact('data'));
+
     }
 
     /**
@@ -85,7 +94,14 @@ class configuracionController extends Controller
      */
     public function configuracionMisPlantas()
     {
-        return view('configuracion.configuracionMisPlantas');
+
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoUsuarioById($this->auth->user()->id);
+
+        $data = $dataBL[0];
+
+        return view('configuracion.configuracionMisPlantas', compact('data'));
     }
 
     /**
@@ -96,7 +112,14 @@ class configuracionController extends Controller
      */
     public function configuracionMisPeces()
     {
-        return view('configuracion.configuracionMisPeces');
+
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoUsuarioById($this->auth->user()->id);
+
+        $data = $dataBL[0];
+
+        return view('configuracion.configuracionMisPeces', compact('data'));
     }
 
     /**

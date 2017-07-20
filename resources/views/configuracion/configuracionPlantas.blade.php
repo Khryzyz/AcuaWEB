@@ -1,12 +1,6 @@
 @extends('layouts.Dashboard.Main')
 
 @section('content')
-
-    <?php
-    $Utils = new Utils();
-    ?>
-
-
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-leaf"></i> Plantas registradas en el sistema</h3>
@@ -103,7 +97,7 @@
                         $actualizacion,
                         $estado,
                         $editarplanta,
-                        $verplanta                        )
+                        $verplanta)
                     ->dataSource($dataSourcePlantas)
                     ->filterable($gridFilterable)
                     ->sortable(true)
@@ -116,7 +110,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
@@ -129,5 +122,4 @@
          class="btn btn-primary"
          data-modal="modal-lg">
         <i class="fa fa-eye"></i> Ver Planta</a>
-    </script>
 @endsection

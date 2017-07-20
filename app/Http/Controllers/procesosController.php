@@ -39,7 +39,7 @@ class procesosController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function procesos()
     {
 
         $Bl = new AquaWebBL();
@@ -48,7 +48,7 @@ class procesosController extends Controller
 
         $data = $dataBL[0];
 
-        return view('procesos.index', compact('data'));
+        return view('procesos.procesos', compact('data'));
 
     }
 
