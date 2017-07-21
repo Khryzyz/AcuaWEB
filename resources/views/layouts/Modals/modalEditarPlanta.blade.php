@@ -2,7 +2,7 @@
     {!!Form::open(['url' => route('modalAgregarPlanta'), 'method' => 'POST', 'role'=>"form"])!!}
     <div class="modal-header bg-success">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4><i class="fa fa-leaf"></i> Agregar Planta</h4>
+        <h4><i class="fa fa-leaf"></i> Editar Planta</h4>
     </div>
     <div class="modal-body" style="padding:40px 50px;">
 

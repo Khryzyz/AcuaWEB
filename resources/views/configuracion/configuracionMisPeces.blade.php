@@ -80,11 +80,11 @@
                     $estado = new \Kendo\UI\GridColumn();
                     $estado->field('estado')->title('Estado')->width(50);
 
-                    $editarpez = new \Kendo\UI\GridColumn();
-                    $editarpez->field('editarpez')->title('Editar')->templateId('editarpez')->width(70);
-
                     $verpez = new \Kendo\UI\GridColumn();
-                    $verpez->field('verpez')->title('Ver')->templateId('verpez')->width(70);
+                    $verpez->field('verpez')->title('Ver')->templateId('verpez')->width(125);
+
+                    $editarpez = new \Kendo\UI\GridColumn();
+                    $editarpez->field('editarpez')->title('Editar')->templateId('editarpez')->width(125);
 
                     $gridFilterable = new \Kendo\UI\GridFilterable();
                     $gridFilterable->mode("row");
@@ -97,8 +97,8 @@
                             $registro,
                             $actualizacion,
                             $estado,
-                            $editarpez,
-                            $verpez)
+                            $verpez,
+                            $editarpez)
                         ->dataSource($dataSourcePeces)
                         ->sortable(true)
                         ->filterable($gridFilterable)
@@ -112,22 +112,33 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
-    <script id='editarpez' type='text/x-kendo-tmpl'>
-        <a href='/general/getModalEditarPezById/#=idpez#'
-        class="btn btn-primary"
-        data-modal="modal-lg">
-        <i class="fa fa-wrench"></i> Editar Pez</a>
+    <script id='verpez' type='text/x-kendo-tmpl'>
+      <div class="btn-group-justified">
+        <a href="/general/getModalInfoPezById/#=idpez#"
+           class="btn btn-primary"
+           data-modal="modal-lg">
+            <i class="fa fa-eye"></i> Ver Pez</a>
+        <a href='/general/getModalGaleriaPezById/#=idpez#'
+           class="btn btn-primary"
+           data-modal="modal-lg">
+            <i class="fa fa-image"></i> Ver Galeria</a>
+    </div>
 
     </script>
-    <script id='verpez' type='text/x-kendo-tmpl'>
-       <a href="/general/getModalInfoPezById/#=idpez#"
-        class="btn btn-primary"
+    <script id='editarpez' type='text/x-kendo-tmpl'>
+    <div class="btn-group-justified">
+        <a href='/general/getModalEditarPezById/#=idpez#'
+        class="btn btn-success"
         data-modal="modal-lg">
-        <i class="fa fa-eye"></i> Ver Pez</a>
+        <i class="fa fa-wrench"></i> Editar Pez</a>
+        <a href='/general/getModalEditarGaleriaPezById/#=idpez#'
+        class="btn btn-success"
+        data-modal="modal-lg">
+        <i class="fa fa-wrench"></i> Editar Galeria</a>
+    </div>
 
     </script>
 @endsection

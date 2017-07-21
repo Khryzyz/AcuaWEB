@@ -62,6 +62,26 @@ class generalController extends Controller
      * @param $idPlanta
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function getModalGaleriaPlantaById($idPlanta)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getGaleriaPlantaById($idPlanta);
+
+        return view('layouts.Modals.modalGaleriaPlanta', compact('data'));
+
+    }
+
+    /**
+     * Metodo del controlador que:
+     *  - consulta la informacion de la planta por su id
+     *  - Retorna la vista junto con la informacion de la planta
+     * Usado en Modal
+     *
+     * @param $idPlanta
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getModalEditarPlantaById($idPlanta)
     {
 
@@ -114,6 +134,28 @@ class generalController extends Controller
         return view('layouts.Modals.modalInfoPez', compact('data'));
 
     }
+
+
+    /**
+     * Metodo del controlador que:
+     *  - consulta la informacion del pez por su id
+     *  - Retorna la vista junto con la informacion del pez
+     * Usado en Modal
+     *
+     * @param $idPez
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalGaleriaPezById($idPez)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getGaleriaPezById($idPez);
+
+        return view('layouts.Modals.modalGaleriaPez', compact('data'));
+
+    }
+
 
     /**
      * Metodo del controlador que:

@@ -177,6 +177,32 @@ class AquaWebBL
     }
 
     /**
+     * Metodo que consulta la informacion del pez por su id
+     *
+     * @param $idPez
+     * @return mixed
+     */
+    public function getGaleriaPlantaById($idPlanta)
+    {
+        $data = \DB::select('CALL getGaleriaPlantaById(?)', array($idPlanta));
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta la informacion del pez por su id
+     *
+     * @param $idPez
+     * @return mixed
+     */
+    public function getGaleriaPezById($idPez)
+    {
+        $data = \DB::select('CALL getGaleriaPezById(?)', array($idPez));
+
+        return $data;
+    }
+
+    /**
      * Metodo que consulta los tipos de exposicion solar registrados en el sistema
      *
      * @return mixed.

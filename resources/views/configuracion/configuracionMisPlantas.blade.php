@@ -81,11 +81,11 @@
                     $estado = new \Kendo\UI\GridColumn();
                     $estado->field('estado')->title('Estado')->width(50);
 
-                    $editarplanta = new \Kendo\UI\GridColumn();
-                    $editarplanta->field('editarplanta')->title('Editar')->templateId('editarplanta')->width(70);
-
                     $verplanta = new \Kendo\UI\GridColumn();
-                    $verplanta->field('verplanta')->title('Ver')->templateId('verplanta')->width(70);
+                    $verplanta->field('verplanta')->title('Ver')->templateId('verplanta')->width(125);
+
+                    $editarplanta = new \Kendo\UI\GridColumn();
+                    $editarplanta->field('editarplanta')->title('Editar')->templateId('editarplanta')->width(125);
 
                     $gridFilterable = new \Kendo\UI\GridFilterable();
                     $gridFilterable->mode("row");
@@ -98,9 +98,8 @@
                             $registro,
                             $actualizacion,
                             $estado,
-                            $editarplanta,
-                            $verplanta
-                        )
+                            $verplanta,
+                            $editarplanta)
                         ->dataSource($dataSourcePlantas)
                         ->filterable($gridFilterable)
                         ->sortable(true)
@@ -117,17 +116,30 @@
 @endsection
 
 @section('scripts')
-    <script id='editarplanta' type='text/x-kendo-tmpl'>
-        <a href='/general/getModalEditarPlantaById/#=idplanta#'
-         class="btn btn-primary"
-         data-modal="modal-lg">
-        <i class="fa fa-wrench"></i> Editar Planta</a>
-    </script>
     <script id='verplanta' type='text/x-kendo-tmpl'>
+      <div class="btn-group-justified">
         <a href="/general/getModalInfoPlantaById/#=idplanta#"
-         class="btn btn-primary"
-         data-modal="modal-lg">
-        <i class="fa fa-eye"></i> Ver Planta</a>
+           class="btn btn-primary"
+           data-modal="modal-lg">
+            <i class="fa fa-eye"></i> Ver Planta</a>
+        <a href='/general/getModalGaleriaPlantaById/#=idplanta#'
+           class="btn btn-primary"
+           data-modal="modal-lg">
+            <i class="fa fa-image"></i> Ver Galeria</a>
+    </div>
+
+    </script>
+    <script id='editarplanta' type='text/x-kendo-tmpl'>
+    <div class="btn-group-justified">
+        <a href='/general/getModalEditarPlantaById/#=idplanta#'
+        class="btn btn-success"
+        data-modal="modal-lg">
+        <i class="fa fa-wrench"></i> Editar Planta</a>
+        <a href='/general/getModalEditarGaleriaPlantaById/#=idplanta#'
+        class="btn btn-success"
+        data-modal="modal-lg">
+        <i class="fa fa-wrench"></i> Editar Galeria</a>
+    </div>
 
     </script>
 @endsection

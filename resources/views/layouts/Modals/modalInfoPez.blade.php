@@ -18,7 +18,7 @@
                         <?php
                         if($data->imagen){
                         ?>
-                        <img src="data:image/jpeg;base64,{{base64_encode($data->imagen)}}"
+                            <img src="{{url('/img/gallery/'.$data->imagen)}}"
                              class="img-responsive img-rounded"
                              alt="Imagen no disponible"/>
                         <?php

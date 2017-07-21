@@ -20,23 +20,37 @@
 
     <!-- Bootstrap Core CSS -->
     {!!Html::style('css/bootstrap.min.css')!!}
+
     <!-- Datatables CSS -->
     {!!Html::style('https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css')!!}
+
     <!-- MetisMenu CSS -->
     {!!Html::style('css/metisMenu.min.css')!!}
+
     <!-- Timeline CSS -->
     {!!Html::style('css/timeline.css')!!}
+
     <!-- Custom CSS -->
     {!!Html::style('css/sb-admin-2.css')!!}
+
     <!-- Custom Fonts -->
     {!!Html::style('css/font-awesome.min.css')!!}
+
     <!-- MsgBox css-->
     {!!Html::style('css/msgbox/jquery.msgbox.css')!!}
+
     <!-- Kendo css-->
     {!!Html::style('css/kendo/kendo.common.min.css')!!}
     {!!Html::style('css/kendo/kendo.bootstrap.min.css')!!}
+
+    <!-- BlueImp Gallery css -->
+    {!!Html::style('css/blueimp/blueimp-gallery.css')!!}
+    {!!Html::style('css/blueimp/blueimp-gallery-indicator.css')!!}
+    {!!Html::style('css/blueimp/blueimp-gallery-video.css')!!}
+
     <!-- Styles Personalizados -->
     {!!Html::style('css/styleFormsAquaweb.css')!!}
+
 
 <!------------------------------------------------------------------------------------------------------------------
     -- FIN AREA DE CARGA CSS -------------------------------------------------------------------------------------------
@@ -47,24 +61,40 @@
     ------------------------------------------------------------------------------------------------------------------->
 
     <!-- jQuery -->
-{!!Html::script('js/jquery.min.js')!!}
+    {!!Html::script('js/jquery.min.js')!!}
 
-<!-- Bootstrap Core JavaScript -->
-{!!Html::script('js/bootstrap.min.js')!!}
-<!-- Datatables JavaScript -->
-{!!Html::script('https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js')!!}
-<!-- Metis Menu Plugin JavaScript -->
-{!!Html::script('js/metisMenu.min.js')!!}
-<!-- Morris Charts JavaScript -->
-{!!Html::script('js/raphael-min.js')!!}
-<!-- Custom Theme JavaScript -->
-{!!Html::script('js/sb-admin-2.js')!!}
-<!-- MsgBox JavaScript -->
-{!!Html::script('js/msgbox/jquery.msgbox.js')!!}
-<!-- Kendo JavaScript -->
-{!!Html::script('js/kendo/kendo.all.min.js')!!}
-{!!Html::script('js/kendo/cultures/kendo.culture.es-ES.min.js')!!}
-{!!Html::script('js/kendo/lang/kendo.es-ES.js')!!}
+    <!-- Bootstrap Core JavaScript -->
+    {!!Html::script('js/bootstrap.min.js')!!}
+
+    <!-- Datatables JavaScript -->
+    {!!Html::script('https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js')!!}
+
+    <!-- Metis Menu Plugin JavaScript -->
+    {!!Html::script('js/metisMenu.min.js')!!}
+
+    <!-- Morris Charts JavaScript -->
+    {!!Html::script('js/raphael-min.js')!!}
+
+    <!-- Custom Theme JavaScript -->
+    {!!Html::script('js/sb-admin-2.js')!!}
+
+    <!-- MsgBox JavaScript -->
+    {!!Html::script('js/msgbox/jquery.msgbox.js')!!}
+
+    <!-- Kendo JavaScript -->
+    {!!Html::script('js/kendo/kendo.all.min.js')!!}
+    {!!Html::script('js/kendo/cultures/kendo.culture.es-ES.min.js')!!}
+    {!!Html::script('js/kendo/lang/kendo.es-ES.js')!!}
+
+    <!-- BlueImp Javascript -->
+    {!!Html::script('js/blueimp/blueimp-helper.js')!!}
+    {!!Html::script('js/blueimp/blueimp-gallery.js')!!}
+    {!!Html::script('js/blueimp/blueimp-gallery-fullscreen.js')!!}
+    {!!Html::script('js/blueimp/blueimp-gallery-indicator.js')!!}
+    {!!Html::script('js/blueimp/blueimp-gallery-video.js')!!}
+    {!!Html::script('js/blueimp/blueimp-gallery-vimeo.js')!!}
+    {!!Html::script('js/blueimp/blueimp-gallery-youtube.js')!!}
+    {!!Html::script('js/blueimp/jquery.blueimp-gallery.js')!!}
 
 <!------------------------------------------------------------------------------------------------------------------
     -- FIN AREA DE CARGA JAVASCRIPT ------------------------------------------------------------------------------------

@@ -2,7 +2,7 @@
     {!!Form::open(['url' => route('modalAgregarUsuario'), 'method' => 'POST', 'role'=>"form"])!!}
     <div class="modal-header bg-warning">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4><i class="fa fa-user"></i> Agregar Usuario</h4>
+        <h4><i class="fa fa-user"></i> Editar Usuario</h4>
     </div>
     <div class="modal-body" style="padding:40px 50px;">
 

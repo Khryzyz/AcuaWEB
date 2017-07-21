@@ -34,9 +34,7 @@
                     //Agregamos atributos al datasource de transporte
                     $transport
                         ->read($read)
-                        ->parameterMap('function(data) {
-			return kendo.stringify(data);
-		}');
+                        ->parameterMap('function(data) { return kendo.stringify(data); }');
 
                     //Inicializamos el esquema de la grid
                     $schema = new \Kendo\Data\DataSourceSchema();

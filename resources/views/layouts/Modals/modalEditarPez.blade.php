@@ -2,7 +2,7 @@
     {!!Form::open(['url' => route('modalAgregarPez'), 'method' => 'POST', 'role'=>"form"])!!}
     <div class="modal-header bg-info">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4><i class="fa fa-tint"></i> Agregar Pez</h4>
+        <h4><i class="fa fa-tint"></i> Editar Pez</h4>
     </div>
     <div class="modal-body" style="padding:40px 50px;">
 
