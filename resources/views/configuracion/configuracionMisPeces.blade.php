@@ -117,7 +117,9 @@
 
 @section('scripts')
     <script id='editarpez' type='text/x-kendo-tmpl'>
-        <a href='/procesos/getViewInfoCaracteristicasProcesoById/#=idpez#' class='btn btn-primary text-center'>
+        <a href='/general/getModalEditarPezById/#=idpez#'
+        class="btn btn-primary"
+        data-modal="modal-lg">
         <i class="fa fa-wrench"></i> Editar Pez</a>
 
     </script>

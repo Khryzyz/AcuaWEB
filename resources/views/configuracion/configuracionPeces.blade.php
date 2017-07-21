@@ -80,8 +80,8 @@
                 $estado = new \Kendo\UI\GridColumn();
                 $estado->field('estado')->title('Estado')->width(50);
 
-                $editarpez = new \Kendo\UI\GridColumn();
-                $editarpez->field('editarpez')->title('Editar')->templateId('editarpez')->width(70);
+                // $editarpez = new \Kendo\UI\GridColumn();
+                // $editarpez->field('editarpez')->title('Editar')->templateId('editarpez')->width(70);
 
                 $verpez = new \Kendo\UI\GridColumn();
                 $verpez->field('verpez')->title('Ver')->templateId('verpez')->width(70);
@@ -97,7 +97,7 @@
                         $registro,
                         $actualizacion,
                         $estado,
-                        $editarpez,
+                        // $editarpez,
                         $verpez)
                     ->dataSource($dataSourcePeces)
                     ->sortable(true)
@@ -118,12 +118,14 @@
         <a href='/procesos/getViewInfoCaracteristicasProcesoById/#=idpez#' class='btn btn-primary text-center'>
         <i class="fa fa-wrench"></i> Editar Pez</a>
 
+
     </script>
     <script id='verpez' type='text/x-kendo-tmpl'>
        <a href="/general/getModalInfoPezById/#=idpez#"
         class="btn btn-primary"
         data-modal="modal-lg">
         <i class="fa fa-eye"></i> Ver Pez</a>
+
 
     </script>
 @endsection

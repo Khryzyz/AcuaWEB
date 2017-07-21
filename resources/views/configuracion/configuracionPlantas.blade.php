@@ -79,8 +79,8 @@
                 $estado = new \Kendo\UI\GridColumn();
                 $estado->field('estado')->title('Estado')->width(50);
 
-                $editarplanta = new \Kendo\UI\GridColumn();
-                $editarplanta->field('editarplanta')->title('Editar')->templateId('editarplanta')->width(70);
+                // $editarplanta = new \Kendo\UI\GridColumn();
+                // $editarplanta->field('editarplanta')->title('Editar')->templateId('editarplanta')->width(70);
 
                 $verplanta = new \Kendo\UI\GridColumn();
                 $verplanta->field('verplanta')->title('Ver')->templateId('verplanta')->width(70);
@@ -96,7 +96,7 @@
                         $registro,
                         $actualizacion,
                         $estado,
-                        $editarplanta,
+                        //$editarplanta,
                         $verplanta)
                     ->dataSource($dataSourcePlantas)
                     ->filterable($gridFilterable)
@@ -116,6 +116,7 @@
     <script id='editarplanta' type='text/x-kendo-tmpl'>
         <a href='/configuracion/modalAgregarPlantas/#=idplanta#' class='btn btn-primary text-center'>
         <i class="fa fa-wrench"></i> Editar Planta</a>
+
     </script>
     <script id='verplanta' type='text/x-kendo-tmpl'>
         <a href="/general/getModalInfoPlantaById/#=idplanta#"

@@ -102,7 +102,21 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('general/getModalInfoPlantaById/{idPlanta}', 'generalController@getModalInfoPlantaById');
 
+    Route::get('general/getModalEditarPlantaById/{idPlanta}', 'generalController@getModalEditarPlantaById');
+
+    Route::post('general/postModalEditarPlantaById', 'generalController@postModalEditarPlantaById');
+
     Route::get('general/getModalInfoPezById/{idPez}', 'generalController@getModalInfoPezById');
+
+    Route::get('general/getModalEditarPezById/{idPez}', 'generalController@getModalEditarPezById');
+
+    Route::post('general/postModalEditarPezById', 'generalController@postModalEditarPezById');
+
+    Route::get('general/getModalInfoUsuarioById/{idUsuario}', 'generalController@getModalInfoUsuarioById');
+
+    Route::get('general/getModalEditarUsuarioById/{idUsuario}', 'generalController@getModalEditarUsuarioById');
+
+    Route::post('general/postModalEditarUsuarioById', 'generalController@postModalEditarUsuarioById');
 
     /**
      *******************************************************************************************

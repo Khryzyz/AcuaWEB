@@ -37,7 +37,7 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Nombre:
+                                <strong>Nombre:</strong>
                             </div>
                             <div class="col-md-8">
                                 {{$data->nombre}}
@@ -46,7 +46,7 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Estado:
+                                <strong>Estado:</strong>
                             </div>
                             <div class="col-md-8">
                                 {{$data->estado}}
@@ -55,13 +55,13 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                pH Min:
+                                <strong>pH Min:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->phmin}}
                             </div>
                             <div class="col-md-4">
-                                pH Max:
+                                <strong>pH Max:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->phmax}}
@@ -70,13 +70,13 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Plantas por m² Min:
+                                <strong>Plantas por m² Min:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->plantmin}}
                             </div>
                             <div class="col-md-4">
-                                Plantas por m² Max:
+                                <strong>Plantas por m² Max:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->plantmax}}
@@ -85,13 +85,13 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Tiempo Germinación Min:
+                                <strong>Tiempo Germinación Min:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->tiempogermmin}} día
                             </div>
                             <div class="col-md-4">
-                                Tiempo Germinación Max:
+                                <strong>Tiempo Germinación Max:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->tiempogermax}} día
@@ -100,13 +100,13 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Tiempo Crecimiento Min:
+                                <strong>Tiempo Crecimiento Min:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->tiempocrecmin}} día
                             </div>
                             <div class="col-md-4">
-                                Tiempo Crecimiento Max:
+                                <strong>Tiempo Crecimiento Max:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->tiempocrecmax}} día
@@ -115,13 +115,13 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Temperatura Min:
+                                <strong>Temperatura Min:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->tempmin}}°C
                             </div>
                             <div class="col-md-4">
-                                Temperatura Max:
+                                <strong>Temperatura Max:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->tempmax}}°C
@@ -130,7 +130,7 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Exposicion Solar:
+                                <strong>Exposicion Solar:</strong>
                             </div>
                             <div class="col-md-8">
                                 {{$data->expsolar}}

@@ -1,12 +1,11 @@
-@extends('layouts.Dashboard.Main')
+<div id="InfoUsuario">
 
-@section('content')
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-user"></i> Mi información registrada en el sistema</h3>
-        </div>
+    <div class="modal-header bg-warning">
+        <h4>{{strtoupper($data->nombre)}}</h4>
+    </div>
+    <div class="modal-body">
+
         <div class="panel-body">
-
             <div class="row margin-bottom-10">
                 <div class="col-md-3">
                     <div class="panel panel-default">
@@ -19,11 +18,6 @@
                                  alt="Imagen no disponible"/>
 
                             <!-- FIN Imagen -->
-                        </div>
-                        <div class="panel-footer text-right">
-                            <a href="{{route('modalAgregarProcesos')}}" class="btn btn-primary" data-modal="modal-lg">
-                                <i class="fa fa-pencil"></i>
-                                Editar avatar</a>
                         </div>
                     </div>
                 </div>
@@ -44,19 +38,17 @@
                             </div>
 
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2">
+                                <div class="col-md-2 text-">
                                     <strong>Usuario:</strong>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-4">
                                     {{$data->usuario}}
                                 </div>
-                            </div>
 
-                            <div class="row margin-bottom-10">
                                 <div class="col-md-2">
                                     <strong>Correo:</strong>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-4">
                                     {{$data->correo}}
                                 </div>
                             </div>
@@ -92,13 +84,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer text-right">
-                            <a href='/general/getModalEditarUsuarioById/{{$data->id}}'
-                               class="btn btn-primary"
-                               data-modal="modal-lg">
-                                <i class="fa fa-pencil"></i>
-                                Editar información personal</a>
-                        </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -106,28 +91,28 @@
                         </div>
                         <div class="panel-body">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <strong>Número de procesos a cargo:</strong>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     {{$data->procesos}}
                                 </div>
                             </div>
 
                             <div class="row margin-bottom-10">
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <strong>Especimenes plantas registradas:</strong>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     {{$data->peces}}
                                 </div>
                             </div>
 
                             <div class="row margin-bottom-10">
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <strong>Especimenes peces registrados:</strong>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     {{$data->plantas}}
                                 </div>
                             </div>
@@ -136,10 +121,12 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 
-@endsection
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    </div>
 
-@section('scripts')
-
-@endsection
+</div>

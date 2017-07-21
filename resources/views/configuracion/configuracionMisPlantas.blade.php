@@ -118,9 +118,10 @@
 
 @section('scripts')
     <script id='editarplanta' type='text/x-kendo-tmpl'>
-        <a href='/configuracion/modalAgregarPlantas/#=idplanta#' class='btn btn-primary text-center'>
+        <a href='/general/getModalEditarPlantaById/#=idplanta#'
+         class="btn btn-primary"
+         data-modal="modal-lg">
         <i class="fa fa-wrench"></i> Editar Planta</a>
-
     </script>
     <script id='verplanta' type='text/x-kendo-tmpl'>
         <a href="/general/getModalInfoPlantaById/#=idplanta#"

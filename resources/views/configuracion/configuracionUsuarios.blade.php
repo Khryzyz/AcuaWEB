@@ -76,8 +76,8 @@
                 $estado = new \Kendo\UI\GridColumn();
                 $estado->field('estado')->title('Estado')->width(50);
 
-                $editarusuario = new \Kendo\UI\GridColumn();
-                $editarusuario->field('editarusuario')->title('Editar')->templateId('editarusuario')->width(70);
+                // $editarusuario = new \Kendo\UI\GridColumn();
+                // $editarusuario->field('editarusuario')->title('Editar')->templateId('editarusuario')->width(70);
 
                 $verusuario = new \Kendo\UI\GridColumn();
                 $verusuario->field('verusuario')->title('Ver')->templateId('verusuario')->width(70);
@@ -89,7 +89,7 @@
                         $email,
                         $nombre,
                         $estado,
-                        $editarusuario,
+                        //$editarusuario,
                         $verusuario)
                     ->dataSource($dataSourceUsuarios)
                     ->sortable(true)
@@ -111,7 +111,9 @@
         <i class="fa fa-wrench"> </i>Editar Usuario</a>
     </script>
     <script id='verusuario' type='text/x-kendo-tmpl'>
-        <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idusuario#' class='btn btn-primary text-center'>
+         <a href="/general/getModalInfoUsuarioById/#=idusuario#"
+         class="btn btn-primary"
+         data-modal="modal-lg">
         <i class="fa fa-eye"></i> Ver Usuario</a>
     </script>
 @endsection

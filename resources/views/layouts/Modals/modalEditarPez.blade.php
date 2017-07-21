@@ -11,7 +11,7 @@
                 {!!Form::label('nombre', 'Nombre:')!!}
             </div>
             <div class="col-md-9">
-                {!!Form::text('nombre',null,['class'=>'form-control', 'required', 'placeholder'=>'Nombre'])!!}
+                {!!Form::text('nombre',$data->nombre,['class'=>'form-control', 'required', 'placeholder'=>'Nombre'])!!}
             </div>
         </div>
 
@@ -20,13 +20,13 @@
                 {!!Form::label('tempvitmin', 'Temp. Vital Min (°C):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('tempvitmin',null,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Vital Min'])!!}
+                {!!Form::number('tempvitmin',$data->tempvitalmin,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Vital Min'])!!}
             </div>
             <div class="col-md-3">
                 {!!Form::label('tempvitmax', 'Temp. Vital Max (°C):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('tempvitmax',null,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Vital Max'])!!}
+                {!!Form::number('tempvitmax',$data->tempvitalmax,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Vital Max'])!!}
             </div>
         </div>
 
@@ -35,13 +35,13 @@
                 {!!Form::label('tempoptmin', 'Temp. Optima Min (°C):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('tempoptmin',null,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Optima Min'])!!}
+                {!!Form::number('tempoptmin',$data->tempoptimamin,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Optima Min'])!!}
             </div>
             <div class="col-md-3">
                 {!!Form::label('tempoptmax', 'Temp. Optima Max (°C):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('tempoptmax',null,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Optima Max'])!!}
+                {!!Form::number('tempoptmax',$data->tempoptimamax,['class'=>'form-control', 'required','min'=>'0','max'=>'99', 'minlength'=>'1','maxlength'=>'2', 'placeholder'=>'Temp. Optima Max'])!!}
             </div>
         </div>
 
@@ -50,13 +50,13 @@
                 {!!Form::label('porcpromin', 'Porc. proteinico Min (%):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('porcpromin',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Porc. proteinico Min'])!!}
+                {!!Form::number('porcpromin',$data->porcprotmin,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Porc. proteinico Min'])!!}
             </div>
             <div class="col-md-3">
                 {!!Form::label('porcpromax', 'Porc. proteinico Max (%):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('porcpromax',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Porc. proteinico Max'])!!}
+                {!!Form::number('porcpromax',$data->porcprotmax,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Porc. proteinico Max'])!!}
             </div>
         </div>
 
@@ -65,7 +65,7 @@
                 {!!Form::label('nitnat', 'Nitrogeno:')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('nitnat',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Nitrogeno'])!!}
+                {!!Form::number('nitnat',$data->nitrogeno,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Nitrogeno'])!!}
             </div>
         </div>
 
@@ -74,7 +74,7 @@
                 {!!Form::label('nitri', 'Nitrito:')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('nitri',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Nitrito'])!!}
+                {!!Form::number('nitri',$data->nitrito,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Nitrito'])!!}
             </div>
         </div>
 
@@ -83,7 +83,7 @@
                 {!!Form::label('oxi', 'Oxigeno:')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('oxi',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Oxigeno'])!!}
+                {!!Form::number('oxi',$data->oxigeno,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Oxigeno'])!!}
             </div>
         </div>
 
@@ -94,7 +94,7 @@
             </div>
 
             <div class="col-md-3">
-                {!!Form::number('crepeso',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Peso'])!!}
+                {!!Form::number('crepeso',$data->crecpeso,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Peso'])!!}
             </div>
         </div>
 
@@ -104,7 +104,7 @@
             </div>
 
             <div class="col-md-3">
-                {!!Form::number('cretiempo',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Tiempo'])!!}
+                {!!Form::number('cretiempo',$data->crectiempo,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Tiempo'])!!}
             </div>
 
         </div>

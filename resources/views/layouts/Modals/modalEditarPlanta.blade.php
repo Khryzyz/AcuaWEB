@@ -11,7 +11,7 @@
                 {!!Form::label('nombre', 'Nombre:')!!}
             </div>
             <div class="col-md-9">
-                {!!Form::text('nombre',null,['class'=>'form-control', 'required', 'placeholder'=>'Nombre'])!!}
+                {!!Form::text('nombre',$data->nombre,['class'=>'form-control', 'required', 'placeholder'=>'Nombre'])!!}
             </div>
         </div>
 
@@ -20,13 +20,13 @@
                 {!!Form::label('phmin', 'pH Min (pH):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('phmin',null,['class'=>'form-control float-positive', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
+                {!!Form::number('phmin',$data->phmin,['class'=>'form-control float-positive', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Min'])!!}
             </div>
             <div class="col-md-3">
                 {!!Form::label('phmax', 'pH Max (pH):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('phmax',null,['class'=>'form-control float-positive', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Max'])!!}
+                {!!Form::number('phmax',$data->phmax,['class'=>'form-control float-positive', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'pH Max'])!!}
             </div>
         </div>
 
@@ -35,13 +35,13 @@
                 {!!Form::label('plantmin', 'Plantas por m² Min (und):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('plantmin',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Plantas por m² Min'])!!}
+                {!!Form::number('plantmin',$data->plantmin,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Plantas por m² Min'])!!}
             </div>
             <div class="col-md-3">
                 {!!Form::label('plantmax', 'Plantas por m² Max (und):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('plantmax',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Plantas por m² Max'])!!}
+                {!!Form::number('plantmax',$data->plantmax,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Plantas por m² Max'])!!}
             </div>
         </div>
 
@@ -50,14 +50,14 @@
                 {!!Form::label('germin', 'Germinación Min (dia):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('germin',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Germinación Min'])!!}
+                {!!Form::number('germin',$data->tiempogermmin,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Germinación Min'])!!}
             </div>
             <div class="col-md-3">
 
                 {!!Form::label('germax', 'Germinación Max (dia):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('germax',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Germinación Max'])!!}
+                {!!Form::number('germax',$data->tiempogermax,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Germinación Max'])!!}
             </div>
         </div>
 
@@ -66,13 +66,13 @@
                 {!!Form::label('cremin', 'Crecimiento Min (dia):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('cremin',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Min'])!!}
+                {!!Form::number('cremin',$data->tiempocrecmin,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Min'])!!}
             </div>
             <div class="col-md-3">
                 {!!Form::label('cremax', 'Crecimiento Max (dia):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('cremax',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Max'])!!}
+                {!!Form::number('cremax',$data->tiempocrecmax,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Max'])!!}
             </div>
         </div>
 
@@ -81,13 +81,13 @@
                 {!!Form::label('tempmin', 'Temperatura Min (°C):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('tempmin',null,['class'=>'form-control', 'required','min'=>'1','max'=>'50', 'maxlength'=>'2', 'placeholder'=>'Temperatura Min'])!!}
+                {!!Form::number('tempmin',$data->tempmin,['class'=>'form-control', 'required','min'=>'1','max'=>'50', 'maxlength'=>'2', 'placeholder'=>'Temperatura Min'])!!}
             </div>
             <div class="col-md-3">
                 {!!Form::label('tempmax', 'Temperatura Max (°C):')!!}
             </div>
             <div class="col-md-3">
-                {!!Form::number('tempmax',null,['class'=>'form-control', 'required','min'=>'1','max'=>'50', 'maxlength'=>'2', 'placeholder'=>'Temperatura Max'])!!}
+                {!!Form::number('tempmax',$data->tempmax,['class'=>'form-control', 'required','min'=>'1','max'=>'50', 'maxlength'=>'2', 'placeholder'=>'Temperatura Max'])!!}
             </div>
         </div>
 
@@ -119,7 +119,7 @@
                 $dropDownList->dataSource($dataSourceDropDown)
                     ->dataTextField('nombre')
                     ->dataValueField('id')
-                    ->optionLabel('Seleccione...')
+                    ->optionLabel("Seleccione...")
                     ->attr('style', 'width: 100%')
                     ->attr('required', 'required');
 

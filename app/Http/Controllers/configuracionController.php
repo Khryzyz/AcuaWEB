@@ -358,9 +358,6 @@ class configuracionController extends Controller
 
         $data = $Bl->getTiposUsuario();
 
-        //Agregado de opcion por defecto
-        array_unshift($data, "Seleccione...");
-
         return $data;
     }
 
@@ -376,9 +373,6 @@ class configuracionController extends Controller
         $Bl = new AquaWebBL();
 
         $data = $Bl->getTiposExpoSolar();
-
-        //Agregado de opcion por defecto
-        array_unshift($data, "Seleccione...");
 
         return $data;
     }

@@ -37,7 +37,7 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Nombre:
+                                <strong>Nombre:</strong>
                             </div>
                             <div class="col-md-8">
                                 {{$data->nombre}}
@@ -46,7 +46,7 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Estado:
+                                <strong>Estado:</strong>
                             </div>
                             <div class="col-md-8">
                                 {{$data->estado}}
@@ -55,13 +55,13 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Temperatura Vital Min:
+                                <strong>Temperatura Vital Min:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->tempvitalmin}}°C
                             </div>
                             <div class="col-md-4">
-                                Temperatura Vital Max:
+                                <strong>Temperatura Vital Max:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->tempvitalmax}}°C
@@ -70,13 +70,13 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Temperatura Optima Min:
+                                <strong>Temperatura Optima Min:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->tempoptimamin}}°C
                             </div>
                             <div class="col-md-4">
-                                Temperatura Optima Max:
+                                <strong>Temperatura Optima Max:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->tempoptimamax}}°C
@@ -85,13 +85,13 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Porcentaje Proteinico Min:
+                                <strong>Porcentaje Proteinico Min:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->porcprotmin}}%
                             </div>
                             <div class="col-md-4">
-                                Porcentaje Proteinico Max:
+                                <strong>Porcentaje Proteinico Max:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->porcprotmax}}%
@@ -101,13 +101,13 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Peso Max Crecimiento:
+                                <strong>Peso Max Crecimiento:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->crecpeso}}gr
                             </div>
                             <div class="col-md-4">
-                                Tiempo Max Crecimiento:
+                                <strong>Tiempo Max Crecimiento:</strong>
                             </div>
                             <div class="col-md-2">
                                 {{$data->crectiempo}}mes
@@ -117,7 +117,7 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Nitrogeno:
+                                <strong>Nitrogeno:</strong>
                             </div>
                             <div class="col-md-8">
                                 {{$data->nitrogeno}}mg/l
@@ -127,7 +127,7 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Nitrito:
+                                <strong>Nitrito:</strong>
                             </div>
                             <div class="col-md-8">
                                 {{$data->nitrito}}mg/l
@@ -137,7 +137,7 @@
 
                         <div class="row margin-bottom-10">
                             <div class="col-md-4">
-                                Oxigeno:
+                                <strong>Oxigeno:</strong>
                             </div>
                             <div class="col-md-8">
                                 {{$data->oxigeno}}mg/l
