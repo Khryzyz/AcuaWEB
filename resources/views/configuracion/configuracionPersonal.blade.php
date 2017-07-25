@@ -21,7 +21,7 @@
                             <!-- FIN Imagen -->
                         </div>
                         <div class="panel-footer text-right">
-                            <a href="{{route('modalAgregarProcesos')}}" class="btn btn-primary" data-modal="modal-lg">
+                            <a href="{{route('modalAgregarProcesos')}}" class="btn btn-primary" data-modal="modal-md">
                                 <i class="fa fa-pencil"></i>
                                 Editar avatar</a>
                         </div>
@@ -95,7 +95,7 @@
                         <div class="panel-footer text-right">
                             <a href='/general/getModalEditarUsuarioById/{{$data->id}}'
                                class="btn btn-primary"
-                               data-modal="modal-lg">
+                               data-modal="modal-md">
                                 <i class="fa fa-pencil"></i>
                                 Editar información personal</a>
                         </div>

@@ -43,16 +43,13 @@
     {!!Html::style('css/kendo/kendo.common.min.css')!!}
     {!!Html::style('css/kendo/kendo.bootstrap.min.css')!!}
 
-    <!-- BlueImp Gallery css -->
-    {!!Html::style('css/blueimp/blueimp-gallery.css')!!}
-    {!!Html::style('css/blueimp/blueimp-gallery-indicator.css')!!}
-    {!!Html::style('css/blueimp/blueimp-gallery-video.css')!!}
-
     <!-- Styles Personalizados -->
     {!!Html::style('css/styleFormsAquaweb.css')!!}
 
+    <!-- Styles W3 -->
+    {!!Html::style('https://www.w3schools.com/w3css/4/w3.css')!!}
 
-<!------------------------------------------------------------------------------------------------------------------
+    <!------------------------------------------------------------------------------------------------------------------
     -- FIN AREA DE CARGA CSS -------------------------------------------------------------------------------------------
     ------------------------------------------------------------------------------------------------------------------->
 
@@ -85,16 +82,6 @@
     {!!Html::script('js/kendo/kendo.all.min.js')!!}
     {!!Html::script('js/kendo/cultures/kendo.culture.es-ES.min.js')!!}
     {!!Html::script('js/kendo/lang/kendo.es-ES.js')!!}
-
-    <!-- BlueImp Javascript -->
-    {!!Html::script('js/blueimp/blueimp-helper.js')!!}
-    {!!Html::script('js/blueimp/blueimp-gallery.js')!!}
-    {!!Html::script('js/blueimp/blueimp-gallery-fullscreen.js')!!}
-    {!!Html::script('js/blueimp/blueimp-gallery-indicator.js')!!}
-    {!!Html::script('js/blueimp/blueimp-gallery-video.js')!!}
-    {!!Html::script('js/blueimp/blueimp-gallery-vimeo.js')!!}
-    {!!Html::script('js/blueimp/blueimp-gallery-youtube.js')!!}
-    {!!Html::script('js/blueimp/jquery.blueimp-gallery.js')!!}
 
 <!------------------------------------------------------------------------------------------------------------------
     -- FIN AREA DE CARGA JAVASCRIPT ------------------------------------------------------------------------------------
@@ -152,7 +139,7 @@
 <!-- /#wrapper -->
 
 <!-- Modal Bootstrap-->
-<div id='modalBs' class='modal fade bs-example-modal-lg'>
+<div id='modalBs' class='modal fade'>
     <div class="modal-dialog">
         <div class="modal-content">
         </div>

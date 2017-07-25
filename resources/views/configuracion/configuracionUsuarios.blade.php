@@ -7,7 +7,7 @@
         </div>
         <div class="panel-body">
             <div class="panel-group">
-                <a href="{{route('modalAgregarUsuario')}}" class="btn btn-primary" data-modal="modal-lg">
+                <a href="{{route('modalAgregarUsuario')}}" class="btn btn-primary" data-modal="modal-md">
                     <i class="fa fa-plus"></i>
                     Agregar Usuario</a>
             </div>
@@ -113,7 +113,7 @@
     <script id='verusuario' type='text/x-kendo-tmpl'>
          <a href="/general/getModalInfoUsuarioById/#=idusuario#"
          class="btn btn-primary"
-         data-modal="modal-lg">
+         data-modal="modal-md">
         <i class="fa fa-eye"></i> Ver Usuario</a>
     </script>
 @endsection

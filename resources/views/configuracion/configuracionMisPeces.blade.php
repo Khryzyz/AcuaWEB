@@ -11,7 +11,7 @@
             </div>
             <div class="panel-body">
                 <div class="panel-group">
-                    <a href="{{route('modalAgregarPez')}}" class="btn btn-primary" data-modal="modal-lg">
+                    <a href="{{route('modalAgregarPez')}}" class="btn btn-primary" data-modal="modal-md">
                         <i class="fa fa-plus"></i>
                         Agregar Pez</a>
                 </div>
@@ -119,26 +119,28 @@
       <div class="btn-group-justified">
         <a href="/general/getModalInfoPezById/#=idpez#"
            class="btn btn-primary"
-           data-modal="modal-lg">
+           data-modal="modal-md">
             <i class="fa fa-eye"></i> Ver Pez</a>
         <a href='/general/getModalGaleriaPezById/#=idpez#'
            class="btn btn-primary"
-           data-modal="modal-lg">
+           data-modal="modal-xl">
             <i class="fa fa-image"></i> Ver Galeria</a>
     </div>
+
 
     </script>
     <script id='editarpez' type='text/x-kendo-tmpl'>
     <div class="btn-group-justified">
         <a href='/general/getModalEditarPezById/#=idpez#'
         class="btn btn-success"
-        data-modal="modal-lg">
+        data-modal="modal-md">
         <i class="fa fa-wrench"></i> Editar Pez</a>
         <a href='/general/getModalEditarGaleriaPezById/#=idpez#'
         class="btn btn-success"
-        data-modal="modal-lg">
+        data-modal="modal-md">
         <i class="fa fa-wrench"></i> Editar Galeria</a>
     </div>
+
 
     </script>
 @endsection

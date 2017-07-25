@@ -7,7 +7,7 @@
         </div>
         <div class="panel-body">
             <div class="panel-group">
-                <a href="{{route('modalAgregarPez')}}" class="btn btn-primary" data-modal="modal-lg">
+                <a href="{{route('modalAgregarPez')}}" class="btn btn-primary" data-modal="modal-md">
                     <i class="fa fa-plus"></i>
                     Agregar Pez</a>
             </div>
@@ -123,7 +123,7 @@
     <script id='verpez' type='text/x-kendo-tmpl'>
        <a href="/general/getModalInfoPezById/#=idpez#"
         class="btn btn-primary"
-        data-modal="modal-lg">
+        data-modal="modal-md">
         <i class="fa fa-eye"></i> Ver Pez</a>
 
 

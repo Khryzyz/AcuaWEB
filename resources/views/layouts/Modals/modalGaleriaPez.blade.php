@@ -1,46 +1,119 @@
-<div id="Galeriapez">
+<div id="InfoPlanta">
 
     <div class="modal-header bg-info">
-        <h4>Galeria</h4>
+        <h5 class="modal-title">Galeria</h5>
     </div>
     <div class="modal-body">
+        <div class="panel-body">
 
-        <div id="blueimp-gallery" class="blueimp-gallery">
-            <div class="slides"></div>
-            <h3 class="title"></h3>
-            <a class="prev">‹</a>
-            <a class="next">›</a>
-            <a class="close">×</a>
-            <a class="play-pause"></a>
-            <ol class="indicator"></ol>
-        </div>
+            <!-- Información del pez -->
+            <div class="panel-group">
+                <div class="col-md-3 pre-scrollable" align="right">
+                    <?php
+                    $i = 1;
+                    foreach ($data as $dataImagen) {
+                    ?>
+                    <div class="thumbnail">
+                        <img class="tabsGallery w3-opacity w3-hover-opacity-off portrait"
+                             src="{{url('/img/gallery/'. $dataImagen->imagen)}}"
+                             onclick="currentDiv({{$i}})">
+                    </div>
+                    <?php $i++;
+                    } ?>
+                </div>
 
-        <div id="links">
-            <?php
-            foreach ($data as $dataPez) {
-            ?>
-            <a href="{{url('/img/gallery/'.$dataPez->imagen)}}" title="{{$dataPez->titulo}}">
-                <img src="{{url('/img/gallery/'.$dataPez->imagen)}}" class="img-responsive img-thumbnail"
-                     width="200px" height="200px"
-                     alt="Imagen no disponible"/>
-            </a>
-            <?php
-            }
-            ?>
+                <div class="col-md-8">
+                    <?php foreach ($data as $dataImagen) { ?>
+                    <div class="slidesGallery">
+                        <div class="row margin-bottom-5">
+                            <div class="col-md-4">
+                                <strong>Nombre:</strong>
+                            </div>
+                            <div class="col-md-8">
+                                {{$dataImagen->titulo}}
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-5">
+                            <div class="col-md-4">
+                                <strong>Descripción:</strong>
+                            </div>
+                            <div class="col-md-8">
+                                {{$dataImagen->descripcion}}
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-5">
+                            <div class="col-md-3">
+                                <strong>Creación:</strong>
+                            </div>
+                            <div class="col-md-3">
+                                {{$dataImagen->creacion}}
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Actualización:</strong>
+                            </div>
+                            <div class="col-md-3">
+                                {{$dataImagen->actualizacion}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img class=" img-responsive img-rounded"
+                                     src="{{url('/img/gallery/' . $dataImagen->imagen)}}"
+                                     style="height: 400px">
+                            </div>
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"> Cerrar</button>
-    </div>
 
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+    </div>
 </div>
 <script>
-    document.getElementById('links').onclick = function (event) {
-        event = event || window.event;
-        var target = event.target || event.srcElement,
-            link = target.src ? target.parentNode : target,
-            options = {index: link, event: event},
-            links = this.getElementsByTagName('a');
-        blueimp.Gallery(links, options);
-    };
+    var slideIndex = 1;
+
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function currentDiv(n) {
+        showDivs(slideIndex = n);
+    }
+
+    function showDivs(n) {
+
+        var i;
+
+        var x = document.getElementsByClassName("slidesGallery");
+
+        var dots = document.getElementsByClassName("tabsGallery");
+
+        if (n > x.length) {
+            slideIndex = 1
+        }
+
+        if (n < 1) {
+            slideIndex = x.length
+        }
+
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+        }
+
+        x[slideIndex - 1].style.display = "inline";
+
+        dots[slideIndex - 1].className += " w3-opacity-off";
+
+    }
 </script>

@@ -8,7 +8,7 @@ $.ajaxSetup({
 
 var modalBs = $('#modalBs');
 var modalBsContent = $('#modalBs').find(".modal-content");
-$(function(){
+$(function () {
 
     /*elimina boton de seleccion de filtros de la grid*/
 
@@ -23,7 +23,7 @@ function handleAjaxModal() {
     // Limpia los eventos asociados para elementos ya existentes, asi evita duplicación
     $("a[data-modal]").unbind("click");
     // Evita cachear las transaccione Ajax previas
-    $.ajaxSetup({ cache: false });
+    $.ajaxSetup({cache: false});
 
     // Configura evento del link para aquellos para los que desean abrir popups
     $("a[data-modal]").on("click", function (e) {
@@ -32,28 +32,40 @@ function handleAjaxModal() {
         modalBsContent.load(this.href, function (response, status, xhr) {
             switch (status) {
                 case "success":
-                modalBs.modal({ backdrop: 'static', keyboard: false }, 'show');
+                    modalBs.modal({backdrop: 'static', keyboard: false}, 'show');
 
-                if (dataModalValue == "modal-lg") {
-                    modalBs.find(".modal-dialog").addClass("modal-lg");
-                } else {
+                    modalBs.find(".modal-dialog").removeClass("modal-sm");
+                    modalBs.find(".modal-dialog").removeClass("modal-md");
                     modalBs.find(".modal-dialog").removeClass("modal-lg");
-                }
+                    modalBs.find(".modal-dialog").removeClass("modal-xl");
 
-                break;
+                    switch (dataModalValue) {
+                        case "modal-sm":
+                            modalBs.find(".modal-dialog").addClass("modal-sm");
+                            break;
+                        case "modal-md":
+                            modalBs.find(".modal-dialog").addClass("modal-md");
+                            break;
+                        case "modal-lg":
+                            modalBs.find(".modal-dialog").addClass("modal-lg");
+                            break;
+                        case "modal-xl":
+                            modalBs.find(".modal-dialog").addClass("modal-xl");
+                            break;
+                    }
+                    break;
 
                 case "error":
-                var message = "Error de ejecución: " + xhr.status + " " + xhr.statusText;
-                if (xhr.status == 403) $.msgbox(response, { type: 'error' });
-                else $.msgbox(message, { type: 'error' });
-                break;
+                    var message = "Error de ejecución: " + xhr.status + " " + xhr.statusText;
+                    if (xhr.status == 403) $.msgbox(response, {type: 'error'});
+                    else $.msgbox(message, {type: 'error'});
+                    break;
             }
 
         });
         return false;
     });
 }
-
 
 function eventResultForm(modal, onSuccess) {
     modal.find('form').submit(function () {
@@ -66,12 +78,10 @@ function eventResultForm(modal, onSuccess) {
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 var message = "Error de ejecución: " + textStatus + " " + errorThrown;
-                $.msgbox(message, { type: 'error' });
+                $.msgbox(message, {type: 'error'});
                 console.log("Error: ");
             }
         });
         return false;
     });
 }
-
-

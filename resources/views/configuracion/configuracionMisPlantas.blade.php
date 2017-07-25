@@ -12,7 +12,7 @@
             </div>
             <div class="panel-body">
                 <div class="panel-group">
-                    <a href="{{route('modalAgregarPlanta')}}" class="btn btn-primary" data-modal="modal-lg">
+                    <a href="{{route('modalAgregarPlanta')}}" class="btn btn-primary" data-modal="modal-md">
                         <i class="fa fa-plus"></i>
                         Agregar Planta</a>
                 </div>
@@ -120,7 +120,7 @@
       <div class="btn-group-justified">
         <a href="/general/getModalInfoPlantaById/#=idplanta#"
            class="btn btn-primary"
-           data-modal="modal-lg">
+           data-modal="modal-md">
             <i class="fa fa-eye"></i> Ver Planta</a>
         <a href='/general/getModalGaleriaPlantaById/#=idplanta#'
            class="btn btn-primary"
@@ -128,18 +128,20 @@
             <i class="fa fa-image"></i> Ver Galeria</a>
     </div>
 
+
     </script>
     <script id='editarplanta' type='text/x-kendo-tmpl'>
     <div class="btn-group-justified">
         <a href='/general/getModalEditarPlantaById/#=idplanta#'
         class="btn btn-success"
-        data-modal="modal-lg">
+        data-modal="modal-md">
         <i class="fa fa-wrench"></i> Editar Planta</a>
         <a href='/general/getModalEditarGaleriaPlantaById/#=idplanta#'
         class="btn btn-success"
-        data-modal="modal-lg">
+        data-modal="modal-md">
         <i class="fa fa-wrench"></i> Editar Galeria</a>
     </div>
+
 
     </script>
 @endsection

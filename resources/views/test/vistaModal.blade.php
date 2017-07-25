@@ -13,7 +13,7 @@
         <div class="panel-body">
             <p>Cuepor del panel</p>
             <a href="../test/getModalTest" class="btn btn-primary" data-modal="">Test modal pequeño</a>
-            <a href="../test/getModalTest" class="btn btn-primary" data-modal="modal-lg">Test modal grande</a>
+            <a href="../test/getModalTest" class="btn btn-primary" data-modal="modal-md">Test modal grande</a>
             <a href="../test/getModalFormTest/1" class="btn btn-primary" data-modal="">Test modal formulario</a>
 
         </div>

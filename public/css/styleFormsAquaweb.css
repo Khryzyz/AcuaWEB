@@ -1,3 +1,4 @@
+/* CSS para los margenes inferiores */
 .margin-top-05 {
     margin-top: 0.5em;
 }
@@ -44,4 +45,60 @@
 
 .margin-bottom-30 {
     margin-bottom: 3.0em;
+}
+
+/* CSS para los modales */
+
+#modalBs .modal-xl {
+    width: 90%;
+}
+
+#modalBs .modal-lg {
+    width: 80%;
+}
+
+#modalBs .modal-md {
+    width: 60%;
+}
+
+#modalBs .modal-sm {
+    width: 40%;
+}
+
+/* CSS Para las galerias */
+
+.slidesGallery {
+    display: none
+}
+
+.tabsGallery {
+    cursor: pointer;
+
+}
+
+.thumbnail {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.thumbnail img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.thumbnail img.portrait {
+    width: 100%;
+    height: auto;
+}
+
+.pre-scrollable{
+    max-height: 500px;
 }

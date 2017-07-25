@@ -7,7 +7,7 @@
         </div>
         <div class="panel-body">
             <div class="panel-group">
-                <a href="{{route('modalAgregarPlanta')}}" class="btn btn-primary" data-modal="modal-lg">
+                <a href="{{route('modalAgregarPlanta')}}" class="btn btn-primary" data-modal="modal-md">
                     <i class="fa fa-plus"></i>
                     Agregar Planta</a>
             </div>
@@ -121,6 +121,6 @@
     <script id='verplanta' type='text/x-kendo-tmpl'>
         <a href="/general/getModalInfoPlantaById/#=idplanta#"
          class="btn btn-primary"
-         data-modal="modal-lg">
+         data-modal="modal-md">
         <i class="fa fa-eye"></i> Ver Planta</a>
 @endsection

@@ -175,14 +175,14 @@
     <script id="vercaracteristicaplanta" type="text/x-kendo-tmpl">
         <a href="/general/getModalInfoPlantaById/#=idplanta#"
          class="btn btn-primary"
-         data-modal="modal-lg">
+         data-modal="modal-md">
          <i class="fa fa-leaf"></i> Características de la planta</a>
     </script>
 
     <script id="vercaracteristicapez" type="text/x-kendo-tmpl">
         <a href="/general/getModalInfoPezById/#=idpez#"
         class="btn btn-primary"
-        data-modal="modal-lg">
+        data-modal="modal-md">
         <i class="fa fa-tint"></i> Características del pez</a>
     </script>
 @endsection

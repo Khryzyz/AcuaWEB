@@ -12,7 +12,7 @@
             </div>
             <div class="panel-body">
                 <div class="panel-group">
-                    <a href="{{route('modalAgregarProcesos')}}" class="btn btn-primary" data-modal="modal-lg"><i
+                    <a href="{{route('modalAgregarProcesos')}}" class="btn btn-primary" data-modal="modal-md"><i
                                 class="fa fa-plus"></i>
                         Agregar proceso</a>
                 </div>
