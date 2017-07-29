@@ -63,23 +63,14 @@
                     $gridPlantas = new \Kendo\UI\Grid('GridPlanta');
 
                     //Inicializamos las columnas de la grid
-                    $idplanta = new \Kendo\UI\GridColumn();
-                    $idplanta->field('idplanta')->title('Id')->hidden(true);
-
-                    $usuario = new \Kendo\UI\GridColumn();
-                    $usuario->field('usuario')->title('Usuario')->hidden(true);
-
                     $nombre = new \Kendo\UI\GridColumn();
                     $nombre->field('nombre')->title('Nombre')->width(100);
 
-                    $registro = new \Kendo\UI\GridColumn();
-                    $registro->field('registro')->title('Fecha Registro')->width(80);
-
                     $actualizacion = new \Kendo\UI\GridColumn();
-                    $actualizacion->field('actualizacion')->title('Fecha Actualización')->width(80);
+                    $actualizacion->field('actualizacion')->title('Ultima Actualización')->width(80);
 
                     $estado = new \Kendo\UI\GridColumn();
-                    $estado->field('estado')->title('Estado')->width(50);
+                    $estado->field('estadoplanta')->title('Estado')->templateId('estadoplanta')->width(60);
 
                     $verplanta = new \Kendo\UI\GridColumn();
                     $verplanta->field('verplanta')->title('Ver')->templateId('verplanta')->width(125);
@@ -92,10 +83,8 @@
 
                     //Se agregan columnas y atributos al grid
                     $gridPlantas
-                        ->addColumn($idplanta,
-                            $usuario,
+                        ->addColumn(
                             $nombre,
-                            $registro,
                             $actualizacion,
                             $estado,
                             $verplanta,
@@ -116,32 +105,46 @@
 @endsection
 
 @section('scripts')
-    <script id='verplanta' type='text/x-kendo-tmpl'>
-      <div class="btn-group-justified">
-        <a href="/general/getModalInfoPlantaById/#=idplanta#"
-           class="btn btn-primary"
-           data-modal="modal-md">
-            <i class="fa fa-eye"></i> Ver Planta</a>
-        <a href='/general/getModalGaleriaPlantaById/#=idplanta#'
-           class="btn btn-primary"
-           data-modal="modal-lg">
-            <i class="fa fa-image"></i> Ver Galeria</a>
-    </div>
 
-
-    </script>
-    <script id='editarplanta' type='text/x-kendo-tmpl'>
+    <script id='estadoplanta' type='text/x-kendo-tmpl'>
     <div class="btn-group-justified">
-        <a href='/general/getModalEditarPlantaById/#=idplanta#'
-        class="btn btn-success"
-        data-modal="modal-md">
-        <i class="fa fa-wrench"></i> Editar Planta</a>
-        <a href='/general/getModalEditarGaleriaPlantaById/#=idplanta#'
-        class="btn btn-success"
-        data-modal="modal-md">
-        <i class="fa fa-wrench"></i> Editar Galeria</a>
-    </div>
+        #if(estado == 'Activo'){#
+            <a href="/general/getModalEstadoElemento/#=idplanta#/2/"
+            class="btn btn-danger"
+            data-modal="modal-sm">
+            <i class="fa fa-power-off"></i> Desactivar</a>
+        #} else {#
+            <a href="/general/getModalEstadoElemento/#=idplanta#/2/"
+            class="btn btn-success"
+            data-modal="modal-sm">
+            <i class="fa fa-power-off"></i> Activar</a>
+        #}#
+        </div>
+    </script>
 
+    <script id='verplanta' type='text/x-kendo-tmpl'>
+         <div class="btn-group-justified">
+            <a href="/general/getModalInfoPlantaById/#=idplanta#"
+               class="btn btn-primary"
+               data-modal="modal-md">
+                <i class="fa fa-eye"></i> Ver Planta</a>
+            <a href='/general/getModalGaleriaPlantaById/#=idplanta#'
+               class="btn btn-primary"
+               data-modal="modal-lg">
+                <i class="fa fa-image"></i> Ver Galeria</a>
+        </div>
+    </script>
 
+    <script id='editarplanta' type='text/x-kendo-tmpl'>
+        <div class="btn-group-justified">
+            <a href='/general/getModalEditarPlantaById/#=idplanta#'
+            class="btn btn-success"
+            data-modal="modal-md">
+            <i class="fa fa-wrench"></i> Editar Planta</a>
+            <a href='/general/getModalEditarGaleriaPlantaById/#=idplanta#'
+            class="btn btn-success"
+            data-modal="modal-md">
+            <i class="fa fa-wrench"></i> Editar Galeria</a>
+        </div>
     </script>
 @endsection

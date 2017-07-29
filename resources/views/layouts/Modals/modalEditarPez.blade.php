@@ -1,16 +1,17 @@
-<div id="ModalAgregarPez">
-    {!!Form::open(['url' => route('modalAgregarPez'), 'method' => 'POST', 'role'=>"form"])!!}
+<div id="ModalEditarPez">
+    {!!Form::open(['url' => route('modalEditarPez'), 'method' => 'POST', 'role'=>"form"])!!}
     <div class="modal-header bg-info">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4><i class="fa fa-tint"></i> Editar Pez</h4>
+        <h4><i class="fa fa-tint"></i> Editar {{$data->nombre}}</h4>
     </div>
-    <div class="modal-body" style="padding:40px 50px;">
+    <div class="modal-body">
 
         <div class="row margin-bottom-10">
             <div class="col-md-3">
                 {!!Form::label('nombre', 'Nombre:')!!}
             </div>
             <div class="col-md-9">
+                {!!Form::hidden('pezid',$data->id,['class'=>'form-control'])!!}
                 {!!Form::text('nombre',$data->nombre,['class'=>'form-control', 'required', 'placeholder'=>'Nombre'])!!}
             </div>
         </div>
@@ -94,7 +95,7 @@
             </div>
 
             <div class="col-md-3">
-                {!!Form::number('crepeso',$data->crecpeso,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Peso'])!!}
+                {!!Form::number('crepeso',$data->crecpeso,['class'=>'form-control', 'required','min'=>'1','max'=>'10000', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Peso'])!!}
             </div>
         </div>
 
@@ -104,7 +105,7 @@
             </div>
 
             <div class="col-md-3">
-                {!!Form::number('cretiempo',$data->crectiempo,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Tiempo'])!!}
+                {!!Form::number('cretiempo',$data->crectiempo,['class'=>'form-control', 'required','min'=>'1','max'=>'366', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Tiempo'])!!}
             </div>
 
         </div>
@@ -126,7 +127,7 @@
 </div>
 
 <script type="text/javascript">
-    var modal = $('#ModalAgregarPez');
+    var modal = $('#ModalEditarPez');
 
     $(function () {
         validarFormulario();// validar forularios con kendo

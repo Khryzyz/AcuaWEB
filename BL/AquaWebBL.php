@@ -50,6 +50,21 @@ class AquaWebBL
     }
 
     /**
+     * Metodo que consulta la informacion del elemento y su asociacion con otros elementos
+     *
+     * @param $idUsuario
+     * @param $tipoElemento
+     * @return mixed.
+     */
+    public function getInfoAsociacionElementos($idElemento, $tipoElemento)
+    {
+        $data = \DB::select('CALL getInfoAsociacionElementos(?,?)', array($idElemento, $tipoElemento));
+
+        return $data;
+    }
+
+
+    /**
      * Metodo que consulta los procesos por el id del usuario relacionados
      *
      * @param $idUsuario
@@ -240,7 +255,7 @@ class AquaWebBL
      * @param $rq
      * @return string
      */
-    public function postModalAgregarProcesos($rq, $idUsuario)
+    public function postInsertarProcesos($rq, $idUsuario)
     {
         $result = [];
 
@@ -251,16 +266,16 @@ class AquaWebBL
         $volumen = $rq->input('volumen');
 
         try {
-            $insTransaction = \DB::select('CALL insDatosProceso(?,?,?,?,?,?)', array($idUsuario,
+            $transaction = \DB::select('CALL insDatosProceso(?,?,?,?,?,?)', array($idUsuario,
                     $nombre,
                     $descripcion,
                     $fecha,
                     $area,
                     $volumen)
             );
-            if ($insTransaction) {
+            if ($transaction) {
                 $result['estado'] = "fatal";
-                $result['mensaje'] = $insTransaction[0]->MESSAGE;
+                $result['mensaje'] = $transaction[0]->MESSAGE;
 
             } else {
                 $result['estado'] = "success";
@@ -280,7 +295,7 @@ class AquaWebBL
      * @param $rq
      * @return string
      */
-    public function postModalAgregarUsuario($rq)
+    public function postInsertarUsuario($rq)
     {
         $result = [];
 
@@ -294,7 +309,7 @@ class AquaWebBL
         $tiposUsuario = $rq->input('tiposUsuario');
 
         try {
-            $insTransaction = \DB::select('CALL insDatosUsuario(?,?,?,?,?,?,?,?)',
+            $transaction = \DB::select('CALL insDatosUsuario(?,?,?,?,?,?,?,?)',
                 array(
                     $usuario,
                     $pass,
@@ -307,9 +322,9 @@ class AquaWebBL
                 )
             );
 
-            if ($insTransaction) {
+            if ($transaction) {
                 $result['estado'] = "fatal";
-                $result['mensaje'] = $insTransaction[0]->MESSAGE;
+                $result['mensaje'] = $transaction[0]->MESSAGE;
 
             } else {
                 $result['estado'] = "success";
@@ -329,7 +344,7 @@ class AquaWebBL
      * @param $rq
      * @return string
      */
-    public function postModalAgregarPlanta($rq, $idUsuario)
+    public function postInsertarPlanta($rq, $idUsuario)
     {
 
         $result = [];
@@ -354,7 +369,7 @@ class AquaWebBL
         $expsolar = $rq->input('expsolar');
 
         try {
-            $insTransaction = \DB::select('CALL insDatosPlanta(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            $transaction = \DB::select('CALL insDatosPlanta(?,?,?,?,?,?,?,?,?,?,?,?,?)',
                 array(
                     $idUsuario,
                     $nombre,
@@ -371,9 +386,9 @@ class AquaWebBL
                     $expsolar
                 )
             );
-            if ($insTransaction) {
+            if ($transaction) {
                 $result['estado'] = "fatal";
-                $result['mensaje'] = $insTransaction[0]->MESSAGE;
+                $result['mensaje'] = $transaction[0]->MESSAGE;
 
             } else {
                 $result['estado'] = "success";
@@ -393,7 +408,7 @@ class AquaWebBL
      * @param $rq
      * @return string
      */
-    public function postModalAgregarPez($rq, $idUsuario)
+    public function postInsertarPez($rq, $idUsuario)
     {
         $result = [];
 
@@ -419,7 +434,7 @@ class AquaWebBL
         $cretiempo = $rq->input('cretiempo');
 
         try {
-            $insTransaction = \DB::select('CALL insDatosPez(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            $transaction = \DB::select('CALL insDatosPez(?,?,?,?,?,?,?,?,?,?,?,?,?)',
                 array(
                     $idUsuario,
                     $nombre,
@@ -436,9 +451,9 @@ class AquaWebBL
                     $cretiempo
                 )
             );
-            if ($insTransaction) {
+            if ($transaction) {
                 $result['estado'] = "fatal";
-                $result['mensaje'] = $insTransaction[0]->MESSAGE;
+                $result['mensaje'] = $transaction[0]->MESSAGE;
 
             } else {
                 $result['estado'] = "success";
@@ -451,6 +466,121 @@ class AquaWebBL
 
         return json_encode($result);
 
-
     }
+
+    /**
+     *******************************************************************************************
+     * AREA METODOS USADOS PARA EDITAR INFORMACION *********************************************
+     *******************************************************************************************
+     */
+
+    /**
+     * Metodo que actualiza el estado de un elemento
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postEditarEstadoElemento($rq)
+    {
+        $result = [];
+
+        $estadoactual = 1;
+
+        if ($rq->input('estado') == 1) {
+            $estadoactual = 2;
+        }
+
+        $elemento = $rq->input('elemento');
+
+        $id = $rq->input('id');
+
+        try {
+            $transaction = \DB::select('CALL updEstadoElemento(?,?,?)', array(
+                    $estadoactual,
+                    $elemento,
+                    $id
+                )
+            );
+            if ($transaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Actualizado correctamente';
+            }
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = 'No se actualizó correctamente';
+        }
+        return json_encode($result);
+    }
+
+    /**
+     * Metodo que actualiza la informacion de un especimen
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postEditarPez($rq)
+    {
+        $result = [];
+
+        $id = $rq->input('pezid');
+
+        $nombre = strtoupper($rq->input('nombre'));
+
+        $tempvitmin = $rq->input('tempvitmin');
+        $tempvitmax = $rq->input('tempvitmax');
+
+        $tempoptmin = $rq->input('tempoptmin');
+        $tempoptmax = $rq->input('tempoptmax');
+
+        $porcpromin = $rq->input('porcpromin');
+        $porcpromax = $rq->input('porcpromax');
+
+        $nitnat = $rq->input('nitnat');
+
+        $nitri = $rq->input('nitri');
+
+        $oxi = $rq->input('oxi');
+
+        $crepeso = $rq->input('crepeso');
+
+        $cretiempo = $rq->input('cretiempo');
+
+        try {
+            $transaction = \DB::select('CALL updDatosPez(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                array(
+                    $id,
+                    $nombre,
+                    $tempvitmin,
+                    $tempvitmax,
+                    $tempoptmin,
+                    $tempoptmax,
+                    $porcpromin,
+                    $porcpromax,
+                    $nitnat,
+                    $nitri,
+                    $oxi,
+                    $crepeso,
+                    $cretiempo
+                )
+            );
+            if ($transaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Actualizado correctamente';
+            }
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = 'No se actualizó correctamente' . $e;
+        }
+
+        return json_encode($result);
+    }
+
 }

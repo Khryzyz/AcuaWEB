@@ -104,11 +104,11 @@ class generalController extends Controller
      * @param $rq
      * @return string
      */
-    public function postModalEditarPlantaById($rq)
+    public function postModalEditarPlantaById(Request $rq)
     {
         $Bl = new AquaWebBL();
 
-        $result = $Bl->postModalAgregarUsuario($rq);
+        $result = $Bl->postInsertarUsuario($rq);
 
         return $result;
     }
@@ -188,11 +188,11 @@ class generalController extends Controller
      * @param $rq
      * @return string
      */
-    public function postModalEditarPezById($rq)
+    public function postModalEditarPezById(Request $rq)
     {
         $Bl = new AquaWebBL();
 
-        $result = $Bl->postModalAgregarUsuario($rq);
+        $result = $Bl->postEditarPez($rq);
 
         return $result;
 
@@ -251,11 +251,48 @@ class generalController extends Controller
      * @param $rq
      * @return string
      */
-    public function postModalEditarUsuarioById($rq)
+    public function postModalEditarUsuarioById(Request $rq)
     {
         $Bl = new AquaWebBL();
 
-        $result = $Bl->postModalAgregarUsuario($rq);
+        $result = $Bl->postInsertarUsuario($rq);
+
+        return $result;
+
+    }
+
+    /**
+     * Metodo del controlador que retorna la vista para el cambio de estado
+     * Usado en Modal
+     *
+     * @param $idElemento
+     * @param $tipoElemento
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalEstadoElemento($idElemento, $tipoElemento)
+    {
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoAsociacionElementos($idElemento, $tipoElemento);
+
+        $data = $dataBL[0];
+
+        return view('layouts.Modals.modalEstadoElemento', compact('data'));
+
+    }
+
+    /**
+     * Metodo del controlador que retorna la vista para el cambio de estado
+     * Usado en Modal
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postModalEstadoElemento(Request $rq)
+    {
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postEditarEstadoElemento($rq);
 
         return $result;
 

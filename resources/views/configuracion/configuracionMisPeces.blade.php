@@ -60,25 +60,15 @@
                     //Inicializamos la grid
                     $gridPeces = new \Kendo\UI\Grid('GridPez');
 
-
                     //Inicializamos las columnas de la grid
-                    $idpez = new \Kendo\UI\GridColumn();
-                    $idpez->field('idpez')->title('Id')->hidden(true);
-
-                    $usuario = new \Kendo\UI\GridColumn();
-                    $usuario->field('usuario')->title('Usuario')->hidden(true);
-
                     $nombre = new \Kendo\UI\GridColumn();
                     $nombre->field('nombre')->title('Nombre')->width(100);
 
-                    $registro = new \Kendo\UI\GridColumn();
-                    $registro->field('registro')->title('Fecha Registro')->width(80);
-
                     $actualizacion = new \Kendo\UI\GridColumn();
-                    $actualizacion->field('actualizacion')->title('Fecha Actualización')->width(80);
+                    $actualizacion->field('actualizacion')->title('Ultima Actualización')->width(80);
 
                     $estado = new \Kendo\UI\GridColumn();
-                    $estado->field('estado')->title('Estado')->width(50);
+                    $estado->field('estadopez')->title('Estado')->templateId('estadopez')->width(60);
 
                     $verpez = new \Kendo\UI\GridColumn();
                     $verpez->field('verpez')->title('Ver')->templateId('verpez')->width(125);
@@ -91,10 +81,8 @@
 
                     //Se agregan columnas y atributos al grid
                     $gridPeces
-                        ->addColumn($idpez,
-                            $usuario,
+                        ->addColumn(
                             $nombre,
-                            $registro,
                             $actualizacion,
                             $estado,
                             $verpez,
@@ -115,6 +103,23 @@
 @endsection
 
 @section('scripts')
+
+    <script id='estadopez' type='text/x-kendo-tmpl'>
+    <div class="btn-group-justified">
+        #if(estado == 'Activo'){#
+            <a href="/general/getModalEstadoElemento/#=idpez#/3/"
+            class="btn btn-danger"
+            data-modal="modal-sm">
+            <i class="fa fa-power-off"></i> Desactivar</a>
+        #} else {#
+            <a href="/general/getModalEstadoElemento/#=idpez#/3/"
+            class="btn btn-success"
+            data-modal="modal-sm">
+            <i class="fa fa-power-off"></i> Activar</a>
+        #}#
+        </div>
+    </script>
+
     <script id='verpez' type='text/x-kendo-tmpl'>
       <div class="btn-group-justified">
         <a href="/general/getModalInfoPezById/#=idpez#"
@@ -126,9 +131,8 @@
            data-modal="modal-xl">
             <i class="fa fa-image"></i> Ver Galeria</a>
     </div>
-
-
     </script>
+
     <script id='editarpez' type='text/x-kendo-tmpl'>
     <div class="btn-group-justified">
         <a href='/general/getModalEditarPezById/#=idpez#'
@@ -140,7 +144,6 @@
         data-modal="modal-md">
         <i class="fa fa-wrench"></i> Editar Galeria</a>
     </div>
-
-
     </script>
+
 @endsection

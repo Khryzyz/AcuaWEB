@@ -106,7 +106,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('general/getModalEditarPlantaById/{idPlanta}', 'generalController@getModalEditarPlantaById');
 
-    Route::post('general/postModalEditarPlantaById', 'generalController@postModalEditarPlantaById');
+    Route::post('general/postModalEditarPlantaById', 'generalController@postModalEditarPlantaById')->name('modalEditarPlanta');
 
     Route::get('general/getModalInfoPezById/{idPez}', 'generalController@getModalInfoPezById');
 
@@ -114,13 +114,17 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('general/getModalEditarPezById/{idPez}', 'generalController@getModalEditarPezById');
 
-    Route::post('general/postModalEditarPezById', 'generalController@postModalEditarPezById');
+    Route::post('general/postModalEditarPezById', 'generalController@postModalEditarPezById')->name('modalEditarPez');
 
     Route::get('general/getModalInfoUsuarioById/{idUsuario}', 'generalController@getModalInfoUsuarioById');
 
     Route::get('general/getModalEditarUsuarioById/{idUsuario}', 'generalController@getModalEditarUsuarioById');
 
     Route::post('general/postModalEditarUsuarioById', 'generalController@postModalEditarUsuarioById');
+
+    Route::get('general/getModalEstadoElemento/{idElemento}/{tipoElemento}', 'generalController@getModalEstadoElemento');
+
+    Route::post('general/modalEstadoElemento', 'generalController@postModalEstadoElemento')->name('modalEstadoElemento');
 
     /**
      *******************************************************************************************

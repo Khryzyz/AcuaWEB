@@ -169,7 +169,7 @@ class procesosController extends Controller
 
         $Bl = new AquaWebBL();
 
-        $result = $Bl->postModalAgregarProcesos($rq, $this->auth->user()->id);
+        $result = $Bl->postInsertarProcesos($rq, $this->auth->user()->id);
 
         return $result;
     }

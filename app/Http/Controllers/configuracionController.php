@@ -153,7 +153,7 @@ class configuracionController extends Controller
 
         $Bl = new AquaWebBL();
 
-        $result = $Bl->postModalAgregarUsuario($rq);
+        $result = $Bl->postInsertarUsuario($rq);
 
         return $result;
     }
@@ -183,7 +183,7 @@ class configuracionController extends Controller
 
         $Bl = new AquaWebBL();
 
-        $result = $Bl->postModalAgregarPlanta($rq, $this->auth->user()->id);
+        $result = $Bl->postInsertarPlanta($rq, $this->auth->user()->id);
 
         return $result;
     }
@@ -213,7 +213,7 @@ class configuracionController extends Controller
 
         $Bl = new AquaWebBL();
 
-        $result = $Bl->postModalAgregarPez($rq, $this->auth->user()->id);
+        $result = $Bl->postInsertarPez($rq, $this->auth->user()->id);
 
         return $result;
     }
