@@ -2,7 +2,7 @@
     {!!Form::open(['url' => route('modalEstadoElemento'), 'method' => 'POST', 'role'=>"form"])!!}
     <div class="modal-header bg-primary">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4><i class="fa fa-edit"></i> {{$data->estado}} {{$data->elemento}}</h4>
+        <h4><i class="fa fa-edit"></i> {{$data->estado}} {{$data->elemento}}: {{$data->nombre}}</h4>
     </div>
     <div class="modal-body">
 
@@ -70,6 +70,12 @@
                     ?>
                     $('#GridPez').data('kendoGrid').dataSource.read();
                     $('#GridPez').data('kendoGrid').refresh();
+                    <?php
+                    break;
+                        case 4:
+                    ?>
+                    $('#GridProceso').data('kendoGrid').dataSource.read();
+                    $('#GridProceso').data('kendoGrid').refresh();
                     <?php
                     break;
                     }?>

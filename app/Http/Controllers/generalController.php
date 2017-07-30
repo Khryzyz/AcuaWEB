@@ -96,9 +96,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion de la planta por su id
-     *  - Retorna la vista junto con la informacion de la planta
+     * Metodo del controlador que recibe la informacion para actulizar el especimen
      * Usado en Modal
      *
      * @param $rq
@@ -108,9 +106,10 @@ class generalController extends Controller
     {
         $Bl = new AquaWebBL();
 
-        $result = $Bl->postInsertarUsuario($rq);
+        $result = $Bl->postEditarPlanta($rq);
 
         return $result;
+
     }
 
     /**
@@ -156,6 +155,26 @@ class generalController extends Controller
 
     }
 
+    /**
+     * Metodo del controlador que:
+     *  - consulta la informacion del pez por su id
+     *  - Retorna la vista junto con la informacion del pez
+     * Usado en Modal
+     *
+     * @param $idPez
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalEditarGaleriaPlantaById($idPez)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getGaleriaPezById($idPez);
+
+        return view('layouts.Modals.modalEditarGaleriaPez', compact('data'));
+
+    }
+
 
     /**
      * Metodo del controlador que:
@@ -180,9 +199,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del pez por su id
-     *  - Retorna la vista junto con la informacion del pez
+     * Metodo del controlador que recibe la informacion para actulizar el especimen
      * Usado en Modal
      *
      * @param $rq
@@ -255,7 +272,7 @@ class generalController extends Controller
     {
         $Bl = new AquaWebBL();
 
-        $result = $Bl->postInsertarUsuario($rq);
+        $result = $Bl->postEditarUsuario($rq);
 
         return $result;
 

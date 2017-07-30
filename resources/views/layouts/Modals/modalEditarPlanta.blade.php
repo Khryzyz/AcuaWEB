@@ -1,8 +1,8 @@
-<div id="ModalAgregarPlanta">
-    {!!Form::open(['url' => route('modalAgregarPlanta'), 'method' => 'POST', 'role'=>"form"])!!}
+<div id="ModalEditarPlanta">
+    {!!Form::open(['url' => route('modalEditarPlanta'), 'method' => 'POST', 'role'=>"form"])!!}
     <div class="modal-header bg-success">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4><i class="fa fa-leaf"></i> Editar Planta</h4>
+        <h4><i class="fa fa-leaf"></i> Editar {{$data->nombre}}</h4>
     </div>
     <div class="modal-body" style="padding:40px 50px;">
 
@@ -11,6 +11,7 @@
                 {!!Form::label('nombre', 'Nombre:')!!}
             </div>
             <div class="col-md-9">
+                {!!Form::hidden('plantaid',$data->id,['class'=>'form-control'])!!}
                 {!!Form::text('nombre',$data->nombre,['class'=>'form-control', 'required', 'placeholder'=>'Nombre'])!!}
             </div>
         </div>
@@ -146,7 +147,7 @@
 </div>
 
 <script type="text/javascript">
-    var modal = $('#ModalAgregarPlanta');
+    var modal = $('#ModalEditarPlanta');
 
     $(function () {
         validarFormulario();// validar forularios con kendo
@@ -179,6 +180,7 @@
         });
     }
 
+    // Respuesta del evento retorno del formulario
     function onSuccess(result) {
 
         result = JSON.parse(result)

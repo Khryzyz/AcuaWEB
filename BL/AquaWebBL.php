@@ -457,11 +457,11 @@ class AquaWebBL
 
             } else {
                 $result['estado'] = "success";
-                $result['mensaje'] = 'Registrado correctamente';
+                $result['mensaje'] = $nombre . ' registrado correctamente';
             }
         } catch (Exception $e) {
             $result['estado'] = "error";
-            $result['mensaje'] = 'No se registro correctamente' . $e;
+            $result['mensaje'] = $nombre . ' No se registro correctamente' . $e;
         }
 
         return json_encode($result);
@@ -507,13 +507,56 @@ class AquaWebBL
 
             } else {
                 $result['estado'] = "success";
-                $result['mensaje'] = 'Actualizado correctamente';
+                $result['mensaje'] = 'Estado actualizado correctamente';
             }
         } catch (Exception $e) {
             $result['estado'] = "error";
-            $result['mensaje'] = 'No se actualizó correctamente';
+            $result['mensaje'] = 'Estado NO actualizado correctamente';
         }
         return json_encode($result);
+    }
+
+
+    /**
+     * Metodo que registra un proceso
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postEditarProcesos($rq)
+    {
+        $result = [];
+
+        $procesoid = $rq->input('procesoid');
+        $nombre = strtoupper($rq->input('nombre'));
+        $descripcion = $rq->input('descripcion');
+        $fecha = $rq->input('fecha');
+        $area = $rq->input('area');
+        $volumen = $rq->input('volumen');
+
+        try {
+            $transaction = \DB::select('CALL updDatosProceso(?,?,?,?,?,?)', array(
+                    $procesoid,
+                    $nombre,
+                    $descripcion,
+                    $fecha,
+                    $area,
+                    $volumen)
+            );
+            if ($transaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = $nombre . ' actualizado correctamente';
+            }
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = $nombre . ' NO se actualizó correctamente' . $e;
+        }
+        return json_encode($result);
+
     }
 
     /**
@@ -573,14 +616,126 @@ class AquaWebBL
 
             } else {
                 $result['estado'] = "success";
-                $result['mensaje'] = 'Actualizado correctamente';
+                $result['mensaje'] = $nombre . ' actualizado correctamente';
             }
         } catch (Exception $e) {
             $result['estado'] = "error";
-            $result['mensaje'] = 'No se actualizó correctamente' . $e;
+            $result['mensaje'] = $nombre . ' NO se actualizó correctamente' . $e;
         }
 
         return json_encode($result);
+    }
+
+
+    /**
+     * Metodo que actualiza la informacion de un especimen
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postEditarPlanta($rq)
+    {
+        $result = [];
+
+        $id = $rq->input('plantaid');
+
+        $nombre = strtoupper($rq->input('nombre'));
+
+        $phmin = $rq->input('phmin');
+        $phmax = $rq->input('phmax');
+
+        $plantmin = $rq->input('plantmin');
+        $plantmax = $rq->input('plantmax');
+
+        $germin = $rq->input('germin');
+        $germax = $rq->input('germax');
+
+        $cremin = $rq->input('cremin');
+        $cremax = $rq->input('cremax');
+
+        $tempmin = $rq->input('tempmin');
+        $tempmax = $rq->input('tempmax');
+
+        $expsolar = $rq->input('expsolar');
+
+        try {
+            $transaction = \DB::select('CALL updDatosPlanta(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                array(
+                    $id,
+                    $nombre,
+                    $phmin,
+                    $phmax,
+                    $plantmin,
+                    $plantmax,
+                    $germin,
+                    $germax,
+                    $cremin,
+                    $cremax,
+                    $tempmin,
+                    $tempmax,
+                    $expsolar
+                )
+            );
+            if ($transaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = $nombre . ' actualizado correctamente';
+            }
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = $nombre . ' NO se actualizó correctamente';
+        }
+        return json_encode($result);
+    }
+
+    /**
+     * Metodo que registra un usuario
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postEditarUsuario($rq)
+    {
+        $result = [];
+
+        $usuarioid = $rq->input('usuarioid');
+        $usuario = strtoupper($rq->input('usuario'));
+        $email = $rq->input('email');
+        $primernombre = $rq->input('primernombre');
+        $segundonombre = $rq->input('segundonombre');
+        $primerapellido = $rq->input('primerapellido');
+        $segundoapellido = $rq->input('segundoapellido');
+
+        try {
+            $transaction = \DB::select('CALL updDatosUsuario(?,?,?,?,?,?,?)',
+                array(
+                    $usuarioid,
+                    $usuario,
+                    $email,
+                    $primernombre,
+                    $segundonombre,
+                    $primerapellido,
+                    $segundoapellido
+                )
+            );
+
+            if ($transaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Registrado correctamente';
+            }
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = 'No se registro correctamente';
+        }
+        return json_encode($result);
+
     }
 
 }

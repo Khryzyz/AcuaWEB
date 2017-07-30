@@ -1,5 +1,5 @@
-<div id="ModalAgregarUsuario">
-    {!!Form::open(['url' => route('modalAgregarUsuario'), 'method' => 'POST', 'role'=>"form"])!!}
+<div id="ModalEditarUsuario">
+    {!!Form::open(['url' => route('modalEditarUsuario'), 'method' => 'POST', 'role'=>"form"])!!}
     <div class="modal-header bg-warning">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4><i class="fa fa-user"></i> Editar Usuario</h4>
@@ -11,6 +11,7 @@
                 {!!Form::label('usuario', 'Username: (*)')!!}
             </div>
             <div class="col-md-8">
+                {!!Form::hidden('usuarioid',$data->id,['class'=>'form-control'])!!}
                 {!!Form::text('usuario',$data->usuario,['class'=>'form-control', 'required', 'placeholder'=>'Username'])!!}
             </div>
         </div>
@@ -76,7 +77,7 @@
 
 </div>
 <script type="text/javascript">
-    var modal = $('#ModalAgregarUsuario');
+    var modal = $('#ModalEditarUsuario');
 
     $(function () {
         validarFormulario();// validar forularios con kendo
@@ -119,8 +120,7 @@
             case "success":
                 $.msgbox(result.mensaje, {type: 'success'}, function () {
                     modalBs.modal('hide');
-                    $('#GridUsuarios').data('kendoGrid').dataSource.read();
-                    $('#GridUsuarios').data('kendoGrid').refresh();
+                    location.reload();
                 });
                 break;
             case "error":

@@ -73,8 +73,8 @@
                 $nombre = new \Kendo\UI\GridColumn();
                 $nombre->field('nombre')->title('Nombre')->width(150);
 
-                $estado = new \Kendo\UI\GridColumn();
-                $estado->field('estado')->title('Estado')->width(50);
+                $estadousuario = new \Kendo\UI\GridColumn();
+                $estadousuario->field('estadousuario')->title('Estado')->templateId('estadousuario')->width(70);
 
                 // $editarusuario = new \Kendo\UI\GridColumn();
                 // $editarusuario->field('editarusuario')->title('Editar')->templateId('editarusuario')->width(70);
@@ -88,7 +88,7 @@
                         $usuario,
                         $email,
                         $nombre,
-                        $estado,
+                        $estadousuario,
                         //$editarusuario,
                         $verusuario)
                     ->dataSource($dataSourceUsuarios)
@@ -106,14 +106,34 @@
 @endsection
 
 @section('scripts')
+    <script id='estadousuario' type='text/x-kendo-tmpl'>
+    <div class="btn-group-justified">
+        #if(estado == 'Activo'){#
+            <a href="/general/getModalEstadoElemento/#=idusuario#/1/"
+            class="btn btn-danger"
+            data-modal="modal-sm">
+            <i class="fa fa-power-off"></i> Desactivar</a>
+        #} else {#
+            <a href="/general/getModalEstadoElemento/#=idusuario#/1/"
+            class="btn btn-success"
+            data-modal="modal-sm">
+            <i class="fa fa-power-off"></i> Activar</a>
+        #}#
+        </div>
+    </script>
     <script id='editarusuario' type='text/x-kendo-tmpl'>
-        <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idusuario#' class='btn btn-primary text-center'>
-        <i class="fa fa-wrench"> </i>Editar Usuario</a>
+        <div class="btn-group-justified">
+            <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idusuario#'
+            class='btn btn-primary'>
+            <i class="fa fa-wrench"> </i>Editar Usuario</a>
+        </div>
     </script>
     <script id='verusuario' type='text/x-kendo-tmpl'>
-         <a href="/general/getModalInfoUsuarioById/#=idusuario#"
-         class="btn btn-primary"
-         data-modal="modal-md">
-        <i class="fa fa-eye"></i> Ver Usuario</a>
+        <div class="btn-group-justified">
+             <a href="/general/getModalInfoUsuarioById/#=idusuario#"
+            class="btn btn-primary"
+            data-modal="modal-xl">
+            <i class="fa fa-eye"></i> Ver Usuario</a>
+        </div>
     </script>
 @endsection

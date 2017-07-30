@@ -26,37 +26,37 @@
                     <?php foreach ($data as $dataImagen) { ?>
                     <div class="slidesGallery">
                         <div class="row margin-bottom-5">
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <strong>Nombre:</strong>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-10">
                                 {{$dataImagen->titulo}}
                             </div>
                         </div>
                         <div class="row margin-bottom-5">
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <strong>Descripción:</strong>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-10">
                                 {{$dataImagen->descripcion}}
                             </div>
                         </div>
                         <div class="row margin-bottom-5">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <strong>Creación:</strong>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 {{$dataImagen->creacion}}
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <strong>Actualización:</strong>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 {{$dataImagen->actualizacion}}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12 text-center">
                                 <img class=" img-responsive img-rounded"
                                      src="{{url('/img/gallery/' . $dataImagen->imagen)}}"
                                      style="height: 400px">

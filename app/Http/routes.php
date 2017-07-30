@@ -104,6 +104,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('general/getModalGaleriaPlantaById/{idPlanta}', 'generalController@getModalGaleriaPlantaById');
 
+    Route::get('general/getModalEditarGaleriaPlantaById/{idPlanta}', 'generalController@getModalEditarGaleriaPlantaById');
+
     Route::get('general/getModalEditarPlantaById/{idPlanta}', 'generalController@getModalEditarPlantaById');
 
     Route::post('general/postModalEditarPlantaById', 'generalController@postModalEditarPlantaById')->name('modalEditarPlanta');
@@ -120,7 +122,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('general/getModalEditarUsuarioById/{idUsuario}', 'generalController@getModalEditarUsuarioById');
 
-    Route::post('general/postModalEditarUsuarioById', 'generalController@postModalEditarUsuarioById');
+    Route::post('general/postModalEditarUsuarioById', 'generalController@postModalEditarUsuarioById')->name('modalEditarUsuario');
 
     Route::get('general/getModalEstadoElemento/{idElemento}/{tipoElemento}', 'generalController@getModalEstadoElemento');
 
@@ -149,6 +151,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('procesos/modalAgregarProcesos', 'procesosController@getModalAgregarProcesos')->name('modalAgregarProcesos');
 
     Route::post('procesos/modalAgregarProcesos', 'procesosController@postModalAgregarProcesos')->name('modalAgregarProcesos');
+
+    Route::get('procesos/modalEditarProcesos/{idProceso}', 'procesosController@getModalEditarProcesos');
+
+    Route::post('procesos/modalEditarProcesos', 'procesosController@postModalEditarProcesos')->name('modalEditarProcesos');
 
     /**
      * AREA PROCESOS  / GRIDS ******************************************************************

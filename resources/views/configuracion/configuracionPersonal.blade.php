@@ -106,28 +106,28 @@
                         </div>
                         <div class="panel-body">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <strong>Número de procesos a cargo:</strong>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     {{$data->procesos}}
                                 </div>
                             </div>
 
                             <div class="row margin-bottom-10">
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <strong>Especimenes plantas registradas:</strong>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     {{$data->peces}}
                                 </div>
                             </div>
 
                             <div class="row margin-bottom-10">
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <strong>Especimenes peces registrados:</strong>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     {{$data->plantas}}
                                 </div>
                             </div>

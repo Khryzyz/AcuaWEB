@@ -18,7 +18,7 @@
                         <?php
                         if($data->imagen){
                         ?>
-                            <img src="{{url('/img/gallery/'.$data->imagen)}}"
+                        <img src="{{url('/img/gallery/'.$data->imagen)}}"
                              class="img-responsive img-rounded"
                              alt="Imagen no disponible"/>
                         <?php
@@ -141,6 +141,29 @@
                             </div>
                             <div class="col-md-8">
                                 {{$data->oxigeno}}mg/l
+                            </div>
+                        </div>
+
+                        <div class="row margin-bottom-5">
+                            <div class="col-md-12 text-info">
+                                <?php switch ($data->relacion) {
+                                case 0:
+                                ?>
+                                <strong>Espécimen No vinculado procesos activos.</strong>
+                                <?php
+                                break;
+                                case 1:
+                                ?>
+                                <strong>Espécimen vinculado a un proceso activo.</strong>
+                                <?php
+                                break;
+                                default:
+                                ?>
+                                <strong>Espécimen vinculado a {{$data->relacion}} procesos activos.</strong>
+                                <?php
+                                break;
+                                }?>
+
                             </div>
                         </div>
 
