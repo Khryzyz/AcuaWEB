@@ -3,7 +3,7 @@
     padding: 30px 30px;
 }
 
-.modal-body #usuario {
+.modal-body #usuario-modal {
     padding: 0px 0px;
 }
 
@@ -54,6 +54,38 @@
 .margin-bottom-30 {
     margin-bottom: 3.0em;
 }
+
+/* CSS para los colores de los botones */
+.btn-on-status {
+    color: #fff;
+    background-color: #4088CC;
+    border-color: #28557F;
+}
+
+.btn-off-status {
+    color: #fff;
+    background-color: #CC443F;
+    border-color: #7F2A28;
+}
+
+.btn-view {
+    color: #fff;
+    background-color: #1B91B2;
+    border-color: #306E7F;
+}
+
+.btn-add {
+    color: #fff;
+    background-color: #457F0A;
+    border-color: #507F21;
+}
+
+.btn-edit {
+    color: #fff;
+    background-color: #CC5A1E;
+    border-color: #7F3812;
+}
+
 
 /* CSS para los modales */
 

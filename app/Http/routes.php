@@ -156,6 +156,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('procesos/modalEditarProcesos', 'procesosController@postModalEditarProcesos')->name('modalEditarProcesos');
 
+    Route::get('procesos/modalEditarEspecimenesProcesos/{idProceso}', 'procesosController@getModalEditarEspecimenesProcesos');
+
+    Route::post('procesos/modalEditarEspecimenesProcesos', 'procesosController@postModalEditarEspecimenesProcesos')->name('modalEditarEspecimenesProcesos');
+
+
+
     /**
      * AREA PROCESOS  / GRIDS ******************************************************************
      */
@@ -230,6 +236,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('configuracion/getPeces', 'configuracionController@getPeces')->name('getPeces');
 
     Route::post('configuracion/getPlantasByUsuarioId', 'configuracionController@getPlantasByUsuarioId')->name('getPlantasByUsuarioId');
+
+    Route::post('configuracion/getPlantasByUsuarioIdByList', 'configuracionController@getPlantasByUsuarioIdByList')->name('getPlantasByUsuarioIdByList');
 
     Route::post('configuracion/getPecesByUsuarioId', 'configuracionController@getPecesByUsuarioId')->name('getPecesByUsuarioId');
 

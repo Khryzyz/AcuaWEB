@@ -7,7 +7,7 @@
         </div>
         <div class="panel-body">
             <div class="panel-group">
-                <a href="{{route('modalAgregarPlanta')}}" class="btn btn-primary" data-modal="modal-md">
+                <a href="{{route('modalAgregarPlanta')}}" class="btn btn-add" data-modal="modal-md">
                     <i class="fa fa-plus"></i>
                     Agregar Planta</a>
             </div>
@@ -114,13 +114,18 @@
 
 @section('scripts')
     <script id='editarplanta' type='text/x-kendo-tmpl'>
-        <a href='/configuracion/modalAgregarPlantas/#=idplanta#' class='btn btn-primary text-center'>
-        <i class="fa fa-wrench"></i> Editar Planta</a>
-
+        <div class="btn-group-justified">
+            <a href='/configuracion/modalAgregarPlantas/#=idplanta#'
+            class='btn btn-edit'>
+            <i class="fa fa-wrench"></i> Editar Planta</a>
+        </div>
     </script>
     <script id='verplanta' type='text/x-kendo-tmpl'>
-        <a href="/general/getModalInfoPlantaById/#=idplanta#"
-         class="btn btn-primary"
-         data-modal="modal-md">
-        <i class="fa fa-eye"></i> Ver Planta</a>
+        <div class="btn-group-justified">
+            <a href="/general/getModalInfoPlantaById/#=idplanta#"
+            class="btn btn-edit"
+            data-modal="modal-md">
+            <i class="fa fa-leaf"></i> Ver Planta</a>
+        </div>
+    </script>
 @endsection

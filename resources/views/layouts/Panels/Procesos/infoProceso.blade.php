@@ -7,7 +7,7 @@
         <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-code"></i>
-                Codigo:
+                <strong>Codigo:</strong>
             </div>
             <div class="col-md-9">
                 {{strtoupper($data->codigo)}}
@@ -16,8 +16,18 @@
 
         <div class="row margin-bottom-10">
             <div class="col-md-3">
+                <i class="fa fa-eye"></i>
+                <strong>Tipo de Acceso:</strong>
+            </div>
+            <div class="col-md-9">
+                {{strtoupper($data->tipoacceso)}}
+            </div>
+        </div>
+
+        <div class="row margin-bottom-10">
+            <div class="col-md-3">
                 <i class="fa fa-terminal"></i>
-                Nombre:
+                <strong>Nombre:</strong>
             </div>
             <div class="col-md-9">
                 {{strtoupper($data->nombre)}}
@@ -27,7 +37,7 @@
         <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-comments"></i>
-                Descripción:
+                <strong>Descripción:</strong>
             </div>
             <div class="col-md-9">
                 {{$data->descripcion}}
@@ -37,7 +47,7 @@
         <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-calendar"></i>
-                Fecha Implementación:
+                <strong>Fecha Implementación:</strong>
             </div>
             <div class="col-md-9">
                 {{$data->fechaimplementacion}}
@@ -47,7 +57,7 @@
         <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-th"></i>
-                Area Cultivo:
+                <strong>Area Cultivo:</strong>
             </div>
             <div class="col-md-9">
                 {{$data->areacultivo}} m²
@@ -57,7 +67,7 @@
         <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-align-justify"></i>
-                Volumen Cultivo:
+                <strong>Volumen Cultivo:</strong>
             </div>
             <div class="col-md-9">
                 {{$data->volumencultivo}} m³
@@ -67,7 +77,7 @@
         <div class="row margin-bottom-10">
             <div class="col-md-3">
                 <i class="fa fa-power-off"></i>
-                Estado:
+                <strong>Estado:</strong>
             </div>
             <div class="col-md-9 margin-bottom-10 <?php
             if ($data->estado == "Activo")

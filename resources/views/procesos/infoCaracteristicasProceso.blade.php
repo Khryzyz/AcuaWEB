@@ -8,7 +8,7 @@
     <div class="panel-primary">
         <div class="panel-body text-right">
             <a href="{{route('getViewInfoValoresProcesoById', ['idProceso' => $data->id])}}"
-               class="btn btn-primary">
+               class="btn btn-view">
                 <i class="fa fa-line-chart"></i> Valores del proceso</a>
         </div>
     </div>
@@ -173,16 +173,20 @@
 @endsection
 @section('scripts')
     <script id="vercaracteristicaplanta" type="text/x-kendo-tmpl">
-        <a href="/general/getModalInfoPlantaById/#=idplanta#"
-         class="btn btn-primary"
-         data-modal="modal-md">
-         <i class="fa fa-leaf"></i> Características de la planta</a>
+        <div class="btn-group-justified">
+            <a href="/general/getModalInfoPlantaById/#=idplanta#"
+            class="btn btn-view"
+            data-modal="modal-md">
+            <i class="fa fa-leaf"></i> Características de la planta</a>
+        </div>
     </script>
 
     <script id="vercaracteristicapez" type="text/x-kendo-tmpl">
-        <a href="/general/getModalInfoPezById/#=idpez#"
-        class="btn btn-primary"
-        data-modal="modal-md">
-        <i class="fa fa-tint"></i> Características del pez</a>
+        <div class="btn-group-justified">
+            <a href="/general/getModalInfoPezById/#=idpez#"
+            class="btn btn-view"
+            data-modal="modal-md">
+            <i class="fa fa-tint"></i> Características del pez</a>
+        </div>
     </script>
 @endsection

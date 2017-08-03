@@ -244,6 +244,22 @@ class AquaWebBL
     }
 
     /**
+     * Metodo que consulta la informacion del proceso por su id
+     *
+     * @param $idUsuario
+     * @return mixed
+     */
+    public function getEspecimenesByIdUsuario($idProceso, $idUsuario)
+    {
+        $data = \DB::select('CALL getEspecimenesByIdUsuario(?,?)', array(
+            $idProceso,
+            $idUsuario
+        ));
+
+        return $data;
+    }
+
+    /**
      *******************************************************************************************
      * AREA METODOS USADOS PARA REGISTAR INFORMACION *******************************************
      *******************************************************************************************

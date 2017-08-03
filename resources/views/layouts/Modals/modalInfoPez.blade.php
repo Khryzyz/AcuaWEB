@@ -48,8 +48,14 @@
                             <div class="col-md-4">
                                 <strong>Estado:</strong>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-2">
                                 {{$data->estado}}
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Tipo de Acceso:</strong>
+                            </div>
+                            <div class="col-md-2">
+                                {{$data->tipoacceso}}
                             </div>
                         </div>
 

@@ -12,7 +12,7 @@
             </div>
             <div class="panel-body">
                 <div class="panel-group">
-                    <a href="{{route('modalAgregarProcesos')}}" class="btn btn-primary" data-modal="modal-md"><i
+                    <a href="{{route('modalAgregarProcesos')}}" class="btn btn-add" data-modal="modal-md"><i
                                 class="fa fa-plus"></i>
                         Agregar proceso</a>
                 </div>
@@ -60,20 +60,20 @@
                     $gridProcesos = new \Kendo\UI\Grid('GridProceso');
 
                     //Inicializamos las columnas de la grid
+                    $seleccionarproceso = new \Kendo\UI\GridColumn();
+                    $seleccionarproceso->field('seleccionarproceso')->title('Seleccionar')->templateId('seleccionarproceso')->width(80);
+
                     $nombre = new \Kendo\UI\GridColumn();
-                    $nombre->field('nombre')->title('Nombre')->width(200);
+                    $nombre->field('nombre')->title('Nombre')->width(100);
 
                     $fechaimplementacion = new \Kendo\UI\GridColumn();
-                    $fechaimplementacion->field('fechaimplementacion')->title('Fecha Implementacion')->width(100);
+                    $fechaimplementacion->field('fechaimplementacion')->title('Fecha Implementacion')->width(80);
 
                     $estadoproceso = new \Kendo\UI\GridColumn();
-                    $estadoproceso->field('estadoproceso')->title('Estado')->templateId('estadoproceso')->width(100);
-
-                    $verproceso = new \Kendo\UI\GridColumn();
-                    $verproceso->field('verproceso')->title('Ver')->templateId('verproceso')->width(100);
+                    $estadoproceso->field('estadoproceso')->title('Estado')->templateId('estadoproceso')->width(80);
 
                     $editarproceso = new \Kendo\UI\GridColumn();
-                    $editarproceso->field('editarproceso')->title('Editar')->templateId('editarproceso')->width(100);
+                    $editarproceso->field('editarproceso')->title('Editar')->templateId('editarproceso')->width(180);
 
                     $gridFilterable = new \Kendo\UI\GridFilterable();
                     $gridFilterable->mode("row");
@@ -81,10 +81,10 @@
                     //Se agregan columnas y atributos al grid
                     $gridProcesos
                         ->addColumn(
+                            $seleccionarproceso,
                             $nombre,
                             $fechaimplementacion,
                             $estadoproceso,
-                            $verproceso,
                             $editarproceso
                         )
                         ->dataSource($dataSource)
@@ -103,36 +103,38 @@
 @endsection
 
 @section('scripts')
+    <script id='seleccionarproceso' type='text/x-kendo-tmpl'>
+        <div class="btn-group-justified">
+            <a href='/procesos/getViewInfoCaracteristicasProcesoById/#=idproceso#'
+            class='btn btn-view'>
+            <i class="fa fa-gear"></i> Ver Proceso</a>
+        </div>
+    </script>
     <script id='estadoproceso' type='text/x-kendo-tmpl'>
     <div class="btn-group-justified">
         #if(estado == 'Activo'){#
             <a href="/general/getModalEstadoElemento/#=idproceso#/4/"
-            class="btn btn-danger"
+            class="btn btn-off-status"
             data-modal="modal-sm">
             <i class="fa fa-power-off"></i> Desactivar</a>
         #} else {#
             <a href="/general/getModalEstadoElemento/#=idproceso#/4/"
-            class="btn btn-success"
+            class="btn btn-on-status"
             data-modal="modal-sm">
             <i class="fa fa-power-off"></i> Activar</a>
         #}#
-        </div>
-
-    </script>
-    <script id='verproceso' type='text/x-kendo-tmpl'>
-        <div class="btn-group-justified">
-            <a href='/procesos/getViewInfoCaracteristicasProcesoById/#=idproceso#'
-            class='btn btn-primary'>
-            <i class="fa fa-eye"></i> Ver Proceso</a>
         </div>
     </script>
     <script id='editarproceso' type='text/x-kendo-tmpl'>
         <div class="btn-group-justified">
             <a href='/procesos/modalEditarProcesos/#=idproceso#'
-            class="btn btn-success"
+            class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
             data-modal="modal-md">
-            <i class="fa fa-wrench"></i> Editar Proceso</a>
+            <i class="fa fa-info"></i> Editar Información</a>
+            <a href='/procesos/modalEditarEspecimenesProcesos/#=idproceso#'
+            class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
+            data-modal="modal-xl">
+            <i class="fa fa-wrench"></i> Editar Espécimenes</a>
         </div>
     </script>
-
 @endsection

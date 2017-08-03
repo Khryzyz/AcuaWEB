@@ -12,7 +12,9 @@
             </div>
             <div class="panel-body">
                 <div class="panel-group">
-                    <a href="{{route('modalAgregarPlanta')}}" class="btn btn-primary" data-modal="modal-md">
+                    <a href="{{route('modalAgregarPlanta')}}"
+                       class="btn btn-add"
+                       data-modal="modal-md">
                         <i class="fa fa-plus"></i>
                         Agregar Planta</a>
                 </div>
@@ -41,7 +43,7 @@
                     //Inicializamos el esquema de la grid
                     $schemaPlantas = new \Kendo\Data\DataSourceSchema();
 
-                    //Agregamos los aributos del esquema de l grid
+                    //Agregamos los aributos del esquema del grid
                     $schemaPlantas
                         ->data('data')
                         ->total('total');
@@ -110,12 +112,12 @@
     <div class="btn-group-justified">
         #if(estado == 'Activo'){#
             <a href="/general/getModalEstadoElemento/#=idplanta#/2/"
-            class="btn btn-danger"
+            class="btn btn-off-status"
             data-modal="modal-sm">
             <i class="fa fa-power-off"></i> Desactivar</a>
         #} else {#
             <a href="/general/getModalEstadoElemento/#=idplanta#/2/"
-            class="btn btn-success"
+            class="btn btn-on-status"
             data-modal="modal-sm">
             <i class="fa fa-power-off"></i> Activar</a>
         #}#
@@ -125,11 +127,11 @@
     <script id='verplanta' type='text/x-kendo-tmpl'>
          <div class="btn-group-justified">
             <a href="/general/getModalInfoPlantaById/#=idplanta#"
-               class="btn btn-primary"
+               class="btn btn-view"
                data-modal="modal-md">
-                <i class="fa fa-eye"></i> Ver Planta</a>
+                <i class="fa fa-leaf"></i> Ver Planta</a>
             <a href='/general/getModalGaleriaPlantaById/#=idplanta#'
-               class="btn btn-primary"
+               class="btn btn-view #if(conteogaleria < 1){# disabled #}# "
                data-modal="modal-lg">
                 <i class="fa fa-image"></i> Ver Galeria</a>
         </div>
@@ -138,13 +140,13 @@
     <script id='editarplanta' type='text/x-kendo-tmpl'>
         <div class="btn-group-justified">
             <a href='/general/getModalEditarPlantaById/#=idplanta#'
-            class="btn btn-success"
+            class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
             data-modal="modal-md">
-            <i class="fa fa-wrench"></i> Editar Planta</a>
+            <i class="fa fa-leaf"></i> Editar Planta</a>
             <a href='/general/getModalEditarGaleriaPlantaById/#=idplanta#'
-            class="btn btn-success"
+            class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
             data-modal="modal-md">
-            <i class="fa fa-wrench"></i> Editar Galeria</a>
+            <i class="fa fa-image"></i> Editar Galeria</a>
         </div>
     </script>
 @endsection

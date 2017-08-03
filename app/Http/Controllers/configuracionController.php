@@ -377,4 +377,23 @@ class configuracionController extends Controller
         return $data;
     }
 
+    /**
+     * Metodo que consulta las variedades de plantas registradas en el sistema por el id del usuario
+     * Usado en Grid
+     *
+     * @return array
+     */
+    public function getPlantasByUsuarioIdByList()
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getPlantasByUsuarioId($this->auth->user()->id);
+
+        dd($data);
+
+        return $data;
+
+    }
+
 }

@@ -11,7 +11,9 @@
             </div>
             <div class="panel-body">
                 <div class="panel-group">
-                    <a href="{{route('modalAgregarPez')}}" class="btn btn-primary" data-modal="modal-md">
+                    <a href="{{route('modalAgregarPez')}}"
+                       class="btn btn-add"
+                       data-modal="modal-md">
                         <i class="fa fa-plus"></i>
                         Agregar Pez</a>
                 </div>
@@ -108,12 +110,12 @@
     <div class="btn-group-justified">
         #if(estado == 'Activo'){#
             <a href="/general/getModalEstadoElemento/#=idpez#/3/"
-            class="btn btn-danger"
+            class="btn btn-off-status"
             data-modal="modal-sm">
             <i class="fa fa-power-off"></i> Desactivar</a>
         #} else {#
             <a href="/general/getModalEstadoElemento/#=idpez#/3/"
-            class="btn btn-success"
+            class="btn btn-on-status"
             data-modal="modal-sm">
             <i class="fa fa-power-off"></i> Activar</a>
         #}#
@@ -123,26 +125,26 @@
     <script id='verpez' type='text/x-kendo-tmpl'>
       <div class="btn-group-justified">
         <a href="/general/getModalInfoPezById/#=idpez#"
-           class="btn btn-primary"
+           class="btn btn-view"
            data-modal="modal-md">
-            <i class="fa fa-eye"></i> Ver Pez</a>
-        <a href='/general/getModalGaleriaPezById/#=idpez#'
-           class="btn btn-primary"
+            <i class="fa fa-tint"></i> Ver Pez</a>
+           <a href='/general/getModalGaleriaPezById/#=idpez#'
+           class="btn btn-view #if(conteogaleria < 1){# disabled #}# "
            data-modal="modal-xl">
-            <i class="fa fa-image"></i> Ver Galeria</a>
+           <i class="fa fa-image"></i> Ver Galeria</a>
     </div>
     </script>
 
     <script id='editarpez' type='text/x-kendo-tmpl'>
     <div class="btn-group-justified">
         <a href='/general/getModalEditarPezById/#=idpez#'
-        class="btn btn-success"
+        class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
         data-modal="modal-md">
-        <i class="fa fa-wrench"></i> Editar Pez</a>
+        <i class="fa fa-tint"></i> Editar Pez</a>
         <a href='/general/getModalEditarGaleriaPezById/#=idpez#'
-        class="btn btn-success"
+        class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
         data-modal="modal-md">
-        <i class="fa fa-wrench"></i> Editar Galeria</a>
+        <i class="fa fa-image"></i> Editar Galeria</a>
     </div>
     </script>
 

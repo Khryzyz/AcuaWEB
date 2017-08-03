@@ -209,6 +209,41 @@ class procesosController extends Controller
         return $result;
     }
 
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar un proceso
+     * Usado en Modal
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalEditarEspecimenesProcesos($idProceso)
+    {
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoProcesoById($idProceso);
+
+        $data = $dataBL[0];
+
+        return view('procesos.modalEditarEspecimenesProceso', compact('data'));
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar un proceso
+     * Usado en Modal
+     *
+     * @param Request $rq
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function postModalEditarEspecimenesProcesos(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postEditarProcesos($rq);
+
+        return $result;
+    }
+
     /**
      *******************************************************************************************
      * AREA METODOS USADOS POR GRID ************************************************************

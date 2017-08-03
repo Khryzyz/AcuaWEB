@@ -7,7 +7,7 @@
         </div>
         <div class="panel-body">
             <div class="panel-group">
-                <a href="{{route('modalAgregarUsuario')}}" class="btn btn-primary" data-modal="modal-md">
+                <a href="{{route('modalAgregarUsuario')}}" class="btn btn-add" data-modal="modal-md">
                     <i class="fa fa-plus"></i>
                     Agregar Usuario</a>
             </div>
@@ -110,12 +110,12 @@
     <div class="btn-group-justified">
         #if(estado == 'Activo'){#
             <a href="/general/getModalEstadoElemento/#=idusuario#/1/"
-            class="btn btn-danger"
+            class="btn btn-off-status"
             data-modal="modal-sm">
             <i class="fa fa-power-off"></i> Desactivar</a>
         #} else {#
             <a href="/general/getModalEstadoElemento/#=idusuario#/1/"
-            class="btn btn-success"
+            class="btn btn-on-status"
             data-modal="modal-sm">
             <i class="fa fa-power-off"></i> Activar</a>
         #}#
@@ -124,16 +124,16 @@
     <script id='editarusuario' type='text/x-kendo-tmpl'>
         <div class="btn-group-justified">
             <a href='procesos/getViewInfoCaracteristicasProcesoById/#=idusuario#'
-            class='btn btn-primary'>
+            class='btn btn-edit'>
             <i class="fa fa-wrench"> </i>Editar Usuario</a>
         </div>
     </script>
     <script id='verusuario' type='text/x-kendo-tmpl'>
         <div class="btn-group-justified">
              <a href="/general/getModalInfoUsuarioById/#=idusuario#"
-            class="btn btn-primary"
+            class="btn btn-view"
             data-modal="modal-xl">
-            <i class="fa fa-eye"></i> Ver Usuario</a>
+            <i class="fa fa-user"></i> Ver Usuario</a>
         </div>
     </script>
 @endsection

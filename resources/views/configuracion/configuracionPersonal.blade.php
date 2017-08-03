@@ -20,8 +20,8 @@
 
                             <!-- FIN Imagen -->
                         </div>
-                        <div class="panel-footer text-right">
-                            <a href="{{route('modalAgregarProcesos')}}" class="btn btn-primary" data-modal="modal-md">
+                        <div class="panel-footer btn-group-justified">
+                            <a href="{{route('modalAgregarProcesos')}}" class="btn btn-edit" data-modal="modal-md">
                                 <i class="fa fa-pencil"></i>
                                 Editar avatar</a>
                         </div>
@@ -92,12 +92,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer text-right">
+                        <div class="panel-footer btn-group-justified">
                             <a href='/general/getModalEditarUsuarioById/{{$data->id}}'
-                               class="btn btn-primary"
+                               class="btn btn-edit"
                                data-modal="modal-md">
                                 <i class="fa fa-pencil"></i>
                                 Editar información personal</a>
+                            <a href='/general/getModalEditarUsuarioById/{{$data->id}}'
+                               class="btn btn-edit"
+                               data-modal="modal-md">
+                                <i class="fa fa-pencil"></i>
+                                Editar clave de acceso</a>
                         </div>
                     </div>
                     <div class="panel panel-default">
