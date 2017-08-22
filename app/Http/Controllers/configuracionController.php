@@ -317,6 +317,29 @@ class configuracionController extends Controller
     }
 
     /**
+     * Metodo que consulta las variedades de plantas registradas en el sistema por el id del usuario
+     * Usado en Grid
+     *
+     * @return array
+     */
+    public function getPlantasByUsuarioIdForProceso($idProceso)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getPlantasByUsuarioIdForProceso($this->auth->user()->id, $idProceso);
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($data, $input);
+
+    }
+
+    /**
      * Metodo que consulta las variedades de peces registrados en el sistema por el id del usuario
      * Usado en Grid
      *
@@ -328,6 +351,29 @@ class configuracionController extends Controller
         $Bl = new AquaWebBL();
 
         $data = $Bl->getPecesByUsuarioId($this->auth->user()->id);
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($data, $input);
+
+    }
+
+    /**
+     * Metodo que consulta las variedades de peces registrados en el sistema por el id del usuario
+     * Usado en Grid
+     *
+     * @return array
+     */
+    public function getPecesByUsuarioIdForProceso($idProceso)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getPecesByUsuarioIdForProceso($this->auth->user()->id, $idProceso);
 
         $request = file_get_contents('php://input');
 
@@ -375,25 +421,6 @@ class configuracionController extends Controller
         $data = $Bl->getTiposExpoSolar();
 
         return $data;
-    }
-
-    /**
-     * Metodo que consulta las variedades de plantas registradas en el sistema por el id del usuario
-     * Usado en Grid
-     *
-     * @return array
-     */
-    public function getPlantasByUsuarioIdByList()
-    {
-
-        $Bl = new AquaWebBL();
-
-        $data = $Bl->getPlantasByUsuarioId($this->auth->user()->id);
-
-        dd($data);
-
-        return $data;
-
     }
 
 }

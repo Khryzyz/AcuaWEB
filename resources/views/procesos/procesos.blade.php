@@ -131,9 +131,8 @@
             class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
             data-modal="modal-md">
             <i class="fa fa-info"></i> Editar Información</a>
-            <a href='/procesos/modalEditarEspecimenesProcesos/#=idproceso#'
-            class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
-            data-modal="modal-xl">
+            <a href='/procesos/editarEspecimenesProcesos/#=idproceso#'
+            class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# ">
             <i class="fa fa-wrench"></i> Editar Espécimenes</a>
         </div>
     </script>

@@ -63,6 +63,20 @@ class AquaWebBL
         return $data;
     }
 
+    /**
+     * Metodo que consulta la informacion del elemento y su asociacion con otros elementos
+     *
+     * @param $idUsuario
+     * @param $tipoElemento
+     * @return mixed.
+     */
+    public function getInfoAsociacionElementosForProceso($idEspecimen, $idProceso, $tipoEspecimen,$estado)
+    {
+        $data = \DB::select('CALL getInfoAsociacionElementosForProceso(?,?,?,?)', array($idEspecimen, $idProceso, $tipoEspecimen,$estado));
+
+        return $data;
+    }
+
 
     /**
      * Metodo que consulta los procesos por el id del usuario relacionados
@@ -110,6 +124,30 @@ class AquaWebBL
     public function getPlantasByUsuarioId($idUsuario)
     {
         $data = \DB::select('CALL getPlantasByUsuarioId(?)', array($idUsuario));
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta las variedades de plantas registradas en el sistema por el id del usuario
+     *
+     * @return mixed.
+     */
+    public function getPlantasByUsuarioIdForProceso($idUsuario, $idProceso)
+    {
+        $data = \DB::select('CALL getPlantasByUsuarioIdForProceso(?,?)', array($idUsuario, $idProceso));
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta las variedades de plantas registradas en el sistema por el id del usuario
+     *
+     * @return mixed.
+     */
+    public function getPecesByUsuarioIdForProceso($idUsuario, $idProceso)
+    {
+        $data = \DB::select('CALL getPecesByUsuarioIdForProceso(?,?)', array($idUsuario, $idProceso));
 
         return $data;
     }

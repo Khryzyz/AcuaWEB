@@ -97,6 +97,23 @@ class procesosController extends Controller
     }
 
     /**
+     * Metodo del controlador que retorna el modal para agregar un proceso
+     * Usado en Modal
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getEditarEspecimenesProcesos($idProceso)
+    {
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoProcesoById($idProceso);
+
+        $data = $dataBL[0];
+
+        return view('procesos.editarEspecimenesProceso', compact('data'));
+    }
+
+    /**
      *******************************************************************************************
      * AREA METODOS USADOS POR MODALES *********************************************************
      *******************************************************************************************
@@ -209,39 +226,25 @@ class procesosController extends Controller
         return $result;
     }
 
-
     /**
-     * Metodo del controlador que retorna el modal para agregar un proceso
+     * Metodo del controlador que retorna la vista para el cambio de estado
      * Usado en Modal
      *
+     * @param $idEspecimen
+     * @param $idProceso
+     * @param $tipoEspecimen
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getModalEditarEspecimenesProcesos($idProceso)
+    public function getModalAsociarEspecimenProceso($idEspecimen, $idProceso,$tipoEspecimen,$estado)
     {
         $Bl = new AquaWebBL();
 
-        $dataBL = $Bl->getInfoProcesoById($idProceso);
+        $dataBL = $Bl->getInfoAsociacionElementosForProceso($idEspecimen, $idProceso,$tipoEspecimen,$estado);
 
         $data = $dataBL[0];
 
-        return view('procesos.modalEditarEspecimenesProceso', compact('data'));
-    }
+        return view('layouts.Modals.modalAsociacionElemento', compact('data'));
 
-    /**
-     * Metodo del controlador que retorna el modal para agregar un proceso
-     * Usado en Modal
-     *
-     * @param Request $rq
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function postModalEditarEspecimenesProcesos(Request $rq)
-    {
-
-        $Bl = new AquaWebBL();
-
-        $result = $Bl->postEditarProcesos($rq);
-
-        return $result;
     }
 
     /**

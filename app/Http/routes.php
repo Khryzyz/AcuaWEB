@@ -144,6 +144,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('procesos/getViewInfoValoresProcesoById/{idProceso}', 'procesosController@getViewInfoValoresProcesoById')->name('getViewInfoValoresProcesoById');
 
+    Route::get('procesos/editarEspecimenesProcesos/{idProceso}', 'procesosController@getEditarEspecimenesProcesos');
+
     /**
      * AREA PROCESOS  / MODALES ****************************************************************
      */
@@ -156,10 +158,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('procesos/modalEditarProcesos', 'procesosController@postModalEditarProcesos')->name('modalEditarProcesos');
 
-    Route::get('procesos/modalEditarEspecimenesProcesos/{idProceso}', 'procesosController@getModalEditarEspecimenesProcesos');
+    Route::get('procesos/modalAsociarEspecimenProceso/{idEspecimen}/{idProceso}/{tipoEspecimen}/{estado}', 'procesosController@getModalAsociarEspecimenProceso')->name('modalAsociarEspecimenProceso');
 
-    Route::post('procesos/modalEditarEspecimenesProcesos', 'procesosController@postModalEditarEspecimenesProcesos')->name('modalEditarEspecimenesProcesos');
-
+    Route::post('procesos/modalAsociarEspecimenProceso', 'procesosController@postModalAsociarEspecimenProceso')->name('modalAsociarEspecimenProceso');
 
 
     /**
@@ -237,9 +238,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('configuracion/getPlantasByUsuarioId', 'configuracionController@getPlantasByUsuarioId')->name('getPlantasByUsuarioId');
 
-    Route::post('configuracion/getPlantasByUsuarioIdByList', 'configuracionController@getPlantasByUsuarioIdByList')->name('getPlantasByUsuarioIdByList');
+    Route::post('configuracion/getPlantasByUsuarioIdForProceso/{idProceso}', 'configuracionController@getPlantasByUsuarioIdForProceso')->name('getPlantasByUsuarioIdForProceso');
 
     Route::post('configuracion/getPecesByUsuarioId', 'configuracionController@getPecesByUsuarioId')->name('getPecesByUsuarioId');
+
+    Route::post('configuracion/getPecesByUsuarioIdForProceso/{idProceso}', 'configuracionController@getPecesByUsuarioIdForProceso')->name('getPecesByUsuarioIdForProceso');
 
     /**
      * AREA CONFIGURACION  / DROPDOWNS **************************************************************
