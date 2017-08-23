@@ -70,13 +70,62 @@ class AquaWebBL
      * @param $tipoElemento
      * @return mixed.
      */
-    public function getInfoAsociacionElementosForProceso($idEspecimen, $idProceso, $tipoEspecimen,$estado)
+    public function getInfoAsociacionElementosForProceso($idEspecimen, $idProceso, $tipoEspecimen, $estado)
     {
-        $data = \DB::select('CALL getInfoAsociacionElementosForProceso(?,?,?,?)', array($idEspecimen, $idProceso, $tipoEspecimen,$estado));
+        $data = \DB::select('CALL getInfoAsociacionElementosForProceso(?,?,?,?)', array($idEspecimen, $idProceso, $tipoEspecimen, $estado));
 
         return $data;
     }
 
+    /**
+     * Metodo que registra un proceso
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postInfoAsociacionElementosForProceso($rq)
+    {
+        $result = [];
+
+        $id = $rq->input('id');
+        $elementotipo = $rq->input('elementotipo');
+        $procesoid = $rq->input('procesoid');
+        $asociado = $rq->input('asociado');
+        $porcentaje = $rq->input('porcentaje');
+
+        try {
+            $transaction = \DB::select('CALL regEspecimenesForProceso(?,?,?,?,?)', array(
+                    $id,
+                    $elementotipo,
+                    $procesoid,
+                    $asociado,
+                    $porcentaje)
+            );
+            if ($transaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+
+            } else {
+                if ($asociado == 1) {
+                    $result['estado'] = "success";
+                    $result['mensaje'] = 'Especimen asociado correctamente';
+                } else {
+                    $result['estado'] = "success";
+                    $result['mensaje'] = 'Especimen retirado correctamente';
+                }
+            }
+        } catch (Exception $e) {
+            if ($asociado == 1) {
+                $result['estado'] = "error";
+                $result['mensaje'] = 'Especimen NO se asoció correctamente' . $e;
+            } else {
+                $result['estado'] = "error";
+                $result['mensaje'] = 'Especimen NO se retiró correctamente' . $e;
+            }
+        }
+        return json_encode($result);
+
+    }
 
     /**
      * Metodo que consulta los procesos por el id del usuario relacionados
@@ -569,7 +618,6 @@ class AquaWebBL
         }
         return json_encode($result);
     }
-
 
     /**
      * Metodo que registra un proceso

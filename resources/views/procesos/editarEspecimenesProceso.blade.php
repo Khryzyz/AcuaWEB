@@ -75,6 +75,11 @@
                     ->width(100)
                     ->title('Nombre');
 
+                $porcentajePlanta = new \Kendo\UI\GridColumn();
+                $porcentajePlanta
+                    ->width(50)
+                    ->title('Porcentaje');
+
                 $detallePlanta = new \Kendo\UI\GridColumn();
                 $detallePlanta
                     ->width(150)
@@ -90,6 +95,7 @@
                     ->addColumn(
                         $imagenPlanta,
                         $nombrePlanta,
+                        $porcentajePlanta,
                         $detallePlanta,
                         $accionPlanta
                     )
@@ -166,6 +172,11 @@
                     ->width(100)
                     ->title('Nombre');
 
+                $porcentajePez = new \Kendo\UI\GridColumn();
+                $porcentajePez
+                    ->width(50)
+                    ->title('Porcentaje');
+
                 $detallePez = new \Kendo\UI\GridColumn();
                 $detallePez
                     ->width(150)
@@ -181,6 +192,7 @@
                     ->addColumn(
                         $imagenPez,
                         $nombrePez,
+                        $porcentajePez,
                         $detallePez,
                         $accionPez
                     )
@@ -208,6 +220,15 @@
             <td class="nombre">
                 #: nombre #
             </td>
+            #if(data.porcentaje>0){#
+            <td class="porcentajevalor">
+                #: porcentaje #%
+            </td>
+            #}else{#
+            <td class="porcentajenovalor">
+                ---
+            </td>
+            #}#
             <td class="detalle">
                 <p>Fecha Actualización: #: actualizacion #</p>
                 <p>Usuario: #: usuario #</p>
@@ -237,6 +258,15 @@
             <td class="nombre">
                 #: nombre #
             </td>
+                #if(data.porcentaje>0){#
+            <td class="porcentajevalor">
+                #: porcentaje #%
+            </td>
+                #}else{#
+            <td class="porcentajenovalor">
+                ---
+            </td>
+                #}#
             <td class="detalle">
                 <p>Fecha Actualización: #: actualizacion #</p>
                 <p>Usuario: #: usuario #</p>
@@ -259,7 +289,7 @@
     </script>
     <style>
 
-        .nombre {
+        .nombre, .porcentajevalor, .porcentajenovalor {
             font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
             font-size: 30px;
             font-weight: bold;
@@ -267,12 +297,16 @@
             align-items: center;
         }
 
-        td.imagen {
+        td.imagen,td.porcentajenovalor {
             text-align: center;
         }
 
         td.nombre {
             text-align: left;
+        }
+
+        td.porcentajevalor {
+            text-align: right;
         }
 
         .k-grid-header .k-header {

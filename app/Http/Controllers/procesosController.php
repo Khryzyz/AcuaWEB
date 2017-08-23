@@ -214,7 +214,7 @@ class procesosController extends Controller
      * Usado en Modal
      *
      * @param Request $rq
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return string
      */
     public function postModalEditarProcesos(Request $rq)
     {
@@ -235,16 +235,33 @@ class procesosController extends Controller
      * @param $tipoEspecimen
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getModalAsociarEspecimenProceso($idEspecimen, $idProceso,$tipoEspecimen,$estado)
+    public function getModalAsociarEspecimenProceso($idEspecimen, $idProceso, $tipoEspecimen, $estado)
     {
         $Bl = new AquaWebBL();
 
-        $dataBL = $Bl->getInfoAsociacionElementosForProceso($idEspecimen, $idProceso,$tipoEspecimen,$estado);
+        $dataBL = $Bl->getInfoAsociacionElementosForProceso($idEspecimen, $idProceso, $tipoEspecimen, $estado);
 
         $data = $dataBL[0];
 
         return view('layouts.Modals.modalAsociacionElemento', compact('data'));
 
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar un proceso
+     * Usado en Modal
+     *
+     * @param Request $rq
+     * @return string
+     */
+    public function postModalAsociarEspecimenProceso(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postInfoAsociacionElementosForProceso($rq);
+
+        return $result;
     }
 
     /**

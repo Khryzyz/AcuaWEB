@@ -15,6 +15,15 @@
 
     @include('layouts.Panels.Procesos.infoProceso')
 
+    <?php if($data->estado == ("Activo")) {?>
+    <div class="panel-primary">
+        <div class="panel-body text-left">
+            <a href="{{url(route('editarEspecimenesProcesos', ['idProceso' => $data->id]))}}" class="btn btn-add">
+                <i class="fa fa-plus"></i> Editar Espécimenes</a>
+        </div>
+    </div>
+    <?php } ?>
+
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h4 class="panel-title">Características del proceso - Plantas</h4>
@@ -70,7 +79,7 @@
                 $nombrePlanta->field('nombre')->title('Nombre')->width(50);
 
                 $porcentajePlanta = new \Kendo\UI\GridColumn();
-                $porcentajePlanta->field('porcentaje')->title('Porcentaje')->width(50);
+                $porcentajePlanta->field('porcentaje')->title('Porcentaje')->templateId('porcentaje')->width(50);
 
                 $estadoPlanta = new \Kendo\UI\GridColumn();
                 $estadoPlanta->field('estado')->title('Estado')->width(50);
@@ -148,7 +157,7 @@
                 $nombrePez->field('nombre')->title('Nombre')->width(50);
 
                 $porcentajePez = new \Kendo\UI\GridColumn();
-                $porcentajePez->field('porcentaje')->title('Porcentaje')->width(50);
+                $porcentajePez->field('porcentaje')->title('Porcentaje')->templateId('porcentaje')->width(50);
 
                 $estadoPez = new \Kendo\UI\GridColumn();
                 $estadoPez->field('estado')->title('Estado')->width(50);
@@ -172,6 +181,13 @@
     </div>
 @endsection
 @section('scripts')
+
+    <script id="porcentaje" type="text/x-kendo-tmpl">
+        <div class="text-right">
+            <strong>#=porcentaje#</strong>
+        </div>
+    </script>
+
     <script id="vercaracteristicaplanta" type="text/x-kendo-tmpl">
         <div class="btn-group-justified">
             <a href="/general/getModalInfoPlantaById/#=idplanta#"

@@ -1,9 +1,10 @@
-<div id="ModalEstadoElemento">
+<div id="ModalEspecimenesElemento">
     {!!Form::open(['url' => route('modalAsociarEspecimenProceso'), 'method' => 'POST', 'role'=>"form"])!!}
     <div class="modal-header bg-primary">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4><i class="fa fa-edit"></i>
-            <?php if ($data->asociado == 2) { ?>Retirar<?php } else { ?>Agregar<?php } ?> {{$data->elemento}}: {{$data->nombre}}</h4>
+            <?php if ($data->asociado == 2) { ?>Retirar<?php } else { ?>Agregar<?php } ?> {{$data->elemento}}
+            : {{$data->nombre}}</h4>
     </div>
     <div class="modal-body">
 
@@ -14,8 +15,17 @@
 
         <?php if ($data->asociado == 2) { ?>
         <p>¿Deseas <strong>"Retirar"</strong> el elemento <strong>{{$data->nombre}}</strong> del proceso?</p>
+        {!!Form::hidden('porcentaje',$data->porcentaje,['class'=>'form-control'])!!}
         <?php } else { ?>
         <p>¿Deseas <strong>"Agregar"</strong> el elemento <strong>{{$data->nombre}}</strong> al proceso?</p>
+        <div class="row margin-bottom-10">
+            <div class="col-md-4">
+                {!!Form::label('porcentaje', 'Porcentaje: (*)')!!}
+            </div>
+            <div class="col-md-8">
+                {!!Form::number('porcentaje',$data->porcentaje,['class'=>'form-control', 'min'=>'1','max'=>'100', 'maxlength'=>'3', 'required'=>'required', 'placeholder'=>'Porcentaje'])!!}
+            </div>
+        </div>
         <?php } ?>
 
 
@@ -31,7 +41,7 @@
 </div>
 
 <script type="text/javascript">
-    var modal = $('#ModalEstadoElemento');
+    var modal = $('#ModalEspecimenesElemento');
 
     $(function () {
         eventResultForm(modal, onSuccess)

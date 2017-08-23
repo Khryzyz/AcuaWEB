@@ -144,7 +144,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('procesos/getViewInfoValoresProcesoById/{idProceso}', 'procesosController@getViewInfoValoresProcesoById')->name('getViewInfoValoresProcesoById');
 
-    Route::get('procesos/editarEspecimenesProcesos/{idProceso}', 'procesosController@getEditarEspecimenesProcesos');
+    Route::get('procesos/editarEspecimenesProcesos/{idProceso}', 'procesosController@getEditarEspecimenesProcesos')->name('editarEspecimenesProcesos');
 
     /**
      * AREA PROCESOS  / MODALES ****************************************************************
