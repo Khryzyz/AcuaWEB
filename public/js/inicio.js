@@ -5,15 +5,16 @@ $.ajaxSetup({
     }
 });
 
-
 var modalBs = $('#modalBs');
 var modalBsContent = $('#modalBs').find(".modal-content");
 $(function () {
 
     /*elimina boton de seleccion de filtros de la grid*/
 
-    $('.k-grid.k-widget .k-dropdown-wrap.k-state-default').remove();
-
+    $('span[unselectable].k-dropdown-wrap.k-state-default').removeAttr('style');
+    $('table .k-dropdown-wrap.k-state-default').css('display', 'none');
+    $('table span.k-widget.k-dropdown.k-header.k-dropdown-operator').remove();
+    // $('table').addClass('.table .table-responsive')
     handleAjaxModal();
 })
 
@@ -83,5 +84,27 @@ function eventResultForm(modal, onSuccess) {
             }
         });
         return false;
+    });
+}
+
+function eventResultFormFile(modal, onSuccess, url) {
+    modal.find('form').submit(function (event) {
+        event.preventDefault();
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                onSuccess(result);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var message = "Error de ejecución: " + textStatus + " " + errorThrown;
+                $.msgbox(message, {type: 'error'});
+                console.log("Error: ");
+            }
+        });
     });
 }

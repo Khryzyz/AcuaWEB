@@ -122,6 +122,7 @@
             <i class="fa fa-power-off"></i> Activar</a>
         #}#
         </div>
+
     </script>
 
     <script id='verplanta' type='text/x-kendo-tmpl'>
@@ -135,6 +136,7 @@
                data-modal="modal-lg">
                 <i class="fa fa-image"></i> Ver Galeria</a>
         </div>
+
     </script>
 
     <script id='editarplanta' type='text/x-kendo-tmpl'>
@@ -143,10 +145,10 @@
             class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
             data-modal="modal-md">
             <i class="fa fa-leaf"></i> Editar Planta</a>
-            <a href='/general/getModalEditarGaleriaPlantaById/#=idplanta#'
-            class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
-            data-modal="modal-md">
+            <a href='/configuracion/editargaleriaplanta/#=idplanta#'
+            class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# ">
             <i class="fa fa-image"></i> Editar Galeria</a>
         </div>
+
     </script>
 @endsection

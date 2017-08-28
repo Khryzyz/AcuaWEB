@@ -5,6 +5,7 @@ namespace aplicacion\Http\Controllers;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\type;
 use Utils;
 
 use AquaWebBL;
@@ -120,6 +121,31 @@ class configuracionController extends Controller
         $data = $dataBL[0];
 
         return view('configuracion.configuracionMisPeces', compact('data'));
+    }
+
+    /**
+     * Metodo del controlador que:
+     *  - consulta la informacion del pez por su id
+     *  - Retorna la vista junto con la informacion del pez
+     *
+     * @param $idPlanta
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function editargaleriaplanta($idPlanta)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $dataUsuario = $Bl->getInfoUsuarioById($this->auth->user()->id);
+
+        $dataPlanta = $Bl->getInfoPlantaById($idPlanta);
+
+        $data = (object)array_merge((array)$dataUsuario[0], (array)$dataPlanta[0]);
+
+        dd($data);
+
+        return view('configuracion.editarGaleriaPlanta', compact('data'));
+
     }
 
     /**

@@ -25,10 +25,19 @@
 
                         <div class="panel-body text-center">
                             <!-- Imagen -->
-                            <img src="{{url('/img/sin_avatar.png')}}" class="img-responsive img-thumbnail"
-                                 alt="Imagen no disponible"/>
-
-                            <!-- FIN Imagen -->
+                            <?php if($data->avatar){
+                            ?>
+                            <img src="{{url('/img/avatar/'.$data->avatar)}}" class="img-responsive img-thumbnail" alt="Avatar"
+                                 height="100em"/>
+                            <?php
+                            }else{
+                            ?>
+                            <img src="{{url('/img/sin_avatar.png')}}" class="img-responsive img-thumbnail" alt="Avatar" height="100em"
+                                 width="100em"/>
+                        <?php
+                        }
+                        ?>
+                        <!-- FIN Imagen -->
                         </div>
 
                     </div>

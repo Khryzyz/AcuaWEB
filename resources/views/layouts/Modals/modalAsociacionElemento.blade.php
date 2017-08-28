@@ -44,8 +44,23 @@
     var modal = $('#ModalEspecimenesElemento');
 
     $(function () {
+        validarFormulario();// validar forularios con kendo
         eventResultForm(modal, onSuccess)
     });
+
+
+    function validarFormulario() {
+        var container = $('form');
+
+        kendo.init(container);
+
+        container.kendoValidator({
+            //organiza los mensajes personalizados
+            messages: {
+                required: "Este campo es obligatorio"
+            },
+        });
+    }
 
     function onSuccess(result) {
 

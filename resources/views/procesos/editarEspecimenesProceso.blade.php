@@ -8,7 +8,7 @@
 
     <div class="panel-primary">
         <div class="panel-body text-right">
-            <a href="{{route('getViewInfoCaracteristicasProcesoById', ['idProceso' => $data->id])}}"
+            <a href="{{route('getViewInfoCaracteristicasProcesoById', ['idProceso' => $data->idproceso])}}"
                class="btn btn-view">
                 <i class="fa fa-wrench"></i> Características del proceso</a>
         </div>
@@ -29,7 +29,7 @@
 
                 //Agregamos atributos al datasource de transporte de lectura
                 $readPlantas
-                    ->url(route('getPlantasByUsuarioIdForProceso', ['idProceso' => $data->id]))
+                    ->url(route('getPlantasByUsuarioIdForProceso', ['idProceso' => $data->idproceso]))
                     ->contentType('application/json')
                     ->type('POST');
 
@@ -126,7 +126,7 @@
 
                 //Agregamos atributos al datasource de transporte de lectura
                 $readPeces
-                    ->url(route('getPecesByUsuarioIdForProceso', ['idProceso' => $data->id]))
+                    ->url(route('getPecesByUsuarioIdForProceso', ['idProceso' => $data->idproceso]))
                     ->contentType('application/json')
                     ->type('POST');
 
@@ -236,7 +236,7 @@
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href='/procesos/modalAsociarEspecimenProceso/#=id#/{{$data->id}}/#=tipoespecimen#/#=estado#/' data-modal="modal-sm"
+                    <a href='/procesos/modalAsociarEspecimenProceso/#=id#/{{$data->idproceso}}/#=tipoespecimen#/#=estado#/' data-modal="modal-sm"
                     #if(estado == '1'){#
                         class="btn btn-on-status ">
                         <i class="fa fa-check-circle"></i> Agregar
@@ -274,7 +274,7 @@
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href='/procesos/modalAsociarEspecimenProceso/#=id#/{{$data->id}}/#=tipoespecimen#/#=estado#' data-modal="modal-sm"
+                    <a href='/procesos/modalAsociarEspecimenProceso/#=id#/{{$data->idproceso}}/#=tipoespecimen#/#=estado#' data-modal="modal-sm"
                     #if(estado == '1'){#
                         class="btn btn-on-status ">
                         <i class="fa fa-check-circle"></i> Agregar

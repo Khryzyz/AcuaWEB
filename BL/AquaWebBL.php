@@ -840,4 +840,92 @@ class AquaWebBL
 
     }
 
+    /**
+     * Metodo que registra un usuario
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postEditarPassUsuarioById($rq)
+    {
+        $result = [];
+
+        try {
+
+            if (Hash::check('plain-text', bcrypt($rq->input('old_pass')))) {
+
+                $usuarioid = $rq->input('usuarioid');
+                $pass = bcrypt($rq->input('pass'));
+
+                $transaction = \DB::select('CALL updPassUsuario(?,?)',
+                    array(
+                        $usuarioid,
+                        $pass
+                    )
+                );
+
+                if ($transaction) {
+
+                    $result['estado'] = "fatal";
+                    $result['mensaje'] = $transaction[0]->MESSAGE;
+
+                } else {
+                    $result['estado'] = "success";
+                    $result['mensaje'] = 'Registrado correctamente';
+                }
+            } else {
+                $result['estado'] = "nopass";
+                $result['mensaje'] = "Contraseña no coincide, intentelo nuevamente";
+            }
+
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = 'No se registro correctamente';
+        }
+        return json_encode($result);
+
+    }
+
+    /**
+     * Metodo que registra un usuario
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postEditarAvatarUsuarioById($rq)
+    {
+        $result = [];
+
+        $usuarioid = $rq->input('usuarioid');
+
+        $file = $rq->file('avatar')->getClientOriginalName();
+
+        $extension = pathinfo($file, PATHINFO_EXTENSION);
+
+        try {
+            $transaction = \DB::select('CALL updAvatarUsuario(?,?)',
+                array(
+                    $usuarioid,
+                    $extension
+                )
+            );
+
+            if ($transaction[0]->AVATAR_STATUS) {
+                $result['codigo'] = $transaction[0]->CODIGO;
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Registrado correctamente';
+            } else {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+            }
+
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = 'No se registro correctamente';
+        }
+
+        return json_encode($result);
+
+    }
+
 }

@@ -6,7 +6,7 @@
     <div class="modal-body">
         <div class="panel-body">
 
-            <!-- Información del pez -->
+            <!-- Información del Planta -->
             <div class="panel-group">
                 <div class="col-md-3 pre-scrollable" align="right">
                     <?php
@@ -26,37 +26,37 @@
                     <?php foreach ($data as $dataImagen) { ?>
                     <div class="slidesGallery">
                         <div class="row margin-bottom-5">
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <strong>Nombre:</strong>
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-8">
                                 {{$dataImagen->titulo}}
                             </div>
                         </div>
                         <div class="row margin-bottom-5">
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <strong>Descripción:</strong>
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-8">
                                 {{$dataImagen->descripcion}}
                             </div>
                         </div>
                         <div class="row margin-bottom-5">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Creación:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$dataImagen->creacion}}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Actualización:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$dataImagen->actualizacion}}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12 text-center">
+                            <div class="col-md-12">
                                 <img class=" img-responsive img-rounded"
                                      src="{{url('/img/gallery/' . $dataImagen->imagen)}}"
                                      style="height: 400px">

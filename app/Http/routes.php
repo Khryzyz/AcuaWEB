@@ -91,9 +91,7 @@ Route::group(['middleware' => 'auth'], function () {
      */
 
     /**
-     *******************************************************************************************
-     * FIN AREA GENERAL ************************************************************************
-     *******************************************************************************************
+     * AREA GENERAL  / VISTAS *****************************************************************
      */
 
     /**
@@ -103,8 +101,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('general/getModalInfoPlantaById/{idPlanta}', 'generalController@getModalInfoPlantaById');
 
     Route::get('general/getModalGaleriaPlantaById/{idPlanta}', 'generalController@getModalGaleriaPlantaById');
-
-    Route::get('general/getModalEditarGaleriaPlantaById/{idPlanta}', 'generalController@getModalEditarGaleriaPlantaById');
 
     Route::get('general/getModalEditarPlantaById/{idPlanta}', 'generalController@getModalEditarPlantaById');
 
@@ -124,9 +120,24 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('general/postModalEditarUsuarioById', 'generalController@postModalEditarUsuarioById')->name('modalEditarUsuario');
 
+    Route::get('general/getModalEditarPassUsuarioById/{idUsuario}', 'generalController@getModalEditarPassUsuarioById');
+
+    Route::post('general/postModalEditarPassUsuarioById', 'generalController@postModalEditarPassUsuarioById')->name('modalEditarPassUsuario');
+
+    Route::get('general/getModalEditarAvatarUsuarioById/{idUsuario}', 'generalController@getModalEditarAvatarUsuarioById');
+
+    Route::post('general/postModalEditarAvatarUsuarioById', 'generalController@postModalEditarAvatarUsuarioById')->name('modalEditarAvatarUsuario');
+
     Route::get('general/getModalEstadoElemento/{idElemento}/{tipoElemento}', 'generalController@getModalEstadoElemento');
 
-    Route::post('general/modalEstadoElemento', 'generalController@postModalEstadoElemento')->name('modalEstadoElemento');
+    Route::post('general/postModalEstadoElemento', 'generalController@postModalEstadoElemento')->name('modalEstadoElemento');
+
+
+    /**
+     *******************************************************************************************
+     * FIN AREA GENERAL ************************************************************************
+     *******************************************************************************************
+     */
 
     /**
      *******************************************************************************************
@@ -208,6 +219,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('configuracion/misplantas', 'configuracionController@configuracionMisPlantas')->name('configMisPlantas');
 
     Route::get('configuracion/mispeces', 'configuracionController@configuracionMisPeces')->name('configMisPeces');
+
+    Route::get('configuracion/editargaleriaplanta/{idPlanta}', 'configuracionController@editargaleriaplanta')->name('editargaleriaplanta');
 
 
     /**

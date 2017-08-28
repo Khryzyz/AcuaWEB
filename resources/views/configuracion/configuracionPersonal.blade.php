@@ -15,15 +15,26 @@
                         </div>
                         <div class="panel-body text-center">
                             <!-- Imagen -->
-                            <img src="{{url('/img/sin_avatar.png')}}" class="img-responsive img-thumbnail"
-                                 alt="Imagen no disponible"/>
-
-                            <!-- FIN Imagen -->
+                            <?php if($data->avatar){
+                            ?>
+                            <img src="{{url('/img/avatar/'.$data->avatar)}}" class="img-responsive img-thumbnail" alt="Avatar"
+                                 height="100em"/>
+                            <?php
+                            }else{
+                            ?>
+                            <img src="{{url('/img/sin_avatar.png')}}" class="img-responsive img-thumbnail" alt="Avatar" height="100em"
+                                 width="100em"/>
+                        <?php
+                        }
+                        ?>
+                        <!-- FIN Imagen -->
                         </div>
                         <div class="panel-footer btn-group-justified">
-                            <a href="{{route('modalAgregarProcesos')}}" class="btn btn-edit" data-modal="modal-md">
+                            <a href='/general/getModalEditarAvatarUsuarioById/{{$data->idusuario}}'
+                               class="btn btn-edit"
+                               data-modal="modal-md">
                                 <i class="fa fa-pencil"></i>
-                                Editar avatar</a>
+                                Editar avatar personal</a>
                         </div>
                     </div>
                 </div>
@@ -92,17 +103,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer btn-group-justified">
-                            <a href='/general/getModalEditarUsuarioById/{{$data->id}}'
+                        <div class="panel-footer text-right">
+                            <a href='/general/getModalEditarUsuarioById/{{$data->idusuario}}'
                                class="btn btn-edit"
                                data-modal="modal-md">
                                 <i class="fa fa-pencil"></i>
                                 Editar información personal</a>
-                            <a href='/general/getModalEditarUsuarioById/{{$data->id}}'
+                        <!--<a href='/general/getModalEditarPassUsuarioById/{{$data->idusuario}}'
                                class="btn btn-edit"
                                data-modal="modal-md">
                                 <i class="fa fa-pencil"></i>
-                                Editar clave de acceso</a>
+                                Editar clave de acceso</a>-->
                         </div>
                     </div>
                     <div class="panel panel-default">

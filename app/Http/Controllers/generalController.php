@@ -164,27 +164,6 @@ class generalController extends Controller
      * @param $idPez
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getModalEditarGaleriaPlantaById($idPez)
-    {
-
-        $Bl = new AquaWebBL();
-
-        $data = $Bl->getGaleriaPezById($idPez);
-
-        return view('layouts.Modals.modalEditarGaleriaPez', compact('data'));
-
-    }
-
-
-    /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del pez por su id
-     *  - Retorna la vista junto con la informacion del pez
-     * Usado en Modal
-     *
-     * @param $idPez
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function getModalEditarPezById($idPez)
     {
 
@@ -273,6 +252,103 @@ class generalController extends Controller
         $Bl = new AquaWebBL();
 
         $result = $Bl->postEditarUsuario($rq);
+
+        return $result;
+
+    }
+
+
+    /**
+     * Metodo del controlador que:
+     *  - consulta la informacion del usuario por su id
+     *  - Retorna la vista junto con la informacion del usuario
+     * Usado en Modal
+     *
+     * @param $idUsuario
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalEditarPassUsuarioById($idUsuario)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoUsuarioById($idUsuario);
+
+        $data = $dataBL[0];
+
+        return view('layouts.Modals.modalEditarPassUsuario', compact('data'));
+
+    }
+
+
+    /**
+     * Metodo del controlador que:
+     *  - consulta la informacion del usuario por su id
+     *  - Retorna la vista junto con la informacion del usuario
+     * Usado en Modal
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postModalEditarPassUsuarioById(Request $rq)
+    {
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postEditarPassUsuarioById($rq);
+
+        return $result;
+
+    }
+
+    /**
+     * Metodo del controlador que:
+     *  - consulta la informacion del usuario por su id
+     *  - Retorna la vista junto con la informacion del usuario
+     * Usado en Modal
+     *
+     * @param $idUsuario
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalEditarAvatarUsuarioById($idUsuario)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoUsuarioById($idUsuario);
+
+        $data = $dataBL[0];
+
+        return view('layouts.Modals.modalEditarAvatarUsuario', compact('data'));
+
+    }
+
+
+    /**
+     * Metodo del controlador que:
+     *  - consulta la informacion del usuario por su id
+     *  - Retorna la vista junto con la informacion del usuario
+     * Usado en Modal
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postModalEditarAvatarUsuarioById(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postEditarAvatarUsuarioById($rq);
+
+        $result_decode = json_decode($result);
+
+        if ($result_decode->codigo) {
+
+            $file = $rq->file('avatar');
+
+            $extension = pathinfo($rq->file('avatar')->getClientOriginalName(), PATHINFO_EXTENSION);
+
+            $file->move('img/avatar', $result_decode->codigo . "." . $extension);
+        }
 
         return $result;
 

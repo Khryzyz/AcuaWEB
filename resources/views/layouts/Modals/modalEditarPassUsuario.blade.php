@@ -1,69 +1,48 @@
-<div id="ModalEditarUsuario">
-    {!!Form::open(['url' => route('modalEditarUsuario'), 'method' => 'POST', 'role'=>"form"])!!}
+<div id="ModalEditarPassUsuario">
+
+    {!!Form::open(['url' => route('modalEditarPassUsuario'), 'method' => 'POST', 'role'=>"form"])!!}
+
     <div class="modal-header bg-warning">
+
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4><i class="fa fa-user"></i> Editar Usuario</h4>
+
+        <h4><i class="fa fa-key"></i> Editar clave de acceso</h4>
+
     </div>
     <div class="modal-body">
 
         <div class="row margin-bottom-10">
             <div class="col-md-4">
-                {!!Form::label('usuario', 'Username: (*)')!!}
+                {!!Form::label('old_pass', 'Contraseña Anterior: (*)')!!}
             </div>
             <div class="col-md-8">
-                {!!Form::hidden('usuarioid',$data->idusuario,['class'=>'form-control'])!!}
-                {!!Form::text('usuario',$data->usuario,['class'=>'form-control', 'required', 'placeholder'=>'Username'])!!}
+                {!!Form::hidden('usuarioid',$data->id,['class'=>'form-control'])!!}
+                {!!Form::password('old_pass',['class'=>'form-control', 'required', 'placeholder'=>'Contraseña Anterior','maxlength'=>10])!!}
             </div>
         </div>
 
         <div class="row margin-bottom-10">
             <div class="col-md-4">
-                {!!Form::label('email', 'Correo Electronico: (*)')!!}
+                {!!Form::label('pass', 'Contraseña Nueva: (*)')!!}
             </div>
             <div class="col-md-8">
-                {!!Form::email('email',$data->correo,['class'=>'form-control', 'required', 'data-email-msg'=>'Formato de correo no valido', 'placeholder'=>'Correo Electronico'])!!}
+                {!!Form::password('pass',['class'=>'form-control', 'required', 'placeholder'=>'Contraseña Nueva','maxlength'=>10])!!}
             </div>
         </div>
 
         <div class="row margin-bottom-10">
             <div class="col-md-4">
-                {!!Form::label('primernombre', 'Primer Nombre: (*)')!!}
+                {!!Form::label('confirm_pass', 'Repita Contraseña Nueva: (*)')!!}
             </div>
             <div class="col-md-8">
-                {!!Form::text('primernombre',$data->primer_nombre,['class'=>'form-control', 'required', 'placeholder'=>'Primer Nombre'])!!}
+                {!!Form::password('confirm_pass',['class'=>'form-control', 'required', 'placeholder'=>'Contraseña Nueva','maxlength'=>10])!!}
             </div>
         </div>
-
-        <div class="row margin-bottom-10">
-            <div class="col-md-4">
-                {!!Form::label('segundonombre', 'Segundo Nombre:')!!}
-            </div>
-            <div class="col-md-8">
-                {!!Form::text('segundonombre',$data->segundo_nombre,['class'=>'form-control', 'placeholder'=>'Segundo Nombre'])!!}
-            </div>
-        </div>
-
-        <div class="row margin-bottom-10">
-            <div class="col-md-4">
-                {!!Form::label('primerapellido', 'Primer Apellido: (*)')!!}
-            </div>
-            <div class="col-md-8">
-                {!!Form::text('primerapellido',$data->primer_apellido,['class'=>'form-control', 'required', 'placeholder'=>'Primer Apellido'])!!}
-            </div>
-        </div>
-
-        <div class="row margin-bottom-10">
-            <div class="col-md-4">
-                {!!Form::label('segundoapellido', 'Segundo Apellido:')!!}
-            </div>
-            <div class="col-md-8">
-                {!!Form::text('segundoapellido',$data->segundo_apellido,['class'=>'form-control', 'placeholder'=>'Segundo Apellido'])!!}
-            </div>
-        </div>
-
-        @include('layouts.Panels.Annotations.someFieldsRequired')
 
     </div>
+
+    @include('layouts.Panels.Annotations.someFieldsRequired')
+
 
     <div class="modal-footer">
 
@@ -77,7 +56,7 @@
 
 </div>
 <script type="text/javascript">
-    var modal = $('#ModalEditarUsuario');
+    var modal = $('#ModalEditarPassUsuario');
 
     $(function () {
         validarFormulario();// validar forularios con kendo
@@ -124,10 +103,13 @@
                 });
                 break;
             case "error":
-                $.msgbox(result.mensaje, {type: 'warning'});
+                $.msgbox(result.mensaje, {type: 'error'});
                 break;
             case "fatal":
                 $.msgbox(result.mensaje, {type: 'error'});
+                break;
+            case "nopass":
+                $.msgbox(result.mensaje, {type: 'info'});
                 break;
             default:
                 $.msgbox("Error desconocido", {type: 'error'});

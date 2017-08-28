@@ -2,10 +2,19 @@
 
     <div class="panel-body text-center">
         <!-- Imagen -->
-        <img src="{{url('/img/sin_avatar.png')}}" class="img-responsive img-thumbnail" alt="Avatar" height="100em"
-             width="100em"/>
-
-        <!-- FIN Imagen -->
+        <?php if(Auth::user()->avatar){
+        ?>
+        <img src="{{url('/img/avatar/'.Auth::user()->avatar.".".Auth::user()->extension)}}"
+             class="img-responsive img-thumbnail" alt="Avatar"
+             height="100em"/>
+        <?php
+        }else{
+        ?>
+        <img src="{{url('/img/sin_avatar.png')}}" class="img-responsive img-thumbnail" alt="Avatar" height="100em"/>
+    <?php
+    }
+    ?>
+    <!-- FIN Imagen -->
     </div>
 
     <div class="list-group panel">

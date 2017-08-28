@@ -7,7 +7,7 @@
     ?>
     <div class="panel-primary">
         <div class="panel-body text-right">
-            <a href="{{route('getViewInfoValoresProcesoById', ['idProceso' => $data->id])}}"
+            <a href="{{route('getViewInfoValoresProcesoById', ['idProceso' => $data->idproceso])}}"
                class="btn btn-view">
                 <i class="fa fa-line-chart"></i> Valores del proceso</a>
         </div>
@@ -18,7 +18,7 @@
     <?php if($data->estado == ("Activo")) {?>
     <div class="panel-primary">
         <div class="panel-body text-left">
-            <a href="{{url(route('editarEspecimenesProcesos', ['idProceso' => $data->id]))}}" class="btn btn-add">
+            <a href="{{url(route('editarEspecimenesProcesos', ['idProceso' => $data->idproceso]))}}" class="btn btn-add">
                 <i class="fa fa-plus"></i> Editar Espécimenes</a>
         </div>
     </div>
@@ -37,7 +37,7 @@
 
                 //Agregamos atributos al datasource de transporte de lectura
                 $readPlanta
-                    ->url(route('getInfoPlantaByProcesoId', ['idProceso' => $data->id]))
+                    ->url(route('getInfoPlantaByProcesoId', ['idProceso' => $data->idproceso]))
                     ->contentType('application/json')
                     ->type('POST');
 
@@ -76,20 +76,20 @@
 
                 //Inicializamos las columnas de la grid
                 $nombrePlanta = new \Kendo\UI\GridColumn();
-                $nombrePlanta->field('nombre')->title('Nombre')->width(50);
+                $nombrePlanta->field('nombre')->title('Nombre')->width(80);
 
                 $porcentajePlanta = new \Kendo\UI\GridColumn();
-                $porcentajePlanta->field('porcentaje')->title('Porcentaje')->templateId('porcentaje')->width(50);
+                $porcentajePlanta->field('porcentaje')->title('Porcentaje')->templateId('porcentaje')->width(30);
 
-                $estadoPlanta = new \Kendo\UI\GridColumn();
-                $estadoPlanta->field('estado')->title('Estado')->width(50);
+                $actualizacionPlanta = new \Kendo\UI\GridColumn();
+                $actualizacionPlanta->field('actualizacion')->title('Actualización')->width(80);
 
                 $vercaracteristicaplanta = new \Kendo\UI\GridColumn();
                 $vercaracteristicaplanta->field('vercaracteristicaplanta')->title('Ver')->templateId('vercaracteristicaplanta')->width(100);
 
                 //Se agregan columnas y atributos al grid
                 $gridPlanta
-                    ->addColumn($nombrePlanta, $porcentajePlanta, $estadoPlanta, $vercaracteristicaplanta)
+                    ->addColumn($nombrePlanta, $porcentajePlanta, $actualizacionPlanta, $vercaracteristicaplanta)
                     ->dataSource($dataSourcePlanta)
                     ->sortable(true)
                     ->dataBound('handleAjaxModal')
@@ -115,7 +115,7 @@
 
                 //Agregamos atributos al datasource de transporte de lectura
                 $readPez
-                    ->url(route('getInfoPezByProcesoId', ['idProceso' => $data->id]))
+                    ->url(route('getInfoPezByProcesoId', ['idProceso' => $data->idproceso]))
                     ->contentType('application/json')
                     ->type('POST');
 
@@ -154,20 +154,20 @@
 
                 //Inicializamos las columnas de la grid
                 $nombrePez = new \Kendo\UI\GridColumn();
-                $nombrePez->field('nombre')->title('Nombre')->width(50);
+                $nombrePez->field('nombre')->title('Nombre')->width(80);
 
                 $porcentajePez = new \Kendo\UI\GridColumn();
-                $porcentajePez->field('porcentaje')->title('Porcentaje')->templateId('porcentaje')->width(50);
+                $porcentajePez->field('porcentaje')->title('Porcentaje')->templateId('porcentaje')->width(30);
 
-                $estadoPez = new \Kendo\UI\GridColumn();
-                $estadoPez->field('estado')->title('Estado')->width(50);
+                $actualizacionPez = new \Kendo\UI\GridColumn();
+                $actualizacionPez->field('actualizacion')->title('Actualización')->width(80);
 
                 $vercaracteristicapez = new \Kendo\UI\GridColumn();
                 $vercaracteristicapez->field('vercaracteristicapez')->title('Ver')->templateId('vercaracteristicapez')->width(100);
 
                 //Se agregan columnas y atributos al grid
                 $gridPez
-                    ->addColumn($nombrePez, $porcentajePez, $estadoPez, $vercaracteristicapez)
+                    ->addColumn($nombrePez, $porcentajePez, $actualizacionPez, $vercaracteristicapez)
                     ->dataSource($dataSourcePez)
                     ->sortable(true)
                     ->dataBound('handleAjaxModal')

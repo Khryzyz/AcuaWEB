@@ -11,7 +11,7 @@
                 {!!Form::label('nombre', 'Nombre:')!!}
             </div>
             <div class="col-md-9">
-                {!!Form::hidden('plantaid',$data->id,['class'=>'form-control'])!!}
+                {!!Form::hidden('plantaid',$data->idplanta,['class'=>'form-control'])!!}
                 {!!Form::text('nombre',$data->nombre,['class'=>'form-control', 'required', 'placeholder'=>'Nombre'])!!}
             </div>
         </div>

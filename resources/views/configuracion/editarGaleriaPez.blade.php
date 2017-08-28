@@ -1,19 +1,11 @@
-<div id="InfoPlanta">
+<div id="InfoPez">
 
     <div class="modal-header bg-info">
         <h5 class="modal-title">Galeria</h5>
     </div>
     <div class="modal-body">
         <div class="panel-body">
-            <div class="panel-group">
-                <?php
-                $upload = new \Kendo\UI\Upload('files[]');
-                $upload->async(array(
-                    'saveUrl' => 'save.php'
-                ));
-                echo $upload->render();
-                ?>
-            </div>
+
             <!-- Información del pez -->
             <div class="panel-group">
                 <div class="col-md-3 pre-scrollable" align="right">
