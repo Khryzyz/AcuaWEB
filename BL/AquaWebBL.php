@@ -215,6 +215,36 @@ class AquaWebBL
     }
 
     /**
+     * Metodo que consulta las plantas por el id del proceso relacionado
+     *
+     * @param $idUsuario
+     * @param $idPlanta
+     * @return mixed
+     */
+    public function getInfoGaleriaPlantaById($idUsuario, $idPlanta)
+    {
+
+        $data = \DB::select('CALL getInfoGaleriaPlantaById(?,?)', array($idUsuario, $idPlanta));
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta las plantas por el id del proceso relacionado
+     *
+     * @param $idUsuario
+     * @param $idPlanta
+     * @return mixed
+     */
+    public function getInfoGaleriaPezById($idUsuario, $idPez)
+    {
+
+        $data = \DB::select('CALL getInfoGaleriaPezById(?,?)', array($idUsuario, $idPez));
+
+        return $data;
+    }
+
+    /**
      * Metodo que consulta las variedades de peces registrados en el sistema
      *
      * @return mixed.
@@ -892,7 +922,7 @@ class AquaWebBL
      * @param $rq
      * @return string
      */
-    public function postEditarAvatarUsuarioById($rq)
+    public function updAvatarUsuario($rq)
     {
         $result = [];
 
@@ -911,6 +941,56 @@ class AquaWebBL
             );
 
             if ($transaction[0]->AVATAR_STATUS) {
+                $result['codigo'] = $transaction[0]->CODIGO;
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Registrado correctamente';
+            } else {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+            }
+
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = 'No se registro correctamente';
+        }
+
+        return json_encode($result);
+
+    }
+
+    /**
+     * Metodo que registra un usuario
+     *
+     * @param $rq
+     * @return string
+     */
+    public function insImagenGaleria($rq)
+    {
+        $result = [];
+
+        $usuarioid = $rq->input('usuarioid');
+        $id = $rq->input('id');
+        $tipo = $rq->input('tipo');
+        $titulo = $rq->input('titulo');
+        $descripcion = $rq->input('descripcion');
+
+        $file = $rq->file('imagen')->getClientOriginalName();
+
+        $extension = pathinfo($file, PATHINFO_EXTENSION);
+
+        try {
+            $transaction = \DB::select('CALL insImagenGaleria(?,?,?,?,?,?)',
+                array(
+                    $usuarioid,
+                    $id,
+                    $tipo,
+                    $titulo,
+                    $descripcion,
+                    $extension
+                )
+            );
+
+            if ($transaction[0]->IMAGE_STATUS) {
                 $result['codigo'] = $transaction[0]->CODIGO;
                 $result['estado'] = "success";
                 $result['mensaje'] = 'Registrado correctamente';

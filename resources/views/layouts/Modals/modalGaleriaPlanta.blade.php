@@ -26,18 +26,18 @@
                     <?php foreach ($data as $dataImagen) { ?>
                     <div class="slidesGallery">
                         <div class="row margin-bottom-5">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <strong>Nombre:</strong>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                                 {{$dataImagen->titulo}}
                             </div>
                         </div>
                         <div class="row margin-bottom-5">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <strong>Descripción:</strong>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                                 {{$dataImagen->descripcion}}
                             </div>
                         </div>

@@ -7,7 +7,7 @@
 
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-tint"></i> Mis Peces registrados en el sistema</h3>
+                <h3 class="panel-title"><i class="fa fa-tint"></i> Mis peces registrados en el sistema</h3>
             </div>
             <div class="panel-body">
                 <div class="panel-group">
@@ -141,9 +141,8 @@
         class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
         data-modal="modal-md">
         <i class="fa fa-tint"></i> Editar Pez</a>
-        <a href='/general/getModalEditarGaleriaPezById/#=idpez#'
-        class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# "
-        data-modal="modal-md">
+        <a href='/configuracion/editargaleriapez/#=idpez#'
+        class="btn btn-edit #if(estado == 'Inactivo'){# disabled #}# ">
         <i class="fa fa-image"></i> Editar Galeria</a>
     </div>
     </script>

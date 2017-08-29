@@ -337,7 +337,7 @@ class generalController extends Controller
 
         $Bl = new AquaWebBL();
 
-        $result = $Bl->postEditarAvatarUsuarioById($rq);
+        $result = $Bl->updAvatarUsuario($rq);
 
         $result_decode = json_decode($result);
 

@@ -110,17 +110,6 @@
             class='btn btn-view'>
             <i class="fa fa-gear"></i> Ver Proceso</a>
         </div>
-
-
-
-
-
-
-
-
-
-
-
     </script>
     <script id='estadoproceso' type='text/x-kendo-tmpl'>
     <div class="btn-group-justified">
@@ -136,17 +125,6 @@
             <i class="fa fa-power-off"></i> Activar</a>
         #}#
         </div>
-
-
-
-
-
-
-
-
-
-
-
     </script>
     <script id='editarproceso' type='text/x-kendo-tmpl'>
         <div class="btn-group-justified">
@@ -155,16 +133,5 @@
             data-modal="modal-md">
             <i class="fa fa-info"></i> Editar Información</a>
         </div>
-
-
-
-
-
-
-
-
-
-
-
     </script>
 @endsection

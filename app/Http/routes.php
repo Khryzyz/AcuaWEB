@@ -222,6 +222,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('configuracion/editargaleriaplanta/{idPlanta}', 'configuracionController@editargaleriaplanta')->name('editargaleriaplanta');
 
+    Route::get('configuracion/editargaleriapez/{idPez}', 'configuracionController@editargaleriapez')->name('editargaleriapez');
+
 
     /**
      * AREA CONFIGURACION  / MODALES ****************************************************************
@@ -238,6 +240,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('configuracion/modalAgregarPez', 'configuracionController@getModalAgregarPez')->name('modalAgregarPez');
 
     Route::post('configuracion/modalAgregarPez', 'configuracionController@postModalAgregarPez')->name('modalAgregarPez');
+
+    Route::get('configuracion/modalAgregarImagen/{id}/{tipo}', 'configuracionController@getModalAgregarImagen')->name('modalAgregarImagen');
+
+    Route::post('configuracion/modalAgregarImagen', 'configuracionController@postModalAgregarImagen');
 
     /**
      * AREA CONFIGURACION  / GRIDS ******************************************************************
@@ -256,6 +262,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('configuracion/getPecesByUsuarioId', 'configuracionController@getPecesByUsuarioId')->name('getPecesByUsuarioId');
 
     Route::post('configuracion/getPecesByUsuarioIdForProceso/{idProceso}', 'configuracionController@getPecesByUsuarioIdForProceso')->name('getPecesByUsuarioIdForProceso');
+
+    Route::post('configuracion/getInfoGaleriaPlantaById/{idPlanta}', 'configuracionController@getInfoGaleriaPlantaById')->name('getInfoGaleriaPlantaById');
+
+    Route::post('configuracion/getInfoGaleriaPezById/{idPez}', 'configuracionController@getInfoGaleriaPezById')->name('getInfoGaleriaPezById');
 
     /**
      * AREA CONFIGURACION  / DROPDOWNS **************************************************************

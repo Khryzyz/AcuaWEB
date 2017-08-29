@@ -289,7 +289,7 @@
     </script>
     <style>
 
-        .nombre, .porcentajevalor, .porcentajenovalor {
+        .titulo, .estado, .porcentajenovalor {
             font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
             font-size: 30px;
             font-weight: bold;
@@ -301,11 +301,11 @@
             text-align: center;
         }
 
-        td.nombre {
+        td.titulo {
             text-align: left;
         }
 
-        td.porcentajevalor {
+        td.estado {
             text-align: right;
         }
 

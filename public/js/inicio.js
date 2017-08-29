@@ -70,10 +70,13 @@ function handleAjaxModal() {
 
 function eventResultForm(modal, onSuccess) {
     modal.find('form').submit(function () {
+        event.preventDefault();
         $.ajax({
             url: this.action,
             type: this.method,
             data: $(this).serialize(),
+            processData: false,
+            contentType: false,
             success: function (result) {
                 onSuccess(result);
             },
@@ -87,13 +90,13 @@ function eventResultForm(modal, onSuccess) {
     });
 }
 
-function eventResultFormFile(modal, onSuccess, url) {
+function eventResultFormFile(modal, onSuccess) {
     modal.find('form').submit(function (event) {
         event.preventDefault();
         var formData = new FormData($(this)[0]);
         $.ajax({
-            url: url,
-            type: "POST",
+            url: this.action,
+            type: this.method,
             data: formData,
             processData: false,
             contentType: false,

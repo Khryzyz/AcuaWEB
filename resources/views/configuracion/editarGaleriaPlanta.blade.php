@@ -12,6 +12,13 @@
             </div>
             <div class="panel-body">
                 <div class="panel-group">
+                    <a href="{{route('modalAgregarImagen', ['id' => $data->idplanta,'tipo'=>1])}}"
+                       class="btn btn-add"
+                       data-modal="modal-md">
+                        <i class="fa fa-plus"></i>
+                        Agregar Imagen</a>
+                </div>
+                <div class="panel-group">
                     <?php
 
                     //Inicializamos el Data Source de Transporte de lectura
@@ -19,7 +26,8 @@
 
                     //Agregamos atributos al datasource de transporte de lectura
                     $readPlantas
-                        ->url(route('getGaleriaPlantaById', ['idProceso' => $data->id]))
+                        ->url(route('getInfoGaleriaPlantaById', ['idPlanta' => $data->idplanta]))
+                        ->data(['_token' => csrf_token()])
                         ->contentType('application/json')
                         ->type('POST');
 
@@ -52,7 +60,7 @@
                         ->serverPaging(true);
 
                     //Inicializamos la grid
-                    $gridPlantas = new \Kendo\UI\Grid('GridEspecimenPlanta');
+                    $gridPlantas = new \Kendo\UI\Grid('GridGaleria');
 
                     //Inicializamos las columnas de la grid
                     $imagenPlanta = new \Kendo\UI\GridColumn();
@@ -60,19 +68,14 @@
                         ->width(50)
                         ->title('Imagen');
 
-                    $nombrePlanta = new \Kendo\UI\GridColumn();
-                    $nombrePlanta
+                    $tituloPlanta = new \Kendo\UI\GridColumn();
+                    $tituloPlanta
                         ->width(100)
-                        ->title('Nombre');
-
-                    $porcentajePlanta = new \Kendo\UI\GridColumn();
-                    $porcentajePlanta
-                        ->width(50)
-                        ->title('Porcentaje');
+                        ->title('Titulo');
 
                     $detallePlanta = new \Kendo\UI\GridColumn();
                     $detallePlanta
-                        ->width(150)
+                        ->width(100)
                         ->title('Detalle');
 
                     $accionPlanta = new \Kendo\UI\GridColumn();
@@ -84,8 +87,7 @@
                     $gridPlantas
                         ->addColumn(
                             $imagenPlanta,
-                            $nombrePlanta,
-                            $porcentajePlanta,
+                            $tituloPlanta,
                             $detallePlanta,
                             $accionPlanta
                         )
@@ -106,37 +108,44 @@
 @endsection
 @section('scripts')
     <script id="row-template" type="text/x-kendo-template">
-        <tr data-uid="#: id #">
+        <tr data-uid="#: idGaleria #">
             <td class="imagen">
-                <img src="#if(data.imagen){#/img/gallery/#: data.imagen ##}else{#/img/sin_imagen.png#}#" alt="#: id #"
+                <img src="#if(data.imagen){#/img/gallery/#: data.imagen ##}else{#/img/sin_imagen.png#}#"
+                     alt="#: idGaleria #"
                      class="img-responsive img-rounded"/>
             </td>
-            <td class="nombre">
-                #: nombre #
+            <td class="titulo">
+                #: titulo #
+                <p class="descripcion"> #: descripcion #</p>
             </td>
-            #if(data.porcentaje>0){#
-            <td class="porcentajevalor">
-                #: porcentaje #%
-            </td>
-            #}else{#
-            <td class="porcentajenovalor">
-                ---
-            </td>
-            #}#
             <td class="detalle">
-                <p>Fecha Actualización: #: actualizacion #</p>
-                <p>Usuario: #: usuario #</p>
-                <p>Tipo Acceso: #: acceso #</p>
+                #if(data.estado=1){#
+                <p class="estado">
+                    Activo
+                </p>
+                #}else{#
+                <p class="estado">
+                    Inactivo
+                </p>
+                #}#
+                <p>Creación: #: creado #</p>
+                <p>Actualización: #: actualizado #</p>
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href='/procesos/modalAsociarEspecimenProceso/#=id#/{{$data->id}}/#=tipoespecimen#/#=estado#/' data-modal="modal-sm"
-                       #if(estado == '1'){#
-                    class="btn btn-on-status ">
-                    <i class="fa fa-check-circle"></i> Agregar
+                    <a href="/general/getModalEstadoElemento/#=idGaleria#/4/"
+                       data-modal="modal-sm"
+                       class="btn btn-edit">
+                        <i class="fa fa-pencil"></i> Editar
+                    </a>
+                    <a href="/general/getModalEstadoElemento/#=idGaleria#/4/"
+                       data-modal="modal-sm"
+                       #if(estado== '1'){#
+                    class="btn btn-off-status">
+                    <i class="fa fa-power-off"></i> Desactivar</a>
                     #}else{#
-                    class="btn btn-off-status ">
-                    <i class="fa fa-circle"></i> Retirar
+                    class="btn btn-on-status ">
+                    <i class="fa fa-power-off"></i> Activar
                     #}#
                     </a>
                 </div>
@@ -144,37 +153,44 @@
         </tr>
     </script>
     <script id="alt-row-template" type="text/x-kendo-template">
-        <tr class="k-alt" data-uid="#: id #">
+        <tr class="k-alt" data-uid="#: idGaleria #">
             <td class="imagen">
-                <img src="#if(data.imagen){#/img/gallery/#: data.imagen ##}else{#/img/sin_imagen.png#}#" alt="#: id #"
+                <img src="#if(data.imagen){#/img/gallery/#: data.imagen ##}else{#/img/sin_imagen.png#}#"
+                     alt="#: idGaleria #"
                      class="img-responsive img-rounded"/>
             </td>
-            <td class="nombre">
-                #: nombre #
+            <td class="titulo">
+                #: titulo #
+                <p class="descripcion"> #: descripcion #</p>
             </td>
-            #if(data.porcentaje>0){#
-            <td class="porcentajevalor">
-                #: porcentaje #%
-            </td>
-            #}else{#
-            <td class="porcentajenovalor">
-                ---
-            </td>
-            #}#
             <td class="detalle">
-                <p>Fecha Actualización: #: actualizacion #</p>
-                <p>Usuario: #: usuario #</p>
-                <p>Tipo Acceso: #: acceso #</p>
+                #if(data.estado=1){#
+                <p class="estado">
+                    Activo
+                </p>
+                #}else{#
+                <p class="estado">
+                    Inactivo
+                </p>
+                #}#
+                <p>Creación: #: creado #</p>
+                <p>Actualización: #: actualizado #</p>
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href='/procesos/modalAsociarEspecimenProceso/#=id#/{{$data->id}}/#=tipoespecimen#/#=estado#' data-modal="modal-sm"
-                       #if(estado == '1'){#
-                    class="btn btn-on-status ">
-                    <i class="fa fa-check-circle"></i> Agregar
+                    <a href="/general/getModalEstadoElemento/#=idGaleria#/4/"
+                       data-modal="modal-sm"
+                       class="btn btn-edit">
+                        <i class="fa fa-pencil"></i> Editar
+                    </a>
+                    <a href="/general/getModalEstadoElemento/#=idGaleria#/4/"
+                       data-modal="modal-sm"
+                       #if(estado== '1'){#
+                    class="btn btn-off-status">
+                    <i class="fa fa-power-off"></i> Desactivar
                     #}else{#
-                    class="btn btn-off-status ">
-                    <i class="fa fa-circle"></i> Retirar
+                    class="btn btn-on-status ">
+                    <i class="fa fa-power-off"></i> Activar
                     #}#
                     </a>
                 </div>
@@ -183,24 +199,28 @@
     </script>
     <style>
 
-        .nombre, .porcentajevalor, .porcentajenovalor {
+        .titulo {
             font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-            font-size: 30px;
+            font-size: 20px;
             font-weight: bold;
             color: #898989;
             align-items: center;
         }
 
-        td.imagen,td.porcentajenovalor {
+        p.descripcion {
+            font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+            color: #565656;
+            align-items: center;
+        }
+
+        td.imagen {
             text-align: center;
         }
 
-        td.nombre {
+        td.titulo, p.descripcion {
             text-align: left;
-        }
-
-        td.porcentajevalor {
-            text-align: right;
         }
 
         .k-grid-header .k-header {

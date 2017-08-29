@@ -20,7 +20,7 @@
                 {!!Form::label('nombre', 'Nombre Del Proceso: (*)')!!}
             </div>
             <div class="col-md-8">
-                {!!Form::hidden('procesoid',$data->id,['class'=>'form-control'])!!}
+                {!!Form::hidden('procesoid',$data->idproceso,['class'=>'form-control'])!!}
                 {!!Form::text('nombre',$data->nombre,['class'=>'form-control', 'required',  'placeholder'=>'Nombre del proceso'])!!}
             </div>
         </div>

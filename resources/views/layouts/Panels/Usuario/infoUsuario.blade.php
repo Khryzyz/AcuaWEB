@@ -9,7 +9,7 @@
                 Nombre:
             </div>
             <div class="col-md-10">
-                {{$data->nombre}}
+                {{$data->nombreusuario}}
             </div>
         </div>
         <div class="row margin-bottom-10">

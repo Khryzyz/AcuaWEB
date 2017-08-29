@@ -1,24 +1,44 @@
-<div id="ModalEditarAvatarUsuario">
+<div id="ModalAgregarImagen">
 
-    {!!Form::open(['url' => route('modalEditarAvatarUsuario'), 'method' => 'POST', 'role'=>'form','files' => 'true'])!!}
+    {!!Form::open(['url' => url('configuracion/modalAgregarImagen'), 'method' => 'POST', 'role'=>'form','files' => 'true'])!!}
 
-    <div class="modal-header bg-warning">
+    <div class="modal-header <?php if ($data->tipo==1) echo "bg-success"; else echo "bg-info"; ?>">
 
         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-        <h4><i class="fa fa-image"></i> Editar avatar</h4>
+        <h4><i class="fa <?php if ($data->tipo==1) echo "fa-leaf"; else echo "fa-tint"; ?>"></i> Agregar Imagen</h4>
 
     </div>
     <div class="modal-body">
         {!!Form::hidden('usuarioid',$data->idusuario,['class'=>'form-control'])!!}
+        {!!Form::hidden('tipo',$data->tipo,['class'=>'form-control'])!!}
+        {!!Form::hidden('id',$data->id,['class'=>'form-control'])!!}
         <div class="row margin-bottom-10">
             <div class="col-md-4">
-                {!!Form::label('avatar', 'Imagen: (*)')!!}
+                {!!Form::label('titulo', 'Titulo:')!!}
+            </div>
+            <div class="col-md-8">
+                {!!Form::text('titulo',null,['class'=>'form-control', 'required', 'placeholder'=>'Titulo'])!!}
+            </div>
+        </div>
+        <div class="row margin-bottom-10">
+            <div class="col-md-4">
+                {!!Form::label('descripcion', 'Descripción:')!!}
+            </div>
+            <div class="col-md-8">
+                {!!Form::text('descripcion',null,['class'=>'form-control', 'required', 'placeholder'=>'Descripción'])!!}
+            </div>
+        </div>
+        <div class="row margin-bottom-10">
+            <div class="col-md-4">
+                {!!Form::label('imagen', 'Imagen:')!!}
             </div>
             <div class="col-md-8">
                 <?php
-                $upload = new \Kendo\UI\Upload('avatar');
-                $upload->multiple(false);
+                $upload = new \Kendo\UI\Upload('imagen');
+                $upload
+                    ->multiple(false)
+                    ->attr('required', 'required');
                 echo $upload->render();
                 ?>
             </div>
@@ -41,7 +61,7 @@
 
 </div>
 <script type="text/javascript">
-    var modal = $('#ModalEditarAvatarUsuario');
+    var modal = $('#ModalAgregarImagen');
 
     $(function () {
         validarFormulario();// validar forularios con kendo
@@ -72,7 +92,8 @@
             case "success":
                 $.msgbox(result.mensaje, {type: 'success'}, function () {
                     modalBs.modal('hide');
-                    location.reload();
+                    $('#GridGaleria').data('kendoGrid').dataSource.read();
+                    $('#GridGaleria').data('kendoGrid').refresh();
                 });
                 break;
             case "error":

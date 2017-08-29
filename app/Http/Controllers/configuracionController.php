@@ -142,9 +142,30 @@ class configuracionController extends Controller
 
         $data = (object)array_merge((array)$dataUsuario[0], (array)$dataPlanta[0]);
 
-        dd($data);
-
         return view('configuracion.editarGaleriaPlanta', compact('data'));
+
+    }
+
+    /**
+     * Metodo del controlador que:
+     *  - consulta la informacion del pez por su id
+     *  - Retorna la vista junto con la informacion del pez
+     *
+     * @param $idPlanta
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function editargaleriapez($idPez)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $dataUsuario = $Bl->getInfoUsuarioById($this->auth->user()->id);
+
+        $dataPez = $Bl->getInfoPezById($idPez);
+
+        $data = (object)array_merge((array)$dataUsuario[0], (array)$dataPez[0]);
+
+        return view('configuracion.editarGaleriaPez', compact('data'));
 
     }
 
@@ -224,6 +245,59 @@ class configuracionController extends Controller
     {
 
         return view('configuracion.modalAgregarPez');
+
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar una variedad de pez
+     * Usado en Modal
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalAgregarImagen($id, $tipo)
+    {
+
+        $data = array(
+            "id" => $id,
+            "tipo" => $tipo,
+            "idusuario" => $this->auth->user()->id
+        );
+
+        $data = (object)$data;
+
+        return view('configuracion.modalAgregarImagen', compact('data'));
+
+    }
+
+
+    /**
+     * Metodo del controlador que:
+     *  - consulta la informacion del usuario por su id
+     *  - Retorna la vista junto con la informacion del usuario
+     * Usado en Modal
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postModalAgregarImagen(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->insImagenGaleria($rq);
+
+        $result_decode = json_decode($result);
+
+        if ($result_decode->codigo) {
+
+            $file = $rq->file('imagen');
+
+            $extension = pathinfo($rq->file('imagen')->getClientOriginalName(), PATHINFO_EXTENSION);
+
+            $file->move('img/gallery', $result_decode->codigo . "." . $extension);
+        }
+
+        return $result;
 
     }
 
@@ -400,6 +474,53 @@ class configuracionController extends Controller
         $Bl = new AquaWebBL();
 
         $data = $Bl->getPecesByUsuarioIdForProceso($this->auth->user()->id, $idProceso);
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($data, $input);
+
+    }
+
+    /**
+     * Metodo que consulta las variedades de peces registrados en el sistema por el id del usuario
+     * Usado en Grid
+     *
+     * @return array
+     */
+    public function getInfoGaleriaPlantaById($idPlanta)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getInfoGaleriaPlantaById($this->auth->user()->id, $idPlanta);
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($data, $input);
+
+    }
+
+
+    /**
+     * Metodo que consulta las variedades de peces registrados en el sistema por el id del usuario
+     * Usado en Grid
+     *
+     * @return array
+     */
+    public function getInfoGaleriaPezById($idPez)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getInfoGaleriaPezById($this->auth->user()->id, $idPez);
 
         $request = file_get_contents('php://input');
 
