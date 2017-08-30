@@ -376,6 +376,19 @@ class AquaWebBL
         return $data;
     }
 
+
+    /**
+     * Metodo que consulta los usuarios registrados en el sistema
+     *
+     * @return mixed.
+     */
+    public function getInfoGaleriaById($idGaleria)
+    {
+        $data = \DB::select('CALL getInfoGaleriaById(?)', array($idGaleria));
+
+        return $data;
+    }
+
     /**
      *******************************************************************************************
      * AREA METODOS USADOS PARA REGISTAR INFORMACION *******************************************
@@ -1004,6 +1017,81 @@ class AquaWebBL
             $result['mensaje'] = 'No se registro correctamente';
         }
 
+        return json_encode($result);
+
+    }
+
+
+    /**
+     * Metodo que registra un usuario
+     *
+     * @param $rq
+     * @return string
+     */
+    public function updEstadoGaleria($rq)
+    {
+        $result = [];
+
+        $id = $rq->input('id');
+        $estado = $rq->input('estado');
+
+        try {
+            $transaction = \DB::select('CALL updEstadoGaleria(?,?)',
+                array(
+                    $id,
+                    $estado
+                )
+            );
+
+            if ($transaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Registrado correctamente';
+            }
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = 'No se registro correctamente';
+        }
+        return json_encode($result);
+
+    }
+
+    /**
+     * Metodo que registra un proceso
+     *
+     * @param $rq
+     * @return string
+     */
+    public function updInfoGaleria($rq)
+    {
+        $result = [];
+
+        $id = $rq->input('id');
+        $titulo = $rq->input('titulo');
+        $descripcion = $rq->input('descripcion');
+
+        try {
+            $transaction = \DB::select('CALL updInfoGaleria(?,?,?)', array(
+                    $id,
+                    $titulo,
+                    $descripcion
+                )
+            );
+            if ($transaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Actualizado correctamente';
+            }
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = 'NO se actualizó correctamente' . $e;
+        }
         return json_encode($result);
 
     }

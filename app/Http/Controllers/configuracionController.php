@@ -319,6 +319,85 @@ class configuracionController extends Controller
     }
 
     /**
+     * Metodo del controlador que retorna el modal para agregar una variedad de pez
+     * Usado en Modal
+     *
+     * @param $idGaleria
+     * @param $estado
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalEstadoGaleria($idGaleria, $estado)
+    {
+
+        $data = array(
+            "idGaleria" => $idGaleria,
+            "estado" => $estado
+        );
+
+        $data = (object)$data;
+
+        return view('configuracion.modalEstadoGaleria', compact('data'));
+
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar una variedad de pez
+     * Usado en Modal
+     *
+     * @param Request $rq
+     * @return string
+     */
+    public function postModalEstadoGaleria(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->updEstadoGaleria($rq);
+
+        return $result;
+
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar una variedad de pez
+     * Usado en Modal
+     *
+     * @param $idGaleria
+     * @param $estado
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalEditarInfoGaleria($idGaleria)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoGaleriaById($idGaleria);
+
+        $data = $dataBL[0];
+
+        return view('configuracion.modalEditarInfoGaleria', compact('data'));
+
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar una variedad de pez
+     * Usado en Modal
+     *
+     * @param Request $rq
+     * @return string
+     */
+    public function postModalEditarInfoGaleria(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->updInfoGaleria($rq);
+
+        return $result;
+
+    }
+
+    /**
      *******************************************************************************************
      * AREA METODOS USADOS POR GRID ************************************************************
      *******************************************************************************************

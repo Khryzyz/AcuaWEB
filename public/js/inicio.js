@@ -70,13 +70,10 @@ function handleAjaxModal() {
 
 function eventResultForm(modal, onSuccess) {
     modal.find('form').submit(function () {
-        event.preventDefault();
         $.ajax({
             url: this.action,
             type: this.method,
             data: $(this).serialize(),
-            processData: false,
-            contentType: false,
             success: function (result) {
                 onSuccess(result);
             },

@@ -27,7 +27,6 @@
                     //Agregamos atributos al datasource de transporte de lectura
                     $readPez
                         ->url(route('getInfoGaleriaPezById', ['idPez' => $data->idpez]))
-                        ->data(['_token' => csrf_token()])
                         ->contentType('application/json')
                         ->type('POST');
 
@@ -73,11 +72,6 @@
                         ->width(100)
                         ->title('Titulo');
 
-                    $estadoPez = new \Kendo\UI\GridColumn();
-                    $estadoPez
-                        ->width(30)
-                        ->title('Estado');
-
                     $detallePez = new \Kendo\UI\GridColumn();
                     $detallePez
                         ->width(100)
@@ -85,7 +79,7 @@
 
                     $accionPez = new \Kendo\UI\GridColumn();
                     $accionPez
-                        ->width(50)
+                        ->width(80)
                         ->title('Acción');
 
                     //Se agregan columnas y atributos al grid
@@ -93,7 +87,6 @@
                         ->addColumn(
                             $imagenPez,
                             $tituloPez,
-                            $estadoPez,
                             $detallePez,
                             $accionPez
                         )
@@ -124,22 +117,27 @@
                 #: titulo #
                 <p class="descripcion"> #: descripcion #</p>
             </td>
-            #if(data.estado=1){#
-            <td class="estado">
-                Activo
-            </td>
-            #}else{#
-            <td class="estado">
-                Inactivo
-            </td>
-            #}#
             <td class="detalle">
+                #if(data.estado == 1){#
+                <p class="estado">
+                    Activo
+                </p>
+                #}else{#
+                <p class="estado">
+                    Inactivo
+                </p>
+                #}#
                 <p>Creación: #: creado #</p>
                 <p>Actualización: #: actualizado #</p>
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href="/general/getModalEstadoElemento/#=idGaleria#/4/"
+                    <a href="/configuracion/modalEditarInfoGaleria/#=idGaleria#"
+                    data-modal="modal-sm"
+                    class="btn btn-edit #if(estado== '2'){# disabled #}#">
+                    <i class="fa fa-pencil"></i> Editar
+                    </a>
+                    <a href="/configuracion/modalEstadoGaleria/#=idGaleria#/#=estado#"
                        data-modal="modal-sm"
                        #if(estado== '1'){#
                     class="btn btn-off-status">
@@ -164,22 +162,27 @@
                 #: titulo #
                 <p class="descripcion"> #: descripcion #</p>
             </td>
-            #if(data.estado=1){#
-            <td class="estado">
-                Activo
-            </td>
-            #}else{#
-            <td class="estado">
-                Inactivo
-            </td>
-            #}#
             <td class="detalle">
+                #if(data.estado == 1){#
+                <p class="estado">
+                    Activo
+                </p>
+                #}else{#
+                <p class="estado">
+                    Inactivo
+                </p>
+                #}#
                 <p>Creación: #: creado #</p>
                 <p>Actualización: #: actualizado #</p>
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href="/general/getModalEstadoElemento/#=idGaleria#/4/"
+                    <a href="/configuracion/modalEditarInfoGaleria/#=idGaleria#"
+                    data-modal="modal-sm"
+                    class="btn btn-edit #if(estado== '2'){# disabled #}#">
+                    <i class="fa fa-pencil"></i> Editar
+                    </a>
+                    <a href="/configuracion/modalEstadoGaleria/#=idGaleria#/#=estado#"
                        data-modal="modal-sm"
                        #if(estado== '1'){#
                     class="btn btn-off-status">
@@ -195,7 +198,7 @@
     </script>
     <style>
 
-        .titulo, .estado {
+        .titulo {
             font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
             font-size: 20px;
             font-weight: bold;
@@ -211,7 +214,7 @@
             align-items: center;
         }
 
-        td.imagen, td.estado {
+        td.imagen {
             text-align: center;
         }
 

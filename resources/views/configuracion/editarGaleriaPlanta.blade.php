@@ -27,7 +27,6 @@
                     //Agregamos atributos al datasource de transporte de lectura
                     $readPlantas
                         ->url(route('getInfoGaleriaPlantaById', ['idPlanta' => $data->idplanta]))
-                        ->data(['_token' => csrf_token()])
                         ->contentType('application/json')
                         ->type('POST');
 
@@ -119,7 +118,7 @@
                 <p class="descripcion"> #: descripcion #</p>
             </td>
             <td class="detalle">
-                #if(data.estado=1){#
+                #if(data.estado == 1){#
                 <p class="estado">
                     Activo
                 </p>
@@ -133,12 +132,12 @@
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href="/general/getModalEstadoElemento/#=idGaleria#/4/"
+                    <a href="/configuracion/modalEditarInfoGaleria/#=idGaleria#"
                        data-modal="modal-sm"
-                       class="btn btn-edit">
+                       class="btn btn-edit #if(estado== '2'){# disabled #}#">
                         <i class="fa fa-pencil"></i> Editar
                     </a>
-                    <a href="/general/getModalEstadoElemento/#=idGaleria#/4/"
+                    <a href="/configuracion/modalEstadoGaleria/#=idGaleria#/#=estado#"
                        data-modal="modal-sm"
                        #if(estado== '1'){#
                     class="btn btn-off-status">
@@ -164,7 +163,7 @@
                 <p class="descripcion"> #: descripcion #</p>
             </td>
             <td class="detalle">
-                #if(data.estado=1){#
+                #if(data.estado == 1){#
                 <p class="estado">
                     Activo
                 </p>
@@ -178,12 +177,12 @@
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href="/general/getModalEstadoElemento/#=idGaleria#/4/"
+                    <a href="/configuracion/modalEditarInfoGaleria/#=idGaleria#"
                        data-modal="modal-sm"
-                       class="btn btn-edit">
+                       class="btn btn-edit #if(estado== '2'){# disabled #}#">
                         <i class="fa fa-pencil"></i> Editar
                     </a>
-                    <a href="/general/getModalEstadoElemento/#=idGaleria#/4/"
+                    <a href="/configuracion/modalEstadoGaleria/#=idGaleria#/#=estado#"
                        data-modal="modal-sm"
                        #if(estado== '1'){#
                     class="btn btn-off-status">

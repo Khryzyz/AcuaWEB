@@ -245,6 +245,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('configuracion/modalAgregarImagen', 'configuracionController@postModalAgregarImagen');
 
+    Route::get('configuracion/modalEstadoGaleria/{idGaleria}/{estado}', 'configuracionController@getModalEstadoGaleria');
+
+    Route::post('configuracion/modalEstadoGaleria', 'configuracionController@postModalEstadoGaleria')->name('modalEstadoGaleria');
+
+    Route::get('configuracion/modalEditarInfoGaleria/{idGaleria}', 'configuracionController@getModalEditarInfoGaleria');
+
+    Route::post('configuracion/modalEditarInfoGaleria', 'configuracionController@postModalEditarInfoGaleria')->name('modalEditarInfoGaleria');
+
     /**
      * AREA CONFIGURACION  / GRIDS ******************************************************************
      */
