@@ -59,7 +59,7 @@
                 $campoDosSolicitudesRecibidas->title('Nombre')->width(150);
 
                 $campoTresSolicitudesRecibidas = new \Kendo\UI\GridColumn();
-                $campoTresSolicitudesRecibidas->title('Detalles')->width(40);
+                $campoTresSolicitudesRecibidas->title('Detalles')->width(50);
 
                 $campoCuatroSolicitudesRecibidas = new \Kendo\UI\GridColumn();
                 $campoCuatroSolicitudesRecibidas->title('Accion')->width(70);
@@ -75,8 +75,8 @@
                     ->sortable(true)
                     ->dataBound('handleAjaxModal')
                     ->pageable(true)
-                    ->rowTemplateId('row-template')
-                    ->altRowTemplateId('alt-row-template');
+                    ->rowTemplateId('row-template-recibidas')
+                    ->altRowTemplateId('alt-row-template-recibidas');
 
                 //renderizamos la grid
                 echo $gridSolicitudesRecibidas->render();
@@ -143,7 +143,7 @@
                 $campoDosSolicitudesRealizadas->title('Nombre')->width(150);
 
                 $campoTresSolicitudesRealizadas = new \Kendo\UI\GridColumn();
-                $campoTresSolicitudesRealizadas->title('Detalles')->width(40);
+                $campoTresSolicitudesRealizadas->title('Detalles')->width(50);
 
                 $campoCuatroSolicitudesRealizadas = new \Kendo\UI\GridColumn();
                 $campoCuatroSolicitudesRealizadas->title('Accion')->width(70);
@@ -159,8 +159,8 @@
                     ->sortable(true)
                     ->dataBound('handleAjaxModal')
                     ->pageable(true)
-                    ->rowTemplateId('row-template')
-                    ->altRowTemplateId('alt-row-template');
+                    ->rowTemplateId('row-template-realizadas')
+                    ->altRowTemplateId('alt-row-template-realizadas');
 
                 //renderizamos la grid
                 echo $gridSolicitudesRealizadas->render();
@@ -171,7 +171,7 @@
 
 @endsection
 @section('scripts')
-    <script id="row-template" type="text/x-kendo-template">
+    <script id="row-template-recibidas" type="text/x-kendo-template">
         <tr data-uid="#: idusuario #">
             <td class="avatar">
                 <img src="#if(data.avatar){#/img/avatar/#: data.avatar ##}else{#/img/sin_avatar.png#}#"
@@ -180,21 +180,21 @@
             </td>
             <td class="titulo">
                 #: nombreusuario #
-                <p class="estado"> #: estado #</p>
+                <p class="estado"> Estado: #: estado #</p>
             </td>
             <td class="detalle">
-                <p>Procesos: #: procesos #</p>
-                <p>Plantas: #: plantas #</p>
-                <p>Peces: #: peces #</p>
+                <h6>Procesos: #: procesos #</h6>
+                <h6>Plantas: #: plantas #</h6>
+                <h6>Peces: #: peces #</h6>
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href="/configuracion/modalEditarInfoGaleria/#=idusuario#"
+                    <a href="/social/estadoSolicitud/#=idusuario#/2"
                        data-modal="modal-sm"
                        class="btn btn-on-status" style="color: white">
                         <i class="fa fa-plus"></i> Aceptar
                     </a>
-                    <a href="/configuracion/modalEditarInfoGaleria/#=idusuario#"
+                    <a href="/social/estadoSolicitud/#=idusuario#/3"
                        data-modal="modal-sm"
                        class="btn btn-off-status" style="color: white">
                         <i class="fa fa-minus"></i> Rechazar
@@ -203,7 +203,7 @@
             </td>
         </tr>
     </script>
-    <script id="alt-row-template" type="text/x-kendo-template">
+    <script id="alt-row-template-recibidas" type="text/x-kendo-template">
         <tr class="k-alt" data-uid="#: idGaleria #">
             <td class="avatar">
                 <img src="#if(data.avatar){#/img/avatar/#: data.avatar ##}else{#/img/sin_avatar.png#}#"
@@ -212,21 +212,21 @@
             </td>
             <td class="titulo">
                 #: nombreusuario #
-                <p class="estado"> #: estado #</p>
+                <p class="estado"> Estado: #: estado #</p>
             </td>
             <td class="detalle">
-                <p>Procesos: #: procesos #</p>
-                <p>Plantas: #: plantas #</p>
-                <p>Peces: #: peces #</p>
+                <h6>Procesos: #: procesos #</h6>
+                <h6>Plantas: #: plantas #</h6>
+                <h6>Peces: #: peces #</h6>
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href="/configuracion/modalEditarInfoGaleria/#=idusuario#"
+                    <a href="/social/estadoSolicitud/#=idusuario#/2"
                        data-modal="modal-sm"
                        class="btn btn-on-status" style="color: white">
                         <i class="fa fa-plus"></i> Aceptar
                     </a>
-                    <a href="/configuracion/modalEditarInfoGaleria/#=idusuario#"
+                    <a href="/social/estadoSolicitud/#=idusuario#/3"
                        data-modal="modal-sm"
                        class="btn btn-off-status" style="color: white">
                         <i class="fa fa-minus"></i> Rechazar
@@ -235,8 +235,62 @@
             </td>
         </tr>
     </script>
-    <style>
 
+    <script id="row-template-realizadas" type="text/x-kendo-template">
+        <tr data-uid="#: idusuario #">
+            <td class="avatar">
+                <img src="#if(data.avatar){#/img/avatar/#: data.avatar ##}else{#/img/sin_avatar.png#}#"
+                     alt="#: idusuario #"
+                     class="img-responsive img-rounded"/>
+            </td>
+            <td class="titulo">
+                #: nombreusuario #
+                <p class="estado"> Estado: #: estado #</p>
+            </td>
+            <td class="detalle">
+                <h6>Procesos: #: procesos #</h6>
+                <h6>Plantas: #: plantas #</h6>
+                <h6>Peces: #: peces #</h6>
+            </td>
+            <td class="accion">
+                <div class="btn-group-justified">
+                    <a href="/social/estadoSolicitud/#=idusuario#/4"
+                       data-modal="modal-sm"
+                       class="btn btn-off-status" style="color: white">
+                        <i class="fa fa-circle"></i> Cancelar
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </script>
+    <script id="alt-row-template-realizadas" type="text/x-kendo-template">
+        <tr class="k-alt" data-uid="#: idGaleria #">
+            <td class="avatar">
+                <img src="#if(data.avatar){#/img/avatar/#: data.avatar ##}else{#/img/sin_avatar.png#}#"
+                     alt="#: idusuario #"
+                     class="img-responsive img-rounded"/>
+            </td>
+            <td class="titulo">
+                #: nombreusuario #
+                <p class="estado"> Estado: #: estado #</p>
+            </td>
+            <td class="detalle">
+                <h6>Procesos: #: procesos #</h6>
+                <h6>Plantas: #: plantas #</h6>
+                <h6>Peces: #: peces #</h6>
+            </td>
+            <td class="accion">
+                <div class="btn-group-justified">
+                    <a href="/social/estadoSolicitud/#=idusuario#/4"
+                       data-modal="modal-sm"
+                       class="btn btn-off-status" style="color: white">
+                        <i class="fa fa-circle"></i> Cancelar
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </script>
+    <style>
         .titulo {
             font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
             font-size: 20px;

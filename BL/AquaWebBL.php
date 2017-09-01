@@ -1222,4 +1222,50 @@ class AquaWebBL
 
     }
 
+    /**
+     * Metodo que edita la informacion de una imagen de la galeria
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postEditarEstadoSolicitud($rq, $idUsuario)
+    {
+        $result = [];
+
+        $tipo = $rq->input('tipo');
+
+        //Si el tipo es 4 es porque la solicitud se va a cancelar, ya que el usuario loggeado es el solicitante
+        if ($tipo == 4) {
+            $usuario_id_solicitante = $idUsuario;
+            $usuario_id_solicitado = $rq->input('usuarioid');
+
+            //Si el tipo es 2 o 3 es porque la solicitud se va a aceptar/rechazar, ya que el usuario loggeado es el solicitado
+        } else {
+            $usuario_id_solicitante = $rq->input('usuarioid');
+            $usuario_id_solicitado = $idUsuario;
+        }
+
+        try {
+            $transaction = \DB::select('CALL upsEstadoSolicitud(?,?,?)', array(
+                    $usuario_id_solicitante,
+                    $usuario_id_solicitado,
+                    $tipo
+                )
+            );
+            if ($transaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Estado Registrado correctamente';
+            }
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = 'El estado NO se registró correctamente' . $e;
+        }
+        return json_encode($result);
+
+    }
+
 }

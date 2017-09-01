@@ -103,6 +103,42 @@ class socialController extends Controller
     }
 
     /**
+     * Metodo del controlador que retorna la vista para manejar el estado de la solicitud
+     *
+     * @param $usuarioid
+     * @param $tipo
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalEstadoSolicitud($usuarioid, $tipo)
+    {
+
+        $data = array(
+            "usuarioid" => $usuarioid,
+            "tipo" => $tipo,
+        );
+
+        $data = (object)$data;
+
+        return view('social.modalEstadoSolicitud', compact('data'));
+
+    }
+
+    /**
+     * Metodo del controlador que registra un usuario como colega
+     *
+     * @param Request $rq
+     * @return string
+     */
+    public function postEstadoSolicitud(Request $rq)
+    {
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postEditarEstadoSolicitud($rq, $this->auth->user()->id);
+
+        return $result;
+    }
+
+    /**
      *******************************************************************************************
      * AREA METODOS USADOS POR GRID ************************************************************
      *******************************************************************************************

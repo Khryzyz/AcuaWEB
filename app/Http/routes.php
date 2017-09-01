@@ -295,6 +295,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('social/modalAgregarColega', 'socialController@postModalAgregarColega')->name('modalAgregarColega');
 
+    Route::get('social/estadoSolicitud/{usuarioid}/{tipo}', 'socialController@getModalEstadoSolicitud')->name('estadoSolicitud');
+
+    Route::post('social/estadoSolicitud', 'socialController@postEstadoSolicitud')->name('estadoSolicitud');
+
     /**
      * AREA SOCIAL / GRIDS *********************************************************************
      */
