@@ -280,11 +280,13 @@ Route::group(['middleware' => 'auth'], function () {
      */
 
     /**
-     * AREA GENERAL  / VISTAS *****************************************************************
+     * AREA SOCIAL / VISTAS *******************************************************************
      */
 
+    Route::get('social/socialSolicitudes', 'socialController@socialSolicitudes')->name('socialSolicitudes');
+
     /**
-     * AREA GENERAL  / MODALES ****************************************************************
+     * AREA SOCIAL / MODALES ******************************************************************
      */
 
     Route::get('social/modalInfoUsuarioPublicoById/{idUsuario}', 'socialController@getModalInfoUsuarioPublicoById')->name('modalInfoUsuarioPublicoById');
@@ -292,6 +294,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('social/modalAgregarColega/{idUsuario}', 'socialController@getModalAgregarColega')->name('modalAgregarColega');
 
     Route::post('social/modalAgregarColega', 'socialController@postModalAgregarColega')->name('modalAgregarColega');
+
+    /**
+     * AREA SOCIAL / GRIDS *********************************************************************
+     */
+
+    Route::post('social/getSolicitudesRealizadas', 'socialController@getSolicitudesRealizadas')->name('solicitudesRealizadas');
+
+    Route::post('social/getSolicitudesRecibidas', 'socialController@getSolicitudesRecibidas')->name('solicitudesRecibidas');
 
     /**
      *******************************************************************************************

@@ -32,6 +32,16 @@ class socialController extends Controller
      */
 
     /**
+     *  Metodo del controlador que retorna la vista de solicitudes
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function socialSolicitudes()
+    {
+        return view('social.socialSolicitudes');
+    }
+
+    /**
      *******************************************************************************************
      * AREA METODOS USADOS POR MODALES *********************************************************
      *******************************************************************************************
@@ -97,6 +107,50 @@ class socialController extends Controller
      * AREA METODOS USADOS POR GRID ************************************************************
      *******************************************************************************************
      */
+
+    /**
+     * Metodo que consulta las variedades de plantas registradas en el sistema
+     *
+     * @return array
+     */
+    public function getSolicitudesRealizadas()
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getSolicitudesRealizadas($this->auth->user()->id);
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($data, $input);
+
+    }
+
+    /**
+     * Metodo que consulta las variedades de peces registrados en el sistema
+     *
+     * @return array
+     */
+    public function getSolicitudesRecibidas()
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getSolicitudesRecibidas($this->auth->user()->id);
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($data, $input);
+
+    }
 
     /**
      *******************************************************************************************

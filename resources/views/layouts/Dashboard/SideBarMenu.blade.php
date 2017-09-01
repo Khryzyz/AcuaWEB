@@ -29,7 +29,7 @@
             <span class="hidden-sm-down">Colegas</span>
         </a>
         <div class="collapse" id="menuColegas">
-            <a href="{{route('configUsuarios')}}" class="list-group-item" data-parent="#menuColegas">
+            <a href="{{route('socialSolicitudes')}}" class="list-group-item" data-parent="#menuColegas">
                 <i class="fa fa-bars"></i>
                 <span class="hidden-sm-down">Listado de solicitudes</span>
             </a>

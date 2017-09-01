@@ -454,6 +454,31 @@ class AquaWebBL
         return $data;
     }
 
+
+    /**
+     * Metodo que consulta las solicitudes recibidas
+     *
+     * @return mixed.
+     */
+    public function getSolicitudesRecibidas($idUsuario)
+    {
+        $data = \DB::select('CALL getSolicitudesRecibidas(?)', array($idUsuario));
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta las solicitudes realizadas
+     *
+     * @return mixed.
+     */
+    public function getSolicitudesRealizadas($idUsuario)
+    {
+        $data = \DB::select('CALL getSolicitudesRealizadas(?)', array($idUsuario));
+
+        return $data;
+    }
+
     /**
      *******************************************************************************************
      * AREA METODOS USADOS PARA REGISTAR INFORMACION *******************************************
