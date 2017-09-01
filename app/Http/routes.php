@@ -1,22 +1,8 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-/*
- *METODOS GET 
- */
 
 Route::get('/', function () {
     return redirect()->intended('auth/login');
 });
-
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -72,8 +58,6 @@ Route::group(['middleware' => 'auth'], function () {
      *******************************************************************************************
      */
 
-    // Rutas pertenecientes al HOME de la aplicacion
-
     Route::get('/', 'homeController@index');
 
     Route::get('home', 'homeController@index')->name('home');
@@ -98,7 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
      * AREA GENERAL  / MODALES ****************************************************************
      */
 
-    Route::get('general/getModalInfoPlantaById/{idPlanta}', 'generalController@getModalInfoPlantaById');
+    Route::get('general/getModalInfoPlantaById/{idPlanta}', 'generalController@getModalInfoPlantaById')->name('modalInfoPlantaById');
 
     Route::get('general/getModalGaleriaPlantaById/{idPlanta}', 'generalController@getModalGaleriaPlantaById');
 
@@ -106,7 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('general/postModalEditarPlantaById', 'generalController@postModalEditarPlantaById')->name('modalEditarPlanta');
 
-    Route::get('general/getModalInfoPezById/{idPez}', 'generalController@getModalInfoPezById');
+    Route::get('general/getModalInfoPezById/{idPez}', 'generalController@getModalInfoPezById')->name('modalInfoPezById');
 
     Route::get('general/getModalGaleriaPezById/{idPez}', 'generalController@getModalGaleriaPezById');
 
@@ -114,7 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('general/postModalEditarPezById', 'generalController@postModalEditarPezById')->name('modalEditarPez');
 
-    Route::get('general/getModalInfoUsuarioById/{idUsuario}', 'generalController@getModalInfoUsuarioById');
+    Route::get('general/getModalInfoUsuarioById/{idUsuario}', 'generalController@getModalInfoUsuarioById')->name('modalInfoUsuarioById');
 
     Route::get('general/getModalEditarUsuarioById/{idUsuario}', 'generalController@getModalEditarUsuarioById');
 
@@ -286,6 +270,32 @@ Route::group(['middleware' => 'auth'], function () {
     /**
      *******************************************************************************************
      * FIN AREA CONFIGURACION ******************************************************************
+     *******************************************************************************************
+     */
+
+    /**
+     *******************************************************************************************
+     * AREA SOCIAL *****************************************************************************
+     *******************************************************************************************
+     */
+
+    /**
+     * AREA GENERAL  / VISTAS *****************************************************************
+     */
+
+    /**
+     * AREA GENERAL  / MODALES ****************************************************************
+     */
+
+    Route::get('social/modalInfoUsuarioPublicoById/{idUsuario}', 'socialController@getModalInfoUsuarioPublicoById')->name('modalInfoUsuarioPublicoById');
+
+    Route::get('social/modalAgregarColega/{idUsuario}', 'socialController@getModalAgregarColega')->name('modalAgregarColega');
+
+    Route::post('social/modalAgregarColega', 'socialController@postModalAgregarColega')->name('modalAgregarColega');
+
+    /**
+     *******************************************************************************************
+     * FIN AREA SOCIAL *************************************************************************
      *******************************************************************************************
      */
 

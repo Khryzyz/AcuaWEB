@@ -27,15 +27,18 @@ class generalController extends Controller
 
     /**
      *******************************************************************************************
+     * AREA METODOS USADOS POR VISTAS **********************************************************
+     *******************************************************************************************
+     */
+
+    /**
+     *******************************************************************************************
      * AREA METODOS USADOS POR MODALES *********************************************************
      *******************************************************************************************
      */
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion de la planta por su id
-     *  - Retorna la vista junto con la informacion de la planta
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion del especimen por su id
      *
      * @param $idPlanta
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -54,10 +57,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion de la planta por su id
-     *  - Retorna la vista junto con la informacion de la planta
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion de la galeria del especimen por su id
      *
      * @param $idPlanta
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -74,10 +74,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion de la planta por su id
-     *  - Retorna la vista junto con la informacion de la planta
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion del especimen por su id
      *
      * @param $idPlanta
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -96,8 +93,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que recibe la informacion para actulizar el especimen
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para actualizar el especimen
      *
      * @param $rq
      * @return string
@@ -113,10 +109,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del pez por su id
-     *  - Retorna la vista junto con la informacion del pez
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion del especimen por su id
      *
      * @param $idPez
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -134,12 +127,8 @@ class generalController extends Controller
 
     }
 
-
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del pez por su id
-     *  - Retorna la vista junto con la informacion del pez
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion de la galeria del especimen por su id
      *
      * @param $idPez
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -156,10 +145,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del pez por su id
-     *  - Retorna la vista junto con la informacion del pez
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion del especimen por su id
      *
      * @param $idPez
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -178,8 +164,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que recibe la informacion para actulizar el especimen
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para actualizar el especimen
      *
      * @param $rq
      * @return string
@@ -195,10 +180,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del usuario por su id
-     *  - Retorna la vista junto con la informacion del usuario
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion del usuario por su id
      *
      * @param $idUsuario
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -217,10 +199,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del usuario por su id
-     *  - Retorna la vista junto con la informacion del usuario
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion del usuario por su id
      *
      * @param $idUsuario
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -239,10 +218,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del usuario por su id
-     *  - Retorna la vista junto con la informacion del usuario
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para actualizar el usuario
      *
      * @param $rq
      * @return string
@@ -257,12 +233,8 @@ class generalController extends Controller
 
     }
 
-
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del usuario por su id
-     *  - Retorna la vista junto con la informacion del usuario
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion del usuario por su id
      *
      * @param $idUsuario
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -280,12 +252,8 @@ class generalController extends Controller
 
     }
 
-
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del usuario por su id
-     *  - Retorna la vista junto con la informacion del usuario
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para actualizar el pass del usuario
      *
      * @param $rq
      * @return string
@@ -301,10 +269,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del usuario por su id
-     *  - Retorna la vista junto con la informacion del usuario
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion del usuario por su id
      *
      * @param $idUsuario
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -322,12 +287,8 @@ class generalController extends Controller
 
     }
 
-
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del usuario por su id
-     *  - Retorna la vista junto con la informacion del usuario
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para actualizar el avatar del usuario
      *
      * @param $rq
      * @return string
@@ -337,7 +298,7 @@ class generalController extends Controller
 
         $Bl = new AquaWebBL();
 
-        $result = $Bl->updAvatarUsuario($rq);
+        $result = $Bl->postEditarAvatarUsuario($rq);
 
         $result_decode = json_decode($result);
 
@@ -355,8 +316,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna la vista para el cambio de estado
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion de la relacion de los especimenes
      *
      * @param $idElemento
      * @param $tipoElemento
@@ -375,8 +335,7 @@ class generalController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna la vista para el cambio de estado
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para actualizar el estado de un elemento
      *
      * @param $rq
      * @return string
@@ -408,6 +367,5 @@ class generalController extends Controller
      * AREA METODOS USADOS POR DROPDOWNS *********************************************************
      *******************************************************************************************
      */
-
 
 }

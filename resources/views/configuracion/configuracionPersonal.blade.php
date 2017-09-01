@@ -18,12 +18,12 @@
                             <?php if($data->avatar){
                             ?>
                             <img src="{{url('/img/avatar/'.$data->avatar)}}" class="img-responsive img-thumbnail" alt="Avatar"
-                                 height="100em"/>
+                                 width="200em"/>
                             <?php
                             }else{
                             ?>
-                            <img src="{{url('/img/sin_avatar.png')}}" class="img-responsive img-thumbnail" alt="Avatar" height="100em"
-                                 width="100em"/>
+                            <img src="{{url('/img/sin_avatar.png')}}" class="img-responsive img-thumbnail" alt="Avatar"
+                                 width="200em"/>
                         <?php
                         }
                         ?>

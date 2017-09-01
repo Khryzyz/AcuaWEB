@@ -5,7 +5,6 @@ namespace aplicacion\Http\Controllers;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
-use function PHPSTORM_META\type;
 use Utils;
 
 use AquaWebBL;
@@ -33,10 +32,7 @@ class configuracionController extends Controller
      */
 
     /**
-     *  Metodo del controlador que:
-     *  - Retorna la vista de configuracion de usuarios
-     *
-     * Usado en Vista
+     *  Metodo del controlador que retorna la vista de configuracion de usuarios
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -46,14 +42,12 @@ class configuracionController extends Controller
     }
 
     /**
-     *  Metodo del controlador que:
-     *  - Retorna la vista de configuracion de informacion personal de usuario
+     *  Metodo del controlador que retorna la vista de configuracion de informacion personal de usuario
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function configuracionPersonal()
     {
-
 
         $Bl = new AquaWebBL();
 
@@ -66,8 +60,7 @@ class configuracionController extends Controller
     }
 
     /**
-     *  Metodo del controlador que:
-     *  - Retorna la vista de configuracion de plantas
+     *  Metodo del controlador que retorna la vista de configuracion de plantas
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -77,8 +70,7 @@ class configuracionController extends Controller
     }
 
     /**
-     *  Metodo del controlador que:
-     *  - Retorna la vista de configuracion de peces
+     *  Metodo del controlador que retorna la vista de configuracion de peces
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -88,8 +80,7 @@ class configuracionController extends Controller
     }
 
     /**
-     *  Metodo del controlador que:
-     *  - Retorna la vista de configuracion de plantas por el usuario
+     *  Metodo del controlador que retorna la vista de configuracion de plantas por el usuario
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -106,8 +97,7 @@ class configuracionController extends Controller
     }
 
     /**
-     *  Metodo del controlador que:
-     *  - Retorna la vista de configuracion de peces registrados por el usuario
+     *  Metodo del controlador que retorna la vista de configuracion de peces registrados por el usuario
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -124,9 +114,7 @@ class configuracionController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del pez por su id
-     *  - Retorna la vista junto con la informacion del pez
+     * Metodo del controlador que retorna la vista para la edicion de la galeria del especimen
      *
      * @param $idPlanta
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -147,11 +135,9 @@ class configuracionController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del pez por su id
-     *  - Retorna la vista junto con la informacion del pez
+     * Metodo del controlador que retorna la vista para la edicion de la galeria del especimen
      *
-     * @param $idPlanta
+     * @param $idPez
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function editargaleriapez($idPez)
@@ -176,38 +162,7 @@ class configuracionController extends Controller
      */
 
     /**
-     * Metodo del controlador que retorna el modal para agregar un usuario
-     * Usado en Modal
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getModalAgregarUsuario()
-    {
-
-        return view('configuracion.modalAgregarUsuario');
-
-    }
-
-    /**
-     * Metodo del controlador que retorna el modal para agregar un usuario
-     * Usado en Modal
-     *
-     * @param Request $rq
-     * @return string
-     */
-    public function postModalAgregarUsuario(Request $rq)
-    {
-
-        $Bl = new AquaWebBL();
-
-        $result = $Bl->postInsertarUsuario($rq);
-
-        return $result;
-    }
-
-    /**
      * Metodo del controlador que retorna el modal para agregar una variedad de planta
-     * Usado en Modal
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -219,8 +174,7 @@ class configuracionController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna el modal para agregar una variedad de planta
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para agregar una variedad de planta
      *
      * @param Request $rq
      * @return string
@@ -237,7 +191,6 @@ class configuracionController extends Controller
 
     /**
      * Metodo del controlador que retorna el modal para agregar una variedad de pez
-     * Usado en Modal
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -249,9 +202,54 @@ class configuracionController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna el modal para agregar una variedad de pez
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para agregar una variedad de pez
      *
+     * @param Request $rq
+     * @return string
+     */
+    public function postModalAgregarPez(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postInsertarPez($rq, $this->auth->user()->id);
+
+        return $result;
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar un usuario
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalAgregarUsuario()
+    {
+
+        return view('configuracion.modalAgregarUsuario');
+
+    }
+
+    /**
+     * Metodo del controlador que recibe la informacion para agregar un usuario
+     *
+     * @param Request $rq
+     * @return string
+     */
+    public function postModalAgregarUsuario(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postInsertarUsuario($rq);
+
+        return $result;
+    }
+
+    /**
+     * Metodo del controlador que retorna el modal para agregar una imagen a la galeria
+     *
+     * @param $id
+     * @param $tipo
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getModalAgregarImagen($id, $tipo)
@@ -269,12 +267,8 @@ class configuracionController extends Controller
 
     }
 
-
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del usuario por su id
-     *  - Retorna la vista junto con la informacion del usuario
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para agregar una imagen a la galeria
      *
      * @param $rq
      * @return string
@@ -284,7 +278,7 @@ class configuracionController extends Controller
 
         $Bl = new AquaWebBL();
 
-        $result = $Bl->insImagenGaleria($rq);
+        $result = $Bl->postInsertarImagenGaleria($rq);
 
         $result_decode = json_decode($result);
 
@@ -302,25 +296,7 @@ class configuracionController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna el modal para agregar una variedad de pez
-     * Usado en Modal
-     *
-     * @param Request $rq
-     * @return string
-     */
-    public function postModalAgregarPez(Request $rq)
-    {
-
-        $Bl = new AquaWebBL();
-
-        $result = $Bl->postInsertarPez($rq, $this->auth->user()->id);
-
-        return $result;
-    }
-
-    /**
-     * Metodo del controlador que retorna el modal para agregar una variedad de pez
-     * Usado en Modal
+     * Metodo del controlador que retorna el modal para cambiar el estado de una imagen
      *
      * @param $idGaleria
      * @param $estado
@@ -341,8 +317,7 @@ class configuracionController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna el modal para agregar una variedad de pez
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para cambiar el estado de una imagen
      *
      * @param Request $rq
      * @return string
@@ -352,18 +327,16 @@ class configuracionController extends Controller
 
         $Bl = new AquaWebBL();
 
-        $result = $Bl->updEstadoGaleria($rq);
+        $result = $Bl->postEditarEstadoGaleria($rq);
 
         return $result;
 
     }
 
     /**
-     * Metodo del controlador que retorna el modal para agregar una variedad de pez
-     * Usado en Modal
+     * Metodo del controlador que retorna el modal para editar la informacion de una imagen
      *
      * @param $idGaleria
-     * @param $estado
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getModalEditarInfoGaleria($idGaleria)
@@ -380,8 +353,7 @@ class configuracionController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna el modal para agregar una variedad de pez
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para editar la informacion de una imagen
      *
      * @param Request $rq
      * @return string
@@ -391,7 +363,7 @@ class configuracionController extends Controller
 
         $Bl = new AquaWebBL();
 
-        $result = $Bl->updInfoGaleria($rq);
+        $result = $Bl->postEditarInfoGaleria($rq);
 
         return $result;
 
@@ -404,31 +376,7 @@ class configuracionController extends Controller
      */
 
     /**
-     * Metodo que consulta los usuarios registrados en el sistema
-     * Usado en Grid
-     *
-     * @return array
-     */
-    public function getUsuarios()
-    {
-
-        $Bl = new AquaWebBL();
-
-        $data = $Bl->getUsuarios();
-
-        $request = file_get_contents('php://input');
-
-        $input = json_decode($request);
-
-        $util = new Utils();
-
-        return $util->getDataRequest($data, $input);
-
-    }
-
-    /**
      * Metodo que consulta las variedades de plantas registradas en el sistema
-     * Usado en Grid
      *
      * @return array
      */
@@ -451,7 +399,6 @@ class configuracionController extends Controller
 
     /**
      * Metodo que consulta las variedades de peces registrados en el sistema
-     * Usado en Grid
      *
      * @return array
      */
@@ -473,8 +420,29 @@ class configuracionController extends Controller
     }
 
     /**
+     * Metodo que consulta los usuarios registrados en el sistema
+     *
+     * @return array
+     */
+    public function getUsuarios()
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getUsuarios();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($data, $input);
+
+    }
+
+    /**
      * Metodo que consulta las variedades de plantas registradas en el sistema por el id del usuario
-     * Usado en Grid
      *
      * @return array
      */
@@ -496,9 +464,9 @@ class configuracionController extends Controller
     }
 
     /**
-     * Metodo que consulta las variedades de plantas registradas en el sistema por el id del usuario
-     * Usado en Grid
+     * Metodo que consulta las variedades de plantas registradas en el sistema por el id del proceso
      *
+     * @param $idProceso
      * @return array
      */
     public function getPlantasByUsuarioIdForProceso($idProceso)
@@ -520,7 +488,6 @@ class configuracionController extends Controller
 
     /**
      * Metodo que consulta las variedades de peces registrados en el sistema por el id del usuario
-     * Usado en Grid
      *
      * @return array
      */
@@ -542,8 +509,7 @@ class configuracionController extends Controller
     }
 
     /**
-     * Metodo que consulta las variedades de peces registrados en el sistema por el id del usuario
-     * Usado en Grid
+     * Metodo que consulta las variedades de peces registrados en el sistema por el id del proceso
      *
      * @return array
      */
@@ -565,8 +531,7 @@ class configuracionController extends Controller
     }
 
     /**
-     * Metodo que consulta las variedades de peces registrados en el sistema por el id del usuario
-     * Usado en Grid
+     * Metodo que consulta las variedades de peces registrados en el sistema por el id del especimen
      *
      * @return array
      */
@@ -587,10 +552,8 @@ class configuracionController extends Controller
 
     }
 
-
     /**
-     * Metodo que consulta las variedades de peces registrados en el sistema por el id del usuario
-     * Usado en Grid
+     * Metodo que consulta las variedades de peces registrados en el sistema por el id del especimen
      *
      * @return array
      */
@@ -619,7 +582,6 @@ class configuracionController extends Controller
 
     /**
      * Metodo que consulta los tipos de usuario registrados en el sistema
-     * Usado en DropDown
      *
      * @return mixed
      */

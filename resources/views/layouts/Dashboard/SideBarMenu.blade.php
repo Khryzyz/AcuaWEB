@@ -5,12 +5,15 @@
         <?php if(Auth::user()->avatar){
         ?>
         <img src="{{url('/img/avatar/'.Auth::user()->avatar.".".Auth::user()->extension)}}"
-             class="img-responsive img-thumbnail" alt="Avatar"
-             height="100em"/>
+             class="img-responsive img-thumbnail"
+             alt="Avatar"
+             width="200em"/>
         <?php
         }else{
         ?>
-        <img src="{{url('/img/sin_avatar.png')}}" class="img-responsive img-thumbnail" alt="Avatar" height="100em"/>
+        <img src="{{url('/img/sin_avatar.png')}}" class="img-responsive img-thumbnail"
+             alt="Avatar"
+             width="200em"/>
     <?php
     }
     ?>
@@ -18,6 +21,28 @@
     </div>
 
     <div class="list-group panel">
+
+        <a href="#menuColegas" class="list-group-item collapsed" data-toggle="collapse"
+           data-parent="#sideAcuaponia"
+           aria-expanded="false">
+            <i class="fa fa-users"></i>
+            <span class="hidden-sm-down">Colegas</span>
+        </a>
+        <div class="collapse" id="menuColegas">
+            <a href="{{route('configUsuarios')}}" class="list-group-item" data-parent="#menuColegas">
+                <i class="fa fa-bars"></i>
+                <span class="hidden-sm-down">Listado de solicitudes</span>
+            </a>
+            <a href="{{route('configPlantas')}}" class="list-group-item" data-parent="#menuColegas">
+                <i class="fa fa-comments"></i>
+                <span class="hidden-sm-down">Listado de colegas</span>
+            </a>
+            <a href="{{route('configPeces')}}" class="list-group-item" data-parent="#menuColegas">
+                <i class="fa fa-gears"></i>
+                <span class="hidden-sm-down">Comparativa de procesos</span>
+            </a>
+        </div>
+
 
         <a href="{{route('procesos')}}" class="list-group-item collapsed" data-parent="#sideAcuaponia">
             <i class="fa fa-line-chart"></i>

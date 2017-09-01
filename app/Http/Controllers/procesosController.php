@@ -32,10 +32,7 @@ class procesosController extends Controller
      */
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del usuario por su id
-     *  - Retorna la vista junto con la informacion del usuario
-     * Usado en Vista
+     * Metodo del controlador que retorna la vista de procesos
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -53,10 +50,7 @@ class procesosController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del proceso por su id
-     *  - Retorna la vista junto con la informacion del proceso
-     * Usado en Vista
+     * Metodo del controlador que consulta la informacion del proceso por su id
      *
      * @param $idProceso
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -75,10 +69,7 @@ class procesosController extends Controller
     }
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion del proceso por su id
-     *  - Retorna la vista junto con la informacion del proceso
-     * Usado en Vista
+     * Metodo del controlador que consulta la informacion del proceso por su id
      *
      * @param $idProceso
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -97,9 +88,9 @@ class procesosController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna el modal para agregar un proceso
-     * Usado en Modal
+     * Metodo del controlador que consulta la informacion del proceso por su id
      *
+     * @param $idProceso
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getEditarEspecimenesProcesos($idProceso)
@@ -120,52 +111,7 @@ class procesosController extends Controller
      */
 
     /**
-     * Metodo del controlador que:
-     *  - consulta la informacion de la planta por su id
-     *  - Retorna la vista junto con la informacion de la planta
-     * Usado en Modal
-     *
-     * @param $idPlanta
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getModalInfoPlantaById($idPlanta)
-    {
-
-        $Bl = new AquaWebBL();
-
-        $dataBL = $Bl->getInfoPlantaById($idPlanta);
-
-        $data = $dataBL[0];
-
-        return view('layouts.Modals.modalInfoPlanta', compact('data'));
-
-    }
-
-    /**
-     * Metodo del controlador que:
-     *  - consulta la informacion de la planta por su id
-     *  - Retorna la vista junto con la informacion de la planta
-     * Usado en Modal
-     *
-     * @param $idPez
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getModalInfoPezById($idPez)
-    {
-
-        $Bl = new AquaWebBL();
-
-        $dataBL = $Bl->getInfoPezById($idPez);
-
-        $data = $dataBL[0];
-
-        return view('layouts.Modals.modalInfoPez', compact('data'));
-
-    }
-
-    /**
      * Metodo del controlador que retorna el modal para agregar un proceso
-     * Usado en Modal
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -175,8 +121,7 @@ class procesosController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna el modal para agregar un proceso
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para agregar un proceso
      *
      * @param Request $rq
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -192,9 +137,9 @@ class procesosController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna el modal para agregar un proceso
-     * Usado en Modal
+     * Metodo del controlador que retorna el modal para editar un proceso
      *
+     * @param $idProceso
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getModalEditarProcesos($idProceso)
@@ -210,8 +155,7 @@ class procesosController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna el modal para agregar un proceso
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para editar un proceso
      *
      * @param Request $rq
      * @return string
@@ -227,12 +171,12 @@ class procesosController extends Controller
     }
 
     /**
-     * Metodo del controlador que retorna la vista para el cambio de estado
-     * Usado en Modal
+     * Metodo del controlador que retorna el modal para asociar un especimen a un proceso
      *
      * @param $idEspecimen
      * @param $idProceso
      * @param $tipoEspecimen
+     * @param $estado
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getModalAsociarEspecimenProceso($idEspecimen, $idProceso, $tipoEspecimen, $estado)
@@ -243,13 +187,12 @@ class procesosController extends Controller
 
         $data = $dataBL[0];
 
-        return view('layouts.Modals.modalAsociacionElemento', compact('data'));
+        return view('procesos.modalAsociacionElemento', compact('data'));
 
     }
 
     /**
-     * Metodo del controlador que retorna el modal para agregar un proceso
-     * Usado en Modal
+     * Metodo del controlador que recibe la informacion para asociar un especimen a un proceso
      *
      * @param Request $rq
      * @return string
@@ -272,7 +215,6 @@ class procesosController extends Controller
 
     /**
      * Metodo que consulta los procesos por el id del usuario relacionado
-     * Usado en Grid
      *
      * @param $idUsuario
      * @return array
@@ -296,7 +238,6 @@ class procesosController extends Controller
 
     /**
      * Metodo que consulta las plantas por el id del proceso relacionado
-     * Usado en Grid
      *
      * @param $idProceso
      * @return array
@@ -320,7 +261,6 @@ class procesosController extends Controller
 
     /**
      * Metodo que consulta los peces por el id del proceso relacionado
-     * Usado en Grid
      *
      * @param $idProceso
      * @return array
@@ -343,14 +283,13 @@ class procesosController extends Controller
     }
 
     /**
-     * Metodo que consulta los valores del proceso por su id
-     * Usado en Grid
+     * Metodo que consulta los valores del proceso por su id y tipo de sensor
      *
      * @param $idProceso
      * @param $idTipoSensor
      * @return array
      */
-    public function getValuesProcesoByIdForGrid(Request $rq, $idProceso, $idTipoSensor)
+    public function getValuesProcesoByIdForGrid($idProceso, $idTipoSensor)
     {
 
         $Bl = new AquaWebBL();
@@ -374,8 +313,7 @@ class procesosController extends Controller
      */
 
     /**
-     * Metodo que consulta los valores del proceso por su id
-     * Usado en Chart
+     * Metodo que consulta los valores del proceso por su id y tipo de sensor
      *
      * @param $idProceso
      * @param $idTipoSensor

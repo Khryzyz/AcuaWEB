@@ -2,27 +2,50 @@
 
 namespace aplicacion\Http\Controllers;
 
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
-use aplicacion\Http\Requests;
-use aplicacion\Http\Controllers\Controller;
-
 use Utils;
-use DB;
-use Excel;
-use aplicacion\Muestras;
-use aplicacion\Videos;
+
+use AquaWebBL;
 
 class homeController extends Controller
 {
+
+    protected $auth;
+
     /**
-     * Funcion del controlador que solo me retrona la vista principal.
+     * Constructor de la clase que recibe las variables de autenticacion
      *
-     * @return retorna la vista de las muestras tomadas
+     * configuracionController constructor.
+     * @param Guard $auth
+     */
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
+
+    /**
+     * Metodo del controlador que retorna la vista principal
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        return view('home.index');
+
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoUsuarioById($this->auth->user()->id);
+
+        $dataRegisters = $Bl->getInfoUsuariosRegistrados($this->auth->user()->id);
+
+        $registers = $dataRegisters;
+
+        $data = $dataBL[0];
+
+        return view('home.index', compact('data', 'registers'));
+
     }
 
 }

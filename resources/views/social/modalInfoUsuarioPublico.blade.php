@@ -1,6 +1,6 @@
 <div id="InfoUsuario">
     <?php if($data->tipoestado == 1){ ?>
-    <div class="modal-header bg-warning">
+    <div class="modal-header bg-primary">
         <h4>{{strtoupper($data->nombreusuario)}}</h4>
     </div>
     <?php } else { ?>
@@ -58,31 +58,6 @@
                             </div>
                             <div class="col-md-10">
                                 {{$data->estado}}
-                            </div>
-                        </div>
-
-                        <div class="row margin-bottom-10">
-                            <div class="col-md-2">
-                                <strong>Tipo de Usuario:</strong>
-                            </div>
-                            <div class="col-md-10">
-                                {{$data->rol}}
-                            </div>
-                        </div>
-
-                        <div class="row margin-bottom-10">
-                            <div class="col-md-2 text-">
-                                <strong>Usuario:</strong>
-                            </div>
-                            <div class="col-md-4">
-                                {{$data->usuario}}
-                            </div>
-
-                            <div class="col-md-2">
-                                <strong>Correo:</strong>
-                            </div>
-                            <div class="col-md-4">
-                                {{$data->correo}}
                             </div>
                         </div>
 
