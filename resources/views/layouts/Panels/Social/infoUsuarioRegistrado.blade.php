@@ -16,7 +16,7 @@
                 <?php
                 }else{
                 ?>
-                <img src="{{url('/img/sin_avatar.png')}}"
+                <img src="{{url('/img/sin_social.png')}}"
                      class="img-rounded"
                      alt="Avatar"
                      height="70em"

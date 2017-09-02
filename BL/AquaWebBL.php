@@ -454,7 +454,6 @@ class AquaWebBL
         return $data;
     }
 
-
     /**
      * Metodo que consulta las solicitudes recibidas
      *
@@ -463,6 +462,18 @@ class AquaWebBL
     public function getSolicitudesRecibidas($idUsuario)
     {
         $data = \DB::select('CALL getSolicitudesRecibidas(?)', array($idUsuario));
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta las solicitudes recibidas
+     *
+     * @return mixed.
+     */
+    public function getListColegasByUsuarioId($idUsuario)
+    {
+        $data = \DB::select('CALL getListColegasByUsuarioId(?)', array($idUsuario));
 
         return $data;
     }
@@ -1223,7 +1234,7 @@ class AquaWebBL
     }
 
     /**
-     * Metodo que edita la informacion de una imagen de la galeria
+     * Metodo que edita el estado de una solicitud
      *
      * @param $rq
      * @return string
@@ -1250,6 +1261,40 @@ class AquaWebBL
                     $usuario_id_solicitante,
                     $usuario_id_solicitado,
                     $tipo
+                )
+            );
+            if ($transaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Estado Registrado correctamente';
+            }
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = 'El estado NO se registró correctamente' . $e;
+        }
+        return json_encode($result);
+
+    }
+
+    /**
+     * Metodo que edita el estado de un colega
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postEditarEstadoColega($rq, $idUsuario)
+    {
+        $result = [];
+
+        $idColega = $rq->input('usuarioid');
+
+        try {
+            $transaction = \DB::select('CALL upsEstadoColega(?,?)', array(
+                    $idUsuario,
+                    $idColega
                 )
             );
             if ($transaction) {

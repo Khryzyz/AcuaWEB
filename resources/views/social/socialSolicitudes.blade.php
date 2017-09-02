@@ -204,7 +204,7 @@
         </tr>
     </script>
     <script id="alt-row-template-recibidas" type="text/x-kendo-template">
-        <tr class="k-alt" data-uid="#: idGaleria #">
+        <tr class="k-alt" data-uid="#: idusuario #">
             <td class="avatar">
                 <img src="#if(data.avatar){#/img/avatar/#: data.avatar ##}else{#/img/sin_avatar.png#}#"
                      alt="#: idusuario #"
@@ -264,7 +264,7 @@
         </tr>
     </script>
     <script id="alt-row-template-realizadas" type="text/x-kendo-template">
-        <tr class="k-alt" data-uid="#: idGaleria #">
+        <tr class="k-alt" data-uid="#: idusuario #">
             <td class="avatar">
                 <img src="#if(data.avatar){#/img/avatar/#: data.avatar ##}else{#/img/sin_avatar.png#}#"
                      alt="#: idusuario #"

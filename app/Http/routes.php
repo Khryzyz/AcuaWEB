@@ -285,6 +285,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('social/socialSolicitudes', 'socialController@socialSolicitudes')->name('socialSolicitudes');
 
+    Route::get('social/socialColegas', 'socialController@socialColegas')->name('socialColegas');
+
+    Route::get('social/perfilColega/{usuarioid}', 'socialController@perfilColega')->name('perfilColega');
+
     /**
      * AREA SOCIAL / MODALES ******************************************************************
      */
@@ -299,6 +303,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('social/estadoSolicitud', 'socialController@postEstadoSolicitud')->name('estadoSolicitud');
 
+    Route::get('social/estadoColega/{usuarioid}', 'socialController@getModalEstadoColega')->name('estadoColega');
+
+    Route::post('social/estadoColega', 'socialController@postModalEstadoColega')->name('estadoColega');
+
     /**
      * AREA SOCIAL / GRIDS *********************************************************************
      */
@@ -306,6 +314,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('social/getSolicitudesRealizadas', 'socialController@getSolicitudesRealizadas')->name('solicitudesRealizadas');
 
     Route::post('social/getSolicitudesRecibidas', 'socialController@getSolicitudesRecibidas')->name('solicitudesRecibidas');
+
+    Route::post('social/listColegas', 'socialController@getListColegas')->name('listColegas');
+
+    Route::post('social/getPlantasByColegaId/{usuarioid}', 'socialController@getPlantasByColegaId')->name('getPlantasByColegaId');
+
+    Route::post('social/getPecesByColegaId/{usuarioid}', 'socialController@getPecesByColegaId')->name('getPecesByColegaId');
 
     /**
      *******************************************************************************************

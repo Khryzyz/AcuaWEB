@@ -33,7 +33,7 @@
                 <i class="fa fa-bars"></i>
                 <span class="hidden-sm-down">Listado de solicitudes</span>
             </a>
-            <a href="{{route('configPlantas')}}" class="list-group-item" data-parent="#menuColegas">
+            <a href="{{route('socialColegas')}}" class="list-group-item" data-parent="#menuColegas">
                 <i class="fa fa-comments"></i>
                 <span class="hidden-sm-down">Listado de colegas</span>
             </a>
