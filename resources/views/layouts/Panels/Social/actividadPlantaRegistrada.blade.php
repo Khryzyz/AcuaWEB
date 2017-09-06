@@ -1,15 +1,15 @@
-<div class="w3-card margin-bottom-05">
-    <div class="w3-container bg-success">
-        <h5><i class="fa fa-leaf"></i> Planta: {{$nombreusuario}}</h5>
+<div class="w3-card margin-bottom-10">
+    <div class="w3-container bg-success margin-bottom-05">
+        <h5><i class="fa fa-leaf"></i> Nueva Planta</h5>
     </div>
     <div class="w3-container">
-        <div class="row">
+        <div class="row margin-bottom-05">
             <div class="col-md-3">
                 <!-- Imagen -->
-                <?php if($avatar){
+                <?php if($imagen){
                 ?>
-                <img src="{{url('/img/avatar/'.$data->avatar)}}" class="img-responsive img-thumbnail text-center"
-                     alt="Avatar"
+                <img src="{{url('/img/gallery/'.$imagen)}}" class="img-responsive img-thumbnail text-center"
+                     alt="Imagen"
                      width="80em"/>
                 <?php
                 }else{
@@ -22,13 +22,10 @@
             ?>
             <!-- FIN Imagen -->
             </div>
-            <div class="col-md-4">
-                <h6>Procesos: {{$procesos}}</h6>
-                <h6>Peces: {{$peces}}</h6>
-                <h6>Plantas: {{$plantas}}</h6>
-            </div>
-            <div class="col-md-5">
-                <a href="{{route('modalInfoPlantaById',['idPlanta'=>$idusuario])}}"
+            <div class="col-md-9">
+                <h6>Nombre: {{$nombre}}</h6>
+                <h6>Registrado por: {{$nombreusuario}}</h6>
+                <a href="{{route('modalInfoPlantaById',['idPlanta'=>$id])}}"
                    class="btn-sm"
                    data-modal="modal-xl" style="color: black">
                     <i class="fa fa-leaf"></i> Ver Planta</a></br>

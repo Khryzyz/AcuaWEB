@@ -120,6 +120,92 @@
         </div>
     </div>
 
+
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h4 class="panel-title"><i class="fa fa-gears"></i> Procesos registrados en el sistema</h4>
+        </div>
+        <div class="panel-body">
+            <div class="panel-group">
+                <?php
+
+                //Inicializamos el Data Source de Transporte de lectura
+                $read = new \Kendo\Data\DataSourceTransportRead();
+
+                //Agregamos atributos al datasource de transporte de lectura
+                $read
+                    ->url(route('getProcesosByIdUsuario', ['usuarioid' => $data->idusuario]))
+                    ->contentType('application/json')
+                    ->type('POST');
+
+                //Inicializamos el Data Source de Transporte
+                $transport = new \Kendo\Data\DataSourceTransport();
+
+                //Agregamos atributos al datasource de transporte
+                $transport
+                    ->read($read)
+                    ->parameterMap('function(data) { return kendo.stringify(data); }');
+
+                //Inicializamos el esquema de la grid
+                $schema = new \Kendo\Data\DataSourceSchema();
+
+                //Agregamos los aributos del esquema de l grid
+                $schema
+                    ->data('data')
+                    ->total('total');
+
+                //Inicializamos el Data Source
+                $dataSource = new \Kendo\Data\DataSource();
+
+                //Agregamos atributos al datasource
+                $dataSource
+                    ->transport($transport)
+                    ->pageSize(10)
+                    ->schema($schema)
+                    ->serverFiltering(true)
+                    ->serverSorting(true)
+                    ->serverPaging(true);
+
+                //Inicializamos la grid
+                $gridProcesos = new \Kendo\UI\Grid('GridProceso');
+
+                //Inicializamos las columnas de la grid
+                $nombre = new \Kendo\UI\GridColumn();
+                $nombre->field('nombre')->title('Nombre')->width(100);
+
+                $implementacion = new \Kendo\UI\GridColumn();
+                $implementacion->field('fechaimplementacion')->title('Fecha Implementacion')->width(100);
+
+                $estado = new \Kendo\UI\GridColumn();
+                $estado->field('estadoproceso')->title('Estado')->width(80);
+
+                $verproceso = new \Kendo\UI\GridColumn();
+                $verproceso->field('verproceso')->title('Ver')->templateId('verproceso')->width(125);
+
+                $gridFilterable = new \Kendo\UI\GridFilterable();
+                $gridFilterable->mode("row");
+
+                //Se agregan columnas y atributos al grid
+                $gridProcesos
+                    ->addColumn(
+                        $nombre,
+                        $implementacion,
+                        $estado,
+                        $verproceso
+                    )
+                    ->dataSource($dataSource)
+                    ->sortable(true)
+                    ->filterable($gridFilterable)
+                    ->dataBound('handleAjaxModal')
+                    ->pageable(true);
+
+                //renderizamos la grid
+                echo $gridProcesos->render();
+                ?>
+            </div>
+        </div>
+    </div>
+
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-leaf"></i> Plantas registradas en el sistema</h3>
@@ -180,8 +266,8 @@
             $estado = new \Kendo\UI\GridColumn();
             $estado->field('estado')->title('Estado')->width(60);
 
-            $verplanta = new \Kendo\UI\GridColumn();
-            $verplanta->field('verplanta')->title('Ver')->templateId('verplanta')->width(125);
+            $verproceso = new \Kendo\UI\GridColumn();
+            $verproceso->field('verplanta')->title('Ver')->templateId('verplanta')->width(125);
 
             $gridFilterable = new \Kendo\UI\GridFilterable();
             $gridFilterable->mode("row");
@@ -192,7 +278,7 @@
                     $nombre,
                     $actualizacion,
                     $estado,
-                    $verplanta)
+                    $verproceso)
                 ->dataSource($dataSourcePlantas)
                 ->filterable($gridFilterable)
                 ->sortable(true)
@@ -292,6 +378,14 @@
 
 
 @section('scripts')
+    <script id='verproceso' type='text/x-kendo-tmpl'>
+         <div class="btn-group-justified">
+            <a href="/general/getModalInfoProcesoById/#=idproceso#"
+               class="btn btn-view"
+               data-modal="modal-md">
+                <i class="fa fa-leaf"></i> Ver Proceso</a>
+        </div>
+    </script>
     <script id='verplanta' type='text/x-kendo-tmpl'>
          <div class="btn-group-justified">
             <a href="/general/getModalInfoPlantaById/#=idplanta#"
@@ -303,23 +397,19 @@
                data-modal="modal-lg">
                 <i class="fa fa-image"></i> Ver Galeria</a>
         </div>
-
-
     </script>
 
     <script id='verpez' type='text/x-kendo-tmpl'>
-      <div class="btn-group-justified">
-        <a href="/general/getModalInfoPezById/#=idpez#"
-           class="btn btn-view"
-           data-modal="modal-md">
-            <i class="fa fa-tint"></i> Ver Pez</a>
-           <a href='/general/getModalGaleriaPezById/#=idpez#'
-           class="btn btn-view #if(conteogaleria < 1){# disabled #}# "
-           data-modal="modal-xl">
-           <i class="fa fa-image"></i> Ver Galeria</a>
-    </div>
-
-
+        <div class="btn-group-justified">
+            <a href="/general/getModalInfoPezById/#=idpez#"
+                class="btn btn-view"
+                data-modal="modal-md">
+                <i class="fa fa-tint"></i> Ver Pez</a>
+            <a href='/general/getModalGaleriaPezById/#=idpez#'
+                class="btn btn-view #if(conteogaleria < 1){# disabled #}# "
+                data-modal="modal-xl">
+                <i class="fa fa-image"></i> Ver Galeria</a>
+        </div>
     </script>
 
 @endsection

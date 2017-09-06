@@ -7,7 +7,7 @@
     //Agregamos atributos al datasource de transporte de lectura
     $readValueProcesos
         ->url(route('getValuesProcesoByIdForGrid',
-            ['idTipoSensor' => $idTipoSensor, 'idProceso' => $data->id]
+            ['idTipoSensor' => $idTipoSensor, 'idProceso' => $data->idproceso]
         ))
         ->contentType('application/json')
         ->data(['_token' => csrf_token()])
@@ -51,7 +51,7 @@
     $fecha->field('fecha')->title('Fecha')->width(50);
 
     $valor = new \Kendo\UI\GridColumn();
-    $valor->field('valor')->title('Valor ' . ' ( ' . $unidadSensor . ' ) ')->width(50);
+    $valor->field('valor')->title('Valor ' . ' (' . $unidadSensor . ') ')->width(50)->format('{0:n2}');
 
 
     //Se agregan columnas y atributos al grid

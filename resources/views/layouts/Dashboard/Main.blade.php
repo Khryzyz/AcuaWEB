@@ -41,6 +41,8 @@
 
     <!-- Kendo css-->
     {!!Html::style('css/kendo/kendo.common.min.css')!!}
+    {!!Html::style('css/kendo/kendo.default.min.css')!!}
+    {!!Html::style('css/kendo/kendo.default.mobile.min.css')!!}
     {!!Html::style('css/kendo/kendo.bootstrap.min.css')!!}
 
     <!-- Styles Personalizados -->

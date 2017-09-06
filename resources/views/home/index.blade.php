@@ -9,13 +9,25 @@
                     Actividad Reciente
                 </div>
                 <div class="panel-body">
-                    <?php for($i = 0; $i < count($registers);$i++){
-                    $register = (array)$registers[$i];
+                    <?php for($i = 0; $i < count($eventos_registrados);$i++){
+                    $evento_registrado = (array)$eventos_registrados[$i];
+                    switch ($evento_registrado['tipo']) {
+                    case 1:
                     ?>
-                    @include('layouts.Panels.Social.actividadPezRegistrado',$register)
-                    @include('layouts.Panels.Social.actividadPlantaRegistrada',$register)
-                    @include('layouts.Panels.Social.actividadProcesoRegistrado',$register)
+                    @include('layouts.Panels.Social.actividadPlantaRegistrada',$evento_registrado)
                     <?php
+                    break;
+                    case 2:
+                    ?>
+                    @include('layouts.Panels.Social.actividadPezRegistrado',$evento_registrado)
+                    <?php
+                    break;
+                    case 3:
+                    ?>
+                    @include('layouts.Panels.Social.actividadProcesoRegistrado',$evento_registrado)
+                    <?php
+                    break;
+                    }
                     }?>
                 </div>
             </div>
@@ -26,10 +38,10 @@
                     Nuevos Colegas
                 </div>
                 <div class="panel-body">
-                    <?php for($i = 0; $i < count($registers);$i++){
-                    $register = (array)$registers[$i];
+                    <?php for($i = 0; $i < count($usuarios_registrados);$i++){
+                    $usuario_registrado = (array)$usuarios_registrados[$i];
                     ?>
-                    @include('layouts.Panels.Social.infoUsuarioRegistrado',$register)
+                    @include('layouts.Panels.Social.infoUsuarioRegistrado',$usuario_registrado)
                     <?php
                     }?>
                 </div>

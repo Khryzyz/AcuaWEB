@@ -11,7 +11,7 @@
         //Agregamos atributos al datasource de transporte de lectura
         $chartValueProcesosRead
             ->url(route('getValuesProcesoByIdForChart',
-                ['idTipoSensor' => $idTipoSensor, 'idProceso' => $data->id]
+                ['idTipoSensor' => $idTipoSensor, 'idProceso' => $data->idproceso]
             ))
             ->data(['_token' => csrf_token()])
             ->contentType('application/json')
@@ -43,7 +43,7 @@
         $chartValueProcesosSeriesItem
             ->field('valor')
             ->color('#' . $colorSensor)
-            ->name($nombreSensor . ' ( ' . $unidadSensor . ' ) ');
+            ->name($nombreSensor . ' (' . $unidadSensor . ') ');
 
         $chartValueProcesosValueAxisItem = new \Kendo\Dataviz\UI\ChartValueAxisItem();
         $chartValueProcesosValueAxisItem
@@ -84,9 +84,10 @@
 
         ?>
     </div>
+
     @include('layouts.Panels.Procesos.gridValuesProceso',
            ['idTipoSensor' => $idTipoSensor,
-           'idProceso'=>$data->id,
+           'idProceso'=>$data->idproceso,
            'unidadSensor'=>$unidadSensor])
 </div>
 

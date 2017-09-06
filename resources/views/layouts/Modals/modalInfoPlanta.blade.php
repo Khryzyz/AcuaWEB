@@ -4,7 +4,7 @@
         <h4>{{strtoupper($data->nombre)}}</h4>
     </div>
     <div class="modal-body">
-        <div class="panel panel-primary">
+        <div class="panel panel-success">
             <div class="panel-heading">
                 <h4 class="panel-title"><i class="fa fa-leaf"></i> Información de {{$data->nombre}}</h4>
             </div>

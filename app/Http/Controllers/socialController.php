@@ -69,6 +69,98 @@ class socialController extends Controller
     }
 
     /**
+     *  Metodo del controlador que retorna la vista de comparativa de procesos
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getViewComparativaProcesos()
+    {
+        return view('social.comparativaProcesos');
+    }
+
+    /**
+     *  Metodo del controlador que retorna la vista de comparativa de procesos resultados
+     *
+     * @param Request $rq
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getViewResultadosComparativaProcesos(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $idUsuario = $rq->input('listColegas');
+
+        $dataUsuario = $Bl->getInfoUsuarioById($idUsuario);
+
+        $dataUsuario = $dataUsuario[0];
+
+        $idProcesoUsuario = $rq->input('listProcesosUsuario');
+
+        $dataResumenProcesoUsuario = $Bl->getInfoResumenProcesoById($idProcesoUsuario);
+
+        $dataResumenProcesoUsuario = $dataResumenProcesoUsuario[0];
+
+        $dataProcesoUsuario = $Bl->getInfoProcesoById($idProcesoUsuario);
+
+        $dataProcesoUsuario = $dataProcesoUsuario[0];
+
+        $infoPezUsuario = $Bl->getInfoPezByProcesoId($idProcesoUsuario);
+
+        $infoPlantaUsuario = $Bl->getInfoPlantaByProcesoId($idProcesoUsuario);
+
+        $idProcesoColega = $rq->input('listProcesosColega');
+
+        $dataResumenProcesoColega = $Bl->getInfoResumenProcesoById($idProcesoColega);
+
+        $dataResumenProcesoColega = $dataResumenProcesoColega[0];
+
+        $dataProcesoColega = $Bl->getInfoProcesoById($idProcesoColega);
+
+        $dataProcesoColega = $dataProcesoColega[0];
+
+        $infoPezColega = $Bl->getInfoPezByProcesoId($idProcesoColega);
+
+        $infoPlantaColega = $Bl->getInfoPlantaByProcesoId($idProcesoColega);
+
+        //Se extrae la propiedad "idpez" para hacer la validacion  y se hace el conteo
+        $infoPezUsuario = array_column((array)$infoPezUsuario, 'idpez');
+
+        $infoPezColega = array_column((array)$infoPezColega, 'idpez');
+
+        $coincidencias_peces = count(array_intersect($infoPezUsuario, $infoPezColega));
+
+        //Se extrae la propiedad "idpez" para hacer la validacion y se hace el conteo
+        $infoPlantaUsuario = array_column((array)$infoPlantaUsuario, 'idplanta');
+
+        $infoPlantaColega = array_column((array)$infoPlantaColega, 'idplanta');
+
+        $coincidencias_plantas = count(array_intersect($infoPlantaUsuario, $infoPlantaColega));
+
+        $porcentaje_coincidencia = ((count((array)$infoPlantaUsuario) + count((array)(array)$infoPlantaColega) + count((array)$infoPezUsuario) + count((array)$infoPezUsuario))-($coincidencias_peces+$coincidencias_plantas));
+        $porcentaje_coincidencia = (($coincidencias_peces + $coincidencias_plantas) * 100) / $porcentaje_coincidencia;
+
+
+        $dataCoincidencias = array(
+            "coincidencias_peces" => $coincidencias_peces,
+            "coincidencias_plantas" => $coincidencias_plantas,
+            "porcentaje_coincidencia" => $porcentaje_coincidencia
+        );
+
+        $dataCoincidencias = (object)$dataCoincidencias;
+
+        return view('social.comparativaProcesosResultado',
+            compact(
+                'dataResumenProcesoUsuario',
+                'dataResumenProcesoColega',
+                'dataProcesoUsuario',
+                'dataProcesoColega',
+                'dataCoincidencias',
+                'dataUsuario')
+        );
+    }
+
+    /**
      *******************************************************************************************
      * AREA METODOS USADOS POR MODALES *********************************************************
      *******************************************************************************************
@@ -259,7 +351,7 @@ class socialController extends Controller
 
         $Bl = new AquaWebBL();
 
-        $data = $Bl->getListColegasByUsuarioId($this->auth->user()->id);
+        $data = $Bl->getInfoColegasByUsuarioId($this->auth->user()->id);
 
         $request = file_get_contents('php://input');
 
@@ -316,9 +408,90 @@ class socialController extends Controller
     }
 
     /**
+     * Metodo que consulta los valores del proceso por su id y tipo de sensor
+     *
+     * @param $idProcesoUsuario
+     * @param $idProcesoColega
+     * @param $idTipoSensor
+     * @return array
+     */
+    public function getValuesComparativaProcesoByIdForGrid($idProcesoUsuario, $idProcesoColega, $idTipoSensor)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $dataGrid = $Bl->getValuesComparativaProcesoById($idProcesoUsuario, $idProcesoColega, $idTipoSensor);
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($dataGrid, $input);
+
+    }
+
+    /**
      *******************************************************************************************
      * AREA METODOS USADOS POR CHARTS ************************************************************
      *******************************************************************************************
      */
+
+    /**
+     * Metodo que consulta los valores del proceso por su id y tipo de sensor
+     *
+     * @param $idProcesoUsuario
+     * @param $idProcesoColega
+     * @param $idTipoSensor
+     * @return mixed
+     */
+    public function getValuesComparativaProcesoByIdForChart($idProcesoUsuario, $idProcesoColega, $idTipoSensor)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $dataChart = $Bl->getValuesComparativaProcesoById($idProcesoUsuario, $idProcesoColega, $idTipoSensor);
+
+        return $dataChart;
+
+    }
+
+    /**
+     *******************************************************************************************
+     * AREA METODOS USADOS POR DROPDOWN ********************************************************
+     *******************************************************************************************
+     */
+
+    /**
+     * Metodo que consulta los colegas de un usuario
+     *
+     * @return mixed
+     */
+    public function getListColegasByUsuarioId()
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getListColegasByUsuarioId($this->auth->user()->id);
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta los procesos de un colega
+     *
+     * @return mixed
+     */
+    public function getListProcesoByColegaId($colegaId)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getListProcesoByColegaId($colegaId);
+
+        return $data;
+    }
+
 
 }

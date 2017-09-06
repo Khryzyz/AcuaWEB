@@ -1,9 +1,9 @@
-<div class="w3-card margin-bottom-05">
-    <div class="w3-container bg-primary">
+<div class="w3-card margin-bottom-10">
+    <div class="w3-container bg-primary margin-bottom-05">
         <h6><i class="fa fa-user"></i> {{$nombreusuario}}</h6>
     </div>
     <div class="w3-container">
-        <div class="row">
+        <div class="row margin-bottom-05">
             <div class="col-md-3">
                 <!-- Imagen -->
                 <?php if($avatar){

@@ -38,13 +38,13 @@ class homeController extends Controller
 
         $dataBL = $Bl->getInfoUsuarioById($this->auth->user()->id);
 
-        $dataRegisters = $Bl->getInfoUsuariosRegistrados($this->auth->user()->id);
+        $usuarios_registrados = $Bl->getInfoUsuariosRegistrados($this->auth->user()->id);
 
-        $registers = $dataRegisters;
+        $eventos_registrados = $Bl->getInfoEventosRegistrados($this->auth->user()->id);
 
         $data = $dataBL[0];
 
-        return view('home.index', compact('data', 'registers'));
+        return view('home.index', compact('data', 'usuarios_registrados', 'eventos_registrados'));
 
     }
 

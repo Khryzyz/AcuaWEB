@@ -116,6 +116,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('general/postModalEstadoElemento', 'generalController@postModalEstadoElemento')->name('modalEstadoElemento');
 
+    Route::get('general/getModalInfoProcesoById/{idProceso}', 'generalController@getModalInfoProcesoById')->name('modalInfoProcesoById');
+
 
     /**
      *******************************************************************************************
@@ -289,6 +291,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('social/perfilColega/{usuarioid}', 'socialController@perfilColega')->name('perfilColega');
 
+    Route::get('social/comparativaProcesos', 'socialController@getViewComparativaProcesos')->name('comparativaProcesos');
+
+    Route::post('social/comparativaProcesos', 'socialController@getViewResultadosComparativaProcesos')->name('comparativaProcesos');
+
     /**
      * AREA SOCIAL / MODALES ******************************************************************
      */
@@ -320,6 +326,24 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('social/getPlantasByColegaId/{usuarioid}', 'socialController@getPlantasByColegaId')->name('getPlantasByColegaId');
 
     Route::post('social/getPecesByColegaId/{usuarioid}', 'socialController@getPecesByColegaId')->name('getPecesByColegaId');
+
+    Route::post('social/getValuesComparativaProcesoByIdForGrid/{idProcesoUsuario}/{idProcesoColega}/{idTipoSensor}', 'socialController@getValuesComparativaProcesoByIdForGrid')->name('getValuesComparativaProcesoByIdForGrid');
+
+    /**
+     * AREA SOCIAL / DROPDOWNS ****************************************************************
+     */
+
+    Route::post('social/getListColegasByUsuarioId', 'socialController@getListColegasByUsuarioId')->name('getListColegasByUsuarioId');
+
+    Route::post('social/getListProcesoByColegaId/{colegaId}', 'socialController@getListProcesoByColegaId')->name('getListProcesoByColegaId');
+
+
+    /**
+     * AREA SOCIAL / CHARTS ********************************************************************
+     */
+
+    Route::post('social/getValuesComparativaProcesoByIdForChart/{idProcesoUsuario}/{idProcesoColega}/{idTipoSensor}', 'socialController@getValuesComparativaProcesoByIdForChart')->name('getValuesComparativaProcesoByIdForChart');
+
 
     /**
      *******************************************************************************************

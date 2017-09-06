@@ -350,6 +350,26 @@ class generalController extends Controller
 
     }
 
+
+    /**
+     * Metodo del controlador que consulta la informacion del proceso por su id
+     *
+     * @param $idProceos
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalInfoProcesoById($idProceos)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $dataBL = $Bl->getInfoProcesoById($idProceos);
+
+        $data = $dataBL[0];
+
+        return view('layouts.Modals.modalInfoProceso', compact('data'));
+
+    }
+
     /**
      *******************************************************************************************
      * AREA METODOS USADOS POR GRID ************************************************************

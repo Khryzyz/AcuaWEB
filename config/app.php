@@ -156,6 +156,9 @@ return [
 
         //Proveedor libreria manejo Datatables
         Yajra\Datatables\DatatablesServiceProvider::class,
+
+        //Proveedor liibreria para la exportacion de PDF
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -220,6 +223,9 @@ return [
 
         //Alias de Datatables
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+
+        //Alias para la exportacion de PDF
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

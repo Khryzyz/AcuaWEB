@@ -80,6 +80,19 @@ class AquaWebBL
     }
 
     /**
+     * Metodo que consulta la informacion de los eventos registrados
+     *
+     * @param $idUsuario
+     * @return mixed.
+     */
+    public function getInfoEventosRegistrados($idUsuario)
+    {
+        $data = \DB::select('CALL getInfoEventosRegistrados(?)', array($idUsuario));
+
+        return $data;
+    }
+
+    /**
      * Metodo que registra la asociacion deun especimen a un proceso
      *
      * @param $rq
@@ -364,6 +377,19 @@ class AquaWebBL
     }
 
     /**
+     * Metodo que consulta la informacion resumen del proceso por id
+     *
+     * @param $idProceso
+     * @return mixed
+     */
+    public function getInfoResumenProcesoById($idProceso)
+    {
+        $data = \DB::select('CALL getInfoResumenProcesoById(?)', array($idProceso));
+
+        return $data;
+    }
+
+    /**
      * Metodo que consulta los valores del proceso por su id
      *
      * @param $idProceso
@@ -373,6 +399,21 @@ class AquaWebBL
     public function getValuesProcesoById($idProceso, $idTipoSensor)
     {
         $data = \DB::select('CALL getValuesProcesoById(?,?)', array($idProceso, $idTipoSensor));
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta los valores del proceso por su id
+     *
+     * @param $idProcesoUsuario
+     * @param $idProcesoColega
+     * @param $idTipoSensor
+     * @return mixed
+     */
+    public function getValuesComparativaProcesoById($idProcesoUsuario, $idProcesoColega, $idTipoSensor)
+    {
+        $data = \DB::select('CALL getValuesComparativaProcesoById(?,?,?)', array($idProcesoUsuario, $idProcesoColega, $idTipoSensor));
 
         return $data;
     }
@@ -471,9 +512,34 @@ class AquaWebBL
      *
      * @return mixed.
      */
+    public function getInfoColegasByUsuarioId($idUsuario)
+    {
+        $data = \DB::select('CALL getInfoColegasByUsuarioId(?)', array($idUsuario));
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta los colegas de un usuario
+     *
+     * @return mixed.
+     */
     public function getListColegasByUsuarioId($idUsuario)
     {
         $data = \DB::select('CALL getListColegasByUsuarioId(?)', array($idUsuario));
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta los procesos de un colega
+     *
+     * @param $idColega
+     * @return mixed
+     */
+    public function getListProcesoByColegaId($idColega)
+    {
+        $data = \DB::select('CALL getListProcesoByColegaId(?)', array($idColega));
 
         return $data;
     }
@@ -514,7 +580,8 @@ class AquaWebBL
         $volumen = $rq->input('volumen');
 
         try {
-            $transaction = \DB::select('CALL insDatosProceso(?,?,?,?,?,?)', array($idUsuario,
+            $transaction = \DB::select('CALL insDatosProceso(?,?,?,?,?,?)', array(
+                    $idUsuario,
                     $nombre,
                     $descripcion,
                     $fecha,
