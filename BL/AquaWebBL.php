@@ -419,6 +419,20 @@ class AquaWebBL
     }
 
     /**
+     * Metodo que consulta los valores del proceso por su id
+     *
+     * @param $idProcesoUsuario
+     * @param $idTipoSensor
+     * @return mixed
+     */
+    public function getValuesReporteProcesoById($idProcesoUsuario, $idTipoSensor)
+    {
+        $data = \DB::select('CALL getValuesReporteProcesoById(?,?)', array($idProcesoUsuario, $idTipoSensor));
+
+        return $data;
+    }
+
+    /**
      * Metodo que consulta la informacion del elemento y su asociacion con otros elementos
      *
      * @param $idElemento
@@ -477,6 +491,18 @@ class AquaWebBL
     public function getTiposExpoSolar()
     {
         $data = \DB::select('CALL getTiposExpoSolar()', array());
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta los tipos de sensores registrados en el sistema
+     *
+     * @return mixed.
+     */
+    public function getTiposSensores()
+    {
+        $data = \DB::select('CALL getTiposSensores()', array());
 
         return $data;
     }

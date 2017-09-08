@@ -4451,6 +4451,7 @@ return array(
     'aplicacion\\Http\\Controllers\\generalController' => $baseDir . '/app/Http/Controllers/generalController.php',
     'aplicacion\\Http\\Controllers\\homeController' => $baseDir . '/app/Http/Controllers/homeController.php',
     'aplicacion\\Http\\Controllers\\mainController' => $baseDir . '/app/Http/Controllers/DELETE_Controllers/mainController.php',
+    'aplicacion\\Http\\Controllers\\pdfController' => $baseDir . '/app/Http/Controllers/pdfController.php',
     'aplicacion\\Http\\Controllers\\procesosController' => $baseDir . '/app/Http/Controllers/procesosController.php',
     'aplicacion\\Http\\Controllers\\socialController' => $baseDir . '/app/Http/Controllers/socialController.php',
     'aplicacion\\Http\\Controllers\\testController' => $baseDir . '/app/Http/Controllers/testController.php',

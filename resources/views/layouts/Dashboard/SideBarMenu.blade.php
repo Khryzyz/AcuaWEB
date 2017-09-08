@@ -42,7 +42,6 @@
             </a>
         </div>
 
-
         <a href="{{route('procesos')}}" class="list-group-item collapsed" data-parent="#sideAcuaponia">
             <i class="fa fa-line-chart"></i>
             <span class="hidden-sm-down"> <strong>Procesos</strong></span>
@@ -87,9 +86,6 @@
                 <span class="hidden-sm-down">Mis Peces</span>
             </a>
         </div>
-        <a href="#menuReportes" class="list-group-item collapsed" data-parent="#sideAcuaponia">
-            <i class="fa fa-area-chart"></i>
-            <span class="hidden-sm-down"> <strong>Reportes</strong></span>
-        </a>
+
     </div>
 </div>

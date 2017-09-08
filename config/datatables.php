@@ -75,7 +75,7 @@ return [
     ],
 
     /**
-     * PDF generator to be used when converting the table to pdf.
+     * PDF generator to be used when converting the table to reports.
      * Available generators: excel, snappy
      * Snappy package: barryvdh/laravel-snappy
      * Excel package: maatwebsite/excel

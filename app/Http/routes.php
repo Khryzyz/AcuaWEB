@@ -8,52 +8,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     /**
      *******************************************************************************************
-     * AREA TEST *******************************************************************************
-     * SOLO ES USADA PARA REALIZAR PRUEBAS SOBRE LA TECNOLOGIA *********************************
-     *******************************************************************************************
-     */
-
-    //Test Grid Datatables
-
-    Route::get('test/vistaGridDatatables', 'testController@vistaGridDatatables');
-
-    Route::post('test/getGridDataTables', 'testController@getGridDataTables')->name('getGridDataTables');
-
-    //Test Grid Kendo
-
-    Route::get('test/vistaGridKendo', 'testController@vistaGridKendo');
-
-    Route::post('test/getGridKendo', 'testController@getGridKendo')->name('getGridKendo');
-
-    //Test Dropdown Kendo
-
-    Route::get('test/vistaDropdownKendo', 'testController@vistaDropdownKendo');
-
-    Route::post('test/getDropDownKendo', 'testController@getDropDownKendo')->name("getDropDownKendo");
-
-    Route::post('test/getDropDownArgKendo/{estado}', 'testController@getDropDownArgKendo')->name('getDropDownArgKendo');
-
-    //Test Info Auth
-
-    Route::get('test/vistaInfoAuth', 'testController@vistaInfoAuth');
-
-    //Test Modal
-
-    Route::get('test/vistaModal', 'testController@vistaModal');
-
-    Route::get('test/getModalTest', 'testController@getModalTest');
-
-    Route::get('test/getModalFormTest/{id}', 'testController@getModalFormTest');
-
-
-    /**
-     *******************************************************************************************
-     * FIN AREA TEST ***************************************************************************
-     *******************************************************************************************
-     */
-
-    /**
-     *******************************************************************************************
      * AREA HOME *******************************************************************************
      *******************************************************************************************
      */
@@ -348,6 +302,28 @@ Route::group(['middleware' => 'auth'], function () {
     /**
      *******************************************************************************************
      * FIN AREA SOCIAL *************************************************************************
+     *******************************************************************************************
+     */
+
+    /**
+     *******************************************************************************************
+     * AREA REPORTES ***************************************************************************
+     *******************************************************************************************
+     */
+
+    Route::get('reportes', 'PdfController@invoice')->name('reportes');
+
+    Route::get('reportes/reporteProceso/{idProceso}', 'pdfController@getReporteProceso')->name('reporteProceso');
+
+    Route::get('reportes/resumenEspecimenes', 'pdfController@getResumenEspecimenes')->name('resumenEspecimenes');
+
+    Route::post('reportes/resumenEspecimenes', 'pdfController@postResumenEspecimenes')->name('resumenEspecimenes');
+
+    Route::get('reportes/resumenProcesos', 'pdfController@resumenProcesos')->name('resumenProcesos');
+
+    /**
+     *******************************************************************************************
+     * FIN AREA REPORTES ***********************************************************************
      *******************************************************************************************
      */
 

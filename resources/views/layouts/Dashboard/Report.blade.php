@@ -16,40 +16,6 @@
 
     <!------------------------------------------------------------------------------------------------------------------
     -- AREA DE CARGA CSS -----------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------------->
-
-    <!-- Bootstrap Core CSS -->
-{!!Html::style('css/bootstrap.min.css')!!}
-
-<!-- Datatables CSS -->
-{!!Html::style('https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css')!!}
-
-<!-- MetisMenu CSS -->
-{!!Html::style('css/metisMenu.min.css')!!}
-
-<!-- Timeline CSS -->
-{!!Html::style('css/timeline.css')!!}
-
-<!-- Custom CSS -->
-{!!Html::style('css/sb-admin-2.css')!!}
-
-<!-- Custom Fonts -->
-{!!Html::style('css/font-awesome.min.css')!!}
-
-<!-- MsgBox css-->
-{!!Html::style('css/msgbox/jquery.msgbox.css')!!}
-
-<!-- Kendo css-->
-{!!Html::style('css/kendo/kendo.common.min.css')!!}
-{!!Html::style('css/kendo/kendo.default.min.css')!!}
-{!!Html::style('css/kendo/kendo.default.mobile.min.css')!!}
-{!!Html::style('css/kendo/kendo.bootstrap.min.css')!!}
-
-<!-- Styles Personalizados -->
-{!!Html::style('css/styleFormsAquaweb.css')!!}
-
-<!-- Styles W3 -->
-{!!Html::style('css/w3.css')!!}
 
 <!------------------------------------------------------------------------------------------------------------------
     -- FIN AREA DE CARGA CSS -------------------------------------------------------------------------------------------
@@ -60,32 +26,29 @@
     ------------------------------------------------------------------------------------------------------------------->
 
     <!-- jQuery -->
-    {!!Html::script('js/jquery.min.js')!!}
+{!!Html::script('js/jquery.min.js')!!}
 
-    <!-- Bootstrap Core JavaScript -->
-    {!!Html::script('js/bootstrap.min.js')!!}
+<!-- Bootstrap Core JavaScript -->
+{!!Html::script('js/bootstrap.min.js')!!}
 
-    <!-- Datatables JavaScript -->
-    {!!Html::script('https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js')!!}
+<!-- Datatables JavaScript -->
+{!!Html::script('https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js')!!}
 
-    <!-- Metis Menu Plugin JavaScript -->
-    {!!Html::script('js/metisMenu.min.js')!!}
+<!-- Metis Menu Plugin JavaScript -->
+{!!Html::script('js/metisMenu.min.js')!!}
 
-    <!-- Morris Charts JavaScript -->
-    {!!Html::script('js/raphael-min.js')!!}
+<!-- Morris Charts JavaScript -->
+{!!Html::script('js/raphael-min.js')!!}
 
-    <!-- Custom Theme JavaScript -->
-    {!!Html::script('js/sb-admin-2.js')!!}
+<!-- Custom Theme JavaScript -->
+{!!Html::script('js/sb-admin-2.js')!!}
 
-    <!-- MsgBox JavaScript -->
-    {!!Html::script('js/msgbox/jquery.msgbox.js')!!}
+<!-- Kendo JavaScript -->
+{!!Html::script('js/kendo/kendo.all.min.js')!!}
+{!!Html::script('js/kendo/cultures/kendo.culture.es-ES.min.js')!!}
+{!!Html::script('js/kendo/lang/kendo.es-ES.js')!!}
 
-    <!-- Kendo JavaScript -->
-    {!!Html::script('js/kendo/kendo.all.min.js')!!}
-    {!!Html::script('js/kendo/cultures/kendo.culture.es-ES.min.js')!!}
-    {!!Html::script('js/kendo/lang/kendo.es-ES.js')!!}
-
-    <!------------------------------------------------------------------------------------------------------------------
+<!------------------------------------------------------------------------------------------------------------------
     -- FIN AREA DE CARGA JAVASCRIPT ------------------------------------------------------------------------------------
     ------------------------------------------------------------------------------------------------------------------->
 
@@ -105,7 +68,10 @@
 <body>
 
 @yield('content')
+@include('layouts.Panels.Annotations.report')
+<!-- /#wrapper -->
 
+<!-- Modal Bootstrap-->
 {!!Html::script('js/inicio.js')!!}
 
 @yield('scripts')

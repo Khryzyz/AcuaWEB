@@ -4821,6 +4821,7 @@ class ComposerStaticInitd666ebe044ef748cf9ceb8457fd68480
         'aplicacion\\Http\\Controllers\\generalController' => __DIR__ . '/../..' . '/app/Http/Controllers/generalController.php',
         'aplicacion\\Http\\Controllers\\homeController' => __DIR__ . '/../..' . '/app/Http/Controllers/homeController.php',
         'aplicacion\\Http\\Controllers\\mainController' => __DIR__ . '/../..' . '/app/Http/Controllers/DELETE_Controllers/mainController.php',
+        'aplicacion\\Http\\Controllers\\pdfController' => __DIR__ . '/../..' . '/app/Http/Controllers/pdfController.php',
         'aplicacion\\Http\\Controllers\\procesosController' => __DIR__ . '/../..' . '/app/Http/Controllers/procesosController.php',
         'aplicacion\\Http\\Controllers\\socialController' => __DIR__ . '/../..' . '/app/Http/Controllers/socialController.php',
         'aplicacion\\Http\\Controllers\\testController' => __DIR__ . '/../..' . '/app/Http/Controllers/testController.php',

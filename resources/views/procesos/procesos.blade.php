@@ -59,20 +59,23 @@
                 $gridProcesos = new \Kendo\UI\Grid('GridProceso');
 
                 //Inicializamos las columnas de la grid
-                $seleccionarproceso = new \Kendo\UI\GridColumn();
-                $seleccionarproceso->field('seleccionarproceso')->title('Seleccionar')->templateId('seleccionarproceso')->width(100);
+                $verproceso = new \Kendo\UI\GridColumn();
+                $verproceso->title('Seleccionar')->templateId('verproceso')->width(80);
 
                 $nombre = new \Kendo\UI\GridColumn();
                 $nombre->field('nombre')->title('Nombre')->width(100);
 
                 $fechaimplementacion = new \Kendo\UI\GridColumn();
-                $fechaimplementacion->field('fechaimplementacion')->title('Fecha Implementacion')->width(100);
+                $fechaimplementacion->field('fechaimplementacion')->title('Fecha Implementacion')->width(60);
 
                 $estadoproceso = new \Kendo\UI\GridColumn();
-                $estadoproceso->field('estadoproceso')->title('Estado')->templateId('estadoproceso')->width(80);
+                $estadoproceso->title('Estado')->templateId('estadoproceso')->width(80);
 
                 $editarproceso = new \Kendo\UI\GridColumn();
-                $editarproceso->field('editarproceso')->title('Editar')->templateId('editarproceso')->width(80);
+                $editarproceso->title('Editar')->templateId('editarproceso')->width(80);
+
+                $reporteproceso = new \Kendo\UI\GridColumn();
+                $reporteproceso->title('Reporte')->templateId('reporteproceso')->width(80);
 
                 $gridFilterable = new \Kendo\UI\GridFilterable();
                 $gridFilterable->mode("row");
@@ -80,11 +83,12 @@
                 //Se agregan columnas y atributos al grid
                 $gridProcesos
                     ->addColumn(
-                        $seleccionarproceso,
+                        $verproceso,
                         $nombre,
                         $fechaimplementacion,
                         $estadoproceso,
-                        $editarproceso
+                        $editarproceso,
+                        $reporteproceso
                     )
                     ->dataSource($dataSource)
                     ->sortable(true)
@@ -101,16 +105,12 @@
 @endsection
 
 @section('scripts')
-    <script id='seleccionarproceso' type='text/x-kendo-tmpl'>
+    <script id='verproceso' type='text/x-kendo-tmpl'>
         <div class="btn-group-justified">
             <a href='/procesos/getViewInfoCaracteristicasProcesoById/#=idproceso#'
             class='btn btn-view'>
             <i class="fa fa-gear"></i> Ver Proceso</a>
         </div>
-
-
-
-
     </script>
     <script id='estadoproceso' type='text/x-kendo-tmpl'>
     <div class="btn-group-justified">
@@ -126,10 +126,6 @@
             <i class="fa fa-power-off"></i> Activar</a>
         #}#
         </div>
-
-
-
-
     </script>
     <script id='editarproceso' type='text/x-kendo-tmpl'>
         <div class="btn-group-justified">
@@ -138,9 +134,13 @@
             data-modal="modal-md">
             <i class="fa fa-info"></i> Editar Información</a>
         </div>
-
-
-
-
+    </script>
+    <script id='reporteproceso' type='text/x-kendo-tmpl'>
+        <div class="btn-group-justified">
+            <a href='/reportes/reporteProceso/#=idproceso#'
+            target="_blank"
+            class="btn btn-report #if(estado == 'Inactivo'){# disabled #}# ">
+            <i class="fa fa-bar-chart"></i> Generar Reporte</a>
+        </div>
     </script>
 @endsection
