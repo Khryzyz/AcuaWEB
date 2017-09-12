@@ -53,40 +53,40 @@
                     <div class="panel-body">
 
                         <div class="row margin-bottom-10">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Estado:</strong>
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 {{$data->estado}}
                             </div>
                         </div>
 
                         <div class="row margin-bottom-10">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Primer Nombre:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$data->primer_nombre}}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Segundo Nombre:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$data->segundo_nombre}}
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Primer Apellido:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$data->primer_apellido}}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Segundo Apellido:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$data->segundo_apellido}}
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                                 <strong>Especimenes plantas registradas:</strong>
                             </div>
                             <div class="col-md-7">
-                                {{$data->peces}}
+                                {{$data->plantas}}
                             </div>
                         </div>
 
@@ -120,7 +120,7 @@
                                 <strong>Especimenes peces registrados:</strong>
                             </div>
                             <div class="col-md-7">
-                                {{$data->plantas}}
+                                {{$data->peces}}
                             </div>
                         </div>
                     </div>

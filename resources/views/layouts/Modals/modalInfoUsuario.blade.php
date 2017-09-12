@@ -53,65 +53,71 @@
                     <div class="panel-body">
 
                         <div class="row margin-bottom-10">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Estado:</strong>
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 {{$data->estado}}
                             </div>
                         </div>
 
                         <div class="row margin-bottom-10">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Tipo de Usuario:</strong>
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-3">
                                 {{$data->rol}}
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Tipo de Acceso:</strong>
+                            </div>
+                            <div class="col-md-3">
+                                {{$data->acceso}}
                             </div>
                         </div>
 
                         <div class="row margin-bottom-10">
-                            <div class="col-md-2 text-">
+                            <div class="col-md-3">
                                 <strong>Usuario:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$data->usuario}}
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Correo:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$data->correo}}
                             </div>
                         </div>
 
                         <div class="row margin-bottom-10">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Primer Nombre:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$data->primer_nombre}}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Segundo Nombre:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$data->segundo_nombre}}
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Primer Apellido:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$data->primer_apellido}}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <strong>Segundo Apellido:</strong>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{$data->segundo_apellido}}
                             </div>
                         </div>

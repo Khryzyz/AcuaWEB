@@ -128,18 +128,23 @@ class socialController extends Controller
 
         $infoPezColega = array_column((array)$infoPezColega, 'idpez');
 
+        //Se extrae la interseccion de los arrays de peces
         $coincidencias_peces = count(array_intersect($infoPezUsuario, $infoPezColega));
 
-        //Se extrae la propiedad "idpez" para hacer la validacion y se hace el conteo
+        //Se extrae la propiedad "idplanta" para hacer la validacion y se hace el conteo
         $infoPlantaUsuario = array_column((array)$infoPlantaUsuario, 'idplanta');
 
         $infoPlantaColega = array_column((array)$infoPlantaColega, 'idplanta');
 
+        //Se extrae la interseccion de los arrays de plantas
         $coincidencias_plantas = count(array_intersect($infoPlantaUsuario, $infoPlantaColega));
 
-        $porcentaje_coincidencia = ((count((array)$infoPlantaUsuario) + count((array)(array)$infoPlantaColega) + count((array)$infoPezUsuario) + count((array)$infoPezUsuario))-($coincidencias_peces+$coincidencias_plantas));
-        $porcentaje_coincidencia = (($coincidencias_peces + $coincidencias_plantas) * 100) / $porcentaje_coincidencia;
+        //Se hacen los calculos necesarios
+        $porcentaje_coincidencia = count((array)$infoPlantaUsuario) + count((array)$infoPlantaColega) + count((array)$infoPezUsuario) + count((array)$infoPezColega);
 
+        $porcentaje_coincidencia = $porcentaje_coincidencia - ($coincidencias_peces + $coincidencias_plantas);
+
+        $porcentaje_coincidencia = (($coincidencias_peces + $coincidencias_plantas) * 100) / $porcentaje_coincidencia;
 
         $dataCoincidencias = array(
             "coincidencias_peces" => $coincidencias_peces,

@@ -246,6 +246,34 @@ class configuracionController extends Controller
     }
 
     /**
+     * Metodo del controlador que retorna el modal para agregar un usuario
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getModalRegistrarUsuario()
+    {
+
+        return view('auth.registrarUsuario');
+
+    }
+
+    /**
+     * Metodo del controlador que recibe la informacion para agregar un usuario
+     *
+     * @param Request $rq
+     * @return string
+     */
+    public function postModalRegistrarUsuario(Request $rq)
+    {
+
+        $Bl = new AquaWebBL();
+
+        $result = $Bl->postRegistrarUsuario($rq);
+
+        return $result;
+    }
+
+    /**
      * Metodo del controlador que retorna el modal para agregar una imagen a la galeria
      *
      * @param $id
@@ -591,6 +619,21 @@ class configuracionController extends Controller
         $Bl = new AquaWebBL();
 
         $data = $Bl->getTiposUsuario();
+
+        return $data;
+    }
+
+    /**
+     * Metodo que consulta los tipos de acceso registrados en el sistema
+     *
+     * @return mixed
+     */
+    public function getTiposAcceso()
+    {
+
+        $Bl = new AquaWebBL();
+
+        $data = $Bl->getTiposAcceso();
 
         return $data;
     }

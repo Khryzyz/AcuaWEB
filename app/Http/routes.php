@@ -221,6 +221,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('configuracion/getTiposUsuario', 'configuracionController@getTiposUsuario')->name('getTiposUsuario');
 
+    Route::post('configuracion/getTiposAcceso', 'configuracionController@getTiposAcceso')->name('getTiposAcceso');
+
     Route::post('configuracion/getTiposExpoSolar', 'configuracionController@getTiposExpoSolar')->name('getTiposExpoSolar');
 
     /**
@@ -340,6 +342,10 @@ Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 
 Route::get('auth/logout', 'Auth\AuthController@getLogout')->name('logout');
+
+Route::get('auth/registrarUsuario', 'configuracionController@getModalRegistrarUsuario')->name('registrarUsuario');
+
+Route::post('auth/registrarUsuario', 'configuracionController@postModalRegistrarUsuario')->name('registrarUsuario');
 
 /**
  *******************************************************************************************

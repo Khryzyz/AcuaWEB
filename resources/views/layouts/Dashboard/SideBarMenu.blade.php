@@ -21,6 +21,12 @@
 
     <div class="list-group panel">
 
+
+        <a href="{{route('home')}}" class="list-group-item collapsed" data-parent="#sideAcuaponia">
+            <i class="fa fa-home"></i>
+            <span class="hidden-sm-down"> <strong>Inicio</strong></span>
+        </a>
+
         <a href="#menuColegas" class="list-group-item collapsed" data-toggle="collapse"
            data-parent="#sideAcuaponia"
            aria-expanded="false">

@@ -177,7 +177,7 @@
                 $implementacion->field('fechaimplementacion')->title('Fecha Implementacion')->width(100);
 
                 $estado = new \Kendo\UI\GridColumn();
-                $estado->field('estadoproceso')->title('Estado')->width(80);
+                $estado->field('estado')->title('Estado')->width(80);
 
                 $verproceso = new \Kendo\UI\GridColumn();
                 $verproceso->field('verproceso')->title('Ver')->templateId('verproceso')->width(125);
@@ -195,7 +195,6 @@
                     )
                     ->dataSource($dataSource)
                     ->sortable(true)
-                    ->filterable($gridFilterable)
                     ->dataBound('handleAjaxModal')
                     ->pageable(true);
 
@@ -280,7 +279,6 @@
                     $estado,
                     $verproceso)
                 ->dataSource($dataSourcePlantas)
-                ->filterable($gridFilterable)
                 ->sortable(true)
                 ->dataBound('handleAjaxModal')
                 ->pageable(true);
@@ -365,7 +363,6 @@
                     $verpez)
                 ->dataSource($dataSourcePeces)
                 ->sortable(true)
-                ->filterable($gridFilterable)
                 ->dataBound('handleAjaxModal')
                 ->pageable(true);
 

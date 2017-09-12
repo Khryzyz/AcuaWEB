@@ -77,6 +77,12 @@
     border-color: #7F2A28;
 }
 
+.btn-back {
+    color: #fff;
+    background-color: #FF501A;
+    border-color: #9B3515;
+}
+
 .btn-view {
     color: #fff;
     background-color: #1B91B2;

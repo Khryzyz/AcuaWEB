@@ -20,10 +20,15 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <img src="{{url('/img/AcuaponiaLOGO.png')}}" alt="Image"
-                                     height="100%" width="100%"/>
+
+                                <img src="{{url('/img/AcuaponiaLOGO.png')}}"
+                                     alt="Image"
+                                     height="100%"
+                                     width="100%"/>
                             </div>
+
                             <div class="col-md-6">
+
                                 <div class="form-group">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="text" class="form-control" name="username"
@@ -39,9 +44,16 @@
                                         <input name="remember" type="checkbox" value="Remember Me">Recuerdame
                                     </label>
                                 </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-lg btn-success btn-block" value="Login"/>
+                                </div>
+                                <div class="form-group text-center">
+                                    <a href="{{route('registrarUsuario')}}" data-modal="modal-md">
+                                        Registrate</a>
+                                </div>
 
-                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Login"/>
                             </div>
+
                         </div>
 
                     </div>

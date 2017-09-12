@@ -2,105 +2,110 @@
 
 @section('content')
 
-    <div class="panel-body">
+    <div class="panel-primary">
+        <div class="panel-body text-right">
+            <a href="{{route('configMisPeces')}}"
+               class="btn btn-back">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
 
-        @include('layouts.Panels.Usuario.infoUsuario')
+    @include('layouts.Panels.Usuario.infoUsuario')
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-leaf"></i> Galeria {{$data->nombre}}</h3>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-leaf"></i> Galeria {{$data->nombre}}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel-group">
+                <a href="{{route('modalAgregarImagen', ['id' => $data->idpez,'tipo'=>2])}}"
+                   class="btn btn-add"
+                   data-modal="modal-md">
+                    <i class="fa fa-plus"></i>
+                    Agregar Imagen</a>
             </div>
-            <div class="panel-body">
-                <div class="panel-group">
-                    <a href="{{route('modalAgregarImagen', ['id' => $data->idpez,'tipo'=>2])}}"
-                       class="btn btn-add"
-                       data-modal="modal-md">
-                        <i class="fa fa-plus"></i>
-                        Agregar Imagen</a>
-                </div>
-                <div class="panel-group">
-                    <?php
+            <div class="panel-group">
+                <?php
 
-                    //Inicializamos el Data Source de Transporte de lectura
-                    $readPez = new \Kendo\Data\DataSourceTransportRead();
+                //Inicializamos el Data Source de Transporte de lectura
+                $readPez = new \Kendo\Data\DataSourceTransportRead();
 
-                    //Agregamos atributos al datasource de transporte de lectura
-                    $readPez
-                        ->url(route('getInfoGaleriaPezById', ['idPez' => $data->idpez]))
-                        ->contentType('application/json')
-                        ->type('POST');
+                //Agregamos atributos al datasource de transporte de lectura
+                $readPez
+                    ->url(route('getInfoGaleriaPezById', ['idPez' => $data->idpez]))
+                    ->contentType('application/json')
+                    ->type('POST');
 
-                    //Inicializamos el Data Source de Transporte
-                    $transportPez = new \Kendo\Data\DataSourceTransport();
+                //Inicializamos el Data Source de Transporte
+                $transportPez = new \Kendo\Data\DataSourceTransport();
 
-                    //Agregamos atributos al datasource de transporte
-                    $transportPez
-                        ->read($readPez)
-                        ->parameterMap('function(data) { return kendo.stringify(data); }');
+                //Agregamos atributos al datasource de transporte
+                $transportPez
+                    ->read($readPez)
+                    ->parameterMap('function(data) { return kendo.stringify(data); }');
 
-                    //Inicializamos el esquema de la grid
-                    $schemaPez = new \Kendo\Data\DataSourceSchema();
+                //Inicializamos el esquema de la grid
+                $schemaPez = new \Kendo\Data\DataSourceSchema();
 
-                    //Agregamos los aributos del esquema de l grid
-                    $schemaPez
-                        ->data('data')
-                        ->total('total');
+                //Agregamos los aributos del esquema de l grid
+                $schemaPez
+                    ->data('data')
+                    ->total('total');
 
-                    //Inicializamos el Data Source
-                    $dataSourcePez = new \Kendo\Data\DataSource();
+                //Inicializamos el Data Source
+                $dataSourcePez = new \Kendo\Data\DataSource();
 
-                    //Agregamos atributos al datasource
-                    $dataSourcePez
-                        ->transport($transportPez)
-                        ->pageSize(5)
-                        ->schema($schemaPez)
-                        ->serverFiltering(true)
-                        ->serverSorting(true)
-                        ->serverPaging(true);
+                //Agregamos atributos al datasource
+                $dataSourcePez
+                    ->transport($transportPez)
+                    ->pageSize(5)
+                    ->schema($schemaPez)
+                    ->serverFiltering(true)
+                    ->serverSorting(true)
+                    ->serverPaging(true);
 
-                    //Inicializamos la grid
-                    $gridPez = new \Kendo\UI\Grid('GridGaleria');
+                //Inicializamos la grid
+                $gridPez = new \Kendo\UI\Grid('GridGaleria');
 
-                    //Inicializamos las columnas de la grid
-                    $imagenPez = new \Kendo\UI\GridColumn();
-                    $imagenPez
-                        ->width(50)
-                        ->title('Imagen');
+                //Inicializamos las columnas de la grid
+                $imagenPez = new \Kendo\UI\GridColumn();
+                $imagenPez
+                    ->width(50)
+                    ->title('Imagen');
 
-                    $tituloPez = new \Kendo\UI\GridColumn();
-                    $tituloPez
-                        ->width(100)
-                        ->title('Titulo');
+                $tituloPez = new \Kendo\UI\GridColumn();
+                $tituloPez
+                    ->width(100)
+                    ->title('Titulo');
 
-                    $detallePez = new \Kendo\UI\GridColumn();
-                    $detallePez
-                        ->width(100)
-                        ->title('Detalle');
+                $detallePez = new \Kendo\UI\GridColumn();
+                $detallePez
+                    ->width(100)
+                    ->title('Detalle');
 
-                    $accionPez = new \Kendo\UI\GridColumn();
-                    $accionPez
-                        ->width(80)
-                        ->title('Acción');
+                $accionPez = new \Kendo\UI\GridColumn();
+                $accionPez
+                    ->width(80)
+                    ->title('Acción');
 
-                    //Se agregan columnas y atributos al grid
-                    $gridPez
-                        ->addColumn(
-                            $imagenPez,
-                            $tituloPez,
-                            $detallePez,
-                            $accionPez
-                        )
-                        ->rowTemplateId('row-template')
-                        ->altRowTemplateId('alt-row-template')
-                        ->dataSource($dataSourcePez)
-                        ->sortable(true)
-                        ->dataBound('handleAjaxModal')
-                        ->pageable(true);
+                //Se agregan columnas y atributos al grid
+                $gridPez
+                    ->addColumn(
+                        $imagenPez,
+                        $tituloPez,
+                        $detallePez,
+                        $accionPez
+                    )
+                    ->rowTemplateId('row-template')
+                    ->altRowTemplateId('alt-row-template')
+                    ->dataSource($dataSourcePez)
+                    ->sortable(true)
+                    ->dataBound('handleAjaxModal')
+                    ->pageable(true);
 
-                    //renderizamos la grid
-                    echo $gridPez->render();
-                    ?>
-                </div>
+                //renderizamos la grid
+                echo $gridPez->render();
+                ?>
             </div>
         </div>
     </div>
@@ -133,9 +138,9 @@
             <td class="accion">
                 <div class="btn-group-justified">
                     <a href="/configuracion/modalEditarInfoGaleria/#=idGaleria#"
-                    data-modal="modal-sm"
-                    class="btn btn-edit #if(estado== '2'){# disabled #}#">
-                    <i class="fa fa-pencil"></i> Editar
+                       data-modal="modal-sm"
+                       class="btn btn-edit #if(estado== '2'){# disabled #}#">
+                        <i class="fa fa-pencil"></i> Editar
                     </a>
                     <a href="/configuracion/modalEstadoGaleria/#=idGaleria#/#=estado#"
                        data-modal="modal-sm"
@@ -178,9 +183,9 @@
             <td class="accion">
                 <div class="btn-group-justified">
                     <a href="/configuracion/modalEditarInfoGaleria/#=idGaleria#"
-                    data-modal="modal-sm"
-                    class="btn btn-edit #if(estado== '2'){# disabled #}#">
-                    <i class="fa fa-pencil"></i> Editar
+                       data-modal="modal-sm"
+                       class="btn btn-edit #if(estado== '2'){# disabled #}#">
+                        <i class="fa fa-pencil"></i> Editar
                     </a>
                     <a href="/configuracion/modalEstadoGaleria/#=idGaleria#/#=estado#"
                        data-modal="modal-sm"

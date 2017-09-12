@@ -2,11 +2,11 @@
 
 @section('content')
 
-    <?php
-    $Utils = new Utils();
-    ?>
     <div class="panel-primary">
         <div class="panel-body text-right">
+            <a href="{{route('procesos')}}"
+               class="btn btn-back">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
             <a href="{{route('getViewInfoCaracteristicasProcesoById', ['idProceso' => $data->idproceso])}}"
                class="btn btn-view">
                 <i class="fa fa-wrench"></i> Características del proceso</a>

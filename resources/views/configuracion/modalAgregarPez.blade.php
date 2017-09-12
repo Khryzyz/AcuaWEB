@@ -67,9 +67,6 @@
             <div class="col-md-3">
                 {!!Form::number('nitnat',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Nitrogeno'])!!}
             </div>
-        </div>
-
-        <div class="row margin-bottom-10">
             <div class="col-md-3">
                 {!!Form::label('nitri', 'Nitrito:')!!}
             </div>
@@ -96,9 +93,7 @@
             <div class="col-md-3">
                 {!!Form::number('crepeso',null,['class'=>'form-control', 'required','min'=>'1','max'=>'100', 'maxlength'=>'3', 'placeholder'=>'Crecimiento Peso'])!!}
             </div>
-        </div>
 
-        <div class="row margin-bottom-10">
             <div class="col-md-3">
                 {!!Form::label('cretiempo', 'Crecimiento Tiempo (dia):')!!}
             </div>
@@ -109,6 +104,43 @@
 
         </div>
 
+        <div class="row margin-bottom-10">
+            <div class="col-md-3">
+                {!!Form::label('tiposAcceso', 'Tipo Acceso:')!!}
+            </div>
+            <div class="col-md-9">
+                <?php
+                $readDropDown = new \Kendo\Data\DataSourceTransportRead();
+
+                $readDropDown
+                    ->url(route('getTiposAcceso'))
+                    ->contentType('application/json')
+                    ->type('POST');
+                $transportDropDown = new \Kendo\Data\DataSourceTransport();
+
+                $transportDropDown->read($readDropDown)
+                    ->parameterMap('function(data) {
+              return kendo.stringify(data);
+           }');
+
+                $dataSourceDropDown = new \Kendo\Data\DataSource();
+
+                $dataSourceDropDown->transport($transportDropDown);
+
+                $dropDownList = new \Kendo\UI\DropDownList('tiposAcceso');
+
+                $dropDownList->dataSource($dataSourceDropDown)
+                    ->dataTextField('nombre')
+                    ->dataValueField('id')
+                    ->optionLabel('Seleccione...')
+                    ->attr('style', 'width: 100%')
+                    ->attr('required', 'required');
+
+                echo $dropDownList->render();
+
+                ?>
+            </div>
+        </div>
         @include('layouts.Panels.Annotations.allFieldsRequired')
 
     </div>

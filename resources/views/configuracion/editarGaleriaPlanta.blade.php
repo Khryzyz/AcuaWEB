@@ -2,105 +2,110 @@
 
 @section('content')
 
-    <div class="panel-body">
+    <div class="panel-primary">
+        <div class="panel-body text-right">
+            <a href="{{route('configMisPlantas')}}"
+               class="btn btn-back">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
 
-        @include('layouts.Panels.Usuario.infoUsuario')
+    @include('layouts.Panels.Usuario.infoUsuario')
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-leaf"></i> Galeria {{$data->nombre}}</h3>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-leaf"></i> Galeria {{$data->nombre}}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel-group">
+                <a href="{{route('modalAgregarImagen', ['id' => $data->idplanta,'tipo'=>1])}}"
+                   class="btn btn-add"
+                   data-modal="modal-md">
+                    <i class="fa fa-plus"></i>
+                    Agregar Imagen</a>
             </div>
-            <div class="panel-body">
-                <div class="panel-group">
-                    <a href="{{route('modalAgregarImagen', ['id' => $data->idplanta,'tipo'=>1])}}"
-                       class="btn btn-add"
-                       data-modal="modal-md">
-                        <i class="fa fa-plus"></i>
-                        Agregar Imagen</a>
-                </div>
-                <div class="panel-group">
-                    <?php
+            <div class="panel-group">
+                <?php
 
-                    //Inicializamos el Data Source de Transporte de lectura
-                    $readPlantas = new \Kendo\Data\DataSourceTransportRead();
+                //Inicializamos el Data Source de Transporte de lectura
+                $readPlantas = new \Kendo\Data\DataSourceTransportRead();
 
-                    //Agregamos atributos al datasource de transporte de lectura
-                    $readPlantas
-                        ->url(route('getInfoGaleriaPlantaById', ['idPlanta' => $data->idplanta]))
-                        ->contentType('application/json')
-                        ->type('POST');
+                //Agregamos atributos al datasource de transporte de lectura
+                $readPlantas
+                    ->url(route('getInfoGaleriaPlantaById', ['idPlanta' => $data->idplanta]))
+                    ->contentType('application/json')
+                    ->type('POST');
 
-                    //Inicializamos el Data Source de Transporte
-                    $transportPlantas = new \Kendo\Data\DataSourceTransport();
+                //Inicializamos el Data Source de Transporte
+                $transportPlantas = new \Kendo\Data\DataSourceTransport();
 
-                    //Agregamos atributos al datasource de transporte
-                    $transportPlantas
-                        ->read($readPlantas)
-                        ->parameterMap('function(data) { return kendo.stringify(data); }');
+                //Agregamos atributos al datasource de transporte
+                $transportPlantas
+                    ->read($readPlantas)
+                    ->parameterMap('function(data) { return kendo.stringify(data); }');
 
-                    //Inicializamos el esquema de la grid
-                    $schemaPlantas = new \Kendo\Data\DataSourceSchema();
+                //Inicializamos el esquema de la grid
+                $schemaPlantas = new \Kendo\Data\DataSourceSchema();
 
-                    //Agregamos los aributos del esquema de l grid
-                    $schemaPlantas
-                        ->data('data')
-                        ->total('total');
+                //Agregamos los aributos del esquema de l grid
+                $schemaPlantas
+                    ->data('data')
+                    ->total('total');
 
-                    //Inicializamos el Data Source
-                    $dataSourcePlantas = new \Kendo\Data\DataSource();
+                //Inicializamos el Data Source
+                $dataSourcePlantas = new \Kendo\Data\DataSource();
 
-                    //Agregamos atributos al datasource
-                    $dataSourcePlantas
-                        ->transport($transportPlantas)
-                        ->pageSize(5)
-                        ->schema($schemaPlantas)
-                        ->serverFiltering(true)
-                        ->serverSorting(true)
-                        ->serverPaging(true);
+                //Agregamos atributos al datasource
+                $dataSourcePlantas
+                    ->transport($transportPlantas)
+                    ->pageSize(5)
+                    ->schema($schemaPlantas)
+                    ->serverFiltering(true)
+                    ->serverSorting(true)
+                    ->serverPaging(true);
 
-                    //Inicializamos la grid
-                    $gridPlantas = new \Kendo\UI\Grid('GridGaleria');
+                //Inicializamos la grid
+                $gridPlantas = new \Kendo\UI\Grid('GridGaleria');
 
-                    //Inicializamos las columnas de la grid
-                    $imagenPlanta = new \Kendo\UI\GridColumn();
-                    $imagenPlanta
-                        ->width(50)
-                        ->title('Imagen');
+                //Inicializamos las columnas de la grid
+                $imagenPlanta = new \Kendo\UI\GridColumn();
+                $imagenPlanta
+                    ->width(50)
+                    ->title('Imagen');
 
-                    $tituloPlanta = new \Kendo\UI\GridColumn();
-                    $tituloPlanta
-                        ->width(100)
-                        ->title('Titulo');
+                $tituloPlanta = new \Kendo\UI\GridColumn();
+                $tituloPlanta
+                    ->width(100)
+                    ->title('Titulo');
 
-                    $detallePlanta = new \Kendo\UI\GridColumn();
-                    $detallePlanta
-                        ->width(100)
-                        ->title('Detalle');
+                $detallePlanta = new \Kendo\UI\GridColumn();
+                $detallePlanta
+                    ->width(100)
+                    ->title('Detalle');
 
-                    $accionPlanta = new \Kendo\UI\GridColumn();
-                    $accionPlanta
-                        ->width(80)
-                        ->title('Acción');
+                $accionPlanta = new \Kendo\UI\GridColumn();
+                $accionPlanta
+                    ->width(80)
+                    ->title('Acción');
 
-                    //Se agregan columnas y atributos al grid
-                    $gridPlantas
-                        ->addColumn(
-                            $imagenPlanta,
-                            $tituloPlanta,
-                            $detallePlanta,
-                            $accionPlanta
-                        )
-                        ->rowTemplateId('row-template')
-                        ->altRowTemplateId('alt-row-template')
-                        ->dataSource($dataSourcePlantas)
-                        ->sortable(true)
-                        ->dataBound('handleAjaxModal')
-                        ->pageable(true);
+                //Se agregan columnas y atributos al grid
+                $gridPlantas
+                    ->addColumn(
+                        $imagenPlanta,
+                        $tituloPlanta,
+                        $detallePlanta,
+                        $accionPlanta
+                    )
+                    ->rowTemplateId('row-template')
+                    ->altRowTemplateId('alt-row-template')
+                    ->dataSource($dataSourcePlantas)
+                    ->sortable(true)
+                    ->dataBound('handleAjaxModal')
+                    ->pageable(true);
 
-                    //renderizamos la grid
-                    echo $gridPlantas->render();
-                    ?>
-                </div>
+                //renderizamos la grid
+                echo $gridPlantas->render();
+                ?>
             </div>
         </div>
     </div>

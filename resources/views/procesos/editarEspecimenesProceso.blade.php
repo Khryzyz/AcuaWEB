@@ -2,15 +2,14 @@
 
 @section('content')
 
-    <?php
-    $Utils = new Utils();
-    ?>
-
     <div class="panel-primary">
         <div class="panel-body text-right">
             <a href="{{route('getViewInfoCaracteristicasProcesoById', ['idProceso' => $data->idproceso])}}"
                class="btn btn-view">
                 <i class="fa fa-wrench"></i> Características del proceso</a>
+            <a href="{{route('getViewInfoValoresProcesoById', ['idProceso' => $data->idproceso])}}"
+               class="btn btn-view">
+                <i class="fa fa-line-chart"></i> Valores del proceso</a>
         </div>
     </div>
 
@@ -236,13 +235,14 @@
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href='/procesos/modalAsociarEspecimenProceso/#=id#/{{$data->idproceso}}/#=tipoespecimen#/#=estado#/' data-modal="modal-sm"
-                    #if(estado == '1'){#
-                        class="btn btn-on-status ">
-                        <i class="fa fa-check-circle"></i> Agregar
+                    <a href='/procesos/modalAsociarEspecimenProceso/#=id#/{{$data->idproceso}}/#=tipoespecimen#/#=estado#/'
+                       data-modal="modal-sm"
+                       #if(estado== '1'){#
+                    class="btn btn-on-status ">
+                    <i class="fa fa-check-circle"></i> Agregar
                     #}else{#
-                        class="btn btn-off-status ">
-                        <i class="fa fa-circle"></i> Retirar
+                    class="btn btn-off-status ">
+                    <i class="fa fa-circle"></i> Retirar
                     #}#
                     </a>
                 </div>
@@ -258,15 +258,15 @@
             <td class="nombre">
                 #: nombre #
             </td>
-                #if(data.porcentaje>0){#
+            #if(data.porcentaje>0){#
             <td class="porcentajevalor">
                 #: porcentaje #%
             </td>
-                #}else{#
+            #}else{#
             <td class="porcentajenovalor">
                 ---
             </td>
-                #}#
+            #}#
             <td class="detalle">
                 <p>Fecha Actualización: #: actualizacion #</p>
                 <p>Usuario: #: usuario #</p>
@@ -274,13 +274,14 @@
             </td>
             <td class="accion">
                 <div class="btn-group-justified">
-                    <a href='/procesos/modalAsociarEspecimenProceso/#=id#/{{$data->idproceso}}/#=tipoespecimen#/#=estado#' data-modal="modal-sm"
-                    #if(estado == '1'){#
-                        class="btn btn-on-status ">
-                        <i class="fa fa-check-circle"></i> Agregar
+                    <a href='/procesos/modalAsociarEspecimenProceso/#=id#/{{$data->idproceso}}/#=tipoespecimen#/#=estado#'
+                       data-modal="modal-sm"
+                       #if(estado== '1'){#
+                    class="btn btn-on-status ">
+                    <i class="fa fa-check-circle"></i> Agregar
                     #}else{#
-                        class="btn btn-off-status ">
-                        <i class="fa fa-circle"></i> Retirar
+                    class="btn btn-off-status ">
+                    <i class="fa fa-circle"></i> Retirar
                     #}#
                     </a>
                 </div>
@@ -297,7 +298,7 @@
             align-items: center;
         }
 
-        td.imagen,td.porcentajenovalor {
+        td.imagen, td.porcentajenovalor {
             text-align: center;
         }
 

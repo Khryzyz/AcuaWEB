@@ -60,32 +60,32 @@
     ------------------------------------------------------------------------------------------------------------------->
 
     <!-- jQuery -->
-    {!!Html::script('js/jquery.min.js')!!}
+{!!Html::script('js/jquery.min.js')!!}
 
-    <!-- Bootstrap Core JavaScript -->
-    {!!Html::script('js/bootstrap.min.js')!!}
+<!-- Bootstrap Core JavaScript -->
+{!!Html::script('js/bootstrap.min.js')!!}
 
-    <!-- Datatables JavaScript -->
-    {!!Html::script('https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js')!!}
+<!-- Datatables JavaScript -->
+{!!Html::script('https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js')!!}
 
-    <!-- Metis Menu Plugin JavaScript -->
-    {!!Html::script('js/metisMenu.min.js')!!}
+<!-- Metis Menu Plugin JavaScript -->
+{!!Html::script('js/metisMenu.min.js')!!}
 
-    <!-- Morris Charts JavaScript -->
-    {!!Html::script('js/raphael-min.js')!!}
+<!-- Morris Charts JavaScript -->
+{!!Html::script('js/raphael-min.js')!!}
 
-    <!-- Custom Theme JavaScript -->
-    {!!Html::script('js/sb-admin-2.js')!!}
+<!-- Custom Theme JavaScript -->
+{!!Html::script('js/sb-admin-2.js')!!}
 
-    <!-- MsgBox JavaScript -->
-    {!!Html::script('js/msgbox/jquery.msgbox.js')!!}
+<!-- MsgBox JavaScript -->
+{!!Html::script('js/msgbox/jquery.msgbox.js')!!}
 
-    <!-- Kendo JavaScript -->
-    {!!Html::script('js/kendo/kendo.all.min.js')!!}
-    {!!Html::script('js/kendo/cultures/kendo.culture.es-ES.min.js')!!}
-    {!!Html::script('js/kendo/lang/kendo.es-ES.js')!!}
+<!-- Kendo JavaScript -->
+{!!Html::script('js/kendo/kendo.all.min.js')!!}
+{!!Html::script('js/kendo/cultures/kendo.culture.es-ES.min.js')!!}
+{!!Html::script('js/kendo/lang/kendo.es-ES.js')!!}
 
-    <!------------------------------------------------------------------------------------------------------------------
+<!------------------------------------------------------------------------------------------------------------------
     -- FIN AREA DE CARGA JAVASCRIPT ------------------------------------------------------------------------------------
     ------------------------------------------------------------------------------------------------------------------->
 
@@ -105,6 +105,14 @@
 <body>
 
 @yield('content')
+
+<!-- Modal Bootstrap-->
+<div id='modalBs' class='modal fade'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
 
 {!!Html::script('js/inicio.js')!!}
 

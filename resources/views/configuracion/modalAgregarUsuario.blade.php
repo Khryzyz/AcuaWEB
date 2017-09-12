@@ -118,78 +118,114 @@
             </div>
         </div>
 
-        @include('layouts.Panels.Annotations.someFieldsRequired')
+        <div class="row margin-bottom-10">
+            <div class="col-md-4">
+                {!!Form::label('tiposAcceso', 'Tipo Acceso:')!!}
+            </div>
+            <div class="col-md-8">
+                <?php
+                $readDropDown = new \Kendo\Data\DataSourceTransportRead();
+
+                $readDropDown
+                    ->url(route('getTiposAcceso'))
+                    ->contentType('application/json')
+                    ->type('POST');
+                $transportDropDown = new \Kendo\Data\DataSourceTransport();
+
+                $transportDropDown->read($readDropDown)
+                    ->parameterMap('function(data) {
+              return kendo.stringify(data);
+           }');
+
+                $dataSourceDropDown = new \Kendo\Data\DataSource();
+
+                $dataSourceDropDown->transport($transportDropDown);
+
+                $dropDownList = new \Kendo\UI\DropDownList('tiposAcceso');
+
+                $dropDownList->dataSource($dataSourceDropDown)
+                    ->dataTextField('nombre')
+                    ->dataValueField('id')
+                    ->optionLabel('Seleccione...')
+                    ->attr('style', 'width: 100%')
+                    ->attr('required', 'required');
+
+                echo $dropDownList->render();
+
+                ?>
+            </div>
+            @include('layouts.Panels.Annotations.someFieldsRequired')
+
+        </div>
+
+        <div class="modal-footer">
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+            <input type="submit" class="btn btn-primary" value="Guardar">
+
+        </div>
+
+        {!!Form::close()!!}
 
     </div>
+    <script type="text/javascript">
+        var modal = $('#ModalAgregarUsuario');
 
-    <div class="modal-footer">
-
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-
-        <input type="submit" class="btn btn-primary" value="Guardar">
-
-    </div>
-
-    {!!Form::close()!!}
-
-</div>
-<script type="text/javascript">
-    var modal = $('#ModalAgregarUsuario');
-
-    $(function () {
-        validarFormulario();// validar forularios con kendo
-        eventResultForm(modal, onSuccess)
-    });
-
-    function validarFormulario() {
-        var container = $('form');
-
-        kendo.init(container);
-
-        container.kendoValidator({
-            //organiza los mensajes personalizados
-            messages: {
-                confirmaPasswords: "Contraseñas no coinciden",
-                required: "Este campo es obligatorio"
-            },
-            //define reglas si necesita tener mas  de solo el campo requerido
-            rules: {
-                confirmaPasswords: function (input) {
-                    if (input.is("[name=pass]") || input.is("[name=confirm_pass]")) {
-                        if (input.is("[name=confirm_pass]")) {
-                            return input.val() === $("#pass").val();
-                        }
-                        if (input.is("[name=pass]")) {
-                            return input.val() === $("#confirm_pass").val();
-                        }
-                    }
-                    return true;
-                }
-            }
+        $(function () {
+            validarFormulario();// validar forularios con kendo
+            eventResultForm(modal, onSuccess)
         });
-    }
 
-    function onSuccess(result) {
+        function validarFormulario() {
+            var container = $('form');
 
-        result = JSON.parse(result)
+            kendo.init(container);
 
-        switch (result.estado) {
-            case "success":
-                $.msgbox(result.mensaje, {type: 'success'}, function () {
-                    modalBs.modal('hide');
-                    $('#GridUsuarios').data('kendoGrid').dataSource.read();
-                    $('#GridUsuarios').data('kendoGrid').refresh();
-                });
-                break;
-            case "error":
-                $.msgbox(result.mensaje, {type: 'warning'});
-                break;
-            case "fatal":
-                $.msgbox(result.mensaje, {type: 'error'});
-                break;
-            default:
-                $.msgbox("Error desconocido", {type: 'error'});
+            container.kendoValidator({
+                //organiza los mensajes personalizados
+                messages: {
+                    confirmaPasswords: "Contraseñas no coinciden",
+                    required: "Este campo es obligatorio"
+                },
+                //define reglas si necesita tener mas  de solo el campo requerido
+                rules: {
+                    confirmaPasswords: function (input) {
+                        if (input.is("[name=pass]") || input.is("[name=confirm_pass]")) {
+                            if (input.is("[name=confirm_pass]")) {
+                                return input.val() === $("#pass").val();
+                            }
+                            if (input.is("[name=pass]")) {
+                                return input.val() === $("#confirm_pass").val();
+                            }
+                        }
+                        return true;
+                    }
+                }
+            });
         }
 
-    }
-</script>
+        function onSuccess(result) {
+
+            result = JSON.parse(result)
+
+            switch (result.estado) {
+                case "success":
+                    $.msgbox(result.mensaje, {type: 'success'}, function () {
+                        modalBs.modal('hide');
+                        $('#GridUsuarios').data('kendoGrid').dataSource.read();
+                        $('#GridUsuarios').data('kendoGrid').refresh();
+                    });
+                    break;
+                case "error":
+                    $.msgbox(result.mensaje, {type: 'info'});
+                    break;
+                case "fatal":
+                    $.msgbox(result.mensaje, {type: 'error'});
+                    break;
+                default:
+                    $.msgbox("Error desconocido", {type: 'error'});
+            }
+
+        }
+    </script>

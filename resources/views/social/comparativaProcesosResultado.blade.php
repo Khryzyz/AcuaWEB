@@ -2,6 +2,14 @@
 
 @section('content')
 
+    <div class="panel-primary">
+        <div class="panel-body text-right">
+            <a href="{{route('comparativaProcesos')}}"
+               class="btn btn-back">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+
     <div class="panel panel-primary">
 
         <div class="panel-heading">
@@ -121,7 +129,8 @@
                                 ?>
 
                                 <div class="panel-footer">
-                                    <h5>Porcentaje de similitud <strong>{{number_format($dataCoincidencias->porcentaje_coincidencia, 2, ',', ' ')}}
+                                    <h5>Porcentaje de similitud
+                                        <strong>{{number_format($dataCoincidencias->porcentaje_coincidencia, 2, ',', ' ')}}
                                             %</strong></h5>
                                 </div>
                             </div>

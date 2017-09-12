@@ -41,6 +41,18 @@ class AquaWebBL
     }
 
     /**
+     * Metodo que consulta los tipos de acceso registrados en el sistema
+     *
+     * @return mixed.
+     */
+    public function getTiposAcceso()
+    {
+        $data = \DB::select('CALL getTiposAcceso()', array());
+
+        return $data;
+    }
+
+    /**
      * Metodo que consulta la informacion del usuario por id
      *
      * @param $idUsuario
@@ -604,15 +616,18 @@ class AquaWebBL
         $fecha = $rq->input('fecha');
         $area = $rq->input('area');
         $volumen = $rq->input('volumen');
+        $tiposAcceso = $rq->input('tiposAcceso');
 
         try {
-            $transaction = \DB::select('CALL insDatosProceso(?,?,?,?,?,?)', array(
+            $transaction = \DB::select('CALL insDatosProceso(?,?,?,?,?,?,?)', array(
                     $idUsuario,
                     $nombre,
                     $descripcion,
                     $fecha,
                     $area,
-                    $volumen)
+                    $volumen,
+                    $tiposAcceso
+                )
             );
             if ($transaction) {
                 $result['estado'] = "fatal";
@@ -648,9 +663,10 @@ class AquaWebBL
         $primerapellido = $rq->input('primerapellido');
         $segundoapellido = $rq->input('segundoapellido');
         $tiposUsuario = $rq->input('tiposUsuario');
+        $tiposAcceso = $rq->input('tiposAcceso');
 
         try {
-            $transaction = \DB::select('CALL insDatosUsuario(?,?,?,?,?,?,?,?)',
+            $transaction = \DB::select('CALL insDatosUsuario(?,?,?,?,?,?,?,?,?)',
                 array(
                     $usuario,
                     $pass,
@@ -659,7 +675,55 @@ class AquaWebBL
                     $segundonombre,
                     $primerapellido,
                     $segundoapellido,
-                    $tiposUsuario
+                    $tiposUsuario,
+                    $tiposAcceso
+                )
+            );
+
+            if ($transaction) {
+                $result['estado'] = "fatal";
+                $result['mensaje'] = $transaction[0]->MESSAGE;
+
+            } else {
+                $result['estado'] = "success";
+                $result['mensaje'] = 'Registrado correctamente';
+            }
+        } catch (Exception $e) {
+            $result['estado'] = "error";
+            $result['mensaje'] = 'No se registro correctamente';
+        }
+        return json_encode($result);
+
+    }
+
+    /**
+     * Metodo que registra un usuario
+     *
+     * @param $rq
+     * @return string
+     */
+    public function postRegistrarUsuario($rq)
+    {
+        $result = [];
+
+        $usuario = strtoupper($rq->input('usuario'));
+        $pass = bcrypt($rq->input('pass'));
+        $email = $rq->input('email');
+        $primernombre = $rq->input('primernombre');
+        $segundonombre = $rq->input('segundonombre');
+        $primerapellido = $rq->input('primerapellido');
+        $segundoapellido = $rq->input('segundoapellido');
+
+        try {
+            $transaction = \DB::select('CALL insRegistroUsuario(?,?,?,?,?,?,?)',
+                array(
+                    $usuario,
+                    $pass,
+                    $email,
+                    $primernombre,
+                    $segundonombre,
+                    $primerapellido,
+                    $segundoapellido
                 )
             );
 
@@ -710,8 +774,10 @@ class AquaWebBL
 
         $expsolar = $rq->input('expsolar');
 
+        $tipoAcceso = $rq->input('tiposAcceso');
+
         try {
-            $transaction = \DB::select('CALL insDatosPlanta(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            $transaction = \DB::select('CALL insDatosPlanta(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                 array(
                     $idUsuario,
                     $nombre,
@@ -725,7 +791,8 @@ class AquaWebBL
                     $cremax,
                     $tempmin,
                     $tempmax,
-                    $expsolar
+                    $expsolar,
+                    $tipoAcceso
                 )
             );
             if ($transaction) {
@@ -776,8 +843,10 @@ class AquaWebBL
 
         $cretiempo = $rq->input('cretiempo');
 
+        $tipoAcceso = $rq->input('tiposAcceso');
+
         try {
-            $transaction = \DB::select('CALL insDatosPez(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            $transaction = \DB::select('CALL insDatosPez(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                 array(
                     $idUsuario,
                     $nombre,
@@ -791,7 +860,8 @@ class AquaWebBL
                     $nitri,
                     $oxi,
                     $crepeso,
-                    $cretiempo
+                    $cretiempo,
+                    $tipoAcceso
                 )
             );
             if ($transaction) {
@@ -955,23 +1025,23 @@ class AquaWebBL
         $result = [];
 
         $usuarioid = $rq->input('usuarioid');
-        $usuario = strtoupper($rq->input('usuario'));
         $email = $rq->input('email');
         $primernombre = $rq->input('primernombre');
         $segundonombre = $rq->input('segundonombre');
         $primerapellido = $rq->input('primerapellido');
         $segundoapellido = $rq->input('segundoapellido');
+        $tipoAcceso = $rq->input('tiposAcceso');
 
         try {
-            $transaction = \DB::select('CALL updDatosUsuario(?,?,?,?,?,?,?)',
+            $transaction = \DB::select('CALL updDatosUsuario(?,?,?,?,?,?,?,?)',
                 array(
                     $usuarioid,
-                    $usuario,
                     $email,
                     $primernombre,
                     $segundonombre,
                     $primerapellido,
-                    $segundoapellido
+                    $segundoapellido,
+                    $tipoAcceso,
                 )
             );
 
@@ -1110,8 +1180,10 @@ class AquaWebBL
 
         $expsolar = $rq->input('expsolar');
 
+        $tiposAcceso = $rq->input('tiposAcceso');
+
         try {
-            $transaction = \DB::select('CALL updDatosPlanta(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            $transaction = \DB::select('CALL updDatosPlanta(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                 array(
                     $id,
                     $nombre,
@@ -1125,7 +1197,8 @@ class AquaWebBL
                     $cremax,
                     $tempmin,
                     $tempmax,
-                    $expsolar
+                    $expsolar,
+                    $tiposAcceso
                 )
             );
             if ($transaction) {
@@ -1176,8 +1249,10 @@ class AquaWebBL
 
         $cretiempo = $rq->input('cretiempo');
 
+        $tiposAcceso = $rq->input('tiposAcceso');
+
         try {
-            $transaction = \DB::select('CALL updDatosPez(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            $transaction = \DB::select('CALL updDatosPez(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                 array(
                     $id,
                     $nombre,
@@ -1191,7 +1266,8 @@ class AquaWebBL
                     $nitri,
                     $oxi,
                     $crepeso,
-                    $cretiempo
+                    $cretiempo,
+                    $tiposAcceso
                 )
             );
             if ($transaction) {
@@ -1226,15 +1302,18 @@ class AquaWebBL
         $fecha = $rq->input('fecha');
         $area = $rq->input('area');
         $volumen = $rq->input('volumen');
+        $tiposAcceso = $rq->input('tiposAcceso');
 
         try {
-            $transaction = \DB::select('CALL updDatosProceso(?,?,?,?,?,?)', array(
+            $transaction = \DB::select('CALL updDatosProceso(?,?,?,?,?,?,?)', array(
                     $procesoid,
                     $nombre,
                     $descripcion,
                     $fecha,
                     $area,
-                    $volumen)
+                    $volumen,
+                    $tiposAcceso
+                )
             );
             if ($transaction) {
                 $result['estado'] = "fatal";

@@ -51,6 +51,44 @@
             </div>
         </div>
 
+        <div class="row margin-bottom-10">
+            <div class="col-md-4">
+                {!!Form::label('tiposAcceso', 'Tipo Acceso:')!!}
+            </div>
+            <div class="col-md-8">
+                <?php
+                $readDropDown = new \Kendo\Data\DataSourceTransportRead();
+
+                $readDropDown
+                    ->url(route('getTiposAcceso'))
+                    ->contentType('application/json')
+                    ->type('POST');
+                $transportDropDown = new \Kendo\Data\DataSourceTransport();
+
+                $transportDropDown->read($readDropDown)
+                    ->parameterMap('function(data) {
+              return kendo.stringify(data);
+           }');
+
+                $dataSourceDropDown = new \Kendo\Data\DataSource();
+
+                $dataSourceDropDown->transport($transportDropDown);
+
+                $dropDownList = new \Kendo\UI\DropDownList('tiposAcceso');
+
+                $dropDownList->dataSource($dataSourceDropDown)
+                    ->dataTextField('nombre')
+                    ->dataValueField('id')
+                    ->optionLabel('Seleccione...')
+                    ->attr('style', 'width: 100%')
+                    ->attr('required', 'required');
+
+                echo $dropDownList->render();
+
+                ?>
+            </div>
+
+        </div>
         @include('layouts.Panels.Annotations.someFieldsRequired')
 
     </div>
@@ -102,7 +140,7 @@
                 });
                 break;
             case "error":
-                $.msgbox(result.mensaje, {type: 'warning'});
+                $.msgbox(result.mensaje, {type: 'info'});
                 break;
             case "fatal":
                 $.msgbox(result.mensaje, {type: 'error'});

@@ -17,7 +17,8 @@
                             <!-- Imagen -->
                             <?php if($data->avatar){
                             ?>
-                            <img src="{{url('/img/avatar/'.$data->avatar)}}" class="img-responsive img-thumbnail" alt="Avatar"
+                            <img src="{{url('/img/avatar/'.$data->avatar)}}" class="img-responsive img-thumbnail"
+                                 alt="Avatar"
                                  width="200em"/>
                             <?php
                             }else{
@@ -46,60 +47,110 @@
                         </div>
                         <div class="panel-body">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <strong>Tipo de Usuario:</strong>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-9">
                                     {{$data->rol}}
                                 </div>
                             </div>
 
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
+                                    <strong>Tipo de Acceso:</strong>
+                                </div>
+                                <div class="col-md-9">
+                                    {{$data->acceso}}
+                                </div>
+                            </div>
+
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-3">
                                     <strong>Usuario:</strong>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-9">
                                     {{$data->usuario}}
                                 </div>
                             </div>
 
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <strong>Correo:</strong>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-9">
                                     {{$data->correo}}
                                 </div>
                             </div>
 
 
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <strong>Primer Nombre:</strong>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     {{$data->primer_nombre}}
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <strong>Segundo Nombre:</strong>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     {{$data->segundo_nombre}}
                                 </div>
                             </div>
 
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <strong>Primer Apellido:</strong>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     {{$data->primer_apellido}}
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <strong>Segundo Apellido:</strong>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     {{$data->segundo_apellido}}
+                                </div>
+                            </div>
+
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-12 text-info text-justify text-">
+                                    <i>
+                                        <?php
+                                        switch ($data->tipoacceso) {
+                                        case 1:
+                                        ?>
+                                        <p>Tu tipo de acceso es <strong>{{$data->acceso}}</strong>, tu perfil y tus
+                                            registros de
+                                            procesos,
+                                            plantas y peces seran visibles
+                                            para todos los usuarios de la aplicación.</p>
+                                        <?php
+                                        break;
+                                        case 2:
+                                        ?>
+                                        <p>Tu tipo de acceso es <strong>{{$data->acceso}}</strong>, tu perfil y tus
+                                            registros de
+                                            procesos,
+                                            plantas y peces seran visibles solo para aquellos que esten registrados como
+                                            tus
+                                            colegas en la aplicación.</p>
+                                        <?php
+                                        break;
+                                        case 3:
+                                        ?>
+                                        <p>Tu tipo de acceso es <strong>{{$data->acceso}}</strong>, tu perfil y tus
+                                            registros de
+                                            procesos,
+                                            plantas y peces NO seran visibles para ningun usuario de la aplicación.</p>
+                                        <?php
+                                        break;
+                                        }
+
+                                        ?>
+                                        <p>Si deseas cambiar está caracteristica puedes realizarlo en <strong>"Editar
+                                                información personal"</strong></p>
+                                    </i>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +186,7 @@
                                     <strong>Especimenes plantas registradas:</strong>
                                 </div>
                                 <div class="col-md-7">
-                                    {{$data->peces}}
+                                    {{$data->plantas}}
                                 </div>
                             </div>
 
@@ -144,7 +195,7 @@
                                     <strong>Especimenes peces registrados:</strong>
                                 </div>
                                 <div class="col-md-7">
-                                    {{$data->plantas}}
+                                    {{$data->peces}}
                                 </div>
                             </div>
                         </div>

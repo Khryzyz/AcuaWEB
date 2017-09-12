@@ -60,7 +60,7 @@
                 });
                 break;
             case "error":
-                $.msgbox(result.mensaje, {type: 'warning'});
+                $.msgbox(result.mensaje, {type: 'info'});
                 break;
             case "fatal":
                 $.msgbox(result.mensaje, {type: 'error'});

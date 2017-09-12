@@ -125,17 +125,14 @@
                             <div class="col-md-4">
                                 <strong>Nitrogeno:</strong>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-2">
                                 {{$data->nitrogeno}}mg/l
                             </div>
-                        </div>
 
-
-                        <div class="row margin-bottom-10">
                             <div class="col-md-4">
                                 <strong>Nitrito:</strong>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-2">
                                 {{$data->nitrito}}mg/l
                             </div>
                         </div>
